@@ -11,7 +11,10 @@
     <name>ssbd01</name>
 
     <developers>
-
+        <developer>
+            <name>Michał Sośnicki</name>
+            <id>6</id>
+        </developer>
     </developers>
 
     <properties>
