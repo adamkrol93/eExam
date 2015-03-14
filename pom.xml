@@ -11,7 +11,10 @@
     <name>ssbd01</name>
 
     <developers>
-
+        <developer>
+            <name>Andrzej Kurczewski</name>
+            <id>akurczewski</id>
+        </developer>
     </developers>
 
     <properties>
