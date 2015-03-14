@@ -11,7 +11,10 @@
     <name>ssbd01</name>
 
     <developers>
-
+        <developer>
+            <name>Piotr Jurewicz</name>
+            <id>3</id>
+        </developer>
     </developers>
 
     <properties>
