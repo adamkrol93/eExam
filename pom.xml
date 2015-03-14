@@ -11,7 +11,10 @@
     <name>ssbd01</name>
 
     <developers>
-
+        <developer>
+            <name>Bartosz Ignaczewski</name>
+            <id>bignaczewski</id>
+        </developer>
     </developers>
 
     <properties>
