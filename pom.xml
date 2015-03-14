@@ -11,7 +11,10 @@
     <name>ssbd01</name>
 
     <developers>
-
+        <developer>
+            <name>Adam Król</name>
+            <id>1</id>
+        </developer>
     </developers>
 
     <properties>
