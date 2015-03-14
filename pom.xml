@@ -11,7 +11,11 @@
     <name>ssbd01</name>
 
     <developers>
-
+        <developer>
+            <name>Tobiasz Kowalski</name>
+            <id>tkowalski</id>
+        </developer>
+        
     </developers>
 
     <properties>
