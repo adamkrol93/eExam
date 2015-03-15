@@ -31,6 +31,10 @@
             <name>Bartosz Ignaczewski</name>
             <id>bignaczewski</id>
         </developer>
+        <developer>
+            <name>Adam Król</name>
+            <id>akrol</id>
+        </developer>
     </developers>
 
     <properties>
