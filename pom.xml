@@ -27,6 +27,10 @@
             <name>Marcin Kabza</name>
             <id>mkabza</id>
         </developer>
+        <developer>
+            <name>Bartosz Ignaczewski</name>
+            <id>bignaczewski</id>
+        </developer>
     </developers>
 
     <properties>
