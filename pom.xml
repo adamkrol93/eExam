@@ -23,6 +23,10 @@
             <name>Andrzej Kurczewski</name>
             <id>akurczewski</id>
         </developer>
+        <developer>
+            <name>Marcin Kabza</name>
+            <id>mkabza</id>
+        </developer>
     </developers>
 
     <properties>
