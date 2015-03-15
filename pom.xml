@@ -15,6 +15,10 @@
             <name>Piotr Jurewicz</name>
             <id>pjurewicz</id>
         </developer>
+        <developer>
+            <name>Tobiasz Kowalski</name>
+            <id>tkowalski</id>
+        </developer>
     </developers>
 
     <properties>
