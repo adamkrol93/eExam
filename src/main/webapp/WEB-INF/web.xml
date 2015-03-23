@@ -24,6 +24,10 @@
         <description/>
         <role-name>CURATOR</role-name>
     </security-role>
+    <security-role>
+        <description/>
+        <role-name>ADMIN</role-name>
+    </security-role>
 
     <!-- kontrola dostępu do zasobów studenta -->
     <security-constraint>
@@ -90,6 +94,24 @@
         <auth-constraint>
             <description/>
             <role-name>CURATOR</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
+    <!-- kontrola dostępu do zasobów administratora -->
+    <security-constraint>
+        <display-name>AdminConstr</display-name>
+        <web-resource-collection>
+            <web-resource-name>Strony administrator</web-resource-name>
+            <description/>
+            <url-pattern>/admin/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>ADMIN</role-name>
         </auth-constraint>
         <user-data-constraint>
             <description/>
