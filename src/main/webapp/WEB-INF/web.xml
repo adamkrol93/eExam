@@ -17,6 +17,10 @@
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
 
+    <welcome-file-list>
+        <welcome-file>index.xhtml</welcome-file>
+    </welcome-file-list>
+
     <!-- definicja ról uwzględnianych w kontroli dostępu -->
     <security-role>
         <description/>
