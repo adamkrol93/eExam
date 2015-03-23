@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+
+    <!-- definicja ról uwzględnianych w kontroli dostępu -->
+    <security-role>
+        <description/>
+        <role-name>STUDENT</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>TEACHER</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>EXAMINER</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>CURATOR</role-name>
+    </security-role>
+
+    <!-- kontrola dostępu do zasobów studenta -->
+    <security-constraint>
+        <display-name>StudentConstr</display-name>
+        <web-resource-collection>
+            <web-resource-name>Strony ucznia</web-resource-name>
+            <description/>
+            <url-pattern>/student/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>STUDENT</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
+    <!-- kontrola dostępu do zasobów nauczyciela -->
+    <security-constraint>
+        <display-name>TeacherConstr</display-name>
+        <web-resource-collection>
+            <web-resource-name>Strony nauczyciela</web-resource-name>
+            <description/>
+            <url-pattern>/teacher/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>TEACHER</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
+    <!-- kontrola dostępu do zasobów egzaminatora -->
+    <security-constraint>
+        <display-name>ExaminerConstr</display-name>
+        <web-resource-collection>
+            <web-resource-name>Strony egzaminatora</web-resource-name>
+            <description/>
+            <url-pattern>/examiner/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>EXAMINER</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
+    <!-- kontrola dostępu do zasobów opiekuna -->
+    <security-constraint>
+        <display-name>CuratorConstr</display-name>
+        <web-resource-collection>
+            <web-resource-name>Strony opiekuna</web-resource-name>
+            <description/>
+            <url-pattern>/curator/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>CURATOR</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
+    <!-- kontrola dostępu do stron logowania -->
+    <security-constraint>
+        <display-name>LoginConstr</display-name>
+        <web-resource-collection>
+            <web-resource-name>Strony logowania</web-resource-name>
+            <description/>
+            <url-pattern>/login/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
+    <!-- kontrola dostępu do stron błędów -->
+    <security-constraint>
+        <display-name>ErrorConstr</display-name>
+        <web-resource-collection>
+            <web-resource-name>Strony błędów</web-resource-name>
+            <description/>
+            <url-pattern>/error/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
+    <!-- definicja metody logowania, odwołanie do stron z formularzem logowania i komunikatem błędu -->
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>ssbd01realm</realm-name>
+    </login-config>
+
+</web-app>
