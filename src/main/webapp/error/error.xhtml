@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <title>
+        <h:outputText value="Error #{exceptionHandler.statusCode}"/>
+    </title>
+</head>
+<body>
+    <h2>
+        <h:outputLabel value="#{exceptionHandler.message}"/>
+    </h2>
+    <ui:repeat value="#{exceptionHandler.details}" var="detail">
+        <h:outputText value="#{detail.exception.toString()}"/>
+            <ui:repeat value="#{detail.trace}" var="item">
+                <h:outputText value="#{item.toString()}" /><br />
+            </ui:repeat>
+    </ui:repeat>
+</body>
+</html>

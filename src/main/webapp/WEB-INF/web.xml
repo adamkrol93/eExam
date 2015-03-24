@@ -171,4 +171,18 @@
         </form-login-config>
     </login-config>
 
+
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/error/error.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/error/error.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error/error.xhtml</location>
+    </error-page>
+
 </web-app>
