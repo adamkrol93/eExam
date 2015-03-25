@@ -1,7 +1,7 @@
 package entities;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Calendar;
 
 /**
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
@@ -26,11 +26,13 @@ public class AnswerEntity {
     @Column(name = "answer_grade", nullable = false)
     private int grade;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "answer_date_add", nullable = false)
-    private Timestamp dateAdd;
+    private Calendar dateAdd;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "answer_date_modification", nullable = true)
-    private Timestamp dateModification;
+    private Calendar dateModification;
 
     @Version
     @Column(name = "answer_version")
@@ -45,7 +47,7 @@ public class AnswerEntity {
     private TeacherEntity teacher;
 
     @ManyToOne
-    @JoinColumn(name = "answer_teacher_id", referencedColumnName = "groups_id")
+    @JoinColumn(name = "answer_teacher_id", referencedColumnName = "groups_id", insertable = false, updatable = false)
     private TeacherStubEntity teacherStub;
 
     @ManyToOne
@@ -76,19 +78,19 @@ public class AnswerEntity {
         this.grade = grade;
     }
 
-    public Timestamp getDateAdd() {
+    public Calendar getDateAdd() {
         return dateAdd;
     }
 
-    public void setDateAdd(Timestamp dateAdd) {
+    public void setDateAdd(Calendar dateAdd) {
         this.dateAdd = dateAdd;
     }
 
-    public Timestamp getDateModification() {
+    public Calendar getDateModification() {
         return dateModification;
     }
 
-    public void setDateModification(Timestamp dateModification) {
+    public void setDateModification(Calendar dateModification) {
         this.dateModification = dateModification;
     }
 

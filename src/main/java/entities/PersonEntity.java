@@ -1,7 +1,7 @@
 package entities;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -37,11 +37,13 @@ public class PersonEntity {
     @Column(name = "person_email", nullable = false, length = 2147483647)
     private String email;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "person_last_time_login", nullable = true)
-    private Timestamp lastTimeLogin;
+    private Calendar lastTimeLogin;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "person_last_time_login_fail", nullable = true)
-    private Timestamp lastTimeLoginFail;
+    private Calendar lastTimeLoginFail;
 
     @Column(name = "person_count_login_fail", nullable = true)
     private Integer countLoginFail;
@@ -55,11 +57,13 @@ public class PersonEntity {
     @Column(name = "person_confirm", nullable = false)
     private boolean confirm;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "person_date_add", nullable = false)
-    private Timestamp dateAdd;
+    private Calendar dateAdd;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "person_date_modification", nullable = true)
-    private Timestamp dateModification;
+    private Calendar dateModification;
 
     @Version
     @Column(name = "person_version")
@@ -119,19 +123,19 @@ public class PersonEntity {
         this.email = email;
     }
 
-    public Timestamp getLastTimeLogin() {
+    public Calendar getLastTimeLogin() {
         return lastTimeLogin;
     }
 
-    public void setLastTimeLogin(Timestamp lastTimeLogin) {
+    public void setLastTimeLogin(Calendar lastTimeLogin) {
         this.lastTimeLogin = lastTimeLogin;
     }
 
-    public Timestamp getLastTimeLoginFail() {
+    public Calendar getLastTimeLoginFail() {
         return lastTimeLoginFail;
     }
 
-    public void setLastTimeLoginFail(Timestamp lastTimeLoginFail) {
+    public void setLastTimeLoginFail(Calendar lastTimeLoginFail) {
         this.lastTimeLoginFail = lastTimeLoginFail;
     }
 
@@ -151,7 +155,7 @@ public class PersonEntity {
         this.lastIpLogin = lastIpLogin;
     }
 
-    public boolean isPersonActive() {
+    public boolean isActive() {
         return active;
     }
 
@@ -159,7 +163,7 @@ public class PersonEntity {
         this.active = active;
     }
 
-    public boolean isPersonConfirm() {
+    public boolean isConfirm() {
         return confirm;
     }
 
@@ -167,22 +171,37 @@ public class PersonEntity {
         this.confirm = confirm;
     }
 
-    public Timestamp getDateAdd() {
+    public Calendar getDateAdd() {
         return dateAdd;
     }
 
-    public void setDateAdd(Timestamp dateAdd) {
+    public void setDateAdd(Calendar dateAdd) {
         this.dateAdd = dateAdd;
     }
 
-    public Timestamp getDateModification() {
+    public Calendar getDateModification() {
         return dateModification;
     }
 
-    public void setDateModification(Timestamp dateModification) {
+    public void setDateModification(Calendar dateModification) {
         this.dateModification = dateModification;
     }
 
+    public List<PreviousPasswordEntity> getPreviousPasswords() {
+        return previousPasswords;
+    }
+
+    public void setPreviousPasswords(List<PreviousPasswordEntity> previousPasswords) {
+        this.previousPasswords = previousPasswords;
+    }
+
+    public List<GroupsStubEntity> getGroupStubs() {
+        return groupStubs;
+    }
+
+    public void setGroupStubs(List<GroupsStubEntity> groupStubs) {
+        this.groupStubs = groupStubs;
+    }
 
     @Override
     public boolean equals(Object o) {

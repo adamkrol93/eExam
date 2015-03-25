@@ -1,7 +1,7 @@
 package entities;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Calendar;
 
 /**
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
@@ -24,11 +24,13 @@ public class PreviousPasswordEntity {
     @Column(name = "person_password", nullable = false, length = 2147483647)
     private String password;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "previous_password_date_add", nullable = false)
-    private Timestamp dateAdd;
+    private Calendar dateAdd;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "previous_password_date_modification", nullable = true)
-    private Timestamp dateModification;
+    private Calendar dateModification;
 
     @Version
     @Column(name = "previous_password_version")
@@ -54,19 +56,19 @@ public class PreviousPasswordEntity {
         this.password = password;
     }
 
-    public Timestamp getDateAdd() {
+    public Calendar getDateAdd() {
         return dateAdd;
     }
 
-    public void setDateAdd(Timestamp dateAdd) {
+    public void setDateAdd(Calendar dateAdd) {
         this.dateAdd = dateAdd;
     }
 
-    public Timestamp getDateModification() {
+    public Calendar getDateModification() {
         return dateModification;
     }
 
-    public void setDateModification(Timestamp dateModification) {
+    public void setDateModification(Calendar dateModification) {
         this.dateModification = dateModification;
     }
 

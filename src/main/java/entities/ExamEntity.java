@@ -2,8 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.math.BigInteger;
-import java.sql.Time;
-import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -30,14 +29,17 @@ public class ExamEntity {
     @Column(name = "exam_count_take_exam", nullable = false)
     private int countTakeExam;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "exam_date_start", nullable = false)
-    private Timestamp dateStart;
+    private Calendar dateStart;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "exam_date_end", nullable = false)
-    private Timestamp dateEnd;
+    private Calendar dateEnd;
 
+    @Temporal(TemporalType.TIME)
     @Column(name = "exam_duration", nullable = false)
-    private Time duration;
+    private Calendar duration;
 
     @Column(name = "exam_count_question", nullable = false)
     private int countQuestion;
@@ -48,11 +50,13 @@ public class ExamEntity {
     @Column(name = "exam_avg_results", nullable = true, precision = 0)
     private BigInteger avgResults;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "exam_date_add", nullable = false)
-    private Timestamp dateAdd;
+    private Calendar dateAdd;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "exam_date_modification", nullable = true)
-    private Timestamp dateModification;
+    private Calendar dateModification;
 
     @Version
     @Column(name = "exam_version")
@@ -66,7 +70,7 @@ public class ExamEntity {
     private ExaminerEntity creator;
 
     @ManyToOne
-    @JoinColumn(name = "exam_creator_id", referencedColumnName = "groups_id", nullable = false)
+    @JoinColumn(name = "exam_creator_id", referencedColumnName = "groups_id", nullable = false, insertable = false, updatable = false)
     private ExaminerStubEntity creatorStub;
 
     @ManyToOne
@@ -74,7 +78,7 @@ public class ExamEntity {
     private ExaminerEntity modifier;
 
     @ManyToOne
-    @JoinColumn(name = "exam_modifier_id", referencedColumnName = "groups_id")
+    @JoinColumn(name = "exam_modifier_id", referencedColumnName = "groups_id", insertable = false, updatable = false)
     private ExaminerStubEntity modifierStub;
 
     @ManyToMany
@@ -122,27 +126,27 @@ public class ExamEntity {
         this.countTakeExam = countTakeExam;
     }
 
-    public Timestamp getDateStart() {
+    public Calendar getDateStart() {
         return dateStart;
     }
 
-    public void setDateStart(Timestamp dateStart) {
+    public void setDateStart(Calendar dateStart) {
         this.dateStart = dateStart;
     }
 
-    public Timestamp getDateEnd() {
+    public Calendar getDateEnd() {
         return dateEnd;
     }
 
-    public void setDateEnd(Timestamp dateEnd) {
+    public void setDateEnd(Calendar dateEnd) {
         this.dateEnd = dateEnd;
     }
 
-    public Time getDuration() {
+    public Calendar getDuration() {
         return duration;
     }
 
-    public void setDuration(Time duration) {
+    public void setDuration(Calendar duration) {
         this.duration = duration;
     }
 
@@ -170,19 +174,19 @@ public class ExamEntity {
         this.avgResults = avgResults;
     }
 
-    public Timestamp getDateAdd() {
+    public Calendar getDateAdd() {
         return dateAdd;
     }
 
-    public void setDateAdd(Timestamp dateAdd) {
+    public void setDateAdd(Calendar dateAdd) {
         this.dateAdd = dateAdd;
     }
 
-    public Timestamp getDateModification() {
+    public Calendar getDateModification() {
         return dateModification;
     }
 
-    public void setDateModification(Timestamp dateModification) {
+    public void setDateModification(Calendar dateModification) {
         this.dateModification = dateModification;
     }
 

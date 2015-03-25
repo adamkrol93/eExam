@@ -1,7 +1,7 @@
 package entities;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -22,20 +22,24 @@ public class ApproachEntity {
     @Column(name = "approach_id", nullable = false)
     private long id;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "approach_date_start", nullable = false)
-    private Timestamp dateStart;
+    private Calendar dateStart;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "approach_date_end", nullable = false)
-    private Timestamp dateEnd;
+    private Calendar dateEnd;
 
     @Column(name = "approach_disqualification", nullable = false)
     private boolean disqualification;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "approach_date_add", nullable = false)
-    private Timestamp dateAdd;
+    private Calendar dateAdd;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "approach_date_modification", nullable = true)
-    private Timestamp dateModification;
+    private Calendar dateModification;
 
     @Version
     @Column(name = "approach_version")
@@ -49,7 +53,7 @@ public class ApproachEntity {
     private ExamEntity exam;
 
     @ManyToOne
-    @JoinColumn(name = "approach_entrant_id", referencedColumnName = "groups_id", nullable = false)
+    @JoinColumn(name = "approach_entrant_id", referencedColumnName = "groups_id", nullable = false, insertable = false, updatable = false)
     private StudentEntity entrant;
 
     @ManyToOne
@@ -64,19 +68,19 @@ public class ApproachEntity {
         this.id = id;
     }
 
-    public Timestamp getDateStart() {
+    public Calendar getDateStart() {
         return dateStart;
     }
 
-    public void setDateStart(Timestamp dateStart) {
+    public void setDateStart(Calendar dateStart) {
         this.dateStart = dateStart;
     }
 
-    public Timestamp getDateEnd() {
+    public Calendar getDateEnd() {
         return dateEnd;
     }
 
-    public void setDateEnd(Timestamp dateEnd) {
+    public void setDateEnd(Calendar dateEnd) {
         this.dateEnd = dateEnd;
     }
 
@@ -88,19 +92,19 @@ public class ApproachEntity {
         this.disqualification = disqualification;
     }
 
-    public Timestamp getDateAdd() {
+    public Calendar getDateAdd() {
         return dateAdd;
     }
 
-    public void setDateAdd(Timestamp dateAdd) {
+    public void setDateAdd(Calendar dateAdd) {
         this.dateAdd = dateAdd;
     }
 
-    public Timestamp getDateModification() {
+    public Calendar getDateModification() {
         return dateModification;
     }
 
-    public void setDateModification(Timestamp dateModification) {
+    public void setDateModification(Calendar dateModification) {
         this.dateModification = dateModification;
     }
 

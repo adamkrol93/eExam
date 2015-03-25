@@ -1,7 +1,7 @@
 package entities;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -28,11 +28,13 @@ public class QuestionEntity {
     @Column(name = "question_sample_answer", nullable = false, length = 2147483647)
     private String sampleAnswer;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "question_date_add", nullable = false)
-    private Timestamp dateAdd;
+    private Calendar dateAdd;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "question_date_modification", nullable = true)
-    private Timestamp dateModification;
+    private Calendar dateModification;
 
     @Version
     @Column(name = "question_version")
@@ -46,7 +48,7 @@ public class QuestionEntity {
     private ExaminerEntity creator;
 
     @ManyToOne
-    @JoinColumn(name = "question_creator_id", referencedColumnName = "groups_id", nullable = false)
+    @JoinColumn(name = "question_creator_id", referencedColumnName = "groups_id", nullable = false, insertable = false, updatable = false)
     private ExaminerStubEntity creatorStub;
 
     @ManyToOne
@@ -54,7 +56,7 @@ public class QuestionEntity {
     private ExaminerEntity modifier;
 
     @ManyToOne
-    @JoinColumn(name = "question_modifier_id", referencedColumnName = "groups_id")
+    @JoinColumn(name = "question_modifier_id", referencedColumnName = "groups_id", insertable = false, updatable = false)
     private ExaminerStubEntity modifierStub;
 
     @ManyToMany(mappedBy = "questions")
@@ -84,19 +86,19 @@ public class QuestionEntity {
         this.sampleAnswer = sampleAnswer;
     }
 
-    public Timestamp getDateAdd() {
+    public Calendar getDateAdd() {
         return dateAdd;
     }
 
-    public void setDateAdd(Timestamp dateAdd) {
+    public void setDateAdd(Calendar dateAdd) {
         this.dateAdd = dateAdd;
     }
 
-    public Timestamp getDateModification() {
+    public Calendar getDateModification() {
         return dateModification;
     }
 
-    public void setDateModification(Timestamp dateModification) {
+    public void setDateModification(Calendar dateModification) {
         this.dateModification = dateModification;
     }
 

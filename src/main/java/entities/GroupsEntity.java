@@ -1,7 +1,7 @@
 package entities;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -32,8 +32,9 @@ public abstract class GroupsEntity {
     @Column(name = "groups_active", nullable = false)
     private boolean groupActive;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "groups_date_modification", nullable = true)
-    private Timestamp dateModification;
+    private Calendar dateModification;
 
     @Version
     @Column(name = "groups_version")
@@ -54,11 +55,13 @@ public abstract class GroupsEntity {
     @Column(name = "person_email", table = "person", nullable = false, length = 2147483647)
     private String email;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "person_last_time_login", table = "person", nullable = true)
-    private Timestamp lastTimeLogin;
+    private Calendar lastTimeLogin;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "person_last_time_login_fail", table = "person", nullable = true)
-    private Timestamp lastTimeLoginFail;
+    private Calendar lastTimeLoginFail;
 
     @Column(name = "person_count_login_fail", table = "person", nullable = true)
     private Integer countLoginFail;
@@ -72,15 +75,13 @@ public abstract class GroupsEntity {
     @Column(name = "person_confirm", table = "person", nullable = false)
     private boolean confirm;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "person_date_add", table = "person", nullable = false)
-    private Timestamp personDateAdd;
+    private Calendar personDateAdd;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "person_date_modification", table = "person", nullable = true)
-    private Timestamp personDateModification;
-
-    @OneToMany(mappedBy = "person")
-    @JoinColumn(name = "person_id", table = "person", referencedColumnName = "person_id")
-    private List<PreviousPasswordEntity> previousPasswords;
+    private Calendar personDateModification;
 
     public long getId() {
         return id;
@@ -106,11 +107,11 @@ public abstract class GroupsEntity {
         this.groupActive = groupActive;
     }
 
-    public Timestamp getDateModification() {
+    public Calendar getDateModification() {
         return dateModification;
     }
 
-    public void setDateModification(Timestamp dateModification) {
+    public void setDateModification(Calendar dateModification) {
         this.dateModification = dateModification;
     }
 
@@ -162,19 +163,19 @@ public abstract class GroupsEntity {
         this.email = email;
     }
 
-    public Timestamp getLastTimeLogin() {
+    public Calendar getLastTimeLogin() {
         return lastTimeLogin;
     }
 
-    public void setLastTimeLogin(Timestamp lastTimeLogin) {
+    public void setLastTimeLogin(Calendar lastTimeLogin) {
         this.lastTimeLogin = lastTimeLogin;
     }
 
-    public Timestamp getLastTimeLoginFail() {
+    public Calendar getLastTimeLoginFail() {
         return lastTimeLoginFail;
     }
 
-    public void setLastTimeLoginFail(Timestamp lastTimeLoginFail) {
+    public void setLastTimeLoginFail(Calendar lastTimeLoginFail) {
         this.lastTimeLoginFail = lastTimeLoginFail;
     }
 
@@ -194,11 +195,11 @@ public abstract class GroupsEntity {
         this.lastIpLogin = lastIpLogin;
     }
 
-    public boolean isPersonActive() {
+    public boolean isActive() {
         return personActive;
     }
 
-    public void setPersonActive(boolean personActive) {
+    public void setActive(boolean personActive) {
         this.personActive = personActive;
     }
 
@@ -210,27 +211,19 @@ public abstract class GroupsEntity {
         this.confirm = confirm;
     }
 
-    public Timestamp getPersonDateAdd() {
+    public Calendar getPersonDateAdd() {
         return personDateAdd;
     }
 
-    public void setPersonDateAdd(Timestamp personDateAdd) {
+    public void setPersonDateAdd(Calendar personDateAdd) {
         this.personDateAdd = personDateAdd;
     }
 
-    public Timestamp getPersonDateModification() {
+    public Calendar getPersonDateModification() {
         return personDateModification;
     }
 
-    public void setPersonDateModification(Timestamp personDateModification) {
+    public void setPersonDateModification(Calendar personDateModification) {
         this.personDateModification = personDateModification;
-    }
-
-    public List<PreviousPasswordEntity> getPreviousPasswords() {
-        return previousPasswords;
-    }
-
-    public void setPreviousPasswords(List<PreviousPasswordEntity> previousPasswords) {
-        this.previousPasswords = previousPasswords;
     }
 }

@@ -1,7 +1,7 @@
 package entities;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Calendar;
 
 /**
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
@@ -30,8 +30,9 @@ public abstract class GroupsStubEntity {
     @Column(name = "groups_active", nullable = false)
     private boolean active;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "groups_date_modification", nullable = true)
-    private Timestamp dateModification;
+    private Calendar dateModification;
 
     @Version
     @Column(name = "groups_version")
@@ -65,11 +66,11 @@ public abstract class GroupsStubEntity {
         this.active = active;
     }
 
-    public Timestamp getDateModification() {
+    public Calendar getDateModification() {
         return dateModification;
     }
 
-    public void setDateModification(Timestamp dateModification) {
+    public void setDateModification(Calendar dateModification) {
         this.dateModification = dateModification;
     }
 
