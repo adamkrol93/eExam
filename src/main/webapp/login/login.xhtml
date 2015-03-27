@@ -4,13 +4,15 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <meta http-equiv="Content-Type" context="text/html; charset=UTF-8"/>
-        <title>Start page</title>
+        <title>Strona logowania</title>
     </h:head>
     <h:body>
         <form action="j_security_check" method="POST">
             Login: <input type="text" name="j_username"/><br/>
             Hasło: <input type="password" name="j_password"/><br/>
             <input type="submit" value="Zaloguj"/>
+            <br/><h:link outcome="/index.xhtml" value="Powrót do strony głównej"/>
+            
         </form>
     </h:body>
 </html>
