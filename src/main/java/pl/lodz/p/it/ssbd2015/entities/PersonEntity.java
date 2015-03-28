@@ -22,7 +22,7 @@ public class PersonEntity {
     @Column(name = "person_id", nullable = false)
     private long id;
 
-    @Column(name = "person_login", nullable = false, length = 30)
+    @Column(name = "person_login", nullable = false, length = 30, unique = true)
     private String login;
 
     @Column(name = "person_last_name", nullable = false, length = 35)

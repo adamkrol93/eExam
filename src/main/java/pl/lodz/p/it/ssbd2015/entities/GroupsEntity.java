@@ -2,7 +2,6 @@ package pl.lodz.p.it.ssbd2015.entities;
 
 import javax.persistence.*;
 import java.util.Calendar;
-import java.util.List;
 
 /**
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
@@ -40,7 +39,7 @@ public abstract class GroupsEntity {
     @Column(name = "groups_version")
     private Long version;
 
-    @Column(name = "person_login", table = "person", nullable = false, length = 30)
+    @Column(name = "person_login", table = "person", nullable = false, length = 30, unique = true)
     private String login;
 
     @Column(name = "person_last_name", table = "person", nullable = false, length = 35)
