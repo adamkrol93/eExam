@@ -8,20 +8,20 @@ import java.util.List;
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  */
 @Entity
+@Table(name = "groups")
+@TableGenerator(name = "groups_id_generator",
+        table = "generator",
+        pkColumnName = "class_name",
+        valueColumnName = "id_range",
+        pkColumnValue = "groups",
+        allocationSize = 5)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "groups_name")
-@Table(name = "groups")
 @SecondaryTable(name = "person", pkJoinColumns = {@PrimaryKeyJoinColumn(name = "person_id", referencedColumnName = "person_id")})
 public abstract class GroupsEntity {
 
     @Id
-//    @TableGenerator(name = "groups_id_counter",
-//        table = "id_counter",
-//        pkColumnName = "id_counter_id",
-//        valueColumnName = "id_counter_value",
-//        pkColumnValue = "groups",
-//        allocationSize = 5)
-//    @GeneratedValue(strategy = GenerationType.TABLE, generator = "groups_id_counter")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "groups_id_generator")
     @Column(name = "groups_id", nullable = false)
     private long id;
 

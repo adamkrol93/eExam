@@ -13,13 +13,7 @@ import java.util.Calendar;
 public abstract class GroupsStubEntity {
 
     @Id
-//    @TableGenerator(name = "groups_id_counter",
-//        table = "id_counter",
-//        pkColumnName = "id_counter_id",
-//        valueColumnName = "id_counter_value",
-//        pkColumnValue = "groups",
-//        allocationSize = 4)
-//    @GeneratedValue(strategy = GenerationType.TABLE, generator = "groups_id_counter")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "groups_id_generator")
     @Column(name = "groups_id", nullable = false)
     private long id;
 

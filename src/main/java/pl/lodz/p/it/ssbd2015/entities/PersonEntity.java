@@ -9,16 +9,16 @@ import java.util.List;
  */
 @Entity
 @Table(name = "person")
+@TableGenerator(name = "person_id_generator",
+        table = "generator",
+        pkColumnName = "class_name",
+        valueColumnName = "id_range",
+        pkColumnValue = "person",
+        allocationSize = 1)
 public class PersonEntity {
 
     @Id
-//    @TableGenerator(name = "person_id_counter",
-//        table = "id_counter",
-//        pkColumnName = "id_counter_id",
-//        valueColumnName = "id_counter_value",
-//        pkColumnValue = "person",
-//        allocationSize = 1)
-//    @GeneratedValue(strategy = GenerationType.TABLE, generator = "person_id_counter")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "person_id_generator")
     @Column(name = "person_id", nullable = false)
     private long id;
 

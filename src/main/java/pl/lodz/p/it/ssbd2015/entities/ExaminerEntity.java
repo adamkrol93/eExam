@@ -25,9 +25,6 @@ public class ExaminerEntity extends GroupsEntity {
     @OneToMany(mappedBy = "modifier")
     private List<QuestionEntity> modifiedQuestions;
 
-    @ManyToMany(mappedBy = "teacherStubs")
-    private List<ExamEntity> exams;
-
     public List<ExamEntity> getCreatedExams() {
         return createdExams;
     }
@@ -58,13 +55,5 @@ public class ExaminerEntity extends GroupsEntity {
 
     public void setModifiedQuestions(List<QuestionEntity> modifiedQuestions) {
         this.modifiedQuestions = modifiedQuestions;
-    }
-
-    public List<ExamEntity> getExams() {
-        return exams;
-    }
-
-    public void setExams(List<ExamEntity> exams) {
-        this.exams = exams;
     }
 }

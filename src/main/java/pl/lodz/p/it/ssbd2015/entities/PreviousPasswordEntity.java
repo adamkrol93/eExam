@@ -8,16 +8,16 @@ import java.util.Calendar;
  */
 @Entity
 @Table(name = "previous_password")
+@TableGenerator(name = "previous_password_id_generator",
+        table = "generator",
+        pkColumnName = "class_name",
+        valueColumnName = "id_range",
+        pkColumnValue = "previous_password",
+        allocationSize = 1)
 public class PreviousPasswordEntity {
 
     @Id
-//    @TableGenerator(name = "previous_password_id_counter",
-//        table = "id_counter",
-//        pkColumnName = "id_counter_id",
-//        valueColumnName = "id_counter_value",
-//        pkColumnValue = "previous_password",
-//        allocationSize = 1)
-//    @GeneratedValue(strategy = GenerationType.TABLE, generator = "previous_password_id_counter")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "previous_password_id_generator")
     @Column(name = "previous_password_id", nullable = false)
     private long id;
 

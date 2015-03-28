@@ -9,16 +9,16 @@ import java.util.List;
  */
 @Entity
 @Table(name = "question")
+@TableGenerator(name = "question_id_generator",
+        table = "generator",
+        pkColumnName = "class_name",
+        valueColumnName = "id_range",
+        pkColumnValue = "question",
+        allocationSize = 1)
 public class QuestionEntity {
 
     @Id
-//    @TableGenerator(name = "question_id_counter",
-//        table = "id_counter",
-//        pkColumnName = "id_counter_id",
-//        valueColumnName = "id_counter_value",
-//        pkColumnValue = "question",
-//        allocationSize = 1)
-//    @GeneratedValue(strategy = GenerationType.TABLE, generator = "question_id_counter")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "question_id_generator")
     @Column(name = "question_id", nullable = false)
     private long id;
 

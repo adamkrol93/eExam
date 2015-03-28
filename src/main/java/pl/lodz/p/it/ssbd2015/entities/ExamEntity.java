@@ -10,16 +10,16 @@ import java.util.List;
  */
 @Entity
 @Table(name = "exam")
+@TableGenerator(name = "exam_id_generator",
+        table = "generator",
+        pkColumnName = "class_name",
+        valueColumnName = "id_range",
+        pkColumnValue = "exam",
+        allocationSize = 1)
 public class ExamEntity {
 
     @Id
-//    @TableGenerator(name = "exam_id_counter",
-//        table = "id_counter",
-//        pkColumnName = "id_counter_id",
-//        valueColumnName = "id_counter_value",
-//        pkColumnValue = "exam",
-//        allocationSize = 1)
-//    @GeneratedValue(strategy = GenerationType.TABLE, generator = "exam_id_counter")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "exam_id_generator")
     @Column(name = "exam_id", nullable = false)
     private long id;
 

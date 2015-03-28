@@ -8,15 +8,15 @@ import java.util.Calendar;
  */
 @Entity
 @Table(name = "answer")
+@TableGenerator(name = "answer_id_generator",
+        table = "generator",
+        pkColumnName = "class_name",
+        valueColumnName = "id_range",
+        pkColumnValue = "answer",
+        allocationSize = 10)
 public class AnswerEntity {
     @Id
-//    @TableGenerator(name = "answer_id_counter",
-//        table = "id_counter",
-//        pkColumnName = "id_counter_id",
-//        valueColumnName = "id_counter_value",
-//        pkColumnValue = "answer",
-//        allocationSize = 10)
-//    @GeneratedValue(strategy = GenerationType.TABLE, generator = "answer_id_counter")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "answer_id_generator")
     @Column(name = "answer_id", nullable = false)
     private long id;
 
