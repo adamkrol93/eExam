@@ -19,7 +19,7 @@ public class PersonEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "person_id_generator")
-    @Column(name = "person_id", nullable = false)
+    @Column(name = "person_id", nullable = false, updatable = false)
     private long id;
 
     @Column(name = "person_login", nullable = false, length = 30, unique = true)
@@ -77,10 +77,6 @@ public class PersonEntity {
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getLogin() {

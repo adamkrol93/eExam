@@ -20,7 +20,7 @@ public class ExamEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "exam_id_generator")
-    @Column(name = "exam_id", nullable = false)
+    @Column(name = "exam_id", nullable = false, updatable = false)
     private long id;
 
     @Column(name = "exam_title", nullable = false, length = 100, unique = true)
@@ -104,10 +104,6 @@ public class ExamEntity {
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getTitle() {

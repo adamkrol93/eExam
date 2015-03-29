@@ -18,7 +18,7 @@ public class PreviousPasswordEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "previous_password_id_generator")
-    @Column(name = "previous_password_id", nullable = false)
+    @Column(name = "previous_password_id", nullable = false, updatable = false)
     private long id;
 
     @Column(name = "person_password", nullable = false, length = 2147483647)
@@ -42,10 +42,6 @@ public class PreviousPasswordEntity {
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getPassword() {

@@ -21,7 +21,7 @@ public abstract class GroupsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "groups_id_generator")
-    @Column(name = "groups_id", nullable = false)
+    @Column(name = "groups_id", nullable = false, updatable = false)
     private long id;
 
     @Enumerated(EnumType.STRING)
@@ -84,10 +84,6 @@ public abstract class GroupsEntity {
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public Groups getGroupName() {

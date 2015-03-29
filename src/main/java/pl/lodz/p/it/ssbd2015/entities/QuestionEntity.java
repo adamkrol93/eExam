@@ -19,7 +19,7 @@ public class QuestionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "question_id_generator")
-    @Column(name = "question_id", nullable = false)
+    @Column(name = "question_id", nullable = false, updatable = false)
     private long id;
 
     @Column(name = "question_content", nullable = false, length = 2147483647)
@@ -64,10 +64,6 @@ public class QuestionEntity {
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getContent() {

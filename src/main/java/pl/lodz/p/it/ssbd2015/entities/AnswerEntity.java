@@ -17,7 +17,7 @@ import java.util.Calendar;
 public class AnswerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "answer_id_generator")
-    @Column(name = "answer_id", nullable = false)
+    @Column(name = "answer_id", nullable = false, updatable = false)
     private long id;
 
     @Column(name = "answer_content", nullable = false, length = 2147483647)
@@ -56,10 +56,6 @@ public class AnswerEntity {
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getContent() {

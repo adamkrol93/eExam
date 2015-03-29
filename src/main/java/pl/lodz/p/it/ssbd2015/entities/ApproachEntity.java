@@ -19,7 +19,7 @@ public class ApproachEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "approach_id_generator")
-    @Column(name = "approach_id", nullable = false)
+    @Column(name = "approach_id", nullable = false, updatable = false)
     private long id;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -62,10 +62,6 @@ public class ApproachEntity {
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public Calendar getDateStart() {
