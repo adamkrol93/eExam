@@ -32,7 +32,7 @@ public abstract class GroupsStubEntity {
     @Column(name = "groups_version")
     private Long version;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "person_id")
     private PersonEntity person;
 

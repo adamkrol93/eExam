@@ -43,11 +43,11 @@ public class QuestionEntity {
     @OneToMany(mappedBy = "question")
     private List<AnswerEntity> answers;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "question_creator_id", referencedColumnName = "groups_id", nullable = false)
     private ExaminerEntity creator;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "question_creator_id", referencedColumnName = "groups_id", nullable = false, insertable = false, updatable = false)
     private ExaminerStubEntity creatorStub;
 

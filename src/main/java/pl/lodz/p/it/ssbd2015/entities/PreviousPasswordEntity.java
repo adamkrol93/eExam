@@ -36,7 +36,7 @@ public class PreviousPasswordEntity {
     @Column(name = "previous_password_version")
     private Long version;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "person_id", referencedColumnName = "person_id", nullable = false)
     private PersonEntity person;
 

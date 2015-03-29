@@ -48,15 +48,15 @@ public class ApproachEntity {
     @OneToMany(mappedBy = "approach")
     private List<AnswerEntity> answers;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "approach_exam_id", referencedColumnName = "exam_id", nullable = false)
     private ExamEntity exam;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "approach_entrant_id", referencedColumnName = "groups_id", nullable = false, insertable = false, updatable = false)
     private StudentEntity entrant;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "approach_entrant_id", referencedColumnName = "groups_id", nullable = false)
     private StudentStubEntity entrantStub;
 
