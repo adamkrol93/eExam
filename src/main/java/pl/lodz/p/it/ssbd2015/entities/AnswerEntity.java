@@ -38,7 +38,7 @@ public class AnswerEntity {
     @Column(name = "answer_version")
     private Long version;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "answer_approach_id", referencedColumnName = "approach_id", nullable = false)
     private ApproachEntity approach;
 
@@ -50,7 +50,7 @@ public class AnswerEntity {
     @JoinColumn(name = "answer_teacher_id", referencedColumnName = "groups_id", insertable = false, updatable = false)
     private TeacherStubEntity teacherStub;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "answer_question_id", referencedColumnName = "question_id", nullable = false)
     private QuestionEntity question;
 
