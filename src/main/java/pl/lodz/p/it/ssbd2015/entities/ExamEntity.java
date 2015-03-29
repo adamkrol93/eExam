@@ -23,7 +23,7 @@ public class ExamEntity {
     @Column(name = "exam_id", nullable = false)
     private long id;
 
-    @Column(name = "exam_title", nullable = false, length = 100)
+    @Column(name = "exam_title", nullable = false, length = 100, unique = true)
     private String title;
 
     @Column(name = "exam_count_take_exam", nullable = false)
