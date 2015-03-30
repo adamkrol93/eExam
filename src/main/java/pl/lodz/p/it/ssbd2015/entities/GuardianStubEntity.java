@@ -9,7 +9,7 @@ import java.util.List;
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  */
 @Entity
-@DiscriminatorValue(Groups.CURATORGROUP)
+@DiscriminatorValue(Groups.GUARDIANGROUP)
 public class GuardianStubEntity extends GroupsStubEntity {
 
     @OneToMany(mappedBy = "guardian")
