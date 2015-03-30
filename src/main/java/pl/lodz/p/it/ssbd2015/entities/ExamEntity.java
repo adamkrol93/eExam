@@ -37,9 +37,8 @@ public class ExamEntity {
     @Column(name = "exam_date_end", nullable = false)
     private Calendar dateEnd;
 
-    @Temporal(TemporalType.TIME)
     @Column(name = "exam_duration", nullable = false)
-    private Calendar duration;
+    private int duration;
 
     @Column(name = "exam_count_question", nullable = false)
     private int countQuestion;
@@ -138,11 +137,11 @@ public class ExamEntity {
         this.dateEnd = dateEnd;
     }
 
-    public Calendar getDuration() {
+    public int getDuration() {
         return duration;
     }
 
-    public void setDuration(Calendar duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 
