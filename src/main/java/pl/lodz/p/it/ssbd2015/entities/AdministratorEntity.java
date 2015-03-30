@@ -8,5 +8,5 @@ import javax.persistence.Entity;
  */
 @Entity
 @DiscriminatorValue(Groups.ADMINGROUP)
-public class AdminEntity extends GroupsEntity {
+public class AdministratorEntity extends GroupsEntity {
 }

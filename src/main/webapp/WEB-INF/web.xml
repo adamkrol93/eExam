@@ -36,11 +36,11 @@
     </security-role>
     <security-role>
         <description/>
-        <role-name>CURATOR</role-name>
+        <role-name>GUARDIAN</role-name>
     </security-role>
     <security-role>
         <description/>
-        <role-name>ADMIN</role-name>
+        <role-name>ADMINISTRATOR</role-name>
     </security-role>
 
     <!-- kontrola dostępu do zasobów studenta -->
@@ -99,15 +99,15 @@
 
     <!-- kontrola dostępu do zasobów opiekuna -->
     <security-constraint>
-        <display-name>CuratorConstr</display-name>
+        <display-name>GuardianConstr</display-name>
         <web-resource-collection>
             <web-resource-name>Strony opiekuna</web-resource-name>
             <description/>
-            <url-pattern>/curator/*</url-pattern>
+            <url-pattern>/guardian/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>
-            <role-name>CURATOR</role-name>
+            <role-name>GUARDIAN</role-name>
         </auth-constraint>
         <user-data-constraint>
             <description/>
@@ -117,15 +117,15 @@
 
     <!-- kontrola dostępu do zasobów administratora -->
     <security-constraint>
-        <display-name>AdminConstr</display-name>
+        <display-name>AdministratorConstr</display-name>
         <web-resource-collection>
             <web-resource-name>Strony administrator</web-resource-name>
             <description/>
-            <url-pattern>/admin/*</url-pattern>
+            <url-pattern>/administrator/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>
-            <role-name>ADMIN</role-name>
+            <role-name>ADMINISTRATOR</role-name>
         </auth-constraint>
         <user-data-constraint>
             <description/>

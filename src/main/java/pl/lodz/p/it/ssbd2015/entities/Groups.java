@@ -5,17 +5,17 @@ package pl.lodz.p.it.ssbd2015.entities;
  * Za nazwy odpowiada autor mapowań w glassfish-web.xml
  */
 public enum Groups {
-    admin("ADMIN", Groups.ADMINGROUP),
+    admin("ADMINISTRATOR", Groups.ADMINGROUP),
     uczeń("STUDENT", Groups.STUDENTGROUP),
     nauczyciel("TEACHER", Groups.TEACHERGROUP),
-    opiekun("CURATOR", Groups.CURATORGROUP),
+    opiekun("GUARDIAN", Groups.CURATORGROUP),
     egzaminator("EXAMINER", Groups.EXAMINERGROUP);
 
-    public static final String ADMINGROUP = "admin";
-    public static final String STUDENTGROUP = "uczeń";
-    public static final String TEACHERGROUP = "nauczyciel";
-    public static final String CURATORGROUP = "opiekun";
-    public static final String EXAMINERGROUP = "egzaminator";
+    public static final String ADMINGROUP = "administrator";
+    public static final String STUDENTGROUP = "student";
+    public static final String TEACHERGROUP = "teacher";
+    public static final String CURATORGROUP = "guardian";
+    public static final String EXAMINERGROUP = "examiner";
 
     private final String roleName;
     private final String groupName;

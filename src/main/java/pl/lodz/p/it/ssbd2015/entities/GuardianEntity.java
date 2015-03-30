@@ -10,16 +10,16 @@ import java.util.List;
  */
 @Entity
 @DiscriminatorValue(Groups.CURATORGROUP)
-public class CuratorStubEntity extends GroupsStubEntity {
+public class GuardianEntity extends GroupsEntity {
 
     @OneToMany(mappedBy = "guardian")
-    private List<StudentStubEntity> guarded;
+    private List<StudentEntity> guarded;
 
-    public List<StudentStubEntity> getGuarded() {
+    public List<StudentEntity> getGuarded() {
         return guarded;
     }
 
-    public void setGuarded(List<StudentStubEntity> guarded) {
+    public void setGuarded(List<StudentEntity> guarded) {
         this.guarded = guarded;
     }
 }

@@ -12,16 +12,16 @@ public class StudentStubEntity extends GroupsStubEntity {
 
     @ManyToOne
     @JoinColumn(name = "groups_guardian", referencedColumnName = "groups_id")
-    private CuratorStubEntity guardian;
+    private GuardianStubEntity guardian;
 
     @OneToMany(mappedBy = "entrantStub")
     private List<ApproachEntity> entered;
 
-    public CuratorStubEntity getGuardian() {
+    public GuardianStubEntity getGuardian() {
         return guardian;
     }
 
-    public void setGuardian(CuratorStubEntity guardian) {
+    public void setGuardian(GuardianStubEntity guardian) {
         this.guardian = guardian;
     }
 
