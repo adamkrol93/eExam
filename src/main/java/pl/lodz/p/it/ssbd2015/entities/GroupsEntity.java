@@ -40,18 +40,22 @@ public abstract class GroupsEntity {
     private Long version;
 
     @Column(name = "person_login", table = "person", nullable = false, length = 30, unique = true)
+    @Pattern("^[a-zA-Z0-9._-]{4,30}$")
     private String login;
 
     @Column(name = "person_last_name", table = "person", nullable = false, length = 35)
+    @Pattern("^[a-ząćęłńóśżźA-ZĄĆĘŁŃÓŚŻŹ]{1,35}$")
     private String lastName;
 
     @Column(name = "person_name", table = "person", nullable = false, length = 25)
+    @Pattern("^[a-ząćęłńóśżźA-ZĄĆĘŁŃÓŚŻŹ]{1,25}$")
     private String personName;
 
     @Column(name = "person_password", table = "person", nullable = false, length = 2147483647)
     private String password;
 
     @Column(name = "person_email", table = "person", nullable = false, length = 2147483647)
+    @Pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")
     private String email;
 
     @Temporal(TemporalType.TIMESTAMP)
