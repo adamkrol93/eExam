@@ -25,7 +25,7 @@ public class ExamEntity {
     private long id;
 
     @Column(name = "exam_title", nullable = false, length = 100, unique = true)
-    @Pattern("^(\\p{L}|[0-9\\(\\)\\{\\}\\-\\_\\+\\=\\*\\^%$#\\/ ]){1,100}$")
+    @Pattern("^(\\p{L}|[0-9\\(\\)\\{\\}\\-\\_\\+\\=\\*\\^%$#\\/\\\\ ]){1,100}$")
     private String title;
 
     @Column(name = "exam_count_take_exam", nullable = false)
