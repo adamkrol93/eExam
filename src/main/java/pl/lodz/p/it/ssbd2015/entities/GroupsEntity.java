@@ -1,6 +1,7 @@
 package pl.lodz.p.it.ssbd2015.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.util.Calendar;
 
 /**
@@ -40,18 +41,22 @@ public abstract class GroupsEntity {
     private Long version;
 
     @Column(name = "person_login", table = "person", nullable = false, length = 30, unique = true)
+    @Pattern(regexp = "^[a-zA-Z0-9._-]{4,30}$")
     private String login;
 
     @Column(name = "person_last_name", table = "person", nullable = false, length = 30)
+    @Pattern(regexp = "^[a-ząćęłńóśżźA-ZĄĆĘŁŃÓŚŻŹ]{1,30}$")
     private String lastName;
 
     @Column(name = "person_name", table = "person", nullable = false, length = 20)
+    @Pattern(regexp = "^[a-ząćęłńóśżźA-ZĄĆĘŁŃÓŚŻŹ]{1,20}$")
     private String personName;
 
     @Column(name = "person_password", table = "person", nullable = false, length = 32)
     private String password;
 
     @Column(name = "person_email", table = "person", nullable = false, length = 30)
+    @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")
     private String email;
 
     @Temporal(TemporalType.TIMESTAMP)

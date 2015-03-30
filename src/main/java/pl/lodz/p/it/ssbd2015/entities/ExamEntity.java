@@ -1,6 +1,7 @@
 package pl.lodz.p.it.ssbd2015.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.math.BigInteger;
 import java.util.Calendar;
 import java.util.List;
@@ -24,6 +25,7 @@ public class ExamEntity {
     private long id;
 
     @Column(name = "exam_title", nullable = false, length = 100, unique = true)
+    @Pattern(regexp = "^(\\p{L}|[0-9\\(\\)\\{\\}\\-\\_\\+\\=\\*\\^%$#\\/\\\\ ]){1,100}$")
     private String title;
 
     @Column(name = "exam_count_take_exam", nullable = false)
