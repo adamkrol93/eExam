@@ -42,16 +42,16 @@ public abstract class GroupsEntity {
     @Column(name = "person_login", table = "person", nullable = false, length = 30, unique = true)
     private String login;
 
-    @Column(name = "person_last_name", table = "person", nullable = false, length = 35)
+    @Column(name = "person_last_name", table = "person", nullable = false, length = 30)
     private String lastName;
 
-    @Column(name = "person_name", table = "person", nullable = false, length = 25)
+    @Column(name = "person_name", table = "person", nullable = false, length = 20)
     private String personName;
 
-    @Column(name = "person_password", table = "person", nullable = false, length = 2147483647)
+    @Column(name = "person_password", table = "person", nullable = false, length = 32)
     private String password;
 
-    @Column(name = "person_email", table = "person", nullable = false, length = 2147483647)
+    @Column(name = "person_email", table = "person", nullable = false, length = 30)
     private String email;
 
     @Temporal(TemporalType.TIMESTAMP)

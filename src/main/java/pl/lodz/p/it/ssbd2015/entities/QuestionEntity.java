@@ -22,10 +22,10 @@ public class QuestionEntity {
     @Column(name = "question_id", nullable = false, updatable = false)
     private long id;
 
-    @Column(name = "question_content", nullable = false, length = 2147483647)
+    @Column(name = "question_content", nullable = false, length = 255)
     private String content;
 
-    @Column(name = "question_sample_answer", nullable = false, length = 2147483647)
+    @Column(name = "question_sample_answer", nullable = false, length = 255)
     private String sampleAnswer;
 
     @Temporal(TemporalType.TIMESTAMP)

@@ -20,7 +20,7 @@ public class AnswerEntity {
     @Column(name = "answer_id", nullable = false, updatable = false)
     private long id;
 
-    @Column(name = "answer_content", nullable = false, length = 2147483647)
+    @Column(name = "answer_content", nullable = false, length = 255)
     private String content;
 
     @Column(name = "answer_grade", nullable = false)

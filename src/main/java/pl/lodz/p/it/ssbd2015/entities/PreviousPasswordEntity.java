@@ -21,7 +21,7 @@ public class PreviousPasswordEntity {
     @Column(name = "previous_password_id", nullable = false, updatable = false)
     private long id;
 
-    @Column(name = "person_password", nullable = false, length = 2147483647)
+    @Column(name = "person_password", nullable = false, length = 32)
     private String password;
 
     @Temporal(TemporalType.TIMESTAMP)
