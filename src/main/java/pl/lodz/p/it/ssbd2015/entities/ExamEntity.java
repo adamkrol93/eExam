@@ -271,7 +271,7 @@ public class ExamEntity {
             return false;
         if (dateStart != null ? !dateStart.equals(that.dateStart) : that.dateStart != null)
             return false;
-        if (duration != null ? !duration.equals(that.duration) : that.duration != null) return false;
+        if (duration != that.duration) return false;
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
 
         return true;
@@ -284,7 +284,7 @@ public class ExamEntity {
         result = 31 * result + countTakeExam;
         result = 31 * result + (dateStart != null ? dateStart.hashCode() : 0);
         result = 31 * result + (dateEnd != null ? dateEnd.hashCode() : 0);
-        result = 31 * result + (duration != null ? duration.hashCode() : 0);
+        result = 31 * result + duration;
         result = 31 * result + countQuestion;
         result = 31 * result + (countFinishExam != null ? countFinishExam.hashCode() : 0);
         result = 31 * result + (avgResults != null ? avgResults.hashCode() : 0);
