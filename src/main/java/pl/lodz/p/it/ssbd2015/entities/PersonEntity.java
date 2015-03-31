@@ -74,10 +74,10 @@ public class PersonEntity {
     @Column(name = "person_version")
     private Long version;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PreviousPasswordEntity> previousPasswords;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "person", cascade = CascadeType.MERGE)
     private List<GroupsStubEntity> groupStubs;
 
     public long getId() {

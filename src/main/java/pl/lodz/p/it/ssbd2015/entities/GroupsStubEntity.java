@@ -32,7 +32,7 @@ public abstract class GroupsStubEntity {
     @Column(name = "groups_version")
     private Long version;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "person_id")
     private PersonEntity person;
 

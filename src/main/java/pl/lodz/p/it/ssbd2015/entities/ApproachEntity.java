@@ -45,7 +45,7 @@ public class ApproachEntity {
     @Column(name = "approach_version")
     private Long version;
 
-    @OneToMany(mappedBy = "approach")
+    @OneToMany(mappedBy = "approach", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private List<AnswerEntity> answers;
 
     @ManyToOne(optional = false)
