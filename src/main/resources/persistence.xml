@@ -1,5 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+    <persistence-unit name="pl.lodz.p.it.ssbd2015.moeser_PU" transaction-type="JTA">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <jta-data-source>jdbc/ssbd01moeser</jta-data-source>
+        <class>pl.lodz.p.it.ssbd2015.entities.AnswerEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.ExamEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.ApproachEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.GuardianEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.PersonEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.QuestionEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.StudentEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.TeacherEntity</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <shared-cache-mode>NONE</shared-cache-mode>
+        <properties>
+            <!--<property name="javax.persistence.schema-generation.database.action" value="create"/>-->
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+        </properties>
+    </persistence-unit>
+    <persistence-unit name="pl.lodz.p.it.ssbd2015.mreser_PU" transaction-type="JTA">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <jta-data-source>jdbc/ssbd01mreser</jta-data-source>
+        <class>pl.lodz.p.it.ssbd2015.entities.AnswerEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.ExamEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.ApproachEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.ExaminerEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.PersonEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.QuestionEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.StudentEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.TeacherEntity</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <shared-cache-mode>NONE</shared-cache-mode>
+        <properties>
+            <!--<property name="javax.persistence.schema-generation.database.action" value="create"/>-->
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+        </properties>
+    </persistence-unit>
+    <persistence-unit name="pl.lodz.p.it.ssbd2015.mzeser_PU" transaction-type="JTA">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <jta-data-source>jdbc/ssbd01mzeser</jta-data-source>
+        <class>pl.lodz.p.it.ssbd2015.entities.ExamEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.ExaminerEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.PersonEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.QuestionEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.StudentEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.TeacherEntity</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <shared-cache-mode>NONE</shared-cache-mode>
+        <properties>
+            <!--<property name="javax.persistence.schema-generation.database.action" value="create"/>-->
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+        </properties>
+    </persistence-unit>
     <persistence-unit name="pl.lodz.p.it.ssbd2015.moe_PU" transaction-type="JTA">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <jta-data-source>jdbc/ssbd01moe</jta-data-source>
@@ -11,14 +66,6 @@
         <class>pl.lodz.p.it.ssbd2015.entities.QuestionEntity</class>
         <class>pl.lodz.p.it.ssbd2015.entities.StudentEntity</class>
         <class>pl.lodz.p.it.ssbd2015.entities.TeacherEntity</class>
-        <class>pl.lodz.p.it.ssbd2015.moe.facades.AnswerEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.moe.facades.ApproachEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.moe.facades.ExamEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.moe.facades.GuardianEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.moe.facades.PersonEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.moe.facades.QuestionEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.moe.facades.StudentEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.moe.facades.TeacherEntityFacadeLocal</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <shared-cache-mode>NONE</shared-cache-mode>
         <properties>
@@ -38,14 +85,6 @@
         <class>pl.lodz.p.it.ssbd2015.entities.PreviousPasswordEntity</class>
         <class>pl.lodz.p.it.ssbd2015.entities.StudentEntity</class>
         <class>pl.lodz.p.it.ssbd2015.entities.TeacherEntity</class>
-        <class>pl.lodz.p.it.ssbd2015.mok.facades.AdministratorEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.mok.facades.ExaminerEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.mok.facades.GroupsStubEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.mok.facades.GuardianEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.mok.facades.PreviousPassEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.mok.facades.StudentEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.mok.facades.TeacherEntityFacadeLocal</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <shared-cache-mode>NONE</shared-cache-mode>
         <properties>
@@ -65,14 +104,6 @@
         <class>pl.lodz.p.it.ssbd2015.entities.QuestionEntity</class>
         <class>pl.lodz.p.it.ssbd2015.entities.StudentEntity</class>
         <class>pl.lodz.p.it.ssbd2015.entities.TeacherEntity</class>
-        <class>pl.lodz.p.it.ssbd2015.mre.facades.AnswerEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.mre.facades.ApproachEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.mre.facades.ExamEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.mre.facades.ExaminerEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.mre.facades.PersonEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.mre.facades.QuestionEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.mre.facades.StudentEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.mre.facades.TeacherEntityFacadeLocal</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <shared-cache-mode>NONE</shared-cache-mode>
         <properties>
@@ -83,18 +114,13 @@
     </persistence-unit>
     <persistence-unit name="pl.lodz.p.it.ssbd2015.mze_PU" transaction-type="JTA">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <jta-data-source>jdbc/ssbd01mze</jta-data-source>
         <class>pl.lodz.p.it.ssbd2015.entities.ExamEntity</class>
         <class>pl.lodz.p.it.ssbd2015.entities.ExaminerEntity</class>
         <class>pl.lodz.p.it.ssbd2015.entities.PersonEntity</class>
         <class>pl.lodz.p.it.ssbd2015.entities.QuestionEntity</class>
         <class>pl.lodz.p.it.ssbd2015.entities.StudentEntity</class>
         <class>pl.lodz.p.it.ssbd2015.entities.TeacherEntity</class>
-        <class>pl.lodz.p.it.ssbd2015.mze.facades.ExamEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.mze.facades.ExaminerEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.mze.facades.PersonEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.mze.facades.QuestionEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.mze.facades.StudentEntityFacadeLocal</class>
-        <class>pl.lodz.p.it.ssbd2015.mze.facades.TeacherEntityFacadeLocal</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <shared-cache-mode>NONE</shared-cache-mode>
         <properties>
