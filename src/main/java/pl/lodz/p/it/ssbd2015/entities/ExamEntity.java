@@ -82,7 +82,7 @@ public class ExamEntity {
     @JoinColumn(name = "exam_modifier_id", referencedColumnName = "groups_id", insertable = false, updatable = false)
     private ExaminerStubEntity modifierStub;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "exam_question",
             joinColumns = {@JoinColumn(name = "exam_id", referencedColumnName = "exam_id")},
             inverseJoinColumns = {@JoinColumn(name = "question_id", referencedColumnName = "question_id")}
