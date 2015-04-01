@@ -1,39 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-    <persistence-unit name="pl.lodz.p.it.ssbd2015.mok_PU" transaction-type="JTA">
-        <jta-data-source>jdbc/ssbd01mok</jta-data-source>
-        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <persistence-unit name="pl.lodz.p.it.ssbd2015.moeser_PU" transaction-type="JTA">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <jta-data-source>jdbc/ssbd01moeser</jta-data-source>
+        <class>pl.lodz.p.it.ssbd2015.entities.AnswerEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.ExamEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.ApproachEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.GuardianEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.PersonEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.QuestionEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.StudentEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.TeacherEntity</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <shared-cache-mode>NONE</shared-cache-mode>
         <properties>
             <!--<property name="javax.persistence.schema-generation.database.action" value="create"/>-->
-            <!--<property name="eclipselink.logging.level.sql" value="FINE"/>-->
-            <!--<property name="eclipselink.logging.parameters" value="true"/>-->
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+        </properties>
+    </persistence-unit>
+    <persistence-unit name="pl.lodz.p.it.ssbd2015.mreser_PU" transaction-type="JTA">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <jta-data-source>jdbc/ssbd01mreser</jta-data-source>
+        <class>pl.lodz.p.it.ssbd2015.entities.AnswerEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.ExamEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.ApproachEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.ExaminerEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.PersonEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.QuestionEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.StudentEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.TeacherEntity</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <shared-cache-mode>NONE</shared-cache-mode>
+        <properties>
+            <!--<property name="javax.persistence.schema-generation.database.action" value="create"/>-->
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+        </properties>
+    </persistence-unit>
+    <persistence-unit name="pl.lodz.p.it.ssbd2015.mzeser_PU" transaction-type="JTA">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <jta-data-source>jdbc/ssbd01mzeser</jta-data-source>
+        <class>pl.lodz.p.it.ssbd2015.entities.ExamEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.ExaminerEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.PersonEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.QuestionEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.StudentEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.TeacherEntity</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <shared-cache-mode>NONE</shared-cache-mode>
+        <properties>
+            <!--<property name="javax.persistence.schema-generation.database.action" value="create"/>-->
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
         </properties>
     </persistence-unit>
     <persistence-unit name="pl.lodz.p.it.ssbd2015.moe_PU" transaction-type="JTA">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <jta-data-source>jdbc/ssbd01moe</jta-data-source>
-        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <class>pl.lodz.p.it.ssbd2015.entities.AnswerEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.ExamEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.ApproachEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.GuardianEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.PersonEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.QuestionEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.StudentEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.TeacherEntity</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <shared-cache-mode>NONE</shared-cache-mode>
         <properties>
             <!--<property name="javax.persistence.schema-generation.database.action" value="create"/>-->
-            <!--<property name="eclipselink.logging.level.sql" value="FINE"/>-->
-            <!--<property name="eclipselink.logging.parameters" value="true"/>-->
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+        </properties>
+    </persistence-unit>
+    <persistence-unit name="pl.lodz.p.it.ssbd2015.mok_PU" transaction-type="JTA">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <jta-data-source>jdbc/ssbd01mok</jta-data-source>
+        <class>pl.lodz.p.it.ssbd2015.entities.AdministratorEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.ExaminerEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.GroupsStubEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.GuardianEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.PersonEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.PreviousPasswordEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.StudentEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.TeacherEntity</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <shared-cache-mode>NONE</shared-cache-mode>
+        <properties>
+            <!--<property name="javax.persistence.schema-generation.database.action" value="create"/>-->
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
         </properties>
     </persistence-unit>
     <persistence-unit name="pl.lodz.p.it.ssbd2015.mre_PU" transaction-type="JTA">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <jta-data-source>jdbc/ssbd01mre</jta-data-source>
-        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <class>pl.lodz.p.it.ssbd2015.entities.AnswerEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.ExamEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.ApproachEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.ExaminerEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.PersonEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.QuestionEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.StudentEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.TeacherEntity</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <shared-cache-mode>NONE</shared-cache-mode>
         <properties>
             <!--<property name="javax.persistence.schema-generation.database.action" value="create"/>-->
-            <!--<property name="eclipselink.logging.level.sql" value="FINE"/>-->
-            <!--<property name="eclipselink.logging.parameters" value="true"/>-->
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
         </properties>
     </persistence-unit>
     <persistence-unit name="pl.lodz.p.it.ssbd2015.mze_PU" transaction-type="JTA">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <jta-data-source>jdbc/ssbd01mze</jta-data-source>
-        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <class>pl.lodz.p.it.ssbd2015.entities.ExamEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.ExaminerEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.PersonEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.QuestionEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.StudentEntity</class>
+        <class>pl.lodz.p.it.ssbd2015.entities.TeacherEntity</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <shared-cache-mode>NONE</shared-cache-mode>
         <properties>
             <!--<property name="javax.persistence.schema-generation.database.action" value="create"/>-->
-            <!--<property name="eclipselink.logging.level.sql" value="FINE"/>-->
-            <!--<property name="eclipselink.logging.parameters" value="true"/>-->
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
         </properties>
     </persistence-unit>
 </persistence>
