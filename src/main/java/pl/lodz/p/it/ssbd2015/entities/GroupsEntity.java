@@ -13,7 +13,7 @@ import java.util.Calendar;
         table = "generator",
         pkColumnName = "class_name",
         valueColumnName = "id_range",
-        pkColumnValue = "groups",
+        pkColumnValue = "GroupsEntity",
         allocationSize = 5)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "groups_name")

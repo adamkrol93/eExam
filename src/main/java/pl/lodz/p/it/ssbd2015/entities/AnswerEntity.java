@@ -12,7 +12,7 @@ import java.util.Calendar;
         table = "generator",
         pkColumnName = "class_name",
         valueColumnName = "id_range",
-        pkColumnValue = "answer",
+        pkColumnValue = "AnswerEntity",
         allocationSize = 10)
 public class AnswerEntity {
     @Id

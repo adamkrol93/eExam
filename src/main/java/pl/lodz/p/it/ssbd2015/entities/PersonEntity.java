@@ -14,7 +14,7 @@ import java.util.List;
         table = "generator",
         pkColumnName = "class_name",
         valueColumnName = "id_range",
-        pkColumnValue = "person",
+        pkColumnValue = "PersonEntity",
         allocationSize = 1)
 public class PersonEntity {
 

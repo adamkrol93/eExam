@@ -12,7 +12,7 @@ import java.util.Calendar;
         table = "generator",
         pkColumnName = "class_name",
         valueColumnName = "id_range",
-        pkColumnValue = "previous_password",
+        pkColumnValue = "PreviousPasswordEntity",
         allocationSize = 1)
 public class PreviousPasswordEntity {
 
