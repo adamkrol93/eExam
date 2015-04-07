@@ -1,4 +1,4 @@
-package pl.lodz.p.it.ssbd2015.mze.facades;
+package pl.lodz.p.it.ssbd2015.mre.facades;
 
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 
@@ -9,10 +9,10 @@ import javax.persistence.PersistenceContext;
 /**
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  */
-@Stateless(name = "pl.lodz.p.it.ssbd2015.mze.facades.ExamEntityFacade")
-public class ExamEntityFacade implements ExamEntityFacadeLocal {
+@Stateless(name = "pl.lodz.p.it.ssbd2015.mre.facades.ExamEntityFacadeSerializable")
+public class ExamEntityFacadeSerializable implements ExamEntityFacadeSerializableLocal {
 
-    @PersistenceContext(unitName = "pl.lodz.p.it.ssbd2015.mze_PU")
+    @PersistenceContext(unitName = "pl.lodz.p.it.ssbd2015.mreser_PU")
     private EntityManager entityManager;
 
     @Override
@@ -24,5 +24,4 @@ public class ExamEntityFacade implements ExamEntityFacadeLocal {
     public EntityManager getEntityManager() {
         return entityManager;
     }
-
 }

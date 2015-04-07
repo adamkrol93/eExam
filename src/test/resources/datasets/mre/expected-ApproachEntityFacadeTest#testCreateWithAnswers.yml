@@ -1,0 +1,192 @@
+approach:
+  - approach_id: 1
+    approach_date_start: "2015-04-04 22:59:07.39357"
+    approach_date_end: "2015-04-04 23:18:07.393572"
+    approach_disqualification: false
+    approach_exam_id: 1
+    approach_entrant_id: 3
+    approach_date_add: "2015-03-30 22:59:07.393572"
+    approach_date_modification: "[NULL]"
+    approach_version: 1
+  - approach_id: 2
+    approach_date_start: "2015-04-04 22:59:07.39357"
+    approach_date_end: "2015-04-04 23:18:07.393572"
+    approach_disqualification: false
+    approach_exam_id: 2
+    approach_entrant_id: 3
+    approach_date_add: "2015-03-30 22:59:07.393572"
+    approach_date_modification: "[NULL]"
+    approach_version: 1
+  - approach_id: 3
+    approach_date_start: "2015-04-04 22:59:07.39357"
+    approach_date_end: "2015-04-04 23:18:07.393572"
+    approach_disqualification: false
+    approach_exam_id: 1
+    approach_entrant_id: 6
+    approach_date_add: "2015-03-30 22:59:07.393572"
+    approach_date_modification: "[NULL]"
+    approach_version: 1
+  - approach_id: 4
+    approach_date_start: "2015-04-04 22:59:07.39357"
+    approach_date_end: "2015-04-04 23:18:07.393572"
+    approach_disqualification: false
+    approach_exam_id: 1
+    approach_entrant_id: 6
+    approach_date_add: "2015-03-30 22:59:07.393572"
+    approach_date_modification: "[NULL]"
+    approach_version: 1
+  - approach_id: 5
+    approach_date_start: "2015-04-04 22:59:07.39357"
+    approach_date_end: "2015-04-04 23:18:07.393572"
+    approach_disqualification: false
+    approach_exam_id: 2
+    approach_entrant_id: 6
+    approach_date_add: "2015-03-30 22:59:07.393572"
+    approach_date_modification: "[NULL]"
+    approach_version: 1
+  - approach_id: 6
+    approach_date_start: "2015-04-04 22:59:07.39357"
+    approach_date_end: "2015-04-04 23:18:07.393572"
+    approach_disqualification: false
+    approach_exam_id: 2
+    approach_entrant_id: 7
+    approach_date_add: "2015-03-30 22:59:07.393572"
+    approach_date_modification: "[NULL]"
+    approach_version: 1
+  - approach_id: 7
+    approach_date_start: "2015-04-08 22:00:02.0"
+    approach_date_end: "2015-04-08 23:00:01.0"
+    approach_disqualification: false
+    approach_exam_id: 1
+    approach_entrant_id: 7
+    approach_date_add: "2015-04-08 22:00:01.0"
+    approach_date_modification: "[NULL]"
+    approach_version: 1
+
+answer:
+  - answer_id: 1
+    answer_approach_id: 1
+    answer_question_id: 1
+    answer_teacher_id: 1
+    answer_content: "Przykładowa odpowiedź na pytanie 1 w podejściu 1"
+    answer_grade: 1
+    answer_date_add: "2015-03-30 22:59:07.393572"
+    answer_date_modification: "[NULL]"
+    answer_version: 1
+  - answer_id: 2
+    answer_approach_id: 1
+    answer_question_id: 2
+    answer_teacher_id: 1
+    answer_content: "Przykładowa odpowiedź na pytanie 2 w podejściu 1"
+    answer_grade: 1
+    answer_date_add: "2015-03-30 22:59:07.393572"
+    answer_date_modification: "[NULL]"
+    answer_version: 1
+  - answer_id: 3
+    answer_approach_id: 1
+    answer_question_id: 3
+    answer_teacher_id: 1
+    answer_content: "Przykładowa odpowiedź na pytanie 3 w podejściu 1"
+    answer_grade: 1
+    answer_date_add: "2015-03-30 22:59:07.393572"
+    answer_date_modification: "[NULL]"
+    answer_version: 1
+  - answer_id: 4
+    answer_approach_id: 1
+    answer_question_id: 4
+    answer_teacher_id: 1
+    answer_content: "Przykładowa odpowiedź na pytanie 4 w podejściu 1"
+    answer_grade: 1
+    answer_date_add: "2015-03-30 22:59:07.393572"
+    answer_date_modification: "[NULL]"
+    answer_version: 1
+  - answer_id: 5
+    answer_approach_id: 2
+    answer_question_id: 3
+    answer_teacher_id: 1
+    answer_content: "Przykładowa odpowiedź na pytanie 3 w podejściu 2"
+    answer_grade: 1
+    answer_date_add: "2015-03-30 22:59:07.393572"
+    answer_date_modification: "[NULL]"
+    answer_version: 1
+  - answer_id: 6
+    answer_approach_id: 2
+    answer_question_id: 5
+    answer_teacher_id: 1
+    answer_content: "Przykładowa odpowiedź na pytanie 5 w podejściu 2"
+    answer_grade: 1
+    answer_date_add: "2015-03-30 22:59:07.393572"
+    answer_date_modification: "[NULL]"
+    answer_version: 1
+  - answer_id: 7
+    answer_approach_id: 3
+    answer_question_id: 1
+    answer_teacher_id: "[NULL]"
+    answer_content: "Przykładowa odpowiedź na pytanie 1 w podejściu 3"
+    answer_grade: 1
+    answer_date_add: "2015-03-30 22:59:07.393572"
+    answer_date_modification: "[NULL]"
+    answer_version: 1
+  - answer_id: 8
+    answer_approach_id: 3
+    answer_question_id: 2
+    answer_teacher_id: "[NULL]"
+    answer_content: "Przykładowa odpowiedź na pytanie 2 w podejściu 3"
+    answer_grade: 0
+    answer_date_add: "2015-03-30 22:59:07.393572"
+    answer_date_modification: "[NULL]"
+    answer_version: 1
+  - answer_id: 9
+    answer_approach_id: 3
+    answer_question_id: 3
+    answer_teacher_id: "[NULL]"
+    answer_content: ""
+    answer_grade: 0
+    answer_date_add: "2015-03-30 22:59:07.393572"
+    answer_date_modification: "[NULL]"
+    answer_version: 1
+  - answer_id: 10
+    answer_approach_id: 3
+    answer_question_id: 4
+    answer_teacher_id: "[NULL]"
+    answer_content: ""
+    answer_grade: 0
+    answer_date_add: "2015-03-30 22:59:07.393572"
+    answer_date_modification: "[NULL]"
+    answer_version: 1
+  - answer_id: 11
+    answer_approach_id: 7
+    answer_question_id: 1
+    answer_teacher_id: "[NULL]"
+    answer_content: ""
+    answer_grade: 0
+    answer_date_add: "2015-04-07 17:00:07.0"
+    answer_date_modification: "[NULL]"
+    answer_version: 1
+  - answer_id: 12
+    answer_approach_id: 7
+    answer_question_id: 2
+    answer_teacher_id: "[NULL]"
+    answer_content: ""
+    answer_grade: 0
+    answer_date_add: "2015-04-07 17:00:07.0"
+    answer_date_modification: "[NULL]"
+    answer_version: 1
+  - answer_id: 13
+    answer_approach_id: 7
+    answer_question_id: 3
+    answer_teacher_id: "[NULL]"
+    answer_content: ""
+    answer_grade: 0
+    answer_date_add: "2015-04-07 17:00:07.0"
+    answer_date_modification: "[NULL]"
+    answer_version: 1
+  - answer_id: 14
+    answer_approach_id: 7
+    answer_question_id: 4
+    answer_teacher_id: "[NULL]"
+    answer_content: ""
+    answer_grade: 0
+    answer_date_add: "2015-04-07 17:00:07.0"
+    answer_date_modification: "[NULL]"
+    answer_version: 1

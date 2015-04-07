@@ -1,6 +1,7 @@
 package pl.lodz.p.it.ssbd2015.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ public class StudentStubEntity extends GroupsStubEntity {
     private GuardianStubEntity guardian;
 
     @OneToMany(mappedBy = "entrantStub")
-    private List<ApproachEntity> entered;
+    private List<ApproachEntity> entered = new ArrayList<>();
 
     public GuardianStubEntity getGuardian() {
         return guardian;

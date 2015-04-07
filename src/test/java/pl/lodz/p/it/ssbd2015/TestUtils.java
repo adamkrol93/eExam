@@ -46,4 +46,10 @@ public class TestUtils {
         return getRandomString() + getRandomString() + getRandomString();
     }
 
+    public static Calendar makeCalendar(int year, int month, int day, int hour, int minute, int second) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month - 1, day, hour, minute, second);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return calendar;
+    }
 }

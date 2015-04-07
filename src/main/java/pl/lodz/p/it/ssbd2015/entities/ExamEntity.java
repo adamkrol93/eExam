@@ -3,6 +3,7 @@ package pl.lodz.p.it.ssbd2015.entities;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -17,6 +18,10 @@ import java.util.List;
         valueColumnName = "id_range",
         pkColumnValue = "ExamEntity",
         allocationSize = 1)
+@NamedQuery(
+        name = "findByDate",
+        query = "SELECT e FROM ExamEntity e WHERE :date BETWEEN e.dateStart AND e.dateEnd"
+)
 public class ExamEntity {
 
     @Id
@@ -64,7 +69,7 @@ public class ExamEntity {
     private Long version;
 
     @OneToMany(mappedBy = "exam")
-    private List<ApproachEntity> approaches;
+    private List<ApproachEntity> approaches = new ArrayList<>();
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "exam_creator_id", referencedColumnName = "groups_id", nullable = false)
@@ -87,21 +92,21 @@ public class ExamEntity {
             joinColumns = {@JoinColumn(name = "exam_id", referencedColumnName = "exam_id")},
             inverseJoinColumns = {@JoinColumn(name = "question_id", referencedColumnName = "question_id")}
     )
-    private List<QuestionEntity> questions;
+    private List<QuestionEntity> questions = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "exam_groups",
             joinColumns = {@JoinColumn(name = "exam_id", referencedColumnName = "exam_id")},
             inverseJoinColumns = {@JoinColumn(name = "groups_id", referencedColumnName = "groups_id")}
     )
-    private List<TeacherEntity> teachers;
+    private List<TeacherEntity> teachers = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "exam_groups",
             joinColumns = {@JoinColumn(name = "exam_id", referencedColumnName = "exam_id")},
             inverseJoinColumns = {@JoinColumn(name = "groups_id", referencedColumnName = "groups_id")}
     )
-    private List<TeacherStubEntity> teacherStubs;
+    private List<TeacherStubEntity> teacherStubs = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -207,10 +212,6 @@ public class ExamEntity {
         return creatorStub;
     }
 
-    public void setCreatorStub(ExaminerStubEntity creatorStub) {
-        this.creatorStub = creatorStub;
-    }
-
     public ExaminerEntity getModifier() {
         return modifier;
     }
@@ -221,10 +222,6 @@ public class ExamEntity {
 
     public ExaminerStubEntity getModifierStub() {
         return modifierStub;
-    }
-
-    public void setModifierStub(ExaminerStubEntity modifierStub) {
-        this.modifierStub = modifierStub;
     }
 
     public List<QuestionEntity> getQuestions() {

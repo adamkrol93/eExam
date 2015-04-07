@@ -2,8 +2,8 @@ package pl.lodz.p.it.ssbd2015.entities;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,16 +14,16 @@ import java.util.List;
 public class ExaminerEntity extends GroupsEntity {
 
     @OneToMany(mappedBy = "creator")
-    private List<ExamEntity> createdExams;
+    private List<ExamEntity> createdExams = new ArrayList<>();
 
     @OneToMany(mappedBy = "modifier")
-    private List<ExamEntity> modifiedExams;
+    private List<ExamEntity> modifiedExams = new ArrayList<>();
 
     @OneToMany(mappedBy = "creator")
-    private List<QuestionEntity> createdQuestions;
+    private List<QuestionEntity> createdQuestions = new ArrayList<>();
 
     @OneToMany(mappedBy = "modifier")
-    private List<QuestionEntity> modifiedQuestions;
+    private List<QuestionEntity> modifiedQuestions = new ArrayList<>();
 
     public List<ExamEntity> getCreatedExams() {
         return createdExams;

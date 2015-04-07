@@ -110,10 +110,6 @@ public class AnswerEntity {
         return teacherStub;
     }
 
-    public void setTeacherStub(TeacherStubEntity teacherStub) {
-        this.teacherStub = teacherStub;
-    }
-
     public QuestionEntity getQuestion() {
         return question;
     }

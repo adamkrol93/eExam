@@ -18,7 +18,7 @@ public class ExamEntityFacadeTest extends BaseArquillianTest {
     private ExamEntityFacadeLocal examEntityFacade;
 
     @Test(expected = EJBException.class)
-    public void testCreatorConstraint() throws InterruptedException {
+    public void testCreatorConstraint() {
         ExamEntity exam = TestUtils.makeValidExam(null);
         examEntityFacade.create(exam);
     }

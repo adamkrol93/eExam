@@ -1,18 +1,16 @@
 package pl.lodz.p.it.ssbd2015.mre.facades;
 
 import pl.lodz.p.it.ssbd2015.entities.ApproachEntity;
+import pl.lodz.p.it.ssbd2015.entities.facade.Create;
+import pl.lodz.p.it.ssbd2015.entities.facade.Merge;
+import pl.lodz.p.it.ssbd2015.entities.facade.Read;
 
 import javax.ejb.Local;
-import java.util.List;
-import java.util.Optional;
 
 /**
+ * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  * @author Andrzej Kurczewski
  */
 @Local
-public interface ApproachEntityFacadeLocal {
-    void insert(ApproachEntity approachEntity);
-    void update(ApproachEntity approachEntity);
-    Optional<ApproachEntity> find(Object id);
-    List<ApproachEntity> findAll();
+public interface ApproachEntityFacadeLocal extends Read<Long, ApproachEntity>, Create<Long, ApproachEntity>, Merge<Long, ApproachEntity> {
 }

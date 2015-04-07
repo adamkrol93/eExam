@@ -2,6 +2,7 @@ package pl.lodz.p.it.ssbd2015.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -75,10 +76,10 @@ public class PersonEntity {
     private Long version;
 
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PreviousPasswordEntity> previousPasswords;
+    private List<PreviousPasswordEntity> previousPasswords = new ArrayList<>();
 
-    @OneToMany(mappedBy = "person", cascade = CascadeType.MERGE)
-    private List<GroupsStubEntity> groupStubs;
+    @OneToMany(mappedBy = "person", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List<GroupsStubEntity> groupStubs = new ArrayList<>();
 
     public long getId() {
         return id;

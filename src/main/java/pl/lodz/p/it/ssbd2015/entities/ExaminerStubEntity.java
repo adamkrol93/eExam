@@ -3,6 +3,7 @@ package pl.lodz.p.it.ssbd2015.entities;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,16 +14,16 @@ import java.util.List;
 public class ExaminerStubEntity extends GroupsStubEntity {
 
     @OneToMany(mappedBy = "creatorStub")
-    private List<ExamEntity> createdExams;
+    private List<ExamEntity> createdExams = new ArrayList<>();
 
     @OneToMany(mappedBy = "modifierStub")
-    private List<ExamEntity> modifiedExams;
+    private List<ExamEntity> modifiedExams = new ArrayList<>();
 
     @OneToMany(mappedBy = "creatorStub")
-    private List<QuestionEntity> createdQuestions;
+    private List<QuestionEntity> createdQuestions = new ArrayList<>();
 
     @OneToMany(mappedBy = "modifierStub")
-    private List<QuestionEntity> modifiedQuestions;
+    private List<QuestionEntity> modifiedQuestions = new ArrayList<>();
 
     public List<ExamEntity> getCreatedExams() {
         return createdExams;

@@ -9,4 +9,8 @@
             <property name="target">server</property>
         </configuration>
     </container>
+
+    <extension qualifier="persistence">
+        <property name="defaultDataSource">java:app/jdbc/ssbd01admin</property>
+    </extension>
 </arquillian>

@@ -170,5 +170,29 @@
         <property name="driverClass" value="org.postgresql.Driver"/>
     </jdbc-connection-pool>
     <jdbc-resource enabled="true" jndi-name="jdbc/ssbd01mok" object-type="user" pool-name="ssbd01mok"/>
+    <jdbc-connection-pool allow-non-component-callers="false"
+                          associate-with-thread="false"
+                          connection-creation-retry-attempts="0"
+                          connection-creation-retry-interval-in-seconds="10" connection-leak-reclaim="false"
+                          connection-leak-timeout-in-seconds="0" connection-validation-method="auto-commit"
+                          datasource-classname="org.postgresql.ds.PGConnectionPoolDataSource"
+                          fail-all-connections="false" idle-timeout-in-seconds="300"
+                          is-connection-validation-required="false" is-isolation-level-guaranteed="true"
+                          lazy-connection-association="false" lazy-connection-enlistment="false"
+                          match-connections="false" max-connection-usage-count="0" max-pool-size="32"
+                          max-wait-time-in-millis="60000" name="ssbd01admin" non-transactional-connections="false"
+                          pool-resize-quantity="2" res-type="javax.sql.ConnectionPoolDataSource"
+                          statement-timeout-in-seconds="-1" steady-pool-size="8"
+                          validate-atmost-once-period-in-seconds="0" wrap-jdbc-objects="false"
+                          transaction-isolation-level="read-committed">
+        <property name="ServerName" value="localhost"/>
+        <property name="PortNumber" value="5432"/>
+        <property name="DatabaseName" value="ssbd01test"/>
+        <property name="User" value="ssbd01admin"/>
+        <property name="Password" value="4dm1npa5s"/>
+        <property name="URL" value="jdbc:postgresql://localhost:5432/ssbd01test"/>
+        <property name="driverClass" value="org.postgresql.Driver"/>
+    </jdbc-connection-pool>
+    <jdbc-resource enabled="true" jndi-name="jdbc/ssbd01admin" object-type="user" pool-name="ssbd01admin"/>
 
 </resources>

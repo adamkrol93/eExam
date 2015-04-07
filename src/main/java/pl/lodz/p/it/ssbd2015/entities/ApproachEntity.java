@@ -1,6 +1,7 @@
 package pl.lodz.p.it.ssbd2015.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -46,18 +47,18 @@ public class ApproachEntity {
     private Long version;
 
     @OneToMany(mappedBy = "approach", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private List<AnswerEntity> answers;
+    private List<AnswerEntity> answers = new ArrayList<>();
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "approach_exam_id", referencedColumnName = "exam_id", nullable = false)
     private ExamEntity exam;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "approach_entrant_id", referencedColumnName = "groups_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "approach_entrant_id", referencedColumnName = "groups_id", nullable = false)
     private StudentEntity entrant;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "approach_entrant_id", referencedColumnName = "groups_id", nullable = false)
+    @JoinColumn(name = "approach_entrant_id", referencedColumnName = "groups_id", nullable = false, insertable = false, updatable = false)
     private StudentStubEntity entrantStub;
 
     public long getId() {
@@ -130,10 +131,6 @@ public class ApproachEntity {
 
     public StudentStubEntity getEntrantStub() {
         return entrantStub;
-    }
-
-    public void setEntrantStub(StudentStubEntity entrantStub) {
-        this.entrantStub = entrantStub;
     }
 
     @Override

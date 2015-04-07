@@ -1,6 +1,7 @@
 package pl.lodz.p.it.ssbd2015.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class QuestionEntity {
     private Long version;
 
     @OneToMany(mappedBy = "question")
-    private List<AnswerEntity> answers;
+    private List<AnswerEntity> answers = new ArrayList<>();
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "question_creator_id", referencedColumnName = "groups_id", nullable = false)
@@ -60,7 +61,7 @@ public class QuestionEntity {
     private ExaminerStubEntity modifierStub;
 
     @ManyToMany(mappedBy = "questions")
-    private List<ExamEntity> exams;
+    private List<ExamEntity> exams = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -118,10 +119,6 @@ public class QuestionEntity {
         return creatorStub;
     }
 
-    public void setCreatorStub(ExaminerStubEntity creatorStub) {
-        this.creatorStub = creatorStub;
-    }
-
     public ExaminerEntity getModifier() {
         return modifier;
     }
@@ -132,10 +129,6 @@ public class QuestionEntity {
 
     public ExaminerStubEntity getModifierStub() {
         return modifierStub;
-    }
-
-    public void setModifierStub(ExaminerStubEntity modifierStub) {
-        this.modifierStub = modifierStub;
     }
 
     public List<ExamEntity> getExams() {
