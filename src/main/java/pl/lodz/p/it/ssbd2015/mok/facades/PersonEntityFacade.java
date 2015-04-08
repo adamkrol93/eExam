@@ -32,20 +32,13 @@ public class PersonEntityFacade implements PersonEntityFacadeLocal
     public Optional<PersonEntity> findByLogin(String login) {
         TypedQuery<PersonEntity> personQuery = entityManager.createNamedQuery("findByLogin", PersonEntity.class);
         personQuery.setParameter("login", login);
-//        getEntityManager().find(getEntityClass())
-        try
-        {
-            return Optional.ofNullable(personQuery.getSingleResult());
-        }
-        catch (NoResultException e)
-        {
-            throw e;
-        }
-//        if(personQuery.getSingleResult()==null)
-//        {
-//            throw new NoResultException();
-//        }
 
+        try {
+            return Optional.of(personQuery.getSingleResult());
+        }
+        catch (NoResultException e) {
+            return Optional.empty();
+        }
     }
     @Override
     public List<PersonEntity> findByPhrase(String phrase) {

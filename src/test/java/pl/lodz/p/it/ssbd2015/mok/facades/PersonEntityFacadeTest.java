@@ -125,5 +125,5 @@ public class PersonEntityFacadeTest extends BaseArquillianTest {
         //foundPerson.setConfirm(true);
         personEntityFacade.edit(foundPerson);
     }
-    
+
 }
