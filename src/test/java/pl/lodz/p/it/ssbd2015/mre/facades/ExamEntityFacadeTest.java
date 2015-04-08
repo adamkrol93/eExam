@@ -63,7 +63,6 @@ public class ExamEntityFacadeTest extends BaseArquillianTest {
     }
 
     @Test
-    @Ignore // TODO: Ten test przyczynił się do wykrycia SSBDI-126, należy go przejrzeć ponownie po fixie
     @Transactional(TransactionMode.DISABLED)
     @ShouldMatchDataSet(value = "mre/expected-ExamEntityFacadeTest#testMerge.yml", excludeColumns = {"exam_version"})
     public void testMerge() {

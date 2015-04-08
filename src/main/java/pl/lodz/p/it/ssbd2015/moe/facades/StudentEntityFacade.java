@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 @Stateless(name = "pl.lodz.p.it.ssbd2015.moe.facades.StudentEntityFacade")
 public class StudentEntityFacade implements StudentEntityFacadeLocal {
 
-    @PersistenceContext(name = "pl.lodz.p.it.ssbd2015.moe_PU")
+    @PersistenceContext(unitName = "pl.lodz.p.it.ssbd2015.moe_PU")
     private EntityManager entityManager;
 
     @Override
