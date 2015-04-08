@@ -17,6 +17,16 @@ import java.util.List;
         valueColumnName = "id_range",
         pkColumnValue = "PersonEntity",
         allocationSize = 1)
+@NamedQueries({
+        @NamedQuery(
+                name = "findByLogin",
+                query = "SELECT p FROM PersonEntity p WHERE p.login = :login"
+        ),
+        @NamedQuery(
+                name = "findByPhrase",
+                query = "SELECT p FROM PersonEntity  p WHERE p.login like :phrase or p.lastName like :phrase or p.name like :phrase or p.email like :phrase"
+        )
+})
 public class PersonEntity {
 
     @Id
