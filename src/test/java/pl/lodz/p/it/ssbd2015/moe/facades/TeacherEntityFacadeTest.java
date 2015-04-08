@@ -17,7 +17,7 @@ import static pl.lodz.p.it.ssbd2015.Present.present;
 /**
  * Created by adam on 08.04.15.
  */
-@UsingDataSet({ "moe/TeacherUserTest.yml"})
+@UsingDataSet({ "ValidUser.yml","moe/TeacherUserTest.yml"})
 public class TeacherEntityFacadeTest extends BaseArquillianTest{
 
     @EJB
@@ -28,6 +28,6 @@ public class TeacherEntityFacadeTest extends BaseArquillianTest{
         Optional<TeacherEntity> teacherEntityOptional = teacherEntityFacade.findByLogin("nauczyciel");
 
         assertThat("where login is nauczyciel",teacherEntityOptional,is(present()));
-        assertThat("is TeacherClass",teacherEntityOptional,is(instanceOf(TeacherEntity.class)));
+        assertThat("is TeacherClass",teacherEntityOptional.get(),is(instanceOf(TeacherEntity.class)));
     }
 }

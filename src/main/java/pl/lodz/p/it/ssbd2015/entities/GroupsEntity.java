@@ -40,8 +40,11 @@ public abstract class GroupsEntity {
     @Column(name = "groups_version")
     private Long version;
 
-    @Column(name = "person_id", table = "person", nullable = false, updatable = false)
+    @Column(name = "person_id", nullable = false, updatable = false)
     private long personId;
+
+    @Column(name = "person_id", table = "person", nullable = false, updatable = false)
+    private long personPersonId;
 
     @Column(name = "person_login", table = "person", nullable = false, length = 30, unique = true)
     @Pattern(regexp = "^[a-zA-Z0-9._-]{4,30}$")

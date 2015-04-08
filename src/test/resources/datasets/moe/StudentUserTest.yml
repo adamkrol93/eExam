@@ -1,0 +1,31 @@
+generator:
+  - class_name: "PersonEntity"
+    id_range: 3
+  - class_name: "GroupsEntity"
+    id_range: 7
+
+person:
+  - person_id: 2
+    person_login: "student"
+    person_last_name: "Student"
+    person_name: "Michał"
+    person_password: "53f1fce859c22ffdeff1adfcc31f670f"
+    person_email: "nie4@ma.pl"
+    person_last_time_login: "[NULL]"
+    person_last_time_login_fail: "[NULL]"
+    person_count_login_fail: "[NULL]"
+    person_last_ip_login: "[NULL]"
+    person_active: true
+    person_confirm: true
+    person_date_add: "2015-03-30 22:59:07.393572"
+    person_date_modification: "[NULL]"
+    person_version: 1
+
+groups:
+  - groups_id: 6
+    person_id: 2
+    groups_name: "student"
+    groups_guardian: "[NULL]"
+    groups_active: true
+    groups_date_modification: "[NULL]"
+    groups_version: 1
