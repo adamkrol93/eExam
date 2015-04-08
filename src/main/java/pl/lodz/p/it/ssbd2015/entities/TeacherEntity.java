@@ -1,9 +1,6 @@
 package pl.lodz.p.it.ssbd2015.entities;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +9,7 @@ import java.util.List;
  */
 @Entity
 @DiscriminatorValue(Groups.TEACHERGROUP)
+@NamedQuery(name = "findByLogin",query = "select t from TeacherEntity t where t.login = :login")
 public class TeacherEntity extends GroupsEntity {
 
     @OneToMany(mappedBy = "teacher")

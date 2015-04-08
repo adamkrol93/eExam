@@ -13,5 +13,5 @@ import java.util.Optional;
  */
 @Local
 public interface TeacherEntityFacadeLocal extends Read<Long,TeacherEntity>{
-    Optional<TeacherEntity> findByLogin(Object login);
+    Optional<TeacherEntity> findByLogin(String login);
 }
