@@ -31,7 +31,7 @@ public class ExamEntityFacade implements ExamEntityFacadeLocal {
 
     @Override
     public List<ExamEntity> findByDate(Calendar timestamp) {
-        TypedQuery<ExamEntity> examQuery = entityManager.createNamedQuery("findByDate", ExamEntity.class);
+        TypedQuery<ExamEntity> examQuery = entityManager.createNamedQuery("findExamByDate", ExamEntity.class);
         examQuery.setParameter("date", timestamp, TemporalType.TIMESTAMP);
         return examQuery.getResultList();
     }

@@ -4,9 +4,9 @@ import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -20,11 +20,13 @@ public class TeacherEntityFacade implements TeacherEntityFacadeLocal {
 
     @Override
     public Optional<TeacherEntity> findByLogin(String login) {
-        TypedQuery<TeacherEntity> typedQuery = entityManager.createNamedQuery("findByLogin",TeacherEntity.class);
+        TypedQuery<TeacherEntity> typedQuery = entityManager.createNamedQuery("findTeacherByLogin", TeacherEntity.class);
         typedQuery.setParameter("login",login);
-        List<TeacherEntity> teacherEntities = typedQuery.getResultList();
-
-        return Optional.ofNullable(typedQuery.getSingleResult());
+        try {
+            return Optional.of(typedQuery.getSingleResult());
+        } catch (NoResultException ex) {
+            return Optional.empty();
+        }
     }
 
     @Override

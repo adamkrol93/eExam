@@ -30,7 +30,7 @@ public class PersonEntityFacade implements PersonEntityFacadeLocal
 
     @Override
     public Optional<PersonEntity> findByLogin(String login) {
-        TypedQuery<PersonEntity> personQuery = entityManager.createNamedQuery("findByLogin", PersonEntity.class);
+        TypedQuery<PersonEntity> personQuery = entityManager.createNamedQuery("findPersonByLogin", PersonEntity.class);
         personQuery.setParameter("login", login);
 
         try {
@@ -42,7 +42,7 @@ public class PersonEntityFacade implements PersonEntityFacadeLocal
     }
     @Override
     public List<PersonEntity> findByPhrase(String phrase) {
-        TypedQuery<PersonEntity> personQuery = entityManager.createNamedQuery("findByPhrase", PersonEntity.class);
+        TypedQuery<PersonEntity> personQuery = entityManager.createNamedQuery("findPersonByPhrase", PersonEntity.class);
         personQuery.setParameter("phrase", "%" + phrase + "%" );
         return personQuery.getResultList();
     }

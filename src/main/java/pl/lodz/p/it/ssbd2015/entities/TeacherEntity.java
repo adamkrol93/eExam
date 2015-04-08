@@ -9,7 +9,7 @@ import java.util.List;
  */
 @Entity
 @DiscriminatorValue(Groups.TEACHERGROUP)
-@NamedQuery(name = "findByLogin",query = "select t from TeacherEntity t where t.login = :login")
+@NamedQuery(name = "findTeacherByLogin",query = "select t from TeacherEntity t where t.login = :login")
 public class TeacherEntity extends GroupsEntity {
 
     @OneToMany(mappedBy = "teacher")

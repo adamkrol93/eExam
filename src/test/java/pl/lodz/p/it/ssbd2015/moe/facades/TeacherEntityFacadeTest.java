@@ -10,7 +10,7 @@ import javax.ejb.EJB;
 import java.util.Optional;
 
 import static org.hamcrest.Matchers.instanceOf;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 import static pl.lodz.p.it.ssbd2015.Present.present;
 
@@ -29,5 +29,12 @@ public class TeacherEntityFacadeTest extends BaseArquillianTest{
 
         assertThat("where login is nauczyciel",teacherEntityOptional,is(present()));
         assertThat("is TeacherClass",teacherEntityOptional.get(),is(instanceOf(TeacherEntity.class)));
+    }
+
+    @Test
+    public void testFindByLoginNotPresent() {
+        Optional<TeacherEntity> teacherEntityOptional = teacherEntityFacade.findByLogin("nieMaMnie");
+
+        assertThat("Teacher where login is nieMaMnie", teacherEntityOptional, is(not(present())));
     }
 }

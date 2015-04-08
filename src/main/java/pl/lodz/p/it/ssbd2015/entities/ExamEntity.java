@@ -19,7 +19,7 @@ import java.util.List;
         pkColumnValue = "ExamEntity",
         allocationSize = 1)
 @NamedQuery(
-        name = "findByDate",
+        name = "findExamByDate",
         query = "SELECT e FROM ExamEntity e WHERE :date BETWEEN e.dateStart AND e.dateEnd"
 )
 public class ExamEntity {
