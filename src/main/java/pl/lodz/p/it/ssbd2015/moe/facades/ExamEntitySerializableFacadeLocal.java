@@ -10,7 +10,7 @@ import java.util.Optional;
  * @author Andrzej Kurczewski
  */
 @Local
-public interface ExamEntityFacadeLocal {
+public interface ExamEntitySerializableFacadeLocal {
     Optional<ExamEntity> find(Object id);
     List<ExamEntity> findAll();
 }
