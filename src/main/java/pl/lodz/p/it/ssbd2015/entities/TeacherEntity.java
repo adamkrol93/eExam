@@ -9,7 +9,10 @@ import java.util.List;
  */
 @Entity
 @DiscriminatorValue(Groups.TEACHERGROUP)
-@NamedQuery(name = "findTeacherByLogin",query = "select t from TeacherEntity t where t.login = :login")
+@NamedQueries({
+        @NamedQuery(name = "findTeacherByLogin", query = "select t from TeacherEntity t where t.login = :login"),
+        @NamedQuery(name = "findAllTeacherNotInExam", query = "SELECT DISTINCT(t) FROM TeacherEntity t, ExamEntity e WHERE t NOT MEMBER OF e.teachers AND e = :exam")
+})
 public class TeacherEntity extends GroupsEntity {
 
     @OneToMany(mappedBy = "teacher")

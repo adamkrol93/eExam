@@ -1,0 +1,13 @@
+question:
+  - question_id: 1
+    question_content: "'Przykładowe pytanie 1"
+    question_sample_answer: "Nowa przykładowa odpowiedź"
+    question_creator_id: 4
+    question_modifier_id: 4
+    question_date_add: "2015-03-30 22:59:07.393572"
+    question_date_modification: "2015-04-08 23:00:01.0"
+    question_version: 2
+
+exam_question:
+  - exam_id: 1
+    question_id: 1

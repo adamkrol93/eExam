@@ -1,0 +1,45 @@
+generator:
+  - class_name: "PersonEntity"
+    id_range: 1
+  - class_name: "GroupsEntity"
+    id_range: 5
+  - class_name: "PreviousPasswordEntity"
+    id_range: 0
+  - class_name: "ExamEntity"
+    id_range: 1
+  - class_name: "ApproachEntity"
+    id_range: 0
+  - class_name: "QuestionEntity"
+    id_range: 1
+  - class_name: "AnswerEntity"
+    id_range: 0
+
+exam:
+  - exam_id: 1
+    exam_title: "Pewien egzamin 1"
+    exam_count_take_exam: 3
+    exam_date_start: "2015-03-31 22:59:07.393572"
+    exam_date_end: "2015-04-04 22:59:07.393572"
+    exam_duration: 60
+    exam_count_question: 4
+    exam_count_finish_exam: "[NULL]"
+    exam_avg_results: "[NULL]"
+    exam_creator_id: 4
+    exam_modifier_id: "[NULL]"
+    exam_date_add: "2015-03-30 22:59:07.393572"
+    exam_date_modification: "[NULL]"
+    exam_version: 1
+
+question:
+  - question_id: 1
+    question_content: "'Przykładowe pytanie 1"
+    question_sample_answer: "Przykładowa odpowiedz 1"
+    question_creator_id: 4
+    question_modifier_id: "[NULL]"
+    question_date_add: "2015-03-30 22:59:07.393572"
+    question_date_modification: "[NULL]"
+    question_version: 1
+
+exam_question:
+  - exam_id: 1
+    question_id: 1
