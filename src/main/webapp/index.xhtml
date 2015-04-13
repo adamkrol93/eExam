@@ -1,37 +1,43 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>Strona główna</title>
     </h:head>
     <h:body>
-        Witamy w Systemie przeprowadzania egzaminów.<br/>
-        System jest realizowana w ramach przedmiotu SSBD na Politechnice Łódzkiej edycja 2015.<br/><br/>
-        
-        Zaloguj się<br/>
-        <h:link outcome="/login/login.xhtml" value="Logowanie"/><br/>
-        <h:link outcome="/administrator/index.xhtml" value="Strona Admina"/><br/>
-        <h:link outcome="/student/index.xhtml" value="Strona Ucznia"/><br/>
-        <h:link outcome="/examiner/index.xhtml" value="Strona Egzaminatora"/><br/>
-        <h:link outcome="/guardian/index.xhtml" value="Strona Opiekuna"/><br/>
-        <h:link outcome="/teacher/index.xhtml" value="Strona Nauczyciela"/><br/><br/>
-
-        Zarejestruj się<br/>
-        <h:link outcome="/login/registration.xhtml" value="Rejestracja"/><br/><br/>
-
-
-        Osoby biorące pełną odpowiedzialność za prezentowany system to:<br/>
-        1. Adam Król <br/>
-        2. Bartosz Ignaczewski <br/>
-        3. Piotr Jurewicz <br/>
-        4. Tobiasz Kowalski <br/>
-        5. Marcin Kabza <br/>
-        6. Michał Sośnicki <br/>
-        7. Andrzej Kurczewski <br/>
-        
-        <br/>Jeżeli masz jakieś obiekcje co do tego systemu zgłoś się do jednej z powyższych osób.<br/>
-        
+        <ui:composition template="template/commonLayout.xhtml">
+            <ui:define name="content">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="page-header">Witamy w Systemie przeprowadzania egzaminów</h2>
+                    </div>
+                    <div class="col-md-6">
+                        <p>System jest realizowana w ramach przedmiotu SSBD na Politechnice Łódzkiej edycja 2015.</p>
+                        <p><strong> Osoby biorące pełną odpowiedzialność za prezentowany system to:</strong> </p>
+                        <ul>
+                            <li>Adam Król</li>
+                            <li>Bartosz Ignaczewski</li>
+                            <li>Piotr Jurewicz</li>
+                            <li>Tobiasz Kowalski</li>
+                            <li>Marcin Kabza</li>
+                            <li>Andrzej Kurczewski</li>
+                            <li>Michał Sośnicki</li>
+                        </ul>
+                        <p>Jeżeli masz jakieś obiekcje co do tego systemu zgłoś się do jednej z powyższych osób.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h:link outcome="/administrator/index.xhtml" value="Strona Admina"/><br/>
+                        <h:link outcome="/student/index.xhtml" value="Strona Ucznia"/><br/>
+                        <h:link outcome="/examiner/index.xhtml" value="Strona Egzaminatora"/><br/>
+                        <h:link outcome="/guardian/index.xhtml" value="Strona Opiekuna"/><br/>
+                        <h:link outcome="/teacher/index.xhtml" value="Strona Nauczyciela"/><br/><br/>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+>>>>>>> Dodano bootstrapa. Przygotowałem szablon JSF i poprawiłem wygląd index.html zgodnie z przygotowanym szablonem. Mam nadzieje że będzie się podobać :D
     </h:body>
 </html>
