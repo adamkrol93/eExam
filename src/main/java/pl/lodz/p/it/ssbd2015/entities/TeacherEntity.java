@@ -8,7 +8,7 @@ import java.util.List;
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  */
 @Entity
-@DiscriminatorValue(Groups.TEACHERGROUP)
+@DiscriminatorValue(Groups.TEACHER)
 @NamedQueries({
         @NamedQuery(name = "findTeacherByLogin", query = "select t from TeacherEntity t where t.login = :login"),
         @NamedQuery(name = "findAllTeacherNotInExam", query = "SELECT DISTINCT(t) FROM TeacherEntity t, ExamEntity e WHERE t NOT MEMBER OF e.teachers AND e = :exam")

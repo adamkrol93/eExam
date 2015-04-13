@@ -17,10 +17,6 @@ public abstract class GroupsStubEntity {
     @Column(name = "groups_id", nullable = false, updatable = false)
     private long id;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "groups_name", nullable = false, length = 25)
-    private Groups name;
-
     @Column(name = "groups_active", nullable = false)
     private boolean active;
 
@@ -38,14 +34,6 @@ public abstract class GroupsStubEntity {
 
     public long getId() {
         return id;
-    }
-
-    public Groups getName() {
-        return name;
-    }
-
-    public void setName(Groups name) {
-        this.name = name;
     }
 
     public boolean isActive() {

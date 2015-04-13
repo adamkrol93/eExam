@@ -11,7 +11,7 @@ import java.util.List;
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  */
 @Entity
-@DiscriminatorValue(Groups.EXAMINERGROUP)
+@DiscriminatorValue(Groups.EXAMINER)
 @NamedQuery(name = "findExaminerByLogin", query = "SELECT e FROM ExaminerEntity e WHERE e.login = :login")
 public class ExaminerEntity extends GroupsEntity {
 

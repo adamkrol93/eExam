@@ -8,7 +8,7 @@ import java.util.List;
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  */
 @Entity
-@DiscriminatorValue(Groups.STUDENTGROUP)
+@DiscriminatorValue(Groups.STUDENT)
 public class StudentStubEntity extends GroupsStubEntity {
 
     @ManyToOne
