@@ -35,7 +35,17 @@ public class ExceptionHandler {
 
     public String getMessage() {
         if (exception != null) {
-            return  exception.getClass().getCanonicalName() + ": " + exception.getMessage();
+            return  exception.getClass().getCanonicalName();
+        }
+        else {
+            return (String) FacesContext.getCurrentInstance().getExternalContext().
+                    getRequestMap().get("javax.servlet.error.message");
+        }
+    }
+    public String getPlainMessage()
+    {
+        if (exception != null) {
+            return exception.getMessage();
         }
         else {
             return (String) FacesContext.getCurrentInstance().getExternalContext().

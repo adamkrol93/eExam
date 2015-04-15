@@ -29,7 +29,7 @@ public class PersonService implements PersonServiceRemote {
     @Override
     public PersonEntity getPerson(String login) throws PersonEntityNotFoundException {
         if(personEntity == null) {
-            this.personEntity = personEntityFacade.findByLogin(login).orElseThrow(() -> new PersonEntityNotFoundException("Nie znaleziono użytkownika o zadanym loginie"));
+            this.personEntity = personEntityFacade.findByLogin(login).orElseThrow(() -> new PersonEntityNotFoundException("exception.user_not_found"));
         }
         return personEntity;
     }
