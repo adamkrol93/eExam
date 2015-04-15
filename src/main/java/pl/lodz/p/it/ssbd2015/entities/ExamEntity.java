@@ -3,6 +3,7 @@ package pl.lodz.p.it.ssbd2015.entities;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -288,5 +289,24 @@ public class ExamEntity {
         result = 31 * result + (dateAdd != null ? dateAdd.hashCode() : 0);
         result = 31 * result + (dateModification != null ? dateModification.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        return "ExamEntity{" +
+                "id=" + id +
+                ", version=" + version +
+                ", title='" + title + '\'' +
+                ", countTakeExam=" + countTakeExam +
+                ", dateStart=" + (dateStart != null ? timestampFormat.format(dateStart.getTime()) : "null") +
+                ", dateEnd=" + (dateEnd != null ? timestampFormat.format(dateEnd.getTime()) : "null") +
+                ", duration=" + duration +
+                ", countQuestion=" + countQuestion +
+                ", countFinishExam=" + countFinishExam +
+                ", avgResults=" + avgResults +
+                ", dateAdd=" + (dateAdd != null ? timestampFormat.format(dateAdd.getTime()) : "null") +
+                ", dateModification=" + (dateModification != null ? timestampFormat.format(dateModification.getTime()) : "null") +
+                '}';
     }
 }

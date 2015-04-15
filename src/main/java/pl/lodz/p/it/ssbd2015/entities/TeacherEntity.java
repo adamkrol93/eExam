@@ -36,4 +36,9 @@ public class TeacherEntity extends GroupsEntity {
     public void setExams(List<ExamEntity> exams) {
         this.exams = exams;
     }
+
+    @Override
+    public String toString() {
+        return "TeacherEntity{" + super.toString() + "}";
+    }
 }

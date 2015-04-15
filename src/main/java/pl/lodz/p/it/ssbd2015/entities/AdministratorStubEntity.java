@@ -9,4 +9,8 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue(Groups.ADMIN)
 public class AdministratorStubEntity extends GroupsStubEntity {
+    @Override
+    public String toString() {
+        return "AdministratorStubEntity{" + super.toString() + "}";
+    }
 }

@@ -56,4 +56,9 @@ public class ExaminerStubEntity extends GroupsStubEntity {
     public void setModifiedQuestions(List<QuestionEntity> modifiedQuestions) {
         this.modifiedQuestions = modifiedQuestions;
     }
+
+    @Override
+    public String toString() {
+        return "ExaminerStubEntity{" + super.toString() + "}";
+    }
 }

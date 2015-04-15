@@ -2,6 +2,7 @@ package pl.lodz.p.it.ssbd2015.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -265,5 +266,27 @@ public class PersonEntity {
         result = 31 * result + (dateAdd != null ? dateAdd.hashCode() : 0);
         result = 31 * result + (dateModification != null ? dateModification.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        return "PersonEntity{" +
+                "id=" + id +
+                ", version=" + version +
+                ", login='" + login + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", lastTimeLogin=" + (lastTimeLogin != null ? timestampFormat.format(lastTimeLogin.getTime()) : "null") +
+                ", lastTimeLoginFail=" + (lastTimeLoginFail != null ? timestampFormat.format(lastTimeLoginFail.getTime()) : "null") +
+                ", countLoginFail=" + countLoginFail +
+                ", lastIpLogin='" + lastIpLogin + '\'' +
+                ", active=" + active +
+                ", confirm=" + confirm +
+                ", dateAdd=" + (dateAdd != null ? timestampFormat.format(dateAdd.getTime()) : "null") +
+                ", dateModification=" + (dateModification != null ? timestampFormat.format(dateModification.getTime()) : "null") +
+                '}';
     }
 }

@@ -1,6 +1,7 @@
 package pl.lodz.p.it.ssbd2015.entities;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -101,5 +102,17 @@ public class PreviousPasswordEntity {
         result = 31 * result + (dateAdd != null ? dateAdd.hashCode() : 0);
         result = 31 * result + (dateModification != null ? dateModification.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        return "PreviousPasswordEntity{" +
+                "id=" + id +
+                ", version=" + version +
+                ", dateModification=" + (dateModification != null ? timestampFormat.format(dateModification.getTime()) : "null") +
+                ", dateAdd=" + (dateAdd != null ? timestampFormat.format(dateAdd.getTime()) : "null") +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

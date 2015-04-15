@@ -2,6 +2,7 @@ package pl.lodz.p.it.ssbd2015.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -219,5 +220,77 @@ public abstract class GroupsEntity {
 
     public void setPersonDateModification(Calendar personDateModification) {
         this.personDateModification = personDateModification;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        GroupsEntity that = (GroupsEntity) o;
+
+        if (id != that.id) return false;
+        if (groupActive != that.groupActive) return false;
+        if (personActive != that.personActive) return false;
+        if (confirm != that.confirm) return false;
+        if (dateModification != null ? !dateModification.equals(that.dateModification) : that.dateModification != null)
+            return false;
+        if (version != null ? !version.equals(that.version) : that.version != null) return false;
+        if (login != null ? !login.equals(that.login) : that.login != null) return false;
+        if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
+        if (personName != null ? !personName.equals(that.personName) : that.personName != null) return false;
+        if (password != null ? !password.equals(that.password) : that.password != null) return false;
+        if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        if (lastTimeLogin != null ? !lastTimeLogin.equals(that.lastTimeLogin) : that.lastTimeLogin != null)
+            return false;
+        if (lastTimeLoginFail != null ? !lastTimeLoginFail.equals(that.lastTimeLoginFail) : that.lastTimeLoginFail != null)
+            return false;
+        if (countLoginFail != null ? !countLoginFail.equals(that.countLoginFail) : that.countLoginFail != null)
+            return false;
+        if (lastIpLogin != null ? !lastIpLogin.equals(that.lastIpLogin) : that.lastIpLogin != null) return false;
+        if (personDateAdd != null ? !personDateAdd.equals(that.personDateAdd) : that.personDateAdd != null)
+            return false;
+        return !(personDateModification != null ? !personDateModification.equals(that.personDateModification) : that.personDateModification != null);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (groupActive ? 1 : 0);
+        result = 31 * result + (dateModification != null ? dateModification.hashCode() : 0);
+        result = 31 * result + (version != null ? version.hashCode() : 0);
+        result = 31 * result + (login != null ? login.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (personName != null ? personName.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (lastTimeLogin != null ? lastTimeLogin.hashCode() : 0);
+        result = 31 * result + (lastTimeLoginFail != null ? lastTimeLoginFail.hashCode() : 0);
+        result = 31 * result + (countLoginFail != null ? countLoginFail.hashCode() : 0);
+        result = 31 * result + (lastIpLogin != null ? lastIpLogin.hashCode() : 0);
+        result = 31 * result + (personActive ? 1 : 0);
+        result = 31 * result + (confirm ? 1 : 0);
+        result = 31 * result + (personDateAdd != null ? personDateAdd.hashCode() : 0);
+        result = 31 * result + (personDateModification != null ? personDateModification.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        return "GroupsEntity{" +
+                "id=" + id +
+                ", version=" + version +
+                ", groupActive=" + groupActive +
+                ", dateModification=" + (dateModification != null ? timestampFormat.format(dateModification.getTime()) : "null") +
+                ", personId=" + personId +
+                ", login='" + login + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", personName='" + personName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", personActive=" + personActive +
+                ", confirm=" + confirm +
+                '}';
     }
 }

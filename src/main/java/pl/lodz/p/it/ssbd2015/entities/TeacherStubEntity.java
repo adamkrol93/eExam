@@ -23,4 +23,9 @@ public class TeacherStubEntity extends GroupsStubEntity {
     public void setGraded(List<AnswerEntity> graded) {
         this.graded = graded;
     }
+
+    @Override
+    public String toString() {
+        return "TeacherStubEntity{" + super.toString() + "}";
+    }
 }

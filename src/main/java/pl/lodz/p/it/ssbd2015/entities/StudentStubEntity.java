@@ -33,4 +33,9 @@ public class StudentStubEntity extends GroupsStubEntity {
     public void setEntered(List<ApproachEntity> entered) {
         this.entered = entered;
     }
+
+    @Override
+    public String toString() {
+        return "StudentStubEntity " + super.toString() + "}";
+    }
 }

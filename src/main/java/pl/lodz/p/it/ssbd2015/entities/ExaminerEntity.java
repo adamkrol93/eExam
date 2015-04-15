@@ -58,4 +58,9 @@ public class ExaminerEntity extends GroupsEntity {
     public void setModifiedQuestions(List<QuestionEntity> modifiedQuestions) {
         this.modifiedQuestions = modifiedQuestions;
     }
+
+    @Override
+    public String toString() {
+        return "ExaminerEntity{" + super.toString() + "}";
+    }
 }

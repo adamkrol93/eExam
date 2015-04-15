@@ -23,4 +23,9 @@ public class GuardianEntity extends GroupsEntity {
     public void setGuarded(List<StudentEntity> guarded) {
         this.guarded = guarded;
     }
+
+    @Override
+    public String toString() {
+        return "GuardianEntity{" + super.toString() + "}";
+    }
 }

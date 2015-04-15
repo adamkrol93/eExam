@@ -33,4 +33,9 @@ public class StudentEntity extends GroupsEntity {
     public void setEntered(List<ApproachEntity> entered) {
         this.entered = entered;
     }
+
+    @Override
+    public String toString() {
+        return "StudentEntity{" + super.toString() + "}";
+    }
 }

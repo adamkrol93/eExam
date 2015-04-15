@@ -1,6 +1,7 @@
 package pl.lodz.p.it.ssbd2015.entities;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -58,5 +59,39 @@ public abstract class GroupsStubEntity {
 
     public void setPerson(PersonEntity person) {
         this.person = person;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        GroupsStubEntity that = (GroupsStubEntity) o;
+
+        if (id != that.id) return false;
+        if (active != that.active) return false;
+        if (dateModification != null ? !dateModification.equals(that.dateModification) : that.dateModification != null)
+            return false;
+        return !(version != null ? !version.equals(that.version) : that.version != null);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (active ? 1 : 0);
+        result = 31 * result + (dateModification != null ? dateModification.hashCode() : 0);
+        result = 31 * result + (version != null ? version.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        return "GroupsStubEntity{" +
+                "id=" + id +
+                ", version=" + version +
+                ", active=" + active +
+                ", dateModification=" + (dateModification != null ? timestampFormat.format(dateModification.getTime()) : "null") +
+                '}';
     }
 }
