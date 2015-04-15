@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html">
@@ -17,7 +16,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../index.xhtml">eExam</a>
+                <h:link outcome="/index" value="eExam"/>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -27,7 +26,7 @@
                     </ui:insert>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/login/login.xhtml">Zaloguj się</a></li>
+                    <li><h:link outcome="/login/login" value="Zaloguj się"/></li>
                     <li><h:link outcome="/login/registration" value="Zarejestruj się"/></li>
                 </ul>
             </div>
@@ -37,7 +36,7 @@
     </nav>
     <!-- Header Carousel -->
     <header>
-        <img class="img-responsive" src="../resources/img/logo2.jpg" alt="logo"/>
+        <h:graphicImage library="img" name="logo2.jpg" alt="logo" styleClass="img-responsive"/>
     </header>
 </ui:composition>
 </body>
