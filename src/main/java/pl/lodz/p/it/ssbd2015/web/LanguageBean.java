@@ -42,6 +42,10 @@ public class LanguageBean implements Serializable {
 	}
 
 	public String getLocaleCode() {
+		if(localeCode == null)
+		{
+			localeCode = FacesContext.getCurrentInstance().getViewRoot().getLocale().getLanguage();
+		}
 		return localeCode;
 	}
 
