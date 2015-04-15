@@ -3,6 +3,7 @@ package pl.lodz.p.it.ssbd2015.entities;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import java.text.SimpleDateFormat;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -28,7 +29,9 @@ import java.util.List;
                 query = "SELECT p FROM PersonEntity  p WHERE p.login like :phrase or p.lastName like :phrase or p.name like :phrase or p.email like :phrase"
         )
 })
-public class PersonEntity {
+public class PersonEntity implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "person_id_generator")

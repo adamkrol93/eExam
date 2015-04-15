@@ -1,6 +1,5 @@
 package pl.lodz.p.it.ssbd2015.web;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -19,9 +18,9 @@ public class LanguageBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String localeCode;
+	private String localeCode = FacesContext.getCurrentInstance().getViewRoot().getLocale().getLanguage();
 
-	private Locale locale;
+	private Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
 
 	private static Map<String, Object> countries;
 
@@ -42,10 +41,6 @@ public class LanguageBean implements Serializable {
 	}
 
 	public String getLocaleCode() {
-		if(localeCode == null)
-		{
-			localeCode = FacesContext.getCurrentInstance().getViewRoot().getLocale().getLanguage();
-		}
 		return localeCode;
 	}
 

@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="../template/commonLayout.xhtml">
+    <f:metadata>
+        <f:viewParam name="login" value="#{showUserDetailsMOK.login}"/>
+    </f:metadata>
+    <ui:define name="head">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title><h:outputText value="#{i18n['MOK_PERSON_DETAIL']}"/></title>
+    </ui:define>
+
+    <ui:define name="content">
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-4">
+                <h:outputText value="#{i18n['MOK_USER_LOGIN']} #{showUserDetailsMOK.person.login}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-4">
+                    <h:outputText value="#{i18n['MOK_USER_NAME']} #{showUserDetailsMOK.person.name}"/>
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4">
+                <h:outputText value="#{i18n['MOK_USER_LAST_NAME']} #{showUserDetailsMOK.person.lastName}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4">
+                <h:outputText value="#{i18n['MOK_USER_EMAIL']} #{showUserDetailsMOK.person.email}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-lg-offset-6">
+                <h:form>
+                    <h:commandButton value="#{i18n['MOK_USER_CONFIRM']}" action="#{showUserDetailsMOK.confirmUser}"/>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

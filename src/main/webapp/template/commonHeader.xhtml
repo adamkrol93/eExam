@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
 <body>
 <ui:composition>
     <!-- Navigation -->
@@ -26,8 +27,16 @@
                     </ui:insert>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><h:link outcome="/login/login" value="Zaloguj się"/></li>
-                    <li><h:link outcome="/login/registration" value="Zarejestruj się"/></li>
+                    <li><h:link outcome="/login/login" value="#{i18n['LOGIN_LINK']}"/></li>
+                    <li><h:link outcome="/login/registration" value="#{i18n['REGISTER_LINK']}"/></li>
+                    <li><h:form>
+                            <h:outputText value="#{i18n['CHOOSE_LANGUAGE']}:"/>
+                            <h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
+                                             valueChangeListener="#{language.countryLocaleCodeChanged}">
+                                <f:selectItems value="#{language.countriesInMap}"/>
+                            </h:selectOneMenu>
+                    </h:form>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
