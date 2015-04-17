@@ -1,17 +1,21 @@
 package pl.lodz.p.it.ssbd2015.mok.services;
 
 import pl.lodz.p.it.ssbd2015.entities.*;
+import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
+import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
 
 import javax.ejb.EJB;
-import javax.ejb.Stateless;
+import javax.ejb.Stateful;
+import javax.interceptor.Interceptors;
 import java.util.Arrays;
 
 /**
  * @author Andrzej Kurczewski
  */
-@Stateless
-public class PeopleService implements PeopleServiceRemote {
+@Stateful(name = "pl.lodz.p.it.ssbd2015.mok.services.PeopleService")
+@Interceptors(LoggingInterceptor.class)
+public class PeopleService extends BaseStatefulService implements PeopleServiceRemote {
 
     @EJB
     private PersonEntityFacadeLocal personEntityFacade;
