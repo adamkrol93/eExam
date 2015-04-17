@@ -36,7 +36,9 @@ public abstract class BaseArquillianTest {
                 .addAsWebInfResource(new FileAsset(new File("src/test/resources/glassfish-resources.xml")),
                         "glassfish-resources.xml")
                 .addAsWebInfResource(new FileAsset(new File("src/main/resources/META-INF/persistence.xml")),
-                        "classes/META-INF/persistence.xml");
+                        "classes/META-INF/persistence.xml")
+                .addAsWebInfResource(new FileAsset(new File("src/main/webapp/WEB-INF/glassfish-ejb-jar.xml")),
+                        "glassfish-ejb-jar.xml");
     }
 
 }

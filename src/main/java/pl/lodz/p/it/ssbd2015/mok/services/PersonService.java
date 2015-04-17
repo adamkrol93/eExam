@@ -4,19 +4,17 @@ import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
-import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacade;
 import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.interceptor.Interceptors;
-import java.util.NoSuchElementException;
 
 /**
  * Created by adam on 15.04.15.
  * @since 0.0.5
  */
-@Stateful
+@Stateful(name = "pl.lodz.p.it.ssbd2015.mok.services.PersonService")
 @Interceptors(LoggingInterceptor.class)
 public class PersonService extends BaseStatefulService implements PersonServiceRemote {
 
@@ -40,7 +38,7 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
     }
 
     /**
-     * Funckja testująca czy można potwierdzać użytkowników
+     * Funkcja testująca czy można potwierdzać użytkowników
      */
     @Override
     public void confirmPerson() {

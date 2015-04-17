@@ -64,7 +64,7 @@ public class ApproachEntityFacadeTest extends BaseArquillianTest {
 
     @Test
     @Transactional(TransactionMode.DISABLED)
-    @ShouldMatchDataSet(value = "mre/expected-ApproachEntityFacadeTest#testCreateWithAnswers.yml")
+    @ShouldMatchDataSet(value = "mre/expected-ApproachEntityFacadeTest#testCreateWithAnswers.yml",excludeColumns = "answer_id")
     public void testCreateWithAnswers() {
         ExamEntity exam = examEntityFacade.findById(1l).get();
         StudentEntity student = studentEntityFacade.findById(7l).get();
