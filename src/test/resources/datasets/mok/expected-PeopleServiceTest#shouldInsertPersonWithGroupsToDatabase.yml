@@ -33,7 +33,7 @@ person:
     person_login: "Pomidor"
     person_last_name: "Bolognese"
     person_name: "Spaghetti"
-    person_password: "9743a66f914cc249efca164485a19c5c"
+    person_password: "eb69b326db64f766ab919aff870fc83e"
     person_email: "smaczny@pomidor.pl"
     person_last_time_login: "[NULL]"
     person_last_time_login_fail: "[NULL]"

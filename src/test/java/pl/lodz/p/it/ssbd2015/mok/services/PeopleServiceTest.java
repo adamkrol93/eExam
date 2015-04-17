@@ -46,7 +46,7 @@ public class PeopleServiceTest extends BaseArquillianTest {
         person.setLogin("Pomidor");
         person.setName("Spaghetti");
         person.setLastName("Bolognese");
-        person.setPassword("9743a66f914cc249efca164485a19c5c");
+        person.setPassword("keczup");
         person.setEmail("smaczny@pomidor.pl");
 
         peopleService.register(person);
@@ -62,7 +62,7 @@ public class PeopleServiceTest extends BaseArquillianTest {
         person.setLogin("Pomidor");
         person.setName("Spaghetti");
         person.setLastName("Bolognese");
-        person.setPassword("9743a66f914cc249efca164485a19c5c");
+        person.setPassword("keczup");
         person.setEmail("smaczny@pomidor.pl");
 
         person.setCountLoginFail(5);

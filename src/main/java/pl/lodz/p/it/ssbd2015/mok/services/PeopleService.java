@@ -8,6 +8,10 @@ import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.interceptor.Interceptors;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 /**
@@ -27,8 +31,7 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
 
     @Override
     public void register(PersonEntity person) {
-        PersonEntity newPerson = copyRegistrationFields(person);
-        newPerson.setActive(true);
+        PersonEntity newPerson = preparePersonForRegistration(person);
         assignAllGroups(newPerson);
         personEntityFacade.create(newPerson);
     }
@@ -44,13 +47,25 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
         group.setPerson(person);
     }
 
-    private PersonEntity copyRegistrationFields(PersonEntity person) {
+    private PersonEntity preparePersonForRegistration(PersonEntity person) {
         PersonEntity newPerson = new PersonEntity();
         newPerson.setLogin(person.getLogin());
         newPerson.setEmail(person.getEmail());
         newPerson.setName(person.getName());
         newPerson.setLastName(person.getLastName());
-        newPerson.setPassword(person.getPassword());
+        newPerson.setPassword(hashPassword(person.getPassword()));
+        newPerson.setActive(true);
         return newPerson;
+    }
+
+    private String hashPassword(String password) {
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+            byte[] bytes = messageDigest.digest(password.getBytes(StandardCharsets.UTF_8));
+            return new BigInteger(1, bytes).toString(16);
+        } catch (NoSuchAlgorithmException ex) {
+            logger.error("Cannot hash password");
+            return "";
+        }
     }
 }
