@@ -28,7 +28,7 @@ public class EditPersonService extends BaseStatefulService implements EditPerson
      * Funkcja zwracająca informacje o Użytkowniku na podstawie loginu.
      * Funkcja ustawia również stanowa zmienna @personEntity
      * @param login
-     * @return
+     * @return PersonEntity zwrócony zostaje użytkownik wyszukany w bazie danych. Nie może być nullem.
      */
     @Override
     public PersonEntity findPersonForEdit(String login) throws PersonEntityNotFoundException {
