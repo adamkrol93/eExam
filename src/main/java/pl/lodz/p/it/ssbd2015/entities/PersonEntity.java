@@ -1,5 +1,7 @@
 package pl.lodz.p.it.ssbd2015.entities;
 
+import pl.lodz.p.it.ssbd2015.entities.listeners.PersonEntityListener;
+
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import java.text.SimpleDateFormat;
@@ -29,6 +31,7 @@ import java.util.List;
                 query = "SELECT p FROM PersonEntity  p WHERE p.login like :phrase or p.lastName like :phrase or p.name like :phrase or p.email like :phrase"
         )
 })
+@EntityListeners(PersonEntityListener.class)
 public class PersonEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
