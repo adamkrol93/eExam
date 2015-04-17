@@ -3,8 +3,10 @@ package pl.lodz.p.it.ssbd2015.web.mok;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
 import pl.lodz.p.it.ssbd2015.mok.services.EditPersonServiceRemote;
+import pl.lodz.p.it.ssbd2015.web.Text;
 import sun.security.validator.ValidatorException;
 
+import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -12,8 +14,10 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ComponentSystemEvent;
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
+import java.util.ResourceBundle;
 
 /**
  * Created by Marcin on 2015-04-17.
@@ -55,15 +59,28 @@ public class EditUserDetails implements Serializable {
         editPersonServiceRemote.editPerson(personEntity);
     }
 
-    public void passwordValidator(FacesContext context, UIComponent toValidate, Object value) throws ValidatorException{
-        UIInput passwordField = (UIInput) context.getViewRoot().findComponent("editForm:password");
-        if (passwordField == null)
-            throw new IllegalArgumentException(String.format("Unable to find component."));
-        String password = (String) passwordField.getValue();
-        String confirmPassword = (String) value;
-        if (!confirmPassword.equals(password)) {
-            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Passwords do not match!", "Passwords do not match!");
-            throw new ValidatorException(message);
+    public void passwordValidator(ComponentSystemEvent event) throws ValidatorException{
+        FacesContext fc = FacesContext.getCurrentInstance();
+
+        UIComponent components = event.getComponent();
+        UIInput passwordField = (UIInput) components.findComponent("editForm:password");
+        String password = passwordField.getLocalValue() == null ? ""
+                : passwordField.getLocalValue().toString();
+        String passwordId = passwordField.getClientId();
+
+        UIInput uiInputConfirmPassword = (UIInput) components.findComponent("editForm:confirm");
+        String confirmPassword = uiInputConfirmPassword.getLocalValue() == null ? ""
+                : uiInputConfirmPassword.getLocalValue().toString();
+
+
+
+        if (!password.equals(confirmPassword)) {
+
+            FacesMessage msg = new FacesMessage(ResourceBundle.getBundle("i18n.translate",FacesContext.getCurrentInstance().getViewRoot().getLocale()).getString("MOK_PASSWORDS_ARE_DIFFERENT"));
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+            fc.addMessage(passwordId, msg);
+            fc.renderResponse();
+
         }
     }
 }
