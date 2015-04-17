@@ -3,10 +3,16 @@ package pl.lodz.p.it.ssbd2015.web.mok;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
 import pl.lodz.p.it.ssbd2015.mok.services.EditPersonServiceRemote;
+import sun.security.validator.ValidatorException;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
+import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 
 /**
@@ -14,8 +20,9 @@ import java.security.NoSuchAlgorithmException;
  */
 @ManagedBean(name = "editUserDetailsMOK")
 @ViewScoped
-public class EditUserDetails {
+public class EditUserDetails implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private String login;
     private PersonEntity personEntity;
     @EJB
@@ -29,9 +36,15 @@ public class EditUserDetails {
         this.login = login;
     }
 
-    public PersonEntity getPersonEntity() { return personEntity;}
+    public PersonEntity getPersonEntity() throws PersonEntityNotFoundException {
+        if(this.personEntity == null) {
+            this.personEntity = findPersonForEdit();
+        }
+        return personEntity;
+    }
 
     public void setPersonEntity(PersonEntity personEntity){
+
         this.personEntity = personEntity;
     }
 
@@ -40,5 +53,17 @@ public class EditUserDetails {
     }
     public void editPerson() throws NoSuchAlgorithmException {
         editPersonServiceRemote.editPerson(personEntity);
+    }
+
+    public void passwordValidator(FacesContext context, UIComponent toValidate, Object value) throws ValidatorException{
+        UIInput passwordField = (UIInput) context.getViewRoot().findComponent("editForm:password");
+        if (passwordField == null)
+            throw new IllegalArgumentException(String.format("Unable to find component."));
+        String password = (String) passwordField.getValue();
+        String confirmPassword = (String) value;
+        if (!confirmPassword.equals(password)) {
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Passwords do not match!", "Passwords do not match!");
+            throw new ValidatorException(message);
+        }
     }
 }
