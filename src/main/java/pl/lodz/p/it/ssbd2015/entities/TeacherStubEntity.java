@@ -25,6 +25,11 @@ public class TeacherStubEntity extends GroupsStubEntity {
     }
 
     @Override
+    public String getName() {
+        return Groups.TEACHER;
+    }
+
+    @Override
     public String toString() {
         return "TeacherStubEntity{" + super.toString() + "}";
     }

@@ -15,10 +15,12 @@
         <h:outputLabel value="#{exceptionHandler.message}: #{i18n[exceptionHandler.plainMessage]}"/>
     </h2>
     <ui:repeat value="#{exceptionHandler.details}" var="detail">
-        <h:outputText value="#{detail.exception.toString()}"/>
+        <p>
+            <h:outputText value="#{detail.exception.toString()}" style="font-weight: bold"/><br/>
             <ui:repeat value="#{detail.trace}" var="item">
-                <h:outputText value="#{item.toString()}" /><br />
+                <h:outputText value="#{item.toString()}" /><br/>
             </ui:repeat>
+        </p>
     </ui:repeat>
 </body>
 </html>

@@ -166,8 +166,8 @@
                             <filtering>true</filtering>
                         </resource>
                         <resource>
-                            <targetPath>WEB-INF/classes/i18n</targetPath>
-                            <directory>${basedir}/src/main/resources/i18n</directory>
+                            <targetPath>WEB-INF/classes</targetPath>
+                            <directory>${basedir}/src/main/resources</directory>
                         </resource>
                     </webResources>
                     <failOnMissingWebXml>false</failOnMissingWebXml>

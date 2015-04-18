@@ -7,7 +7,6 @@ import pl.lodz.p.it.ssbd2015.mok.services.PersonServiceRemote;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 /**
@@ -18,6 +17,8 @@ import javax.faces.bean.ViewScoped;
 public class ShowUserDetails {
 
     private String login;
+
+    private PersonEntity person;
 
     @EJB
     private PersonServiceRemote personServiceRemote;
@@ -31,7 +32,10 @@ public class ShowUserDetails {
     }
 
     public PersonEntity getPerson() throws PersonEntityNotFoundException {
-        return personServiceRemote.getPerson(login);
+        if (person == null) {
+            person = personServiceRemote.getPerson(login);
+        }
+        return person;
     }
 
     public void confirmUser()

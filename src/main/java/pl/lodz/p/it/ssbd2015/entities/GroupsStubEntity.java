@@ -1,6 +1,7 @@
 package pl.lodz.p.it.ssbd2015.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -11,7 +12,7 @@ import java.util.Calendar;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "groups_name")
 @Table(name = "groups")
-public abstract class GroupsStubEntity {
+public abstract class GroupsStubEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "groups_id_generator")
@@ -60,6 +61,8 @@ public abstract class GroupsStubEntity {
     public void setPerson(PersonEntity person) {
         this.person = person;
     }
+
+    public abstract String getName();
 
     @Override
     public boolean equals(Object o) {

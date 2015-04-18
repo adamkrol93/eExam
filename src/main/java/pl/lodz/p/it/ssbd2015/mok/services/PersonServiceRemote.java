@@ -26,4 +26,10 @@ public interface PersonServiceRemote {
      * Metoda potwierdzająca odnalezionego wcześniej użytkownika.
      */
     void confirmPerson();
+
+    /**
+     * Funkcja aktywuje bądź deaktywuje grupę wczytanego użytkownika o wskazanym kluczu głównym.
+     * @param id Klucz główny grupy do aktywacji/deaktywacji.
+     */
+    void toggleGroupActivation(long id);
 }

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import javax.ejb.SessionContext;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.InvocationContext;
+import java.util.Objects;
 
 /**
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
@@ -46,16 +47,17 @@ public class LoggingInterceptor {
         try {
             result = context.proceed();
         } catch (Exception ex) {
-            logger.error("{}.{}({}) invoked by person {} has thrown an exception {}",
+            logger.error("{}.{}({}) invoked by person {} has thrown an exception {}: {}",
                     className, methodName, params, personLogin,
-                    ex.getLocalizedMessage()
+                    ex, ex.getLocalizedMessage()
             );
 
             throw ex;
         }
 
         logger.info("{}.{}({}) invoked by person {} has returned {}",
-                className, methodName, params, personLogin, result
+                className, methodName, params, personLogin,
+                context.getMethod().getReturnType().equals(Void.TYPE) ? "void" : Objects.toString(result)
         );
 
         return result;

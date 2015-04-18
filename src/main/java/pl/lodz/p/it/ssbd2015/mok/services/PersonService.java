@@ -1,9 +1,11 @@
 package pl.lodz.p.it.ssbd2015.mok.services;
 
+import pl.lodz.p.it.ssbd2015.entities.GroupsStubEntity;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
+import pl.lodz.p.it.ssbd2015.mok.facades.GroupsStubEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
 
 import javax.ejb.EJB;
@@ -20,16 +22,18 @@ import javax.interceptor.Interceptors;
 @Interceptors(LoggingInterceptor.class)
 public class PersonService extends BaseStatefulService implements PersonServiceRemote {
 
-    private PersonEntity personEntity;
-
     @EJB
     private PersonEntityFacadeLocal personEntityFacade;
+    @EJB
+    private GroupsStubEntityFacadeLocal groupsStubEntityFacade;
+
+    private PersonEntity personEntity;
 
     @Override
     public PersonEntity getPerson(String login) throws PersonEntityNotFoundException {
-        if(personEntity == null) {
-            this.personEntity = personEntityFacade.findByLogin(login).orElseThrow(() -> new PersonEntityNotFoundException("exception.user_not_found"));
-        }
+        this.personEntity = personEntityFacade.findByLogin(login)
+                .orElseThrow(() -> new PersonEntityNotFoundException("exception.user_not_found"));
+        personEntity.getGroupStubs().isEmpty();
         return personEntity;
     }
 
@@ -37,5 +41,23 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
     public void confirmPerson() {
         personEntity = personEntityFacade.edit(personEntity);
         personEntity.setConfirm(true);
+    }
+
+    @Override
+    public void toggleGroupActivation(long id) {
+        boolean found = false;
+
+        for (GroupsStubEntity groupsStub : personEntity.getGroupStubs()) {
+            if (groupsStub.getId() == id) {
+                groupsStub = groupsStubEntityFacade.edit(groupsStub);
+                groupsStub.setActive(!groupsStub.isActive());
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            throw new IllegalArgumentException("The Person has no Group with id = " + id);
+        }
     }
 }

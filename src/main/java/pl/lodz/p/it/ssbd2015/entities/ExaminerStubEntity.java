@@ -58,6 +58,11 @@ public class ExaminerStubEntity extends GroupsStubEntity {
     }
 
     @Override
+    public String getName() {
+        return Groups.EXAMINER;
+    }
+
+    @Override
     public String toString() {
         return "ExaminerStubEntity{" + super.toString() + "}";
     }

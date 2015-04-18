@@ -25,6 +25,11 @@ public class GuardianStubEntity extends GroupsStubEntity {
     }
 
     @Override
+    public String getName() {
+        return Groups.GUARDIAN;
+    }
+
+    @Override
     public String toString() {
         return "GuardianStubEntity{" + super.toString() + "}";
     }
