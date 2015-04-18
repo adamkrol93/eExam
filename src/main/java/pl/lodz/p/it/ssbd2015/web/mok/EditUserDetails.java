@@ -3,10 +3,8 @@ package pl.lodz.p.it.ssbd2015.web.mok;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
 import pl.lodz.p.it.ssbd2015.mok.services.EditPersonServiceRemote;
-import pl.lodz.p.it.ssbd2015.web.Text;
 import sun.security.validator.ValidatorException;
 
-import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -72,11 +70,10 @@ public class EditUserDetails implements Serializable {
         String confirmPassword = uiInputConfirmPassword.getLocalValue() == null ? ""
                 : uiInputConfirmPassword.getLocalValue().toString();
 
-
-
         if (!password.equals(confirmPassword)) {
 
-            FacesMessage msg = new FacesMessage(ResourceBundle.getBundle("i18n.translate",FacesContext.getCurrentInstance().getViewRoot().getLocale()).getString("MOK_PASSWORDS_ARE_DIFFERENT"));
+            FacesMessage msg = new FacesMessage(ResourceBundle.getBundle("i18n.translate",
+                    FacesContext.getCurrentInstance().getViewRoot().getLocale()).getString("MOK_PASSWORDS_ARE_DIFFERENT"));
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             fc.addMessage(passwordId, msg);
             fc.renderResponse();

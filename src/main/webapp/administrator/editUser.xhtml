@@ -11,7 +11,7 @@
     </f:metadata>
     <ui:define name="head">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title><h:outputText value="#{i18n['MOK_EDIT_USER_PAGE']}"/></title>
+        <title><h:outputText value="#{i18n['mok.edit.page']}"/></title>
     </ui:define>
 
     <ui:define name="content">
@@ -19,48 +19,48 @@
             <f:event type="postValidate" listener="#{editUserDetailsMOK.passwordValidator}"/>
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-4">
-                    <h:outputText value="#{i18n['MOK_USER_LOGIN']} #{editUserDetailsMOK.personEntity.login}"/>
+                    <h:outputText value="#{i18n['mok.person.login']} #{editUserDetailsMOK.personEntity.login}"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-4">
-                    <h:outputText value="#{i18n['MOK_USER_NAME']}"/>
-                    <h:inputText id="name" required="true" value="#{editUserDetailsMOK.personEntity.name}" requiredMessage="#{i18n['MOK_USER_NAME_REQUIRED_MESSAGE']}"/>
+                    <h:outputText value="#{i18n['mok.person.name']}"/>
+                    <h:inputText id="name" required="true" value="#{editUserDetailsMOK.personEntity.name}" requiredMessage="#{i18n['mok.edit.name_required_message']}"/>
                     <h:message for="name" style="color:red"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-4">
-                    <h:outputText value="#{i18n['MOK_USER_LAST_NAME']}"/>
-                    <h:inputText id="lastname" required="true" value="#{editUserDetailsMOK.personEntity.lastName}" requiredMessage="#{i18n['MOK_USER_LAST_NAME_REQUIRED_MESSAGE']}"/>
+                    <h:outputText value="#{i18n['mok.person.last_name']}"/>
+                    <h:inputText id="lastname" required="true" value="#{editUserDetailsMOK.personEntity.lastName}" requiredMessage="#{i18n['mok.edit.last_name_required_message']}"/>
                     <h:message for="lastname" style="color:red"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-4">
-                    <h:outputText value="#{i18n['MOK_USER_EMAIL']}"/>
-                    <h:inputText id="email" required="true" value="#{editUserDetailsMOK.personEntity.email}" requiredMessage="#{i18n['MOK_USER_EMAIL_REQUIRED_MESSAGE']}"/>
+                    <h:outputText value="#{i18n['mok.person.email']}"/>
+                    <h:inputText id="email" required="true" value="#{editUserDetailsMOK.personEntity.email}" requiredMessage="#{i18n['mok.edit.email_required_message']}"/>
                     <h:message for="email" style="color:red"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-4">
-                    <h:outputText value="#{i18n['MOK_USER_PASSWORD']}"/>
+                    <h:outputText value="#{i18n['mok.edit.password']}"/>
                     <h:inputSecret id="password" value="#{editUserDetailsMOK.personEntity.password}"/>
                     <h:message for="password" errorClass="invalid" style="color:red"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-4">
-                    <h:outputText value="#{i18n['MOK_USER_CONFIRM_PASSWORD']}"/>
+                    <h:outputText value="#{i18n['mok.edit.confirm_password']}"/>
                     <h:inputSecret id="confirm"/>
                     <h:message for="confirm" errorClass="invalid" style="color:red"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-6 col-lg-offset-4">
-                    <h:commandButton type="submit" value="#{i18n['SAVE']}" action="#{editUserDetailsMOK.editPerson}"/>
-                    <h:commandButton type="reset" value="#{i18n['RESET']}"/><br/>
+                    <h:commandButton type="submit" value="#{i18n['save']}" action="#{editUserDetailsMOK.editPerson}"/>
+                    <h:commandButton type="reset" value="#{i18n['reset']}"/><br/>
                 </div>
             </div>
         </h:form>

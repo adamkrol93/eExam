@@ -4,14 +4,11 @@ import pl.lodz.p.it.ssbd2015.entities.*;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
+import pl.lodz.p.it.ssbd2015.mok.utils.PasswordUtils;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.interceptor.Interceptors;
-import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 /**
@@ -53,19 +50,9 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
         newPerson.setEmail(person.getEmail());
         newPerson.setName(person.getName());
         newPerson.setLastName(person.getLastName());
-        newPerson.setPassword(hashPassword(person.getPassword()));
+        newPerson.setPassword(PasswordUtils.hashPassword(person.getPassword()));
         newPerson.setActive(true);
         return newPerson;
     }
 
-    private String hashPassword(String password) {
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-            byte[] bytes = messageDigest.digest(password.getBytes(StandardCharsets.UTF_8));
-            return new BigInteger(1, bytes).toString(16);
-        } catch (NoSuchAlgorithmException ex) {
-            logger.error("Cannot hash password");
-            return "";
-        }
-    }
 }

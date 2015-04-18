@@ -27,10 +27,10 @@
                     </ui:insert>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><h:link outcome="/login/login" value="#{i18n['LOGIN_LINK']}"/></li>
-                    <li><h:link outcome="/login/registration" value="#{i18n['REGISTER_LINK']}"/></li>
+                    <li><h:link outcome="/login/login" value="#{i18n['login.link']}"/></li>
+                    <li><h:link outcome="/login/registration" value="#{i18n['register.link']}"/></li>
                     <li><h:form>
-                            <h:outputText value="#{i18n['CHOOSE_LANGUAGE']}:"/>
+                            <h:outputText value="#{i18n['choose.language']}:"/>
                             <h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
                                              valueChangeListener="#{language.countryLocaleCodeChanged}">
                                 <f:selectItems value="#{language.countriesInMap}"/>
