@@ -48,14 +48,13 @@ public class LanguageBean implements Serializable {
 		this.localeCode = localeCode;
 	}
 
-	public void countryLocaleCodeChanged(ValueChangeEvent e){
+	public void countryLocaleCodeChanged(ValueChangeEvent e) {
 
 		String newLocaleValue = e.getNewValue().toString();
 
 		countries.entrySet().stream().filter(entry -> entry.getValue().toString().equals(newLocaleValue)).forEach(entry -> {
 			locale = (Locale) entry.getValue();
 			FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
-
 		});
 
 	}

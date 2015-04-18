@@ -7,8 +7,8 @@ import javax.ejb.Remote;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Created by marcin on 17.04.15.
  * Interfejs do edycji pól konta (pole Person)
+ * @author Created by marcin on 17.04.15.
  */
 @Remote
 public interface EditPersonServiceRemote{

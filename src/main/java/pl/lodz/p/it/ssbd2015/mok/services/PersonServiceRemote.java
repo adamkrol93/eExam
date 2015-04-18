@@ -6,12 +6,24 @@ import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
 import javax.ejb.Remote;
 
 /**
- * Created by adam on 15.04.15.
- * Interfejs do wyświetlania informacji o użytkownikach
+ * Interfejs zdalny służący wyświetlania informacji o użytkowniku i dokonywania na prostych operacji.
+ * @author Created by adam on 15.04.15
+ * @author Michał Sośnicki
  */
 @Remote
 public interface PersonServiceRemote {
 
+    /**
+     * Funkcja zwracająca informacje o Użytkowniku na podstawie loginu.
+     * Funkcja ustawia również stanowa zmienna @personEntity
+     * @param login Login użytkownika do odnalezienia.
+     * @return Dane odnalezionego użyttkonika.
+     * @throws PersonEntityNotFoundException Rzucany, gdy użytkownik o danym loginie nie zostanie odnaleziony.
+     */
     PersonEntity getPerson(String login) throws PersonEntityNotFoundException;
+
+    /**
+     * Metoda potwierdzająca odnalezionego wcześniej użytkownika.
+     */
     void confirmPerson();
 }

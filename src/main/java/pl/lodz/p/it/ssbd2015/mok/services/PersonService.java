@@ -11,8 +11,10 @@ import javax.ejb.Stateful;
 import javax.interceptor.Interceptors;
 
 /**
- * Created by adam on 15.04.15.
- * @since 0.0.5
+ * Stanowy EJB realizujący interfejs PersonServiceRemote.
+ * Utrzymuje w sobie pole z użytkownikiem, którego dane są wyświetlane i na którym przeprowadzane są operacje.
+ * @author Created by adam on 15.04.15
+ * @author Michał Sośnicki
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mok.services.PersonService")
 @Interceptors(LoggingInterceptor.class)
@@ -23,12 +25,6 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
     @EJB
     private PersonEntityFacadeLocal personEntityFacade;
 
-    /**
-     * Funkcja zwracająca informacje o Użytkowniku na podstawie loginu.
-     * Funkcja ustawia również stanowa zmienna @personEntity
-     * @param login
-     * @return
-     */
     @Override
     public PersonEntity getPerson(String login) throws PersonEntityNotFoundException {
         if(personEntity == null) {
@@ -37,9 +33,6 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
         return personEntity;
     }
 
-    /**
-     * Funkcja testująca czy można potwierdzać użytkowników
-     */
     @Override
     public void confirmPerson() {
         personEntity = personEntityFacade.edit(personEntity);

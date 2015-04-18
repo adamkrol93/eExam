@@ -14,10 +14,11 @@ import java.util.Optional;
  * Created by Marcin on 2015-04-08.
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacade")
-public class PersonEntityFacade implements PersonEntityFacadeLocal
-{
+public class PersonEntityFacade implements PersonEntityFacadeLocal {
+
     @PersistenceContext(unitName = "pl.lodz.p.it.ssbd2015.mok_PU")
     private EntityManager entityManager;
+
     @Override
     public Class<PersonEntity> getEntityClass() {
         return PersonEntity.class;
@@ -40,6 +41,7 @@ public class PersonEntityFacade implements PersonEntityFacadeLocal
             return Optional.empty();
         }
     }
+
     @Override
     public List<PersonEntity> findByPhrase(String phrase) {
         TypedQuery<PersonEntity> personQuery = entityManager.createNamedQuery("findPersonByPhrase", PersonEntity.class);

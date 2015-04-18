@@ -165,6 +165,10 @@
                             <directory>${basedir}/src/main/webapp/WEB-INF</directory>
                             <filtering>true</filtering>
                         </resource>
+                        <resource>
+                            <targetPath>WEB-INF/classes/i18n</targetPath>
+                            <directory>${basedir}/src/main/resources/i18n</directory>
+                        </resource>
                     </webResources>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>

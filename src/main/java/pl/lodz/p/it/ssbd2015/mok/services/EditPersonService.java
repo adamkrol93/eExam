@@ -13,7 +13,9 @@ import javax.interceptor.Interceptors;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Created by Marcin on 2015-04-17.
+ * Stanowy EJB realizujący interfejs EditPersonServiceRemote.
+ * @see EditPersonServiceRemote
+ * @author Created by Marcin on 2015-04-17.
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mok.services.EditPersonService")
 @Interceptors(LoggingInterceptor.class)

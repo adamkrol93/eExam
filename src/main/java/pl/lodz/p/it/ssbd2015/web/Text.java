@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 /**
  * Created by adam on 15.04.15.
  */
-public class Text extends ResourceBundle{
+public class Text extends ResourceBundle {
 
     protected static final String BUNDLE_NAME = "i18n.translate";
     protected static final String BUNDLE_EXTENSION = "properties";
