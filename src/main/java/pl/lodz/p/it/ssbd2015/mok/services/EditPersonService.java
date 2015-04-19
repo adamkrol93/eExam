@@ -10,7 +10,6 @@ import pl.lodz.p.it.ssbd2015.mok.utils.PasswordUtils;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.interceptor.Interceptors;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * Stanowy EJB realizujący interfejs EditPersonServiceRemote.
@@ -21,10 +20,10 @@ import java.security.NoSuchAlgorithmException;
 @Interceptors(LoggingInterceptor.class)
 public class EditPersonService extends BaseStatefulService implements EditPersonServiceRemote{
 
-    private PersonEntity personEntity;
-
     @EJB
     private PersonEntityFacadeLocal personEntityFacade;
+
+    private PersonEntity personEntity;
 
     @Override
     public PersonEntity findPersonForEdit(String login) throws PersonEntityNotFoundException {
@@ -35,7 +34,7 @@ public class EditPersonService extends BaseStatefulService implements EditPerson
     }
 
     @Override
-    public void editPerson(PersonEntity person) throws NoSuchAlgorithmException{
+    public void editPerson(PersonEntity person) {
         this.personEntity = personEntityFacade.edit(personEntity);
         personEntity.setName(person.getName());
         personEntity.setLastName(person.getLastName());

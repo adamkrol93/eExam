@@ -21,7 +21,7 @@ public class PersonEntityListener {
             person.setDateAdd(Calendar.getInstance());
         }
         else {
-            logger.warn("{} already has registration date set. Ignoring it.", person);
+            logger.warn("{} already has registration date set. Skipping.", person);
         }
     }
 }

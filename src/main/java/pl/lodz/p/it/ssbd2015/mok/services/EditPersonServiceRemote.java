@@ -4,7 +4,6 @@ import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
 
 import javax.ejb.Remote;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * Interfejs do edycji pól konta (pole Person)
@@ -19,9 +18,10 @@ public interface EditPersonServiceRemote{
      * @return PersonEntity zwrócony zostaje użytkownik wyszukany w bazie danych. Nie może być nullem.
      */
     PersonEntity findPersonForEdit(String login) throws PersonEntityNotFoundException;
+
     /**
-     * Funkcja edycji użytkownika. Edytuje dane uzytkownika
+     * Funkcja edycji użytkownika. Edytuje dane uzytkownika.
      * @param person dane osobe użytkownika
      */
-    void editPerson(PersonEntity person) throws NoSuchAlgorithmException;
+    void editPerson(PersonEntity person);
 }

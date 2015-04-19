@@ -14,47 +14,42 @@ import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 import java.io.Serializable;
-import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
 /**
- * Created by Marcin on 2015-04-17.
+ * Backing bean dla strony dostępnej dla wszystkich do edycji własnego profilu.
+ * @author Created by Marcin on 2015-04-17.
  */
 @ManagedBean(name = "editUserDetailsMOK")
 @ViewScoped
 public class EditUserDetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private String login;
-    private PersonEntity personEntity;
+
     @EJB
     private EditPersonServiceRemote editPersonServiceRemote;
+
+    private String login;
+
+    private PersonEntity person;
 
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(String login) {
+    public void setLogin(String login) throws PersonEntityNotFoundException {
         this.login = login;
+        person = editPersonServiceRemote.findPersonForEdit(login);
     }
 
-    public PersonEntity getPersonEntity() throws PersonEntityNotFoundException {
-        if(this.personEntity == null) {
-            this.personEntity = findPersonForEdit();
-        }
-        return personEntity;
+    public PersonEntity getPerson() {
+        return person;
     }
 
-    public void setPersonEntity(PersonEntity personEntity){
+    public String editPerson() {
+        editPersonServiceRemote.editPerson(person);
 
-        this.personEntity = personEntity;
-    }
-
-    public PersonEntity findPersonForEdit() throws PersonEntityNotFoundException {
-        return editPersonServiceRemote.findPersonForEdit(login);
-    }
-    public void editPerson() throws NoSuchAlgorithmException {
-        editPersonServiceRemote.editPerson(personEntity);
+        return "editUser?faces-redirect=true&includeViewParams=true";
     }
 
     public void passwordValidator(ComponentSystemEvent event) throws ValidatorException{
@@ -80,4 +75,5 @@ public class EditUserDetails implements Serializable {
 
         }
     }
+
 }

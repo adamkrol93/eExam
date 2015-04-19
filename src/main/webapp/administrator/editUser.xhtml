@@ -18,34 +18,34 @@
             <f:event type="postValidate" listener="#{editUserDetailsMOK.passwordValidator}"/>
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-4">
-                    <h:outputText value="#{i18n['mok.person.login']} #{editUserDetailsMOK.personEntity.login}"/>
+                    <h:outputText value="#{i18n['mok.person.login']} #{editUserDetailsMOK.person.login}"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-4">
                     <h:outputText value="#{i18n['mok.person.name']}"/>
-                    <h:inputText id="name" required="true" value="#{editUserDetailsMOK.personEntity.name}" requiredMessage="#{i18n['mok.edit.name_required_message']}"/>
+                    <h:inputText id="name" required="true" value="#{editUserDetailsMOK.person.name}" requiredMessage="#{i18n['mok.edit.name_required_message']}"/>
                     <h:message for="name" style="color:red"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-4">
                     <h:outputText value="#{i18n['mok.person.last_name']}"/>
-                    <h:inputText id="lastname" required="true" value="#{editUserDetailsMOK.personEntity.lastName}" requiredMessage="#{i18n['mok.edit.last_name_required_message']}"/>
+                    <h:inputText id="lastname" required="true" value="#{editUserDetailsMOK.person.lastName}" requiredMessage="#{i18n['mok.edit.last_name_required_message']}"/>
                     <h:message for="lastname" style="color:red"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-4">
                     <h:outputText value="#{i18n['mok.person.email']}"/>
-                    <h:inputText id="email" required="true" value="#{editUserDetailsMOK.personEntity.email}" requiredMessage="#{i18n['mok.edit.email_required_message']}"/>
+                    <h:inputText id="email" required="true" value="#{editUserDetailsMOK.person.email}" requiredMessage="#{i18n['mok.edit.email_required_message']}"/>
                     <h:message for="email" style="color:red"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-4">
                     <h:outputText value="#{i18n['mok.edit.password']}"/>
-                    <h:inputSecret id="password" value="#{editUserDetailsMOK.personEntity.password}"/>
+                    <h:inputSecret id="password" value="#{editUserDetailsMOK.person.password}"/>
                     <h:message for="password" errorClass="invalid" style="color:red"/>
                 </div>
             </div>

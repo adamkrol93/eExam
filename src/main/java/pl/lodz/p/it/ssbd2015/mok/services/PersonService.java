@@ -31,8 +31,9 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
 
     @Override
     public PersonEntity getPerson(String login) throws PersonEntityNotFoundException {
-        this.personEntity = personEntityFacade.findByLogin(login)
+        personEntity = personEntityFacade.findByLogin(login)
                 .orElseThrow(() -> new PersonEntityNotFoundException("exception.user_not_found"));
+
         personEntity.getGroupStubs().isEmpty();
         return personEntity;
     }
@@ -59,5 +60,7 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
         if (!found) {
             throw new IllegalArgumentException("The Person has no Group with id = " + id);
         }
+
+        // TODO: Tutaj użytkownik ma otrzymać maila z powiadomieniem.
     }
 }

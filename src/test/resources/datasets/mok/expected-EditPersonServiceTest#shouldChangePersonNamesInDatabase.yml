@@ -1,0 +1,31 @@
+person:
+  - person_id: 1
+    person_login: "osoba"
+    person_last_name: "Sośnicki"
+    person_name: "Michał"
+    person_password: "53f1fce859c22ffdeff1adfcc31f670f"
+    person_email: "nie@ma.pl"
+    person_last_time_login: "[NULL]"
+    person_last_time_login_fail: "[NULL]"
+    person_count_login_fail: "[NULL]"
+    person_last_ip_login: "[NULL]"
+    person_active: true
+    person_confirm: true
+    person_date_add: "2015-03-30 22:59:07.393572"
+    person_date_modification: "[NULL]"
+    person_version: 1
+  - person_id: 2
+    person_login: "koks"
+    person_last_name: "Jakiśtam"
+    person_name: "Jerzy"
+    person_password: "53f1fce859c22ffdeff1adfcc31f670f"
+    person_email: "nie2@ma.pl"
+    person_last_time_login: "[NULL]"
+    person_last_time_login_fail: "[NULL]"
+    person_count_login_fail: "[NULL]"
+    person_last_ip_login: "[NULL]"
+    person_active: true
+    person_confirm: false
+    person_date_add: "2015-03-30 22:59:07.393572"
+    person_date_modification: "[NULL]"
+    person_version: 2

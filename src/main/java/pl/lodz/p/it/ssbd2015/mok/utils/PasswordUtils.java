@@ -26,8 +26,8 @@ public class PasswordUtils {
             byte[] bytes = messageDigest.digest(password.getBytes(StandardCharsets.UTF_8));
             return new BigInteger(1, bytes).toString(16);
         } catch (NoSuchAlgorithmException ex) {
-            logger.error("Cannot hash password");
-            return "";
+            logger.error("Cannot hash password, returning null. Reason: {}", ex);
+            return null;
         }
     }
 
