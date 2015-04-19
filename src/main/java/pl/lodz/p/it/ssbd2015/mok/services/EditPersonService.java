@@ -39,7 +39,9 @@ public class EditPersonService extends BaseStatefulService implements EditPerson
         personEntity.setName(person.getName());
         personEntity.setLastName(person.getLastName());
         personEntity.setEmail(person.getEmail());
-        personEntity.setPassword(PasswordUtils.hashPassword(person.getPassword()));
+        if(!personEntity.getPassword().equals(person.getPassword())) {
+            personEntity.setPassword(PasswordUtils.hashPassword(person.getPassword()));
+        }
     }
 
 }

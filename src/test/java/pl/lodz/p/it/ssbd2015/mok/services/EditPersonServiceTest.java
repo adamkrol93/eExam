@@ -41,7 +41,6 @@ public class EditPersonServiceTest extends BaseArquillianTest {
     }
 
     @Test
-    @Ignore
     @Transactional(TransactionMode.DISABLED)
     @ShouldMatchDataSet(value = "mok/expected-EditPersonServiceTest#shouldChangePersonNamesInDatabase.yml")
     public void shouldChangeOnlyPersonNameInDatabase() throws Exception {
@@ -49,7 +48,7 @@ public class EditPersonServiceTest extends BaseArquillianTest {
         PersonEntity person = editPersonService.findPersonForEdit(login);
 
         person.setName("Jerzy");
-        person.setName("Jakiśtam");
+        person.setLastName("Jakiśtam");
 
         editPersonService.editPerson(person);
     }
@@ -67,7 +66,6 @@ public class EditPersonServiceTest extends BaseArquillianTest {
     }
 
     @Test
-    @Ignore
     @Transactional(TransactionMode.DISABLED)
     @ShouldMatchDataSet(value = "mok/expected-EditPersonServiceTest#shouldNotChangeSomeOfThePersonFields.yml")
     public void shouldNotChangeSomeOfThePersonFields() throws Exception {
