@@ -3,18 +3,12 @@ package pl.lodz.p.it.ssbd2015.web.mok;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
 import pl.lodz.p.it.ssbd2015.mok.services.EditPersonServiceRemote;
-import sun.security.validator.ValidatorException;
 
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ComponentSystemEvent;
 import java.io.Serializable;
-import java.util.ResourceBundle;
 
 /**
  * Backing bean dla strony dostępnej dla wszystkich do edycji własnego profilu.
@@ -64,29 +58,6 @@ public class EditUserDetails implements Serializable {
                 .evaluateExpressionGet(context, "#{i18n['mok.edit.person_changed_message']}", String.class);
 
         return "editUser?faces-redirect=true&includeViewParams=true";
-    }
-
-    public void passwordValidator(ComponentSystemEvent event) throws ValidatorException{
-        FacesContext fc = FacesContext.getCurrentInstance();
-
-        UIComponent components = event.getComponent();
-        UIInput passwordField = (UIInput) components.findComponent("editForm:password");
-        String password = passwordField.getLocalValue() == null ? ""
-                : passwordField.getLocalValue().toString();
-        String passwordId = passwordField.getClientId();
-
-        UIInput uiInputConfirmPassword = (UIInput) components.findComponent("editForm:confirm");
-        String confirmPassword = uiInputConfirmPassword.getLocalValue() == null ? ""
-                : uiInputConfirmPassword.getLocalValue().toString();
-
-        if (!password.equals(confirmPassword)) {
-            FacesMessage msg = new FacesMessage(ResourceBundle.getBundle("i18n.translate",
-                    FacesContext.getCurrentInstance().getViewRoot().getLocale()).getString("mok.edit.passwords_are_different"));
-            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-            fc.addMessage(passwordId, msg);
-            fc.renderResponse();
-
-        }
     }
 
 }

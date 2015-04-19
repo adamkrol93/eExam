@@ -14,9 +14,9 @@
         <title><h:outputText value="#{i18n['mok.edit.page']}"/></title>
     </ui:define>
 
+    <!--@elvariable id="passwordInput" type="javax.faces.component.html.HtmlInputSecret"-->
     <ui:define name="content">
         <h:form id="editForm">
-            <f:event type="postValidate" listener="#{editUserDetailsMOK.passwordValidator}"/>
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-4">
                     <h:outputText value="#{editUserDetailsMOK.message}" style="color: green"/>
@@ -51,14 +51,18 @@
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-4">
                     <h:outputText value="#{i18n['mok.edit.password']}"/>
-                    <h:inputSecret id="password" value="#{editUserDetailsMOK.person.password}"/>
+                    <h:inputSecret id="password" value="#{editUserDetailsMOK.person.password}" binding="#{passwordInput}"/>
                     <h:message for="password" errorClass="invalid" style="color:red"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-4">
                     <h:outputText value="#{i18n['mok.edit.confirm_password']}"/>
-                    <h:inputSecret id="confirm"/>
+                    <h:inputSecret id="confirm">
+                        <f:validator validatorId="confirmationInputValidator"/>
+                        <f:attribute name="toConfirm" value="#{passwordInput.value}"/>
+                        <f:attribute name="confirmationErrorMessage" value="#{i18n['mok.edit.passwords_are_different']}"/>
+                    </h:inputSecret>
                     <h:message for="confirm" errorClass="invalid" style="color:red"/>
                 </div>
             </div>
