@@ -10,7 +10,8 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * Created by Bartosz Ignaczewski on 11.04.15.
+ * Bean udostępnia możliwość zmiany języka.
+ * @author Created by Bartosz Ignaczewski on 11.04.15.
  */
 @ManagedBean(name = "language")
 @SessionScoped
@@ -25,12 +26,10 @@ public class LanguageBean implements Serializable {
 	private static Map<String, Object> countries;
 
 	static {
-		countries = new LinkedHashMap<String, Object>();
+		countries = new LinkedHashMap<>();
 		countries.put("Polski", new Locale("pl"));
 		countries.put("English", new Locale("en"));
 	}
-
-
 
 	public Locale getLocale() {
 		return locale;
@@ -49,14 +48,12 @@ public class LanguageBean implements Serializable {
 	}
 
 	public void countryLocaleCodeChanged(ValueChangeEvent e) {
-
 		String newLocaleValue = e.getNewValue().toString();
 
 		countries.entrySet().stream().filter(entry -> entry.getValue().toString().equals(newLocaleValue)).forEach(entry -> {
 			locale = (Locale) entry.getValue();
 			FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
 		});
-
 	}
 
 }

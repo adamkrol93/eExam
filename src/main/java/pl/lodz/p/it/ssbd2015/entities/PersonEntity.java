@@ -286,7 +286,6 @@ public class PersonEntity implements Serializable {
                 ", login='" + login + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", lastTimeLogin=" + (lastTimeLogin != null ? timestampFormat.format(lastTimeLogin.getTime()) : "null") +
                 ", lastTimeLoginFail=" + (lastTimeLoginFail != null ? timestampFormat.format(lastTimeLoginFail.getTime()) : "null") +

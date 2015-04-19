@@ -1,7 +1,6 @@
 package pl.lodz.p.it.ssbd2015.web;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -9,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Bean udostępnia informację o zaistniałej sytuacji wyjątkowej.
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  */
 @Named("exceptionHandler")
@@ -68,6 +68,7 @@ public class ExceptionHandler {
                             + throwable.getMessage(), traceStrings));
             throwable = throwable.getCause();
         }
+
         return tracePairs;
     }
 

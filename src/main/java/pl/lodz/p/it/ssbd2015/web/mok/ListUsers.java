@@ -5,8 +5,8 @@ import pl.lodz.p.it.ssbd2015.mok.services.PeopleServiceRemote;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import java.util.List;
 
 /**

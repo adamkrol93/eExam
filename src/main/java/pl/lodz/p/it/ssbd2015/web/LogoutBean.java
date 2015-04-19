@@ -1,15 +1,15 @@
 package pl.lodz.p.it.ssbd2015.web;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.enterprise.context.Dependent;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- * Bean udostępnia możliwość wylogowywania
+ * Bean udostępnia możliwość wylogowywania.
  * @author Piotr Jurewicz
  */
 @Named(value = "logoutBean")

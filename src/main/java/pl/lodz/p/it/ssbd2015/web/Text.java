@@ -12,7 +12,9 @@ import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
 /**
- * Created by adam on 15.04.15.
+ * Zasób udostępniany w kontekście JSF, udostępniający dane do internacjonalizacji wiadomości, lecz
+ * z obsługą UTF-8.
+ * @author Created by adam on 15.04.15.
  */
 public class Text extends ResourceBundle {
 
@@ -41,8 +43,6 @@ public class Text extends ResourceBundle {
                 (String baseName, Locale locale, String format, ClassLoader loader, boolean reload)
                 throws IllegalAccessException, InstantiationException, IOException
         {
-            // The below code is copied from default Control#newBundle() implementation.
-            // Only the PropertyResourceBundle line is changed to read the file as UTF-8.
             String bundleName = toBundleName(baseName, locale);
             String resourceName = toResourceName(bundleName, BUNDLE_EXTENSION);
             ResourceBundle bundle = null;
