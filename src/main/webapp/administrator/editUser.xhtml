@@ -8,6 +8,7 @@
 <ui:composition template="../template/commonLayout.xhtml">
     <f:metadata>
         <f:viewParam name="login" value="#{editUserDetailsMOK.login}"/>
+        <f:viewParam name="message" value="#{editUserDetailsMOK.message}"/>
     </f:metadata>
     <ui:define name="head">
         <title><h:outputText value="#{i18n['mok.edit.page']}"/></title>
@@ -16,6 +17,11 @@
     <ui:define name="content">
         <h:form id="editForm">
             <f:event type="postValidate" listener="#{editUserDetailsMOK.passwordValidator}"/>
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-4">
+                    <h:outputText value="#{editUserDetailsMOK.message}" style="color: green"/>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-4">
                     <h:outputText value="#{i18n['mok.person.login']} #{editUserDetailsMOK.person.login}"/>

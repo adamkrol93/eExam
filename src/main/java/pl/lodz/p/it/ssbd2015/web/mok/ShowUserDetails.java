@@ -9,6 +9,7 @@ import pl.lodz.p.it.ssbd2015.mok.services.PersonServiceRemote;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import java.io.Serializable;
@@ -29,6 +30,8 @@ public class ShowUserDetails implements Serializable {
 
     private String login;
 
+    private String message;
+
     private PersonEntity person;
 
     private transient DataModel<GroupsStubEntity> groupStubs;
@@ -40,6 +43,14 @@ public class ShowUserDetails implements Serializable {
     public void setLogin(String login) throws PersonEntityNotFoundException {
         this.login = login;
         person = personService.getPerson(login);
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public PersonEntity getPerson() {
@@ -55,16 +66,31 @@ public class ShowUserDetails implements Serializable {
 
     public String confirmUser() {
         personService.confirmPerson();
+
+        FacesContext context = FacesContext.getCurrentInstance();
+        message = context.getApplication()
+                .evaluateExpressionGet(context, "#{i18n['mok.person.confirm_message']}", String.class);
+
         return "showUser?faces-redirect=true&includeViewParams=true";
     }
 
     public String toggleGroupActive() {
         personService.toggleGroupActivation(groupStubs.getRowData().getId());
+
+        FacesContext context = FacesContext.getCurrentInstance();
+        message = context.getApplication()
+                .evaluateExpressionGet(context, "#{i18n['mok.person.toggle_group_active_message']}", String.class);
+
         return "showUser?faces-redirect=true&includeViewParams=true";
     }
 
     public String togglePersonActive() {
         personService.togglePersonActivation();
+
+        FacesContext context = FacesContext.getCurrentInstance();
+        message = context.getApplication()
+                .evaluateExpressionGet(context, "#{i18n['mok.person.toggle_person_active_message']}", String.class);
+
         return "showUser?faces-redirect=true&includeViewParams=true";
     }
 

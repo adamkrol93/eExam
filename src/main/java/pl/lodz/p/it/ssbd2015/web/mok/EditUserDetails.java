@@ -31,6 +31,8 @@ public class EditUserDetails implements Serializable {
 
     private String login;
 
+    private String message;
+
     private PersonEntity person;
 
     public String getLogin() {
@@ -42,12 +44,24 @@ public class EditUserDetails implements Serializable {
         person = editPersonServiceRemote.findPersonForEdit(login);
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     public PersonEntity getPerson() {
         return person;
     }
 
     public String editPerson() {
         editPersonServiceRemote.editPerson(person);
+
+        FacesContext context = FacesContext.getCurrentInstance();
+        message = context.getApplication()
+                .evaluateExpressionGet(context, "#{i18n['mok.edit.person_changed_message']}", String.class);
 
         return "editUser?faces-redirect=true&includeViewParams=true";
     }
@@ -66,7 +80,6 @@ public class EditUserDetails implements Serializable {
                 : uiInputConfirmPassword.getLocalValue().toString();
 
         if (!password.equals(confirmPassword)) {
-
             FacesMessage msg = new FacesMessage(ResourceBundle.getBundle("i18n.translate",
                     FacesContext.getCurrentInstance().getViewRoot().getLocale()).getString("mok.edit.passwords_are_different"));
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);

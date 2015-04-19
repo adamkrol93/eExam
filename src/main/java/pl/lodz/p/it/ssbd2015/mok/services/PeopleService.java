@@ -35,7 +35,7 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
     }
 
     @Override
-    public List<PersonEntity> findAllPeron() {
+    public List<PersonEntity> findAllPeople() {
         return personEntityFacade.findAll();
     }
 

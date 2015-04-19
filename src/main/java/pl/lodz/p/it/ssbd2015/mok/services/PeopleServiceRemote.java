@@ -28,5 +28,5 @@ public interface PeopleServiceRemote {
      * Metoda zwraca listę wszystkich uzytkowników w systemie
      * @return Listę uzytkowników systemu, tzn. listę z obiektami PersonEntity
      */
-    List<PersonEntity> findAllPeron();
+    List<PersonEntity> findAllPeople();
 }

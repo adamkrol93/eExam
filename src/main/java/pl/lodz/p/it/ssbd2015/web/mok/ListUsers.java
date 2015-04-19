@@ -25,7 +25,7 @@ public class ListUsers {
 
     @PostConstruct
     private void initializeModel() {
-        personEntities = peopleService.findAllPeron();
+        personEntities = peopleService.findAllPeople();
     }
 
     public List<PersonEntity> getPersonEntities() {

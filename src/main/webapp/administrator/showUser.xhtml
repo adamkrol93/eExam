@@ -9,12 +9,18 @@
 <ui:composition template="../template/commonLayout.xhtml">
     <f:metadata>
         <f:viewParam name="login" value="#{showUserDetailsMOK.login}"/>
+        <f:viewParam name="message" value="#{showUserDetailsMOK.message}"/>
     </f:metadata>
     <ui:define name="head">
         <title><h:outputText value="#{i18n['mok.person.detail']}"/></title>
     </ui:define>
 
     <ui:define name="content">
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4">
+                <h:outputText value="#{showUserDetailsMOK.message}" style="color: green"/>
+            </div>
+        </div>
         <div class="row">
             <div class="col-lg-4 col-lg-offset-4">
                 <h:outputText value="#{i18n['mok.person.login']} #{showUserDetailsMOK.person.login}"/>
