@@ -38,7 +38,7 @@
         <div class="row">
             <div class="col-lg-2 col-lg-offset-6">
                 <h:form>
-                    <h:commandButton value="#{i18n['mok.person.confirm']}" action="#{showUserDetailsMOK.confirmUser}"/>
+                    <h:commandButton value="#{i18n['mok.person.confirm']}" action="#{showUserDetailsMOK.confirmUser}" rendered="#{!showUserDetailsMOK.person.confirm}"/>
                 </h:form>
             </div>
         </div>
