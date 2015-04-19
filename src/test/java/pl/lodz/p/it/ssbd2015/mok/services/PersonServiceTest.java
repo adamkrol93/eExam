@@ -79,4 +79,16 @@ public class PersonServiceTest extends BaseArquillianTest {
         }
     }
 
+    @Test
+    @Transactional(TransactionMode.DISABLED)
+    @ShouldMatchDataSet(value = "mok/expected-PersonServiceTest#shouldDeactivatePerson.yml")
+    public void shouldDeactivatePerson() throws Exception {
+        String login = "koks";
+
+        PersonEntity personBefore = personService.getPerson(login);
+        personService.togglePersonActivation();
+
+        assertThat("The person was active before.", personBefore.isActive());
+    }
+
 }
