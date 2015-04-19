@@ -44,7 +44,10 @@
         <div class="row">
             <div class="col-lg-2 col-lg-offset-6">
                 <h:form>
-                    <h:commandButton value="#{i18n['mok.person.confirm']}" action="#{showUserDetailsMOK.confirmUser}" rendered="#{!showUserDetailsMOK.person.confirm}"/>
+                    <h:commandButton
+                            value="#{i18n['mok.person.confirm']}" action="#{showUserDetailsMOK.confirmUser}"
+                            rendered="#{!showUserDetailsMOK.person.confirm}"
+                            onclick="if (!confirm(#{i18n['mok.confirmation.text']})) return false"/>
                 </h:form>
             </div>
         </div>
@@ -53,7 +56,7 @@
                 <h:form>
                     <h:commandButton
                             value="#{showUserDetailsMOK.person.active ? i18n['mok.person.person_deactivate'] : i18n['mok.person.person_activate']}"
-                            action="#{showUserDetailsMOK.togglePersonActive}"/>
+                            action="#{showUserDetailsMOK.togglePersonActive}" onclick="if (!confirm(#{i18n['mok.confirmation.text']})) return false"/>
                 </h:form>
             </div>
         </div>
@@ -73,7 +76,7 @@
                             </f:facet>
                             <h:commandButton
                                     value="#{group.active ? i18n['mok.person.group_active'] : i18n['mok.person.group_inactive']}"
-                                    action="#{showUserDetailsMOK.toggleGroupActive}"/>
+                                    action="#{showUserDetailsMOK.toggleGroupActive}" onclick="if (!confirm(#{i18n['mok.confirmation.text']})) return false"/>
                         </h:column>
                     </h:dataTable>
                 </h:form>
