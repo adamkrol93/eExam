@@ -63,4 +63,9 @@ public class ShowUserDetails implements Serializable {
         return "showUser?faces-redirect=true&includeViewParams=true";
     }
 
+    public String togglePersonActive() {
+        personService.togglePersonActivation();
+        return "showUser?faces-redirect=true&includeViewParams=true";
+    }
+
 }

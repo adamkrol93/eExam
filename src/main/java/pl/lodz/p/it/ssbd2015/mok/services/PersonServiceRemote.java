@@ -32,4 +32,9 @@ public interface PersonServiceRemote {
      * @param id Klucz główny grupy do aktywacji/deaktywacji.
      */
     void toggleGroupActivation(long id);
+
+    /**
+     * Funkcja służy do  blokowania i odblokowywania użytkownika w zależności od bieżącego stanu
+     */
+    void togglePersonActivation();
 }

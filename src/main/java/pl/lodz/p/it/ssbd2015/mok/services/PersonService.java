@@ -63,4 +63,10 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
 
         // TODO: Tutaj użytkownik ma otrzymać maila z powiadomieniem.
     }
+
+    @Override
+    public void togglePersonActivation() {
+        personEntity = personEntityFacade.edit(personEntity);
+        personEntity.setActive(!personEntity.isActive());
+    }
 }
