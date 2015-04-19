@@ -54,10 +54,12 @@
                                 <f:facet name="header">
                                     <h:outputText value="#{i18n['mok.list.actions']}"/>
                                 </f:facet>
-                                <h:commandButton value="#{i18n['mok.list.actions.edit']}"
-                                                 action="#{listUsersMOK.editPerson}"/>
-                                <h:commandButton value="#{i18n['mok.list.actions.show']}"
-                                                 action="#{listUsersMOK.showPerson}"/>
+                                <h:link value="#{i18n['mok.list.actions.edit']} " outcome="editUser">
+                                    <f:param name="login" value="#{user.login}"/>
+                                </h:link>
+                                <h:link value="#{i18n['mok.list.actions.show']}" outcome="showUser">
+                                    <f:param name="login" value="#{user.login}"/>
+                                </h:link>
                             </h:column>
                         </h:dataTable>
                     </h:form>
