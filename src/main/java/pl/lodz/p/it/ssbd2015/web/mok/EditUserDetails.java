@@ -68,7 +68,7 @@ public class EditUserDetails implements Serializable {
         if (!password.equals(confirmPassword)) {
 
             FacesMessage msg = new FacesMessage(ResourceBundle.getBundle("i18n.translate",
-                    FacesContext.getCurrentInstance().getViewRoot().getLocale()).getString("MOK_PASSWORDS_ARE_DIFFERENT"));
+                    FacesContext.getCurrentInstance().getViewRoot().getLocale()).getString("mok.edit.passwords_are_different"));
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             fc.addMessage(passwordId, msg);
             fc.renderResponse();
