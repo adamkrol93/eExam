@@ -3,10 +3,12 @@ package pl.lodz.p.it.ssbd2015.mok.services;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 
 import javax.ejb.Remote;
+import java.util.List;
 
 /**
  * Interfejs EJB wykorzystywany w procesie rejestracji, wyświetlania danych raportowych
  * @author Andrzej Kurczewski
+ * @author adam
  */
 @Remote
 public interface PeopleServiceRemote {
@@ -21,4 +23,10 @@ public interface PeopleServiceRemote {
      * @param person encja reprezentująca dane użytkownika
      */
     void register(PersonEntity person);
+
+    /**
+     * Metoda zwraca listę wszystkich uzytkowników w systemie
+     * @return Listę uzytkowników systemu, tzn. listę z obiektami PersonEntity
+     */
+    List<PersonEntity> findAllPeron();
 }

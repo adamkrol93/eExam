@@ -10,6 +10,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.interceptor.Interceptors;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author Andrzej Kurczewski
@@ -31,6 +32,11 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
         PersonEntity newPerson = preparePersonForRegistration(person);
         assignAllGroups(newPerson);
         personEntityFacade.create(newPerson);
+    }
+
+    @Override
+    public List<PersonEntity> findAllPeron() {
+        return personEntityFacade.findAll();
     }
 
     private void assignAllGroups(PersonEntity person) {
