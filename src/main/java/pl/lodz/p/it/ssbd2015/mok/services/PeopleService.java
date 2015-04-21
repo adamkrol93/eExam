@@ -3,6 +3,7 @@ package pl.lodz.p.it.ssbd2015.mok.services;
 import pl.lodz.p.it.ssbd2015.entities.*;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
 import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.utils.PasswordUtils;
 
@@ -10,10 +11,15 @@ import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.interceptor.Interceptors;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
+ * Stworzony EJB realizuje interfejs PeopleServiceRemote
+ * @see pl.lodz.p.it.ssbd2015.mok.services.PeopleServiceRemote
  * @author Andrzej Kurczewski
+ * @author Tobiasz Kowalski
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mok.services.PeopleService")
 @Interceptors(LoggingInterceptor.class)
@@ -21,6 +27,8 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
 
     @EJB
     private PersonEntityFacadeLocal personEntityFacade;
+
+    private PersonEntity personEntity;
 
     @Override
     public boolean checkUniqueness(String login) {
@@ -59,6 +67,17 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
         newPerson.setPassword(PasswordUtils.hashPassword(person.getPassword()));
         newPerson.setActive(true);
         return newPerson;
+    }
+
+
+    @Override
+    public void correctLogin(String login, String ipAddress, Calendar time) throws PersonEntityNotFoundException {
+
+        personEntity = personEntityFacade.findByLogin(login).
+                orElseThrow(() -> new PersonEntityNotFoundException("exception.user_not_found"));
+
+        personEntity.setLastTimeLogin(time);
+        personEntity.setLastIpLogin(ipAddress);
     }
 
 }

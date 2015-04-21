@@ -1,8 +1,10 @@
 package pl.lodz.p.it.ssbd2015.mok.services;
 
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
 
 import javax.ejb.Remote;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -29,4 +31,14 @@ public interface PeopleServiceRemote {
      * @return Listę uzytkowników systemu, tzn. listę z obiektami PersonEntity
      */
     List<PersonEntity> findAllPeople();
+
+
+    /**
+     * Metoda zapisująca czas w momencie logowania oraz IP z jakiego nastąpiło logowanie w bazie.
+     * @param login login użytkownika
+     * @param ipAddress adres IP
+     * @param time czas logowania
+     * @throws PersonEntityNotFoundException Rzucany, gdy użytkownik o danym loginie nie zostanie odnaleziony.
+     */
+    void correctLogin(String login, String ipAddress, Calendar time) throws PersonEntityNotFoundException;
 }
