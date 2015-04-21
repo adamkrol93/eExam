@@ -18,7 +18,7 @@ import javax.interceptor.Interceptors;
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mok.services.EditPersonService")
 @Interceptors(LoggingInterceptor.class)
-public class EditPersonService extends BaseStatefulService implements EditPersonServiceRemote{
+public class EditPersonService extends BaseStatefulService implements EditPersonServiceRemote {
 
     @EJB
     private PersonEntityFacadeLocal personEntityFacade;

@@ -12,7 +12,11 @@ import pl.lodz.p.it.ssbd2015.entities.ExaminerEntity;
 
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -27,6 +31,33 @@ import static pl.lodz.p.it.ssbd2015.Present.present;
 @UsingDataSet({"ValidUser.yml", "mze/TeacherEntityFacadeTest.yml"})
 public class ExamEntityFacadeTest extends BaseArquillianTest {
 
+    @Stateless(name = "pl.lodz.p.it.ssbd2015.mze.facades.ExamEntityFacadeTest.MandatoryWrapper")
+    @LocalBean
+    public static class MandatoryWrapper {
+        @EJB
+        private ExamEntityFacadeLocal examEntityFacade;
+        @EJB
+        private ExaminerEntityFacadeLocal examinerEntityFacade;
+
+        public void getExamEntityFacadeLocal(Consumer<ExamEntityFacadeLocal> action) {
+            action.accept(examEntityFacade);
+        }
+
+        public <A> A withExamEntityFacadeLocal(Function<ExamEntityFacadeLocal, A> action) {
+            return action.apply(examEntityFacade);
+        }
+
+        public void getExaminerEntityFacadeLocal(Consumer<ExaminerEntityFacadeLocal> action) {
+            action.accept(examinerEntityFacade);
+        }
+
+        public <A> A withExaminerEntityFacadeLocal(Function<ExaminerEntityFacadeLocal, A> action) {
+            return action.apply(examinerEntityFacade);
+        }
+    }
+
+    @EJB
+    private MandatoryWrapper mandatoryWrapper;
     @EJB
     private ExamEntityFacadeLocal examEntityFacade;
     @EJB
@@ -57,7 +88,7 @@ public class ExamEntityFacadeTest extends BaseArquillianTest {
     @Transactional(TransactionMode.DISABLED)
     @ShouldMatchDataSet(value = "mze/expected-ExamEntityFacadeTest#shouldSaveNewExamInDatabase.yml")
     public void shouldSaveNewExamInDatabase() {
-        ExaminerEntity examiner = examinerEntityFacade.findById(4l).get();
+        ExaminerEntity examiner = mandatoryWrapper.withExaminerEntityFacadeLocal(e -> e.findById(4l).get());
 
         ExamEntity exam = new ExamEntity();
         exam.setTitle("Brand New Exam");
@@ -69,20 +100,20 @@ public class ExamEntityFacadeTest extends BaseArquillianTest {
         exam.setCreator(examiner);
         exam.setDateAdd(TestUtils.makeCalendar(2015, 4, 8, 22, 0, 1));
 
-        examEntityFacade.create(exam);
+        mandatoryWrapper.getExamEntityFacadeLocal(e -> e.edit(exam));
     }
 
     @Test
     @Transactional(TransactionMode.DISABLED)
     @ShouldMatchDataSet(value = "mze/expected-ExamEntityFacadeTest#shouldUpdateChangedExamInDatabase.yml")
     public void shouldUpdateChangedExamInDatabase() {
-        ExaminerEntity examiner = examinerEntityFacade.findById(4l).get();
-        ExamEntity exam = examEntityFacade.findById(1l).get();
+        ExaminerEntity examiner = mandatoryWrapper.withExaminerEntityFacadeLocal(e -> e.findById(4l).get());
+        ExamEntity exam = mandatoryWrapper.withExamEntityFacadeLocal(e -> e.findById(1l).get());
 
         exam.setDuration(40);
         exam.setDateModification(TestUtils.makeCalendar(2015, 4, 8, 22, 10, 1));
         exam.setModifier(examiner);
 
-        examEntityFacade.edit(exam);
+        mandatoryWrapper.getExamEntityFacadeLocal(e -> e.edit(exam));
     }
 }

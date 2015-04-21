@@ -6,6 +6,10 @@ import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.entities.StudentEntity;
 
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
@@ -16,6 +20,23 @@ import static org.hamcrest.Matchers.hasSize;
 @UsingDataSet({"ValidUser.yml", "mre/AnswerEntityFacadeTest.yml"})
 public class StudentEntityFacadeTest extends BaseArquillianTest {
 
+    @Stateless(name = "pl.lodz.p.it.ssbd2015.mre.facades.StudentEntityFacadeTest.MandatoryWrapper")
+    @LocalBean
+    public static class MandatoryWrapper {
+        @EJB
+        private StudentEntityFacadeLocal studentEntityFacade;
+
+        public void getStudentEntityFacadeLocal(Consumer<StudentEntityFacadeLocal> action) {
+            action.accept(studentEntityFacade);
+        }
+
+        public <A> A withStudentEntityFacadeLocal(Function<StudentEntityFacadeLocal, A> action) {
+            return action.apply(studentEntityFacade);
+        }
+    }
+
+    @EJB
+    private MandatoryWrapper mandatoryWrapper;
     @EJB
     private StudentEntityFacadeLocal studentEntityFacade;
 

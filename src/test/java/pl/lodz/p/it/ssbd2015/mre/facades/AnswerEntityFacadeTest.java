@@ -10,10 +10,15 @@ import pl.lodz.p.it.ssbd2015.TestUtils;
 import pl.lodz.p.it.ssbd2015.entities.AnswerEntity;
 
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 import static pl.lodz.p.it.ssbd2015.Present.present;
 
 /**
@@ -22,6 +27,23 @@ import static pl.lodz.p.it.ssbd2015.Present.present;
 @UsingDataSet({"ValidUser.yml", "mre/AnswerEntityFacadeTest.yml"})
 public class AnswerEntityFacadeTest extends BaseArquillianTest {
 
+    @Stateless(name = "pl.lodz.p.it.ssbd2015.mre.facades.AnswerEntityFacadeTest.MandatoryWrapper")
+    @LocalBean
+    public static class MandatoryWrapper {
+        @EJB
+        private AnswerEntityFacadeLocal answerEntityFacade;
+
+        public void getAnswerEntityFacadeLocal(Consumer<AnswerEntityFacadeLocal> action) {
+            action.accept(answerEntityFacade);
+        }
+
+        public <A> A withAnswerEntityFacadeLocal(Function<AnswerEntityFacadeLocal, A> action) {
+            return action.apply(answerEntityFacade);
+        }
+    }
+
+    @EJB
+    private MandatoryWrapper mandatoryWrapper;
     @EJB
     private AnswerEntityFacadeLocal answerEntityFacade;
 
@@ -43,12 +65,12 @@ public class AnswerEntityFacadeTest extends BaseArquillianTest {
     @Transactional(TransactionMode.DISABLED)
     @ShouldMatchDataSet(value = "mre/expected-AnswerEntityFacadeTest#testMergeAnswer.yml")
     public void testMergeAnswer() {
-        AnswerEntity answer = answerEntityFacade.findById(9l).get();
+        AnswerEntity answer = mandatoryWrapper.withAnswerEntityFacadeLocal(a -> a.findById(9l).get());
 
         answer.setContent("Dziedziczenie z wykorzystaniem strategii SINGLE nie narusza 3NF.");
         answer.setDateModification(TestUtils.makeCalendar(2015, 4, 7, 16, 30, 17));
 
-        answerEntityFacade.edit(answer);
+        mandatoryWrapper.getAnswerEntityFacadeLocal(a -> a.edit(answer));
     }
 
 }

@@ -3,6 +3,8 @@ package pl.lodz.p.it.ssbd2015.mre.facades;
 import pl.lodz.p.it.ssbd2015.entities.StudentEntity;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -10,6 +12,7 @@ import javax.persistence.PersistenceContext;
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mre.facades.StudentEntityFacade")
+@TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class StudentEntityFacade implements StudentEntityFacadeLocal {
 
     @PersistenceContext(unitName = "pl.lodz.p.it.ssbd2015.mre_PU")

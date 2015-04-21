@@ -7,12 +7,15 @@ import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.TestUtils;
-import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.ExaminerEntity;
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -24,6 +27,43 @@ import static pl.lodz.p.it.ssbd2015.Present.present;
 @UsingDataSet({"ValidUser.yml", "mze/QuestionEntityFacadeTest.yml"})
 public class QuestionEntityFacadeTest extends BaseArquillianTest {
 
+    @Stateless(name = "pl.lodz.p.it.ssbd2015.mze.facades.QuestionEntityFacadeTest.MandatoryWrapper")
+    @LocalBean
+    public static class MandatoryWrapper {
+        @EJB
+        private QuestionEntityFacadeLocal questionEntityFacade;
+        @EJB
+        private ExaminerEntityFacadeLocal examinerEntityFacade;
+        @EJB
+        private ExamEntityFacadeLocal examEntityFacade;
+
+        public void getQuestionEntityFacadeLocal(Consumer<QuestionEntityFacadeLocal> action) {
+            action.accept(questionEntityFacade);
+        }
+
+        public <A> A withQuestionEntityFacadeLocal(Function<QuestionEntityFacadeLocal, A> action) {
+            return action.apply(questionEntityFacade);
+        }
+
+        public void getExamEntityFacadeLocal(Consumer<ExamEntityFacadeLocal> action) {
+            action.accept(examEntityFacade);
+        }
+
+        public <A> A withExamEntityFacadeLocal(Function<ExamEntityFacadeLocal, A> action) {
+            return action.apply(examEntityFacade);
+        }
+
+        public void getExaminerEntityFacadeLocal(Consumer<ExaminerEntityFacadeLocal> action) {
+            action.accept(examinerEntityFacade);
+        }
+
+        public <A> A withExaminerEntityFacadeLocal(Function<ExaminerEntityFacadeLocal, A> action) {
+            return action.apply(examinerEntityFacade);
+        }
+    }
+
+    @EJB
+    private MandatoryWrapper mandatoryWrapper;
     @EJB
     private QuestionEntityFacadeLocal questionEntityFacade;
     @EJB
@@ -50,7 +90,7 @@ public class QuestionEntityFacadeTest extends BaseArquillianTest {
     @Transactional(TransactionMode.DISABLED)
     @ShouldMatchDataSet(value = "mze/expected-QuestionEntityFacadeTest#shouldSaveQuestionInDatabase.yml")
     public void shouldSaveQuestionInDatabase() {
-        ExaminerEntity examiner = examinerEntityFacade.findById(4l).get();
+        ExaminerEntity examiner = mandatoryWrapper.withExaminerEntityFacadeLocal(e -> e.findById(4l).get());
 
         QuestionEntity question = new QuestionEntity();
         question.setContent("Jak?");
@@ -58,20 +98,20 @@ public class QuestionEntityFacadeTest extends BaseArquillianTest {
         question.setCreator(examiner);
         question.setDateAdd(TestUtils.makeCalendar(2015, 4, 8, 22, 0, 1));
 
-        questionEntityFacade.create(question);
+        mandatoryWrapper.getQuestionEntityFacadeLocal(q -> q.create(question));
     }
 
     @Test
     @Transactional(TransactionMode.DISABLED)
     @ShouldMatchDataSet(value = "mze/expected-QuestionEntityFacadeTest#shouldUpdateQuestionInDatabase.yml")
     public void shouldUpdateQuestionInDatabase() {
-        QuestionEntity question = questionEntityFacade.findById(1l).get();
-        ExaminerEntity examiner = examinerEntityFacade.findById(4l).get();
+        QuestionEntity question = mandatoryWrapper.withQuestionEntityFacadeLocal(q -> q.findById(1l).get());
+        ExaminerEntity examiner = mandatoryWrapper.withExaminerEntityFacadeLocal(e -> e.findById(4l).get());
 
         question.setSampleAnswer("Nowa przykładowa odpowiedź");
         question.setModifier(examiner);
         question.setDateModification(TestUtils.makeCalendar(2015, 4, 8, 23, 0, 1));
 
-        questionEntityFacade.edit(question);
+        mandatoryWrapper.getQuestionEntityFacadeLocal(q -> q.edit(question));
     }
 }

@@ -4,6 +4,8 @@ import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -13,6 +15,7 @@ import java.util.List;
  * @author Andrzej Kurczewski
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mze.facades.TeacherEntityFacade")
+@TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class TeacherEntityFacade implements TeacherEntityFacadeLocal {
 
     @PersistenceContext(unitName = "pl.lodz.p.it.ssbd2015.mze_PU")

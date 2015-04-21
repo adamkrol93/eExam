@@ -7,15 +7,16 @@ import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.entities.ApproachEntity;
-import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 
 import javax.ejb.EJB;
-
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
 import static pl.lodz.p.it.ssbd2015.Present.present;
 
 /**
@@ -24,6 +25,23 @@ import static pl.lodz.p.it.ssbd2015.Present.present;
 @UsingDataSet({"ValidUser.yml","moe/AnswerEntityFacadeTest.yml"})
 public class ApproachEntityFacadeTest extends BaseArquillianTest {
 
+    @Stateless(name = "pl.lodz.p.it.ssbd2015.moe.facades.ApproachEntityFacadeTest.MandatoryWrapper")
+    @LocalBean
+    public static class MandatoryWrapper {
+        @EJB
+        private ApproachEntityFacadeLocal approachEntityFacade;
+
+        public void getApproachEntityFacade(Consumer<ApproachEntityFacadeLocal> action) {
+            action.accept(approachEntityFacade);
+        }
+
+        public <A> A withApproachEntityFacade(Function<ApproachEntityFacadeLocal, A> action) {
+            return action.apply(approachEntityFacade);
+        }
+    }
+
+    @EJB
+    private MandatoryWrapper mandatoryWrapper;
     @EJB
     private ApproachEntityFacadeLocal approachEntityFacade;
 
@@ -31,20 +49,18 @@ public class ApproachEntityFacadeTest extends BaseArquillianTest {
     public void testReadPresent(){
         Optional<ApproachEntity> foundApproach = approachEntityFacade.findById(1l);
 
-        assertThat("Approach with id = 1",foundApproach, is(present()));
+        assertThat("Approach with id = 1", foundApproach, is(present()));
     }
-
 
     @Test
     @Transactional(TransactionMode.DISABLED)
     @ShouldMatchDataSet(value = "moe/expected-ApproachEntityFacadeTest#testMergeApproach.yml")
     public void testDisqualificationChange(){
-
-        Optional<ApproachEntity> foundApproach = approachEntityFacade.findById(1l);
+        Optional<ApproachEntity> foundApproach = mandatoryWrapper.withApproachEntityFacade(a -> a.findById(1l));
         ApproachEntity approachEntity = foundApproach.get();
 
         approachEntity.setDisqualification(true);
 
-        approachEntityFacade.edit(approachEntity);
+        mandatoryWrapper.getApproachEntityFacade(a -> a.edit(approachEntity));
     }
 }

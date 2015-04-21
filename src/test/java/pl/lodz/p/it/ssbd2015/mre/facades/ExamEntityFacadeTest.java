@@ -4,15 +4,18 @@ import org.jboss.arquillian.persistence.ShouldMatchDataSet;
 import org.jboss.arquillian.persistence.UsingDataSet;
 import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
 import org.jboss.arquillian.transaction.api.annotation.Transactional;
-import org.junit.Ignore;
 import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -24,6 +27,23 @@ import static pl.lodz.p.it.ssbd2015.Present.present;
 @UsingDataSet({"ValidUser.yml", "mre/ExamEntityFacadeTest.yml"})
 public class ExamEntityFacadeTest extends BaseArquillianTest {
 
+    @Stateless(name = "pl.lodz.p.it.ssbd2015.mre.facades.ExamEntityFacadeTest.MandatoryWrapper")
+    @LocalBean
+    public static class MandatoryWrapper {
+        @EJB
+        private ExamEntityFacadeLocal examEntityFacade;
+
+        public void getExamEntityFacadeLocal(Consumer<ExamEntityFacadeLocal> action) {
+            action.accept(examEntityFacade);
+        }
+
+        public <A> A withExamEntityFacadeLocal(Function<ExamEntityFacadeLocal, A> action) {
+            return action.apply(examEntityFacade);
+        }
+    }
+
+    @EJB
+    private MandatoryWrapper mandatoryWrapper;
     @EJB
     private ExamEntityFacadeLocal examEntityFacade;
 
@@ -66,12 +86,12 @@ public class ExamEntityFacadeTest extends BaseArquillianTest {
     @Transactional(TransactionMode.DISABLED)
     @ShouldMatchDataSet(value = "mre/expected-ExamEntityFacadeTest#testMerge.yml", excludeColumns = {"exam_version"})
     public void testMerge() {
-        ExamEntity exam = examEntityFacade.findById(3l).get();
+        ExamEntity exam = mandatoryWrapper.withExamEntityFacadeLocal(e -> e.findById(3l).get());
 
         exam.setTitle("Zmieniony egzamin 3");
         exam.setDuration(90);
 
-        examEntityFacade.edit(exam);
+        mandatoryWrapper.getExamEntityFacadeLocal(e -> e.edit(exam));
     }
 
 }

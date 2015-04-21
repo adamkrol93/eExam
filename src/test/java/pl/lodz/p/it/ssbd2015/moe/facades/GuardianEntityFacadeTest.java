@@ -1,17 +1,16 @@
 package pl.lodz.p.it.ssbd2015.moe.facades;
 
-import org.jboss.arquillian.persistence.ShouldMatchDataSet;
 import org.jboss.arquillian.persistence.UsingDataSet;
-import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
-import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.entities.GuardianEntity;
-import pl.lodz.p.it.ssbd2015.entities.StudentEntity;
 
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import java.util.List;
-import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
@@ -22,13 +21,28 @@ import static org.junit.Assert.assertThat;
 @UsingDataSet({ "ValidUser.yml","moe/GuardianUserTest.yml"})
 public class GuardianEntityFacadeTest extends BaseArquillianTest {
 
+    @Stateless(name = "pl.lodz.p.it.ssbd2015.moe.facades.GuardianEntityFacadeTest.MandatoryWrapper")
+    @LocalBean
+    public static class MandatoryWrapper {
+        @EJB
+        private GuardianEntityFacadeLocal guardianEntityFacadeLocal;
 
+        public void getGuardianEntityFacadeLocal(Consumer<GuardianEntityFacadeLocal> action) {
+            action.accept(guardianEntityFacadeLocal);
+        }
+
+        public <A> A withGuardianEntityFacadeLocal(Function<GuardianEntityFacadeLocal, A> action) {
+            return action.apply(guardianEntityFacadeLocal);
+        }
+    }
+
+    @EJB
+    private MandatoryWrapper mandatoryWrapper;
     @EJB
     private GuardianEntityFacadeLocal guardianEntityFacadeLocal;
 
     @Test
-    public void testfindAll()
-    {
+    public void testFindAll() {
         List<GuardianEntity> guardianEntities = guardianEntityFacadeLocal.findAll();
 
         assertThat("findAll Guardians = 2", guardianEntities, hasSize(2));

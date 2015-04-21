@@ -10,7 +10,11 @@ import pl.lodz.p.it.ssbd2015.TestUtils;
 import pl.lodz.p.it.ssbd2015.entities.*;
 
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -23,6 +27,43 @@ import static pl.lodz.p.it.ssbd2015.Present.present;
 @UsingDataSet({"ValidUser.yml", "mre/AnswerEntityFacadeTest.yml"})
 public class ApproachEntityFacadeTest extends BaseArquillianTest {
 
+    @Stateless(name = "pl.lodz.p.it.ssbd2015.mre.facades.ApproachEntityFacadeTest.MandatoryWrapper")
+    @LocalBean
+    public static class MandatoryWrapper {
+        @EJB
+        private StudentEntityFacadeLocal studentEntityFacade;
+        @EJB
+        private ExamEntityFacadeLocal examEntityFacade;
+        @EJB
+        private ApproachEntityFacadeLocal approachEntityFacade;
+
+        public void getStudentEntityFacadeLocal(Consumer<StudentEntityFacadeLocal> action) {
+            action.accept(studentEntityFacade);
+        }
+
+        public <A> A withStudentEntityFacadeLocal(Function<StudentEntityFacadeLocal, A> action) {
+            return action.apply(studentEntityFacade);
+        }
+
+        public void getExamEntityFacadeLocal(Consumer<ExamEntityFacadeLocal> action) {
+            action.accept(examEntityFacade);
+        }
+
+        public <A> A withExamEntityFacadeLocal(Function<ExamEntityFacadeLocal, A> action) {
+            return action.apply(examEntityFacade);
+        }
+
+        public void getApproachEntityFacadeLocal(Consumer<ApproachEntityFacadeLocal> action) {
+            action.accept(approachEntityFacade);
+        }
+
+        public <A> A withApproachEntityFacadeLocal(Function<ApproachEntityFacadeLocal, A> action) {
+            return action.apply(approachEntityFacade);
+        }
+    }
+
+    @EJB
+    private MandatoryWrapper mandatoryWrapper;
     @EJB
     private StudentEntityFacadeLocal studentEntityFacade;
     @EJB
@@ -49,8 +90,8 @@ public class ApproachEntityFacadeTest extends BaseArquillianTest {
     @Transactional(TransactionMode.DISABLED)
     @ShouldMatchDataSet(value = "mre/expected-ApproachEntityFacadeTest#testCreate.yml")
     public void testCreate() {
-        ExamEntity exam = examEntityFacade.findById(1l).get();
-        StudentEntity student = studentEntityFacade.findById(7l).get();
+        ExamEntity exam = mandatoryWrapper.withExamEntityFacadeLocal(e -> e.findById(1l).get());
+        StudentEntity student = mandatoryWrapper.withStudentEntityFacadeLocal(s -> s.findById(7l).get());
 
         ApproachEntity approach = new ApproachEntity();
         approach.setDateStart(TestUtils.makeCalendar(2015, 4, 8, 22, 0, 2));
@@ -59,15 +100,15 @@ public class ApproachEntityFacadeTest extends BaseArquillianTest {
         approach.setEntrant(student);
         approach.setDateAdd(TestUtils.makeCalendar(2015, 4, 8, 22, 0, 1));
 
-        approachEntityFacade.create(approach);
+        mandatoryWrapper.getApproachEntityFacadeLocal(a -> a.create(approach));
     }
 
     @Test
     @Transactional(TransactionMode.DISABLED)
     @ShouldMatchDataSet(value = "mre/expected-ApproachEntityFacadeTest#testCreateWithAnswers.yml",excludeColumns = "answer_id")
     public void testCreateWithAnswers() {
-        ExamEntity exam = examEntityFacade.findById(1l).get();
-        StudentEntity student = studentEntityFacade.findById(7l).get();
+        ExamEntity exam = mandatoryWrapper.withExamEntityFacadeLocal(e -> e.findById(1l).get());
+        StudentEntity student = mandatoryWrapper.withStudentEntityFacadeLocal(s -> s.findById(7l).get());
 
         ApproachEntity approach = new ApproachEntity();
         approach.setDateStart(TestUtils.makeCalendar(2015, 4, 8, 22, 0, 2));
@@ -86,18 +127,18 @@ public class ApproachEntityFacadeTest extends BaseArquillianTest {
             approach.getAnswers().add(answer);
         }
 
-        approachEntityFacade.create(approach);
+        mandatoryWrapper.getApproachEntityFacadeLocal(a -> a.create(approach));
     }
 
     @Test
     @Transactional(TransactionMode.DISABLED)
     @ShouldMatchDataSet(value = "mre/expected-ApproachEntityFacadeTest#testMergeDisqualify.yml")
     public void testMergeDisqualify() {
-        ApproachEntity approach = approachEntityFacade.findById(4l).get();
+        ApproachEntity approach = mandatoryWrapper.withApproachEntityFacadeLocal(a -> a.findById(4l).get());
 
         approach.setDisqualification(true);
 
-        approachEntityFacade.edit(approach);
+        mandatoryWrapper.getApproachEntityFacadeLocal(a -> a.edit(approach));
     }
 
 }

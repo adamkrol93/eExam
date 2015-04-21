@@ -3,6 +3,8 @@ package pl.lodz.p.it.ssbd2015.mok.facades;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -14,6 +16,7 @@ import java.util.Optional;
  * Created by Marcin on 2015-04-08.
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacade")
+@TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class PersonEntityFacade implements PersonEntityFacadeLocal {
 
     @PersistenceContext(unitName = "pl.lodz.p.it.ssbd2015.mok_PU")

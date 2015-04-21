@@ -7,7 +7,11 @@ import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
 
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -17,6 +21,31 @@ import static org.hamcrest.Matchers.*;
  */
 @UsingDataSet({"ValidUser.yml", "mze/TeacherEntityFacadeTest.yml"})
 public class TeacherEntityFacadeTest extends BaseArquillianTest {
+
+    @Stateless(name = "pl.lodz.p.it.ssbd2015.mze.facades.TeacherEntityFacadeTest.MandatoryWrapper")
+    @LocalBean
+    public static class MandatoryWrapper {
+        @EJB
+        private ExamEntityFacadeLocal examEntityFacade;
+        @EJB
+        private TeacherEntityFacadeLocal teacherEntityFacade;
+
+        public void getExamEntityFacadeLocal(Consumer<ExamEntityFacadeLocal> action) {
+            action.accept(examEntityFacade);
+        }
+
+        public <A> A withExamEntityFacadeLocal(Function<ExamEntityFacadeLocal, A> action) {
+            return action.apply(examEntityFacade);
+        }
+
+        public void getTeacherEntityFacadeLocal(Consumer<TeacherEntityFacadeLocal> action) {
+            action.accept(teacherEntityFacade);
+        }
+
+        public <A> A withTeacherEntityFacadeLocal(Function<TeacherEntityFacadeLocal, A> action) {
+            return action.apply(teacherEntityFacade);
+        }
+    }
 
     @EJB
     private ExamEntityFacadeLocal examEntityFacade;
