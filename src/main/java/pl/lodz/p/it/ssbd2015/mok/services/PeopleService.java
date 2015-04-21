@@ -28,8 +28,6 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
     @EJB
     private PersonEntityFacadeLocal personEntityFacade;
 
-    private PersonEntity personEntity;
-
     @Override
     public boolean checkUniqueness(String login) {
         return !personEntityFacade.findByLogin(login).isPresent();
@@ -72,6 +70,8 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
 
     @Override
     public void correctLogin(String login, String ipAddress, Calendar time) throws PersonEntityNotFoundException {
+
+        PersonEntity personEntity;
 
         personEntity = personEntityFacade.findByLogin(login).
                 orElseThrow(() -> new PersonEntityNotFoundException("exception.user_not_found"));
