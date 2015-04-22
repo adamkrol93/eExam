@@ -36,7 +36,9 @@
                         <div class="col-sm-6">
                             <h:inputText id="login" value="#{registerUserMOK.person.login}" required="true"
                                          requiredMessage="#{i18n['mok.register.login_required']}"
-                                         styleClass="form-control"/>
+                                         styleClass="form-control">
+                                <f:validateBean validationGroups="pl.lodz.p.it.ssbd2015.entities.validators.PersonCreation"/>
+                            </h:inputText>
                         </div>
                         <div class="col-sm-4">
                             <h:outputLabel for="login" styleClass="control-label">
