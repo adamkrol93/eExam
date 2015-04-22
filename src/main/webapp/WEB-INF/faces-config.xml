@@ -11,7 +11,7 @@
             <supported-locale>en</supported-locale>
         </locale-config>
         <resource-bundle>
-            <base-name>pl.lodz.p.it.ssbd2015.web.Text</base-name>
+            <base-name>pl.lodz.p.it.ssbd2015.web.localization.Text</base-name>
             <var>i18n</var>
         </resource-bundle>
     </application>

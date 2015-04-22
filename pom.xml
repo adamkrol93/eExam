@@ -84,6 +84,12 @@
             <version>2.1.29</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.forge.addon</groupId>
+            <artifactId>bean-validation-api</artifactId>
+            <version>2.12.2.Final</version>
+            <scope>provided</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>

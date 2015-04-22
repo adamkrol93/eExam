@@ -1,6 +1,7 @@
 package pl.lodz.p.it.ssbd2015.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,9 +26,11 @@ public class QuestionEntity {
     private long id;
 
     @Column(name = "question_content", nullable = false, length = 255)
+    @Size(max = 255, message = "{question.content.size}")
     private String content;
 
     @Column(name = "question_sample_answer", nullable = false, length = 255)
+    @Size(max = 255, message = "{question.sample.size}")
     private String sampleAnswer;
 
     @Temporal(TemporalType.TIMESTAMP)

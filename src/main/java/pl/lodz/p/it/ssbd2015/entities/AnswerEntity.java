@@ -1,6 +1,9 @@
 package pl.lodz.p.it.ssbd2015.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -21,9 +24,12 @@ public class AnswerEntity {
     @Column(name = "answer_id", nullable = false, updatable = false)
     private long id;
 
+    @Size(max = 255, message = "{answer.content.size}")
     @Column(name = "answer_content", nullable = false, length = 255)
     private String content;
 
+    @Min(value = 0, message = "{answer.grade.min}")
+    @Max(value = 2, message = "{answer.grade.max}")
     @Column(name = "answer_grade", nullable = false)
     private int grade;
 

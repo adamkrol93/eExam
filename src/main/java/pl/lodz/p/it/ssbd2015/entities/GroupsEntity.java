@@ -2,6 +2,7 @@ package pl.lodz.p.it.ssbd2015.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -44,22 +45,25 @@ public abstract class GroupsEntity {
     private long personPersonId;
 
     @Column(name = "person_login", table = "person", nullable = false, length = 30, unique = true)
-    @Pattern(regexp = "^[a-zA-Z0-9._-]{4,30}$")
+    @Pattern(regexp = "^[a-zA-Z0-9._-]+$", message = "{groups.login.pattern}")
+    @Size(min = 4, max = 30, message = "{groups.login.size}")
     private String login;
 
     @Column(name = "person_last_name", table = "person", nullable = false, length = 30)
-    @Pattern(regexp = "^[a-ząćęłńóśżźA-ZĄĆĘŁŃÓŚŻŹ]{1,30}$")
+    @Pattern(regexp = "^[a-ząćęłńóśżźA-ZĄĆĘŁŃÓŚŻŹ]+$", message = "{groups.lastname.pattern}")
+    @Size(min = 1, max = 30, message = "{groups.lastname.size}")
     private String lastName;
 
     @Column(name = "person_name", table = "person", nullable = false, length = 20)
-    @Pattern(regexp = "^[a-ząćęłńóśżźA-ZĄĆĘŁŃÓŚŻŹ]{1,20}$")
+    @Pattern(regexp = "^[a-ząćęłńóśżźA-ZĄĆĘŁŃÓŚŻŹ]+$", message = "{groups.name.pattern}")
+    @Size(min = 1, max = 20, message = "{groups.name.size}")
     private String personName;
 
     @Column(name = "person_password", table = "person", nullable = false, length = 32)
     private String password;
 
     @Column(name = "person_email", table = "person", nullable = false, length = 30)
-    @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")
+    @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$", message = "{groups.email.pattern}")
     private String email;
 
     @Temporal(TemporalType.TIMESTAMP)
