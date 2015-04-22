@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 public class EmailService implements EmailServiceRemote {
 
-	@Resource(lookup = "email")
+	@Resource(lookup = "java:app/email")
 	private Session smtpSession;
 
 	private final static Logger logger = Logger.getLogger(EmailService.class.getName());
