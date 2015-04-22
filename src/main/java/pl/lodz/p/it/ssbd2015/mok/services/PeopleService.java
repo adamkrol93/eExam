@@ -12,7 +12,6 @@ import javax.ejb.Stateful;
 import javax.interceptor.Interceptors;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -67,7 +66,6 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
         return newPerson;
     }
 
-
     @Override
     public void correctLogin(String login, String ipAddress, Calendar time) throws PersonEntityNotFoundException {
 
@@ -78,6 +76,11 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
 
         personEntity.setLastTimeLogin(time);
         personEntity.setLastIpLogin(ipAddress);
+    }
+
+    @Override
+    public List<PersonEntity> findPeopleByPhrase(String phrase){
+        return personEntityFacade.findByPhrase(phrase);
     }
 
 }

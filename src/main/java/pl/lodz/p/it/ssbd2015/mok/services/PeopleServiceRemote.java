@@ -32,7 +32,6 @@ public interface PeopleServiceRemote {
      */
     List<PersonEntity> findAllPeople();
 
-
     /**
      * Metoda zapisująca czas w momencie logowania oraz IP z jakiego nastąpiło logowanie w bazie.
      * @param login login użytkownika
@@ -41,4 +40,10 @@ public interface PeopleServiceRemote {
      * @throws PersonEntityNotFoundException Rzucany, gdy użytkownik o danym loginie nie zostanie odnaleziony.
      */
     void correctLogin(String login, String ipAddress, Calendar time) throws PersonEntityNotFoundException;
+
+    /**
+     * Metoda zwraca istę użytkowników w którzych imieniu, nazwisku, mailu lub loginie występuje podana fraza.
+     * @return Listę uzytkowników, tzn. listę z obiektami PersonEntity
+     */
+    List<PersonEntity> findPeopleByPhrase(String phrase);
 }
