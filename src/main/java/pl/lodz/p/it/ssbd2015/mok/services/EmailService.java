@@ -32,6 +32,7 @@ public class EmailService implements EmailServiceRemote {
 		message.setSubject(subject);
 		message.setSentDate(new Date());
 		message.setText(body, "utf-8", "html");
+		message.setSender(new InternetAddress(smtpSession.getProperty("mail.from")));
 
 		Transport.send(message);
 	}
