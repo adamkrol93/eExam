@@ -171,4 +171,26 @@
     </jdbc-connection-pool>
     <jdbc-resource enabled="true" jndi-name="jdbc/ssbd01mok" object-type="user" pool-name="ssbd01mok"/>
 
+    <mail-resource debug="true"
+                   enabled="true"
+                   from="ssbd01"
+                   host="smtp.mandrillapp.com"
+                   jndi-name="java:app/email"
+                   object-type="user"
+                   store-protocol="imap"
+                   store-protocol-class="com.sun.mail.imap.IMAPStore"
+                   transport-protocol="smtp"
+                   transport-protocol-class="com.sun.mail.smtp.SMTPTransport"
+                   user="ssbd01">
+        <description/>
+        <property name="mail.from" value="ssbd01"/>
+        <property name="mail.user" value="ssbd01"/>
+        <property name="mail.password" value="MHilMNCG1I0KNhW13eknRg"/>
+        <property name="mail.host" value="smtp.mandrillapp.com"/>
+        <property name="mail.port" value="587"/>
+        <property name="mail.smtp.socketFactory.port" value="587"/>
+        <property name="mail.smtp.socketFactory.fallback" value="false"/>
+        <property name="mail.smtp.auth" value="true"/>
+        <property name="mail.smtp.starttls.enable" value="true"/>
+    </mail-resource>
 </resources>
