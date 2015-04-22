@@ -9,7 +9,6 @@ import javax.faces.validator.ValidatorException;
 
 /**
  * Walidator wykorzystywany, kiedy istnieją dwa pola, które mają być identyczne.
- * Jest ciche wymaganie,
  * @author Andrzej Kurczewski
  */
 @FacesValidator("confirmationInputValidator")

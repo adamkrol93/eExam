@@ -1,48 +1,147 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
 
-<h:head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Rejestracja</title>
-</h:head>
-<h:body>
-    Rejestracja<br/>
-    <h:form>
-        <h:panelGrid columns="3">
-            <h:outputText value="Login:"/>
-            <h:inputText id="login" required="true" requiredMessage="Login jest wymagany"/>
-            <h:message for="login" style="color:red"/>
+    <ui:composition template="../template/commonLayout.xhtml">
+        <f:metadata>
+            <f:viewParam name="message" value="#{registerUserMOK.message}"/>
+        </f:metadata>
+        <ui:define name="head">
+            <title><h:outputText value="#{i18n['mok.register.title']}"/></title>
+        </ui:define>
 
-            <h:outputText value="Hasło:"/>
-            <h:inputSecret id="password" required="true" requiredMessage="Podaj hasło"/>
-            <h:message for="password" style="color:red"/>
-
-            <h:outputText value="Potwierdź hasło:"/>
-            <h:inputSecret id="confirm" required="true" requiredMessage="Potwierdź hasło"/>
-            <h:message for="confirm" style="color:red"/>
-
-            <h:outputText value="Imię:"/>
-            <h:inputText id="name" required="true" requiredMessage="Imię jest wymagane"/>
-            <h:message for="name" style="color:red"/>
-
-            <h:outputText value="Nazwisko:"/>
-            <h:inputText id="lastname" required="true" requiredMessage="Nazwisko jest wymagane"/>
-            <h:message for="lastname" style="color:red"/>
-
-            <h:outputText value="E-mail:"/>
-            <h:inputText id="email" required="true" requiredMessage="E-mail jest wymagany"/>
-            <h:message for="email" style="color:red"/>
-
-            <h:commandButton type="submit" value="Zarejestruj"/>
-            <h:commandButton type="reset" value="Resetuj"/><br/>
-        </h:panelGrid>
-    </h:form>
-
-
-    <h:link outcome="/index.xhtml" value="Powrót do strony głównej"/><br/>
-</h:body>
-
+        <ui:define name="content">
+            <div class="row">
+                <div class="page-header text-center">
+                    <h1><h:outputText value="#{i18n['mok.register.title']}"/></h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h3><h:outputText value="#{registerUserMOK.message}" styleClass="text-success"/></h3>
+                </div>
+            </div>
+            <div class="row">
+                <h:form styleClass="form-horizontal">
+                    <!--@elvariable id="passwordInput" type="javax.faces.component.html.HtmlInputSecret"-->
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <h:outputLabel for="login" styleClass="control-label"
+                                           value="#{i18n['mok.register.login']}"/>
+                        </div>
+                        <div class="col-sm-6">
+                            <h:inputText id="login" value="#{registerUserMOK.person.login}" required="true"
+                                         requiredMessage="#{i18n['mok.register.login_required']}"
+                                         styleClass="form-control"/>
+                        </div>
+                        <div class="col-sm-4">
+                            <h:outputLabel for="login" styleClass="control-label">
+                                <h:message for="login" styleClass="text-danger"/>
+                            </h:outputLabel>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <h:outputLabel for="password" styleClass="control-label"
+                                           value="#{i18n['mok.register.password']}"/>
+                        </div>
+                        <div class="col-sm-6">
+                            <h:inputSecret id="password" value="#{registerUserMOK.person.password}" required="true"
+                                           requiredMessage="#{i18n['mok.register.password_required']}"
+                                           styleClass="form-control" binding="${passwordInput}"/>
+                        </div>
+                        <div class="col-sm-4">
+                            <h:outputLabel for="password" styleClass="control-label">
+                                <h:message for="password" styleClass="text-danger"/>
+                            </h:outputLabel>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <h:outputLabel for="confirm" styleClass="control-label"
+                                           value="#{i18n['mok.register.confirm_password']}"/>
+                        </div>
+                        <div class="col-sm-6">
+                            <h:inputSecret id="confirm" required="true"
+                                           requiredMessage="#{i18n['mok.register.confirm_password_required']}"
+                                           styleClass="form-control">
+                                <f:validator validatorId="confirmationInputValidator"/>
+                                <f:attribute name="toConfirm" value="#{passwordInput.value}"/>
+                                <f:attribute name="confirmationErrorMessage" value="#{i18n['mok.register.passwords_are_different']}"/>
+                            </h:inputSecret>
+                        </div>
+                        <div class="col-sm-4">
+                            <h:outputLabel for="confirm" styleClass="control-label">
+                                <h:message for="confirm" styleClass="text-danger"/>
+                            </h:outputLabel>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <h:outputLabel for="name" styleClass="control-label" value="#{i18n['mok.register.name']}"/>
+                        </div>
+                        <div class="col-sm-6">
+                            <h:inputText id="name" value="#{registerUserMOK.person.name}" required="true"
+                                         requiredMessage="#{i18n['mok.register.name_required']}"
+                                         styleClass="form-control"/>
+                        </div>
+                        <div class="col-sm-4">
+                            <h:outputLabel for="name" styleClass="control-label">
+                                <h:message for="name" styleClass="text-danger"/>
+                            </h:outputLabel>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <h:outputLabel for="lastname" styleClass="control-label"
+                                           value="#{i18n['mok.register.lastname']}"/>
+                        </div>
+                        <div class="col-sm-6">
+                            <h:inputText id="lastname" value="#{registerUserMOK.person.lastName}" required="true"
+                                         requiredMessage="#{i18n['mok.register.lastname_required']}"
+                                         styleClass="form-control"/>
+                        </div>
+                        <div class="col-sm-4">
+                            <h:outputLabel for="lastname" styleClass="control-label">
+                                <h:message for="lastname" styleClass="text-danger"/>
+                            </h:outputLabel>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <h:outputLabel for="email" styleClass="control-label"
+                                           value="#{i18n['mok.register.email']}"/>
+                        </div>
+                        <div class="col-sm-6">
+                            <h:inputText id="email" value="#{registerUserMOK.person.email}" required="true"
+                                         requiredMessage="#{i18n['mok.register.email_required']}"
+                                         styleClass="form-control"/>
+                        </div>
+                        <div class="col-sm-4">
+                            <h:outputLabel for="email" styleClass="control-label">
+                                <h:message for="email" styleClass="text-danger"/>
+                            </h:outputLabel>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="btn-toolbar">
+                                <h:commandButton type="submit" value="#{i18n['mok.register.register']}"
+                                                 styleClass="btn btn-default" action="#{registerUserMOK.register()}"/>
+                                <h:commandButton type="reset" value="#{i18n['mok.register.reset']}"
+                                                 styleClass="btn btn-default"/>
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+            <div class="row">
+                <h:link outcome="/index.xhtml" value="Powrót do strony głównej"/>
+            </div>
+        </ui:define>
+    </ui:composition>
 </html>

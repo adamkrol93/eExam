@@ -1,52 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
-<body>
-<ui:composition>
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <h:link outcome="/index" value="eExam"/>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <ui:insert name="userNavbar" >
+    <body>
+        <ui:composition>
+            <h:form>
+                <!-- Navigation -->
+                <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                    data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <h:link outcome="/index" value="eExam"/>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <ui:insert name="userNavbar">
 
-                    </ui:insert>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><h:link outcome="/login/login" value="#{i18n['login.link']}"/></li>
-                    <li><h:link outcome="/login/registration" value="#{i18n['register.link']}"/></li>
-                    <li><h:form>
-                            <h:outputText value="#{i18n['choose.language']}:"/>
-                            <h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
-                                             valueChangeListener="#{language.countryLocaleCodeChanged}">
-                                <f:selectItems value="#{language.countriesInMap}"/>
-                            </h:selectOneMenu>
-                    </h:form>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-    <!-- Header Carousel -->
-    <header>
-        <h:graphicImage library="img" name="logo2.jpg" alt="logo" styleClass="img-responsive"/>
-    </header>
-</ui:composition>
-</body>
+                                </ui:insert>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <ui:fragment rendered="#{request.remoteUser == null}">
+                                    <li><h:link outcome="/login/login" value="#{i18n['login.link']}"/></li>
+                                </ui:fragment>
+                                <ui:fragment rendered="#{request.remoteUser == null}">
+                                    <li><h:link outcome="/login/registration" value="#{i18n['register.link']}"/></li>
+                                </ui:fragment>
+                                <ui:fragment rendered="#{request.remoteUser != null}">
+                                    <li>
+                                        <h:commandLink action="#{logoutBean.logout()}" value="#{i18n['logout.link']}"/>
+                                    </li>
+                                </ui:fragment>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" aria-expanded="false" role="button"
+                                       data-toggle="dropdown" href="#">
+                                        <h:outputText value="#{i18n['choose.language']}"/>
+                                        <span class="caret"/>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <ui:repeat value="#{language.countriesInMap}" var="country">
+                                            <li>
+                                                <h:commandLink action="#{language.changeLocale(country.value)}"
+                                                               value="#{country.key}"/>
+                                            </li>
+                                        </ui:repeat>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </div>
+                    <!-- /.container -->
+                </nav>
+                <!-- Header Carousel -->
+                <header>
+                    <h:graphicImage library="img" name="logo2.jpg" alt="logo" styleClass="img-responsive"/>
+                </header>
+            </h:form>
+        </ui:composition>
+    </body>
 </html>
