@@ -31,11 +31,13 @@
                         <p>Jeżeli masz jakieś obiekcje co do tego systemu zgłoś się do jednej z powyższych osób.</p>
                     </div>
                     <div class="col-md-6">
-                        <h:link outcome="/administrator/index.xhtml" value="Strona Admina"/><br/>
-                        <h:link outcome="/student/index.xhtml" value="Strona Ucznia"/><br/>
-                        <h:link outcome="/examiner/index.xhtml" value="Strona Egzaminatora"/><br/>
-                        <h:link outcome="/guardian/index.xhtml" value="Strona Opiekuna"/><br/>
-                        <h:link outcome="/teacher/index.xhtml" value="Strona Nauczyciela"/><br/><br/>
+                        <div class="list-group">
+                            <h:link outcome="/administrator/index.xhtml" value="#{i18n['administrator.page.simple_title']}" styleClass="list-group-item"/>
+                            <h:link outcome="/student/index.xhtml" value="#{i18n['student.page.simple_title']}" styleClass="list-group-item"/>
+                            <h:link outcome="/examiner/index.xhtml" value="#{i18n['examiner.page.simple_title']}" styleClass="list-group-item"/>
+                            <h:link outcome="/guardian/index.xhtml" value="#{i18n['guardian.page.simple_title']}" styleClass="list-group-item"/>
+                            <h:link outcome="/teacher/index.xhtml" value="#{i18n['teacher.page.simple_title']}" styleClass="list-group-item"/>
+                        </div>
                     </div>
                 </div>
             </ui:define>

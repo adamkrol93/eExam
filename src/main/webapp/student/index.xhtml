@@ -1,14 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:body>
-    <title>Strona domowa Studenta</title>
-</h:body>
-<f:view>
-    <h:outputLabel value="Strona domowa studenta!"/>
-</f:view>
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="../template/commonLayout.xhtml">
+        <ui:define name="head">
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <title><h:outputText value="#{i18n['student.page.title']}"/></title>
+        </ui:define>
+
+        <ui:define name="content">
+            <div class="row">
+                <div class="page-header text-center">
+                    <h1><h:outputText value="#{i18n['student.page.title']}"/></h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <h:outputText value="#{i18n['student.page.greeting']}"/>
+                </div>
+                <div class="col-md-4">
+                    <div class="list-group">
+                        <h:link outcome="/administrator/index.xhtml" value="#{i18n['administrator.page.simple_title']}" styleClass="list-group-item"/>
+                        <h:link outcome="/student/index.xhtml" value="#{i18n['student.page.simple_title']}" styleClass="list-group-item active"/>
+                        <h:link outcome="/examiner/index.xhtml" value="#{i18n['examiner.page.simple_title']}" styleClass="list-group-item"/>
+                        <h:link outcome="/guardian/index.xhtml" value="#{i18n['guardian.page.simple_title']}" styleClass="list-group-item"/>
+                        <h:link outcome="/teacher/index.xhtml" value="#{i18n['teacher.page.simple_title']}" styleClass="list-group-item"/>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
 </html>
