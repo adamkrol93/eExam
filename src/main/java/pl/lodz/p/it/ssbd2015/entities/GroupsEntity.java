@@ -44,26 +44,26 @@ public abstract class GroupsEntity {
     @Column(name = "person_id", table = "person", nullable = false, updatable = false)
     private long personPersonId;
 
-    @Column(name = "person_login", table = "person", nullable = false, length = 30, unique = true)
     @Pattern(regexp = "^[a-zA-Z0-9._-]+$", message = "{groups.login.pattern}")
     @Size(min = 4, max = 30, message = "{groups.login.size}")
+    @Column(name = "person_login", table = "person", nullable = false, length = 30, unique = true)
     private String login;
 
-    @Column(name = "person_last_name", table = "person", nullable = false, length = 30)
     @Pattern(regexp = "^[a-ząćęłńóśżźA-ZĄĆĘŁŃÓŚŻŹ]+$", message = "{groups.lastname.pattern}")
     @Size(min = 1, max = 30, message = "{groups.lastname.size}")
+    @Column(name = "person_last_name", table = "person", nullable = false, length = 30)
     private String lastName;
 
-    @Column(name = "person_name", table = "person", nullable = false, length = 20)
     @Pattern(regexp = "^[a-ząćęłńóśżźA-ZĄĆĘŁŃÓŚŻŹ]+$", message = "{groups.name.pattern}")
     @Size(min = 1, max = 20, message = "{groups.name.size}")
+    @Column(name = "person_name", table = "person", nullable = false, length = 20)
     private String personName;
 
     @Column(name = "person_password", table = "person", nullable = false, length = 32)
     private String password;
 
-    @Column(name = "person_email", table = "person", nullable = false, length = 30)
     @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$", message = "{groups.email.pattern}")
+    @Column(name = "person_email", table = "person", nullable = false, length = 30)
     private String email;
 
     @Temporal(TemporalType.TIMESTAMP)

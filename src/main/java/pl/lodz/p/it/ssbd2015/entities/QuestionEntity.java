@@ -25,12 +25,12 @@ public class QuestionEntity {
     @Column(name = "question_id", nullable = false, updatable = false)
     private long id;
 
-    @Column(name = "question_content", nullable = false, length = 255)
     @Size(max = 255, message = "{question.content.size}")
+    @Column(name = "question_content", nullable = false, length = 255)
     private String content;
 
-    @Column(name = "question_sample_answer", nullable = false, length = 255)
     @Size(max = 255, message = "{question.sample.size}")
+    @Column(name = "question_sample_answer", nullable = false, length = 255)
     private String sampleAnswer;
 
     @Temporal(TemporalType.TIMESTAMP)

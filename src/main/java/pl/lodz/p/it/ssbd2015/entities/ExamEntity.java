@@ -31,9 +31,9 @@ public class ExamEntity {
     @Column(name = "exam_id", nullable = false, updatable = false)
     private long id;
 
-    @Column(name = "exam_title", nullable = false, length = 100, unique = true)
     @Pattern(regexp = "^(\\p{L}|[0-9\\(\\)\\{\\}\\-_\\+=\\*\\^%$#/\\\\ ])+$", message = "{exam.title.pattern}")
     @Size(min = 1, max = 100, message = "{exam.title.size}")
+    @Column(name = "exam_title", nullable = false, length = 100, unique = true)
     private String title;
 
     @Column(name = "exam_count_take_exam", nullable = false)

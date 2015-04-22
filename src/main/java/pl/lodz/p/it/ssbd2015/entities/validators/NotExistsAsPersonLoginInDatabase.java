@@ -9,7 +9,7 @@ import java.lang.annotation.*;
  * Walidowana przez {@link PersonLoginExistenceInDatabaseValidator}
  * @author Andrzej Kurczewski
  */
-@Target( {ElementType.PARAMETER, ElementType.FIELD, ElementType.TYPE})
+@Target({ElementType.PARAMETER, ElementType.FIELD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = PersonLoginExistenceInDatabaseValidator.class)
 @Documented
