@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="../template/commonLayout.xhtml">
+    <ui:define name="head">
+        <title><h:outputText value="#{i18n['mok.person.detail']}"/></title>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4">
+                <h:outputText value="#{i18n['mok.person.login']} #{showLoggedUserDetailsMOK.person.login}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4">
+                <h:outputText value="#{i18n['mok.person.name']} #{showLoggedUserDetailsMOK.person.name}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4">
+                <h:outputText value="#{i18n['mok.person.last_name']} #{showLoggedUserDetailsMOK.person.lastName}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4">
+                <h:outputText value="#{i18n['mok.person.email']} #{showLoggedUserDetailsMOK.person.email}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4">
+                <h:form>
+                    <h:dataTable var="group" value="#{showLoggedUserDetailsMOK.person.groupStubs}">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{i18n['mok.person.group_name']}"/>
+                            </f:facet>
+                            <h:outputText value="#{i18n[group.name]}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{i18n['mok.person.group_state']}"/>
+                            </f:facet>
+                            <h:outputText
+                                    value="#{group.active ? i18n['mok.person.group_active'] : i18n['mok.person.group_inactive']}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

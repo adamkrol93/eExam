@@ -8,7 +8,9 @@ import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
 import pl.lodz.p.it.ssbd2015.mok.facades.GroupsStubEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
 
+import javax.annotation.Resource;
 import javax.ejb.EJB;
+import javax.ejb.SessionContext;
 import javax.ejb.Stateful;
 import javax.interceptor.Interceptors;
 
@@ -27,7 +29,12 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
     @EJB
     private GroupsStubEntityFacadeLocal groupsStubEntityFacade;
 
+    @Resource
+    private SessionContext sessionContext;
+
     private PersonEntity personEntity;
+
+
 
     @Override
     public PersonEntity getPerson(String login) throws PersonEntityNotFoundException {
@@ -36,6 +43,12 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
 
         personEntity.getGroupStubs().isEmpty();
         return personEntity;
+    }
+
+    @Override
+    public PersonEntity getLoggedPerson() throws PersonEntityNotFoundException {
+        String login =  sessionContext.getCallerPrincipal().getName();
+        return getPerson(login);
     }
 
     @Override

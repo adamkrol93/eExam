@@ -23,6 +23,14 @@ public interface PersonServiceRemote {
     PersonEntity getPerson(String login) throws PersonEntityNotFoundException;
 
     /**
+     * Funkcja zwracająca informacje o Użytkowniku aktualnie zalogowanym.
+     * Funkcja ustawia również stanową zmienną @personEntity
+     * @return Dane odnalezionego użytkownika
+     * @throws PersonEntityNotFoundException
+     */
+    PersonEntity getLoggedPerson() throws PersonEntityNotFoundException;
+
+    /**
      * Metoda potwierdzająca odnalezionego wcześniej użytkownika.
      */
     void confirmPerson();
@@ -37,4 +45,5 @@ public interface PersonServiceRemote {
      * Funkcja służy do  blokowania i odblokowywania użytkownika w zależności od bieżącego stanu
      */
     void togglePersonActivation();
+
 }
