@@ -29,6 +29,9 @@
                                 </ui:insert>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
+                                <ui:fragment rendered="#{loginBean.isPersonLogged()}">
+                                    <li><h:outputText value="#{i18n['login.message']}" style="color : slateblue"/></li>
+                                </ui:fragment>
                                 <ui:fragment rendered="#{request.remoteUser == null}">
                                     <li><h:link outcome="/login/login" value="#{i18n['login.link']}"/></li>
                                 </ui:fragment>
@@ -55,6 +58,9 @@
                                         </ui:repeat>
                                     </ul>
                                 </li>
+                            </ul>
+                            <ul class="navbar-inner">
+
                             </ul>
                         </div>
                         <!-- /.navbar-collapse -->
