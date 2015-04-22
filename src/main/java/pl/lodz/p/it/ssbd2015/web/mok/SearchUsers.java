@@ -21,17 +21,14 @@ public class SearchUsers {
     private List<PersonEntity> personEntities;
 
     private String phrase;
-    private String results;
+    private boolean results;
 
     public void search() {
         if(phrase != null)
         {
             this.personEntities = peopleService.findPeopleByPhrase(phrase);
         }
-        else
-        {
-            this.results = "#{i18n['mok.search.nothing']}";
-        }
+        this.results = this.personEntities.size() == 0;
     }
 
     public List<PersonEntity> getPersonEntities() {
@@ -49,11 +46,11 @@ public class SearchUsers {
     {
         return this.phrase;
     }
-    public String getResults()
+    public boolean getResults()
     {
         return this.results;
     }
-    public void setResults(String results)
+    public void setResults(boolean results)
     {
         this.results = results;
     }

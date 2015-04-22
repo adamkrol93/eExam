@@ -10,13 +10,16 @@
     <h:body>
         <ui:composition template="../template/commonLayout.xhtml">
             <ui:define name="content">
-                <form action="j_security_check" method="POST">
-                    Login: <input type="text" name="j_username"/><br/>
-                    Hasło: <input type="password" name="j_password"/><br/>
-                    <input type="submit" value="Zaloguj"/>
-                    <br/><h:link outcome="/index.xhtml" value="Powrót do strony głównej"/>
-
-                </form>
+                <div class="row">
+                    <div class="col-lg-4 center-block">
+                        <form class="form-signin" action="j_security_check" method="POST">
+                            Login: <input class="form-control"  type="text" name="j_username"/><br/>
+                            Hasło: <input class="form-control" type="password" name="j_password"/><br/>
+                            <input class="btn btn-lg btn-primary btn-block" type="submit" value="Zaloguj"/>
+                            <br/><h:link outcome="/index.xhtml" value="Powrót do strony głównej"/>
+                        </form>
+                    </div>
+                </div>
             </ui:define>
         </ui:composition>
     </h:body>
