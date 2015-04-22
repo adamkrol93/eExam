@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="../template/commonLayout.xhtml">
+    <ui:define name="head">
+        <title><h:outputText value="#{i18n['mok.search.results']}"/></title>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="row">
+            <div class="page-header text-center">
+                <h1><h:outputText value="#{i18n['mok.search']}"/></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <h:form>
+                        <h:outputText value="#{i18n['mok.search.description']}"/>
+                        <h:inputText id="search" required="true" value="#{searchUsersMOK.phrase}" requiredMessage="#{i18n['mok.search.phrase_required_message']}"/>
+                        <h:message for="search" style="color:red"/>
+                        <h:commandButton type="submit" value="#{i18n['mok.search']}" action="#{searchUsersMOK.search}"/>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="page-header text-center">
+                <h1><h:outputText value="#{i18n['mok.search.results']}"/></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <h:form>
+                        <h:dataTable var="user" value="#{searchUsersMOK.personEntities}" styleClass="table table-striped">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{i18n['mok.list.login']}"/>
+                                </f:facet>
+                                <h:outputText value="#{user.login}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{i18n['mok.list.name']}"/>
+                                </f:facet>
+                                <h:outputText value="#{user.name}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{i18n['mok.list.surname']}"/>
+                                </f:facet>
+                                <h:outputText value="#{user.lastName}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{i18n['mok.list.confirmed']}"/>
+                                </f:facet>
+                                <h:outputText
+                                        value="#{user.confirm ? i18n['mok.list.state.confirmed'] : i18n['mok.list.state.unconfirmed']}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{i18n['mok.list.actions']}"/>
+                                </f:facet>
+                                <h:link value="#{i18n['mok.list.actions.edit']} " outcome="editUser">
+                                    <f:param name="login" value="#{user.login}"/>
+                                </h:link>
+                                <h:link value="#{i18n['mok.list.actions.show']}" outcome="showUser">
+                                    <f:param name="login" value="#{user.login}"/>
+                                </h:link>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>
