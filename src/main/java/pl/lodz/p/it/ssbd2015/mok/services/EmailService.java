@@ -12,7 +12,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Date;
-import java.util.logging.Logger;
 
 /**
  * @author Bartosz Ignaczewski
@@ -25,22 +24,15 @@ public class EmailService implements EmailServiceRemote {
 	@Resource(lookup = "java:app/email")
 	private Session smtpSession;
 
-	private final static Logger logger = Logger.getLogger(EmailService.class.getName());
-
-	public void sendEmail(String to, String subject, String body) {
+	public void sendEmail(String to, String subject, String body) throws MessagingException {
 		MimeMessage message = new MimeMessage(smtpSession);
-		try {
+		message.setFrom(new InternetAddress(smtpSession.getProperty("mail.from")));
+		InternetAddress[] address = {new InternetAddress(to)};
+		message.setRecipients(Message.RecipientType.TO, address);
+		message.setSubject(subject);
+		message.setSentDate(new Date());
+		message.setText(body, "utf-8", "html");
 
-			message.setFrom(new InternetAddress(smtpSession.getProperty("mail.from")));
-			InternetAddress[] address = {new InternetAddress(to)};
-			message.setRecipients(Message.RecipientType.TO, address);
-			message.setSubject(subject);
-			message.setSentDate(new Date());
-			message.setText(body, "utf-8", "html");
-
-			Transport.send(message);
-		} catch (MessagingException e) {
-			logger.severe(() -> "Failed to send email due to MessagingException: " + e.getMessage());
-		}
+		Transport.send(message);
 	}
 }
