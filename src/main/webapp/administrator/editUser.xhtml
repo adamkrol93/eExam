@@ -2,13 +2,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="../template/commonLayout.xhtml">
     <f:metadata>
         <f:viewParam name="login" value="#{editUserDetailsMOK.login}"/>
-        <f:viewParam name="message" value="#{editUserDetailsMOK.message}"/>
+        <f:viewParam name="uuid" value="#{editUserDetailsMOK.uuid}" converter="uuidConverter"/>
+        <f:viewAction action="#{editUserDetailsMOK.checkContext}"/>
     </f:metadata>
     <ui:define name="head">
         <title><h:outputText value="#{i18n['mok.edit.page']}"/></title>
@@ -19,7 +21,7 @@
         <h:form id="editForm">
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-4">
-                    <h:outputText value="#{editUserDetailsMOK.message}" style="color: green"/>
+                    <h:outputText value="#{i18n[editUserDetailsMOK.message]}" styleClass="text-success"/>
                 </div>
             </div>
             <div class="row">

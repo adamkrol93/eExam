@@ -2,14 +2,12 @@ package pl.lodz.p.it.ssbd2015.web.mok;
 
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.mok.services.PeopleServiceRemote;
+import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-import java.io.Serializable;
-import java.text.MessageFormat;
 
 /**
  * Backing bean dla formularza rejestracji nowego użytkownika.
@@ -18,15 +16,16 @@ import java.text.MessageFormat;
  */
 @ManagedBean(name = "registerUserMOK")
 @ViewScoped
-public class Register implements Serializable {
+public class Register extends BaseContextBean {
 
     private static final long serialVersionUID = 1L;
-    private PersonEntity person;
 
     @EJB
     private PeopleServiceRemote peopleService;
 
     private String message;
+
+    private PersonEntity person;
 
     @PostConstruct
     private void initialize() {
@@ -48,12 +47,7 @@ public class Register implements Serializable {
     public String register() {
         peopleService.register(person);
 
-        FacesContext context = FacesContext.getCurrentInstance();
-        message = context.getApplication()
-                         .evaluateExpressionGet(context, "#{i18n['mok.register.registered_message']}", String.class);
-        message = MessageFormat.format(message, person.getLogin());
-        initialize();
-
+        setContext(Register.class, bean -> bean.message = "mok.register.registered_message");
         return "register?faces-redirect=true&includeViewParams=true";
     }
 }

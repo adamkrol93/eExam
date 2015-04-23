@@ -24,8 +24,7 @@ public class SearchUsers {
     private boolean results;
 
     public void search() {
-        if(phrase != null)
-        {
+        if (phrase != null) {
             this.personEntities = peopleService.findPeopleByPhrase(phrase);
         }
         this.results = this.personEntities.size() == 0;
@@ -34,24 +33,24 @@ public class SearchUsers {
     public List<PersonEntity> getPersonEntities() {
         return personEntities;
     }
-    public void setPersonEntities(List<PersonEntity> personEntities)
-    {
+
+    public void setPersonEntities(List<PersonEntity> personEntities) {
         this.personEntities = personEntities;
     }
-    public void setPhrase(String phrase)
-    {
+
+    public void setPhrase(String phrase) {
         this.phrase = phrase;
     }
-    public String getPhrase()
-    {
+
+    public String getPhrase() {
         return this.phrase;
     }
-    public boolean getResults()
-    {
+
+    public boolean getResults() {
         return this.results;
     }
-    public void setResults(boolean results)
-    {
+
+    public void setResults(boolean results) {
         this.results = results;
     }
 }

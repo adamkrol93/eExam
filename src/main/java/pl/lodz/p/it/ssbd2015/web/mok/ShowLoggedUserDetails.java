@@ -16,14 +16,13 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class ShowLoggedUserDetails {
 
-    private PersonEntity person;
-
     @EJB
     private PersonServiceRemote personService;
 
+    private PersonEntity person;
+
     public PersonEntity getPerson() throws PersonEntityNotFoundException {
-        if(person == null)
-        {
+        if (person == null) {
             this.person = personService.getLoggedPerson();
         }
         return person;

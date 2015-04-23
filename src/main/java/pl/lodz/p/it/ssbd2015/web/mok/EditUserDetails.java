@@ -3,12 +3,11 @@ package pl.lodz.p.it.ssbd2015.web.mok;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
 import pl.lodz.p.it.ssbd2015.mok.services.EditPersonServiceRemote;
+import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-import java.io.Serializable;
 
 /**
  * Backing bean dla strony dostępnej dla wszystkich do edycji własnego profilu.
@@ -16,7 +15,7 @@ import java.io.Serializable;
  */
 @ManagedBean(name = "editUserDetailsMOK")
 @ViewScoped
-public class EditUserDetails implements Serializable {
+public class EditUserDetails extends BaseContextBean {
 
     private static final long serialVersionUID = 1L;
 
@@ -28,6 +27,11 @@ public class EditUserDetails implements Serializable {
     private String message;
 
     private PersonEntity person;
+
+    @Override
+    protected void doInContext() {
+        resetContext();
+    }
 
     public String getLogin() {
         return login;
@@ -42,10 +46,6 @@ public class EditUserDetails implements Serializable {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public PersonEntity getPerson() {
         return person;
     }
@@ -53,10 +53,7 @@ public class EditUserDetails implements Serializable {
     public String editPerson() {
         editPersonServiceRemote.editPerson(person);
 
-        FacesContext context = FacesContext.getCurrentInstance();
-        message = context.getApplication()
-                .evaluateExpressionGet(context, "#{i18n['mok.edit.person_changed_message']}", String.class);
-
+        setContext(EditUserDetails.class, bean -> bean.message = "mok.edit.person_changed_message");
         return "editUser?faces-redirect=true&includeViewParams=true";
     }
 

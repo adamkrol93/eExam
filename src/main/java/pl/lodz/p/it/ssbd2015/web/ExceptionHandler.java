@@ -1,9 +1,9 @@
 package pl.lodz.p.it.ssbd2015.web;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  * Bean udostępnia informację o zaistniałej sytuacji wyjątkowej.
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  */
-@Named("exceptionHandler")
+@ManagedBean(name = "exceptionHandler")
 @RequestScoped
 public class ExceptionHandler {
 
