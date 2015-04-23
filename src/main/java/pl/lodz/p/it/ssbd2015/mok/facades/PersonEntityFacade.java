@@ -1,10 +1,12 @@
 package pl.lodz.p.it.ssbd2015.mok.facades;
 
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
+import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -17,6 +19,7 @@ import java.util.Optional;
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacade")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
+@Interceptors(LoggingInterceptor.class)
 public class PersonEntityFacade implements PersonEntityFacadeLocal {
 
     @PersistenceContext(unitName = "pl.lodz.p.it.ssbd2015.mok_PU")
@@ -50,5 +53,25 @@ public class PersonEntityFacade implements PersonEntityFacadeLocal {
         TypedQuery<PersonEntity> personQuery = entityManager.createNamedQuery("findPersonByPhrase", PersonEntity.class);
         personQuery.setParameter("phrase", "%" + phrase + "%" );
         return personQuery.getResultList();
+    }
+
+    @Override
+    public void create(PersonEntity entity) {
+        PersonEntityFacadeLocal.super.create(entity);
+    }
+
+    @Override
+    public PersonEntity edit(PersonEntity entity) {
+        return PersonEntityFacadeLocal.super.edit(entity);
+    }
+
+    @Override
+    public Optional<PersonEntity> findById(Long id) {
+        return PersonEntityFacadeLocal.super.findById(id);
+    }
+
+    @Override
+    public List<PersonEntity> findAll() {
+        return PersonEntityFacadeLocal.super.findAll();
     }
 }

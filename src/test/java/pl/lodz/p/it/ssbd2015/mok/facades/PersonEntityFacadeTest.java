@@ -7,11 +7,9 @@ import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.TestUtils;
-import pl.lodz.p.it.ssbd2015.entities.AnswerEntity;
 import pl.lodz.p.it.ssbd2015.entities.GroupsStubEntity;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.entities.PreviousPasswordEntity;
-import pl.lodz.p.it.ssbd2015.moe.facades.AnswerEntityFacadeLocal;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -147,21 +145,5 @@ public class PersonEntityFacadeTest extends BaseArquillianTest {
         foundPerson.setActive(false);
         //foundPerson.setConfirm(true);
         mandatoryWrapper.getPersonEntityFacade(p -> p.edit(foundPerson));
-    }
-
-    @EJB
-    private AnswerEntityFacadeLocal answerEntityFacade;
-
-    @Test
-    @Transactional(TransactionMode.DISABLED)
-    @ShouldMatchDataSet(value = "moe/expected-AnswerEntityFacadeTest#testMergeAnswer.yml")
-    @UsingDataSet({"ValidUser.yml", "moe/AnswerEntityFacadeTest.yml"})
-    public void testChangeGrade() {
-        Optional<AnswerEntity> foundAnswer = answerEntityFacade.findById(1l);
-        AnswerEntity answerEntity = foundAnswer.get();
-
-        answerEntity.setGrade(2);
-
-        answerEntityFacade.edit(answerEntity);
     }
 }

@@ -1,14 +1,17 @@
 package pl.lodz.p.it.ssbd2015.moe.facades;
 
 import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
+import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -16,6 +19,7 @@ import java.util.Optional;
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.moe.facades.TeacherEntityFacade")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
+@Interceptors(LoggingInterceptor.class)
 public class TeacherEntityFacade implements TeacherEntityFacadeLocal {
 
     @PersistenceContext(unitName = "pl.lodz.p.it.ssbd2015.moe_PU")
@@ -40,5 +44,15 @@ public class TeacherEntityFacade implements TeacherEntityFacadeLocal {
     @Override
     public EntityManager getEntityManager() {
         return this.entityManager;
+    }
+
+    @Override
+    public Optional<TeacherEntity> findById(Long id) {
+        return TeacherEntityFacadeLocal.super.findById(id);
+    }
+
+    @Override
+    public List<TeacherEntity> findAll() {
+        return TeacherEntityFacadeLocal.super.findAll();
     }
 }
