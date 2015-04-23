@@ -1,7 +1,6 @@
 package pl.lodz.p.it.ssbd2015.mok.services;
 
 import javax.annotation.Resource;
-import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -16,8 +15,7 @@ import java.util.Date;
 /**
  * @author Bartosz Ignaczewski
  */
-@Stateless
-@LocalBean
+@Stateless(name = "pl.lodz.p.it.ssbd2015.mok.services.EmailService")
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 public class EmailService implements EmailServiceRemote {
 

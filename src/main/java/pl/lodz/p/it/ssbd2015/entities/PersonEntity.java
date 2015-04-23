@@ -31,7 +31,7 @@ import java.util.List;
         ),
         @NamedQuery(
                 name = "findPersonByPhrase",
-                query = "SELECT p FROM PersonEntity  p WHERE p.login like :phrase or p.lastName like :phrase or p.name like :phrase or p.email like :phrase"
+                query = "SELECT p FROM PersonEntity p WHERE lower(p.name) like lower(:phrase) or lower(p.lastName) like lower(:phrase)"
         )
 })
 @EntityListeners(PersonEntityListener.class)

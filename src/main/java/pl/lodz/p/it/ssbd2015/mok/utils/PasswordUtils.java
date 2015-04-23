@@ -24,7 +24,7 @@ public class PasswordUtils {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             byte[] bytes = messageDigest.digest(password.getBytes(StandardCharsets.UTF_8));
-            return new BigInteger(1, bytes).toString(16);
+            return String.format("%032x", new BigInteger(1, bytes));
         } catch (NoSuchAlgorithmException ex) {
             logger.error("Cannot hash password, returning null. Reason: {}", ex);
             return null;

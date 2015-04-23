@@ -21,13 +21,11 @@ public class SearchUsers {
     private List<PersonEntity> personEntities;
 
     private String phrase;
-    private boolean results;
 
     public void search() {
         if (phrase != null) {
             this.personEntities = peopleService.findPeopleByPhrase(phrase);
         }
-        this.results = this.personEntities.size() == 0;
     }
 
     public List<PersonEntity> getPersonEntities() {
@@ -44,13 +42,5 @@ public class SearchUsers {
 
     public String getPhrase() {
         return this.phrase;
-    }
-
-    public boolean getResults() {
-        return this.results;
-    }
-
-    public void setResults(boolean results) {
-        this.results = results;
     }
 }

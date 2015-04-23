@@ -82,7 +82,7 @@
                 </div>
             </div>
         </c:if>
-        <c:if test="#{empty searchUsersMOK.personEntities and searchUsersMOK.results}">
+        <c:if test="#{empty searchUsersMOK.personEntities}">
             <div class="row">
                 <div class="page-header text-center">
                     <h5><h:outputLabel value="#{i18n['mok.search.nothing']}"/></h5>

@@ -27,21 +27,22 @@ public class Register extends BaseContextBean {
 
     private PersonEntity person;
 
+    @Override
+    protected void doInContext() {
+        resetContext();
+    }
+
     @PostConstruct
     private void initialize() {
         person = new PersonEntity();
-    }
-
-    public PersonEntity getPerson() {
-        return person;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public PersonEntity getPerson() {
+        return person;
     }
 
     public String register() {

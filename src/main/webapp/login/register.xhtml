@@ -3,12 +3,11 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="../template/commonLayout.xhtml">
         <f:metadata>
-            <f:viewParam name="message" value="#{registerUserMOK.message}"/>
             <f:viewParam name="uuid" value="#{registerUserMOK.uuid}" converter="uuidConverter"/>
             <f:viewAction action="#{registerUserMOK.checkContext}"/>
         </f:metadata>
@@ -135,7 +134,7 @@
                         <div class="col-sm-offset-2 col-sm-10">
                             <div class="btn-toolbar">
                                 <h:commandButton type="submit" value="#{i18n['mok.register.register']}"
-                                                 styleClass="btn btn-default" action="#{registerUserMOK.register()}"/>
+                                                 styleClass="btn btn-default" action="#{registerUserMOK.register}"/>
                                 <h:commandButton type="reset" value="#{i18n['mok.register.reset']}"
                                                  styleClass="btn btn-default"/>
                             </div>

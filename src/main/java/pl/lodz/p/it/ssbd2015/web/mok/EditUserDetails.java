@@ -30,6 +30,12 @@ public class EditUserDetails extends BaseContextBean {
 
     @Override
     protected void doInContext() {
+        try {
+            person = editPersonServiceRemote.findPersonForEdit(login);
+        } catch (PersonEntityNotFoundException ex) {
+            logger.error("Encountered exception while initializing the bean.", ex);
+        }
+
         resetContext();
     }
 
@@ -39,7 +45,6 @@ public class EditUserDetails extends BaseContextBean {
 
     public void setLogin(String login) throws PersonEntityNotFoundException {
         this.login = login;
-        person = editPersonServiceRemote.findPersonForEdit(login);
     }
 
     public String getMessage() {

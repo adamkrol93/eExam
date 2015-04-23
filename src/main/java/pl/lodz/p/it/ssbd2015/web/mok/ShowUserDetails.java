@@ -37,6 +37,12 @@ public class ShowUserDetails extends BaseContextBean {
 
     @Override
     protected void doInContext() {
+        try {
+            person = personService.getPerson(login);
+        } catch (PersonEntityNotFoundException ex) {
+            logger.error("Encountered exception while initializing the bean.", ex);
+        }
+
         resetContext();
     }
 
@@ -44,9 +50,8 @@ public class ShowUserDetails extends BaseContextBean {
         return login;
     }
 
-    public void setLogin(String login) throws PersonEntityNotFoundException {
+    public void setLogin(String login) {
         this.login = login;
-        person = personService.getPerson(login);
     }
 
     public String getMessage() {
