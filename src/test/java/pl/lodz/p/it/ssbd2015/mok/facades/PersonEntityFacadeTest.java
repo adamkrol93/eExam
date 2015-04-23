@@ -69,14 +69,14 @@ public class PersonEntityFacadeTest extends BaseArquillianTest {
     public void testReadLoginPresent() {
         Optional<PersonEntity> foundPerson = personEntityFacade.findByLogin("osoba");
 
-        assertThat("Peron with login = osoba", foundPerson, is(present()));
+        assertThat("Person with login = osoba", foundPerson, is(present()));
     }
 
     @Test
     public void testReadPhrasePresent() {
-        List<PersonEntity> foundPerson = personEntityFacade.findByPhrase("oso");
+        List<PersonEntity> foundPerson = personEntityFacade.findByPhrase("mich");
 
-        assertThat("Peron with login like % oso %", foundPerson, hasSize(1));
+        assertThat("There is a person with login like % oso %", foundPerson, hasSize(1));
     }
 
     //MOK.1 Zarejestruj się
