@@ -36,6 +36,7 @@ public class EditPersonService extends BaseStatefulService implements EditPerson
     }
 
     @Override
+    @RolesAllowed("ALL_LOGGED")
     public void editPerson(PersonEntity person) {
        personManager.editPerson(this.personEntity,person);
     }

@@ -19,6 +19,14 @@ DTD GlassFish Application Server 3.1 EJB 3.1//EN"
         <group-name>administrator</group-name>
     </security-role-mapping>
     <security-role-mapping>
+        <role-name>ALL_LOGGED</role-name>
+        <group-name>administrator</group-name>
+        <group-name>examiner</group-name>
+        <group-name>teacher</group-name>
+        <group-name>student</group-name>
+        <group-name>guardian</group-name>
+    </security-role-mapping>
+    <security-role-mapping>
         <role-name>LIST_ACCOUNTS_MOK</role-name>
         <group-name>administrator</group-name>
     </security-role-mapping>
