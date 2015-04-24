@@ -2,7 +2,6 @@ package pl.lodz.p.it.ssbd2015.web;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.lodz.p.it.ssbd2015.entities.Groups;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
 import pl.lodz.p.it.ssbd2015.mok.services.PeopleServiceRemote;
@@ -13,6 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.HEAD;
 import java.io.Serializable;
 import java.util.Calendar;
 
@@ -51,9 +51,9 @@ public class LoginBean implements Serializable {
         Calendar time = Calendar.getInstance();
 
         logger.info("Uruchomienie funkcji logowania");
-        if (FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal() != null && loggedUser == null) {
+        if(FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal() != null && loggedUser == null){
 
-            loggedUser = personService.getPerson(FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName());
+            loggedUser = personService.getLoggedPerson();
             logger.info("Ktoś się właśnie zalogował");
             peopleService.correctLogin(loggedUser.getLogin(), request.getRemoteAddr(), time);
             return true;

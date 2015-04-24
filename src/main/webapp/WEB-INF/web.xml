@@ -206,5 +206,4 @@
         <error-code>404</error-code>
         <location>/error/error.xhtml</location>
     </error-page>
-
 </web-app>

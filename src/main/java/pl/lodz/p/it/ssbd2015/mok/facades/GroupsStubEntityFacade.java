@@ -33,7 +33,8 @@ public class GroupsStubEntityFacade implements GroupsStubEntityFacadeLocal {
     }
 
     @Override
-    @RolesAllowed("CHANGE_GROUP_MOK")
+    //@RolesAllowed("CHANGE_GROUP_MOK")
+    @RolesAllowed("ALL_LOGGED")
     public GroupsStubEntity edit(GroupsStubEntity entity) {
         return GroupsStubEntityFacadeLocal.super.edit(entity);
     }

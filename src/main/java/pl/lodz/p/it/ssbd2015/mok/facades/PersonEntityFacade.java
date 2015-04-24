@@ -3,6 +3,7 @@ package pl.lodz.p.it.ssbd2015.mok.facades;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -37,7 +38,7 @@ public class PersonEntityFacade implements PersonEntityFacadeLocal {
     }
 
     @Override
-    @RolesAllowed({"SHOW_SOMEBODY_ACCOUNT_MOK"/*, "SHOW_RAPORT_MOK", "EDIT_SOMEBODY_ACCOUNT_MOK"*/})
+    @RolesAllowed({"ALL_LOGGED"})
     public Optional<PersonEntity> findByLogin(String login) {
         TypedQuery<PersonEntity> personQuery = entityManager.createNamedQuery("findPersonByLogin", PersonEntity.class);
         personQuery.setParameter("login", login);
