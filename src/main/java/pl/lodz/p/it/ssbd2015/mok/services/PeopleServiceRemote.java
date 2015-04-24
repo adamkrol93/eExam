@@ -4,6 +4,7 @@ import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
 
 import javax.ejb.Remote;
+import javax.mail.MessagingException;
 import java.util.Calendar;
 import java.util.List;
 
@@ -23,8 +24,9 @@ public interface PeopleServiceRemote {
     /**
      * Metoda rejestrująca użytkownika
      * @param person encja reprezentująca dane użytkownika
+     * @throws MessagingException jeżeli nie powiedzie się wysłanie maila
      */
-    void register(PersonEntity person);
+    void register(PersonEntity person) throws MessagingException;
 
     /**
      * Metoda zwraca listę wszystkich uzytkowników w systemie

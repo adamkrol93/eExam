@@ -12,6 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.mail.MessagingException;
 
 /**
  * Backing bean dla strony administratora do edycji użytkowników.
@@ -76,7 +77,7 @@ public class ShowUserDetails extends BaseContextBean {
         return "showUser?faces-redirect=true&includeViewParams=true";
     }
 
-    public String toggleGroupActive() {
+    public String toggleGroupActive() throws MessagingException {
         personService.toggleGroupActivation(groupStubs.getRowData().getId());
 
         setContext(ShowUserDetails.class, bean -> bean.message = "mok.person.toggle_group_active_message");

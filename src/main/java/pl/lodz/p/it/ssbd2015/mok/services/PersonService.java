@@ -7,17 +7,19 @@ import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
 import pl.lodz.p.it.ssbd2015.mok.facades.GroupsStubEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
+import pl.lodz.p.it.ssbd2015.mok.managers.PersonManagerLocal;
 
 import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateful;
 import javax.interceptor.Interceptors;
+import javax.mail.MessagingException;
 
 /**
  * Stanowy EJB realizujący interfejs PersonServiceRemote.
  * Utrzymuje w sobie pole z użytkownikiem, którego dane są wyświetlane i na którym przeprowadzane są operacje.
- * @author Created by adam on 15.04.15
+ * @author Adam Król
  * @author Michał Sośnicki
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mok.services.PersonService")
@@ -25,9 +27,7 @@ import javax.interceptor.Interceptors;
 public class PersonService extends BaseStatefulService implements PersonServiceRemote {
 
     @EJB
-    private PersonEntityFacadeLocal personEntityFacade;
-    @EJB
-    private GroupsStubEntityFacadeLocal groupsStubEntityFacade;
+    private PersonManagerLocal personManager;
 
     @Resource
     private SessionContext sessionContext;
@@ -38,48 +38,28 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
 
     @Override
     public PersonEntity getPerson(String login) throws PersonEntityNotFoundException {
-        personEntity = personEntityFacade.findByLogin(login)
-                .orElseThrow(() -> new PersonEntityNotFoundException("exception.user_not_found"));
-
-        personEntity.getGroupStubs().isEmpty();
+        personEntity = personManager.getPerson(login);
         return personEntity;
     }
 
     @Override
     public PersonEntity getLoggedPerson() throws PersonEntityNotFoundException {
         String login =  sessionContext.getCallerPrincipal().getName();
-        return getPerson(login);
+        return personManager.getPerson(login);
     }
 
     @Override
     public void confirmPerson() {
-        personEntity = personEntityFacade.edit(personEntity);
-        personEntity.setConfirm(true);
+        personManager.confirmPerson(this.personEntity);
     }
 
     @Override
-    public void toggleGroupActivation(long id) {
-        boolean found = false;
-
-        for (GroupsStubEntity groupsStub : personEntity.getGroupStubs()) {
-            if (groupsStub.getId() == id) {
-                groupsStub = groupsStubEntityFacade.edit(groupsStub);
-                groupsStub.setActive(!groupsStub.isActive());
-                found = true;
-                break;
-            }
-        }
-
-        if (!found) {
-            throw new IllegalArgumentException("The Person has no Group with id = " + id);
-        }
-
-        // TODO: Tutaj użytkownik ma otrzymać maila z powiadomieniem.
+    public void toggleGroupActivation(long id) throws MessagingException {
+        personManager.toogleGroupActivation(this.personEntity, id);
     }
 
     @Override
     public void togglePersonActivation() {
-        personEntity = personEntityFacade.edit(personEntity);
-        personEntity.setActive(!personEntity.isActive());
+        personManager.tooglePersonActivation(this.personEntity);
     }
 }

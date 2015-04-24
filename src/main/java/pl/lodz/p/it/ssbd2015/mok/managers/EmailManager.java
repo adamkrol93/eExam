@@ -1,4 +1,4 @@
-package pl.lodz.p.it.ssbd2015.mok.services;
+package pl.lodz.p.it.ssbd2015.mok.managers;
 
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
@@ -16,8 +16,8 @@ import java.util.Date;
  * @author Bartosz Ignaczewski
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mok.services.EmailService")
-@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-public class EmailService implements EmailServiceRemote {
+@TransactionAttribute(TransactionAttributeType.MANDATORY)
+public class EmailManager implements EmailManagerLocal {
 
 	@Resource(lookup = "java:app/email")
 	private Session smtpSession;

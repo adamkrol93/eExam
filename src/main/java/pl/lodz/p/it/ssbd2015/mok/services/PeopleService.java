@@ -5,11 +5,13 @@ import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
 import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
+import pl.lodz.p.it.ssbd2015.mok.managers.PersonManagerLocal;
 import pl.lodz.p.it.ssbd2015.mok.utils.PasswordUtils;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.interceptor.Interceptors;
+import javax.mail.MessagingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -21,6 +23,7 @@ import java.util.List;
  * @see pl.lodz.p.it.ssbd2015.mok.services.PeopleServiceRemote
  * @author Andrzej Kurczewski
  * @author Tobiasz Kowalski
+ * @author Adam Król
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mok.services.PeopleService")
 @Interceptors(LoggingInterceptor.class)
@@ -29,32 +32,22 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
     @EJB
     private PersonEntityFacadeLocal personEntityFacade;
 
+    @EJB
+    private PersonManagerLocal personManager;
+
     @Override
     public boolean checkUniqueness(String login) {
-        return !personEntityFacade.findByLogin(login).isPresent();
+        return personManager.checkUniqueness(login);
     }
 
     @Override
-    public void register(PersonEntity person) {
-        PersonEntity newPerson = preparePersonForRegistration(person);
-        assignAllGroups(newPerson);
-        personEntityFacade.create(newPerson);
+    public void register(PersonEntity person) throws MessagingException {
+        personManager.register(preparePersonForRegistration(person));
     }
 
     @Override
     public List<PersonEntity> findAllPeople() {
         return personEntityFacade.findAll();
-    }
-
-    private void assignAllGroups(PersonEntity person) {
-        Arrays.asList(new AdministratorStubEntity(), new ExaminerStubEntity(), new GuardianStubEntity(),
-                      new StudentStubEntity(), new TeacherStubEntity())
-              .forEach(group -> assignGroup(person, group));
-    }
-
-    private void assignGroup(PersonEntity person, GroupsStubEntity group) {
-        person.getGroupStubs().add(group);
-        group.setPerson(person);
     }
 
     private PersonEntity preparePersonForRegistration(PersonEntity person) {
@@ -63,8 +56,7 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
         newPerson.setEmail(person.getEmail());
         newPerson.setName(person.getName());
         newPerson.setLastName(person.getLastName());
-        newPerson.setPassword(PasswordUtils.hashPassword(person.getPassword()));
-        newPerson.setActive(true);
+        newPerson.setPassword(person.getPassword());
         return newPerson;
     }
 
@@ -73,8 +65,7 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
 
         PersonEntity personEntity;
 
-        personEntity = personEntityFacade.findByLogin(login).
-                orElseThrow(() -> new PersonEntityNotFoundException("exception.user_not_found"));
+        personEntity = personManager.getPerson(login);
 
         personEntity.setLastTimeLogin(time);
         personEntity.setLastIpLogin(ipAddress);

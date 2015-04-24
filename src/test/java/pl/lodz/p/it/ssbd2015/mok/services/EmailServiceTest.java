@@ -2,6 +2,7 @@ package pl.lodz.p.it.ssbd2015.mok.services;
 
 import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
+import pl.lodz.p.it.ssbd2015.mok.managers.EmailManagerLocal;
 
 import javax.ejb.EJB;
 import javax.mail.MessagingException;
@@ -12,7 +13,7 @@ import javax.mail.MessagingException;
 public class EmailServiceTest extends BaseArquillianTest {
 
 	@EJB
-	private EmailServiceRemote emailService;
+	private EmailManagerLocal emailService;
 
 	@Test
 	public void sendEmail() throws MessagingException {

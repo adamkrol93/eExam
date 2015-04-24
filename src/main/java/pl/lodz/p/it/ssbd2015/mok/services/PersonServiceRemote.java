@@ -4,6 +4,7 @@ import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
 
 import javax.ejb.Remote;
+import javax.mail.MessagingException;
 
 /**
  * Interfejs zdalny służący wyświetlania informacji o użytkowniku i dokonywania na prostych operacji.
@@ -38,8 +39,9 @@ public interface PersonServiceRemote {
     /**
      * Funkcja aktywuje bądź deaktywuje grupę wczytanego użytkownika o wskazanym kluczu głównym.
      * @param id Klucz główny grupy do aktywacji/deaktywacji.
+     * @throws MessagingException
      */
-    void toggleGroupActivation(long id);
+    void toggleGroupActivation(long id) throws MessagingException;
 
     /**
      * Funkcja służy do  blokowania i odblokowywania użytkownika w zależności od bieżącego stanu

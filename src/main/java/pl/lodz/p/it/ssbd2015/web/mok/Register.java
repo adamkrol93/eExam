@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.mail.MessagingException;
 
 /**
  * Backing bean dla formularza rejestracji nowego użytkownika.
@@ -45,7 +46,7 @@ public class Register extends BaseContextBean {
         return person;
     }
 
-    public String register() {
+    public String register() throws MessagingException {
         peopleService.register(person);
 
         setContext(Register.class, bean -> bean.message = "mok.register.registered_message");
