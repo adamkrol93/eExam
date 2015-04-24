@@ -6,6 +6,7 @@ import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
 import pl.lodz.p.it.ssbd2015.mok.managers.PersonManagerLocal;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
@@ -28,6 +29,7 @@ public class EditPersonService extends BaseStatefulService implements EditPerson
     private PersonEntity personEntity;
 
     @Override
+    @RolesAllowed("EDIT_SOMEBODY_ACCOUNT_MOK")
     public PersonEntity findPersonForEdit(String login) throws PersonEntityNotFoundException {
         personEntity = personManager.getPerson(login);
         return personEntity;

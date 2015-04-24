@@ -8,6 +8,8 @@ import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
 import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.managers.PersonManagerLocal;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
@@ -52,11 +54,13 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
     }
 
     @Override
+    @RolesAllowed("LIST_ACCOUNTS_MOK")
     public List<PersonEntity> findAllPeople() {
         return personEntityFacade.findAll();
     }
 
     @Override
+    @RolesAllowed("SHOW_RAPORT_MOK")
     public void correctLogin(String login, String ipAddress, Calendar time) throws PersonEntityNotFoundException {
 
         PersonEntity personEntity;
@@ -68,6 +72,7 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
     }
 
     @Override
+    @RolesAllowed("SEARCH_FOR_ACCOUNT_MOK")
     public List<PersonEntity> findPeopleByPhrase(String phrase){
         return personEntityFacade.findByPhrase(phrase);
     }
