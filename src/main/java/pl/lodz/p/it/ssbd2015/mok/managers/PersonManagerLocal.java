@@ -3,12 +3,14 @@ package pl.lodz.p.it.ssbd2015.mok.managers;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
 
+import javax.ejb.Local;
 import javax.mail.MessagingException;
 
 /**
  * Klasa menadżera do zarządzania wszystim co jest powiązane z kontami uzytkownika
  * @author Adam Król
  */
+@Local
 public interface PersonManagerLocal {
 
     /**

@@ -1,12 +1,13 @@
 package pl.lodz.p.it.ssbd2015.mok.managers;
 
+import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.mail.MessagingException;
 
 /**
  * @author Bartosz Ignaczewski
  */
-@Remote
+@Local
 public interface EmailManagerLocal {
 
 	/**
