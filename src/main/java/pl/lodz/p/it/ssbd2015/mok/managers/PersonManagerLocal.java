@@ -62,4 +62,12 @@ public interface PersonManagerLocal {
      * @throws MessagingException jeżeli nie powiedzie się wysłanie wiadomości
      */
     void register(PersonEntity newPerson) throws MessagingException;
+
+    /**
+     * Metoda sprawdzająca czy dany użytkownik posiada rolę Administratora
+     * @param login Login użytkownika do sprawdzenia
+     * @return true - jeżeli użytkownik jest administratorem, false - jeżeli użytkownik nie jest administratorem
+     * @throws PersonEntityNotFoundException Jeżeli nie znajdziemy użytkownika o podanym loginie
+     */
+    boolean isAdministrator(String login) throws PersonEntityNotFoundException;
 }

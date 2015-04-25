@@ -42,7 +42,13 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
 
     @Override
     public void register(PersonEntity person) throws MessagingException {
-        personManager.register(preparePersonForRegistration(person));
+        PersonEntity newPerson = new PersonEntity();
+        newPerson.setLogin(person.getLogin());
+        newPerson.setEmail(person.getEmail());
+        newPerson.setName(person.getName());
+        newPerson.setLastName(person.getLastName());
+        newPerson.setPassword(person.getPassword());
+        personManager.register(newPerson);
     }
 
     @Override
@@ -50,15 +56,6 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
         return personEntityFacade.findAll();
     }
 
-    private PersonEntity preparePersonForRegistration(PersonEntity person) {
-        PersonEntity newPerson = new PersonEntity();
-        newPerson.setLogin(person.getLogin());
-        newPerson.setEmail(person.getEmail());
-        newPerson.setName(person.getName());
-        newPerson.setLastName(person.getLastName());
-        newPerson.setPassword(person.getPassword());
-        return newPerson;
-    }
 
     @Override
     public void correctLogin(String login, String ipAddress, Calendar time) throws PersonEntityNotFoundException {

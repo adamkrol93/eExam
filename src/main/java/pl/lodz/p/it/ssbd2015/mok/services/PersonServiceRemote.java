@@ -43,6 +43,14 @@ public interface PersonServiceRemote {
      */
     void toggleGroupActivation(long id) throws MessagingException;
 
+
+    /**
+     * Metoda sprawdza czy zalogowana osoba jest Adminstratorem.
+     * @return true - jeżeli jest administratorem, false - jeżeli nie jest administratorem
+     * @throws PersonEntityNotFoundException jeżeli nie znajdzie zalogowanego użytkownika
+     */
+    boolean isAdministrator() throws PersonEntityNotFoundException;
+
     /**
      * Funkcja służy do  blokowania i odblokowywania użytkownika w zależności od bieżącego stanu
      */

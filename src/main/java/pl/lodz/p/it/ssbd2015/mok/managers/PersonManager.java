@@ -45,7 +45,6 @@ public class PersonManager implements PersonManagerLocal {
     @Override
     public PersonEntity getPerson(String login) throws PersonEntityNotFoundException {
         PersonEntity personEntity = personEntityFacade.findByLogin(login).orElseThrow(() -> new PersonEntityNotFoundException("exception.user_not_found"));
-        personEntity.getGroupStubs().isEmpty();
         return personEntity;
     }
 
@@ -98,14 +97,44 @@ public class PersonManager implements PersonManagerLocal {
         emailManager.sendEmail(newPerson.getEmail(),"Założono nowe konto","Właśnie założyłeś konto w serwisie eExam");
     }
 
+
+    /**
+     * Metoda pomocnicza przyspisąjąca wszystkie grupy do uzytkownika
+     * @param person Uzytkownik któremu chcemy przypisać wszystkie grupy
+     */
     private void assignAllGroups(PersonEntity person) {
         Arrays.asList(new AdministratorStubEntity(), new ExaminerStubEntity(), new GuardianStubEntity(),
                 new StudentStubEntity(), new TeacherStubEntity())
                 .forEach(group -> assignGroup(person, group));
     }
 
+    /**
+     * Metoda tworząca dwustronne powiązanie dla grupy i użytkownika.
+     * Wykorzystywana w @assignAllGroups
+     * @param person Osoba której przypisać grupę
+     * @param group Grupa która należy przypisać
+     */
     private void assignGroup(PersonEntity person, GroupsStubEntity group) {
         person.getGroupStubs().add(group);
         group.setPerson(person);
     }
+
+
+    @Override
+    public boolean isAdministrator(String login) throws PersonEntityNotFoundException {
+        PersonEntity personEntity = this.getPerson(login);
+        for(GroupsStubEntity grubStub : personEntity.getGroupStubs())
+        {
+            if(grubStub instanceof AdministratorStubEntity)
+            {
+                if(grubStub.isActive())
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
 }

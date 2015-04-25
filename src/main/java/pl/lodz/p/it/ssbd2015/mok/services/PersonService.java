@@ -39,6 +39,7 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
     @Override
     public PersonEntity getPerson(String login) throws PersonEntityNotFoundException {
         personEntity = personManager.getPerson(login);
+        personEntity.getGroupStubs().isEmpty();
         return personEntity;
     }
 
@@ -56,6 +57,12 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
     @Override
     public void toggleGroupActivation(long id) throws MessagingException {
         personManager.toogleGroupActivation(this.personEntity, id);
+    }
+
+    @Override
+    public boolean isAdministrator() throws PersonEntityNotFoundException {
+        String login = sessionContext.getCallerPrincipal().getName();
+        return personManager.isAdministrator(login);
     }
 
     @Override
