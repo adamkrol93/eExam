@@ -55,4 +55,11 @@ public interface PersonServiceRemote {
      */
     boolean isAdministrator() throws PersonEntityNotFoundException;
 
+    boolean isStudent() throws PersonEntityNotFoundException;
+
+    boolean isTeacher() throws PersonEntityNotFoundException;
+
+    boolean isGuardian() throws PersonEntityNotFoundException;
+
+    boolean isExaminer() throws PersonEntityNotFoundException;
 }

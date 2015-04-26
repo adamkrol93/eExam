@@ -110,11 +110,11 @@ public class PersonManager implements PersonManagerLocal {
     }
 
     @Override
-    public boolean isAdministrator(String login) throws PersonEntityNotFoundException {
+    public boolean hasRole(String login, Class<? extends GroupsStubEntity> groupClazz) throws PersonEntityNotFoundException {
         PersonEntity personEntity = this.getPerson(login);
         for (GroupsStubEntity grubStub : personEntity.getGroupStubs()) {
-            if (grubStub instanceof AdministratorStubEntity) {
-                if(grubStub.isActive()) {
+            if (groupClazz.isInstance(grubStub)) {
+                if (grubStub.isActive()) {
                     return true;
                 }
             }

@@ -1,6 +1,6 @@
 package pl.lodz.p.it.ssbd2015.mok.services;
 
-import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
+import pl.lodz.p.it.ssbd2015.entities.*;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
@@ -54,13 +54,37 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
     }
 
     @Override
-    public boolean isAdministrator() throws PersonEntityNotFoundException {
-        String login = sessionContext.getCallerPrincipal().getName();
-        return personManager.isAdministrator(login);
+    public void togglePersonActivation() {
+        personManager.togglePersonActivation(this.personEntity);
     }
 
     @Override
-    public void togglePersonActivation() {
-        personManager.togglePersonActivation(this.personEntity);
+    public boolean isAdministrator() throws PersonEntityNotFoundException {
+        String login = sessionContext.getCallerPrincipal().getName();
+        return personManager.hasRole(login, AdministratorStubEntity.class);
+    }
+
+    @Override
+    public boolean isStudent() throws PersonEntityNotFoundException {
+        String login = sessionContext.getCallerPrincipal().getName();
+        return personManager.hasRole(login, StudentStubEntity.class);
+    }
+
+    @Override
+    public boolean isTeacher() throws PersonEntityNotFoundException {
+        String login = sessionContext.getCallerPrincipal().getName();
+        return personManager.hasRole(login, TeacherStubEntity.class);
+    }
+
+    @Override
+    public boolean isGuardian() throws PersonEntityNotFoundException {
+        String login = sessionContext.getCallerPrincipal().getName();
+        return personManager.hasRole(login, GuardianStubEntity.class);
+    }
+
+    @Override
+    public boolean isExaminer() throws PersonEntityNotFoundException {
+        String login = sessionContext.getCallerPrincipal().getName();
+        return personManager.hasRole(login, ExaminerStubEntity.class);
     }
 }

@@ -58,7 +58,8 @@ public class LoginBean implements Serializable{
         if(FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal() != null && loggernUser == null){
 
             loggernUser = personService.getPerson(FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName());
-            logger.info("----------------->" + personService.isAdministrator());
+            logger.info("----------------->isAdminitrator" + personService.isAdministrator());
+            logger.info("----------------->isStudent" + personService.isStudent());
             logger.info("Ktoś się właśnie zalogował");
             peopleService.correctLogin(loggernUser.getLogin(), request.getRemoteAddr(), time);
             return true;
