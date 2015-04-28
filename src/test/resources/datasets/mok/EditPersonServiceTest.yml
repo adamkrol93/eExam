@@ -1,6 +1,8 @@
 generator:
   - class_name: "PersonEntity"
     id_range: 2
+  - class_name: "PreviousPasswordEntity"
+    id_range: 0
 
 person:
   - person_id: 2
