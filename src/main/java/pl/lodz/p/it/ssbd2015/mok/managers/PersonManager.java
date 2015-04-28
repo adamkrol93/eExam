@@ -7,6 +7,7 @@ import pl.lodz.p.it.ssbd2015.mok.facades.GroupsStubEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.utils.PasswordUtils;
 
+import javax.annotation.Resource;
 import javax.ejb.*;
 import javax.interceptor.Interceptors;
 import javax.mail.MessagingException;
@@ -27,10 +28,16 @@ public class PersonManager implements PersonManagerLocal {
     private GroupsStubEntityFacadeLocal groupsStubEntityFacade;
 
     @EJB
+    private PersonManagerLocal personManagerLocal;
+
+    @EJB
     private EmailManagerLocal emailManager;
 
     @EJB
     private PersonManagerLocal personManager;
+
+    @Resource
+    private SessionContext sessionContext;
 
     @Override
     public void editPerson(PersonEntity oldOne, PersonEntity newOne) {
@@ -42,7 +49,6 @@ public class PersonManager implements PersonManagerLocal {
                 && !oldOne.getPassword().equals(newOne.getPassword())) {
             oldOne.setPassword(PasswordUtils.hashPassword(newOne.getPassword()));
         }
-
     }
 
     @Override
@@ -66,7 +72,6 @@ public class PersonManager implements PersonManagerLocal {
 
     @Override
     public void toggleGroupActivation(PersonEntity personEntity, long id) throws MessagingException {
-
         boolean found = false;
 
         for (GroupsStubEntity groupsStub : personEntity.getGroupStubs()) {
@@ -96,7 +101,7 @@ public class PersonManager implements PersonManagerLocal {
         newPerson.setActive(true);
         personManager.assignAllGroups(newPerson);
         personEntityFacade.create(newPerson);
-        emailManager.sendEmail(newPerson.getEmail(),"Założono nowe konto","Właśnie założyłeś konto w serwisie eExam");
+        emailManager.sendEmail(newPerson.getEmail(), "Założono nowe konto", "Właśnie założyłeś konto w serwisie eExam");
     }
 
     @Override
@@ -110,10 +115,12 @@ public class PersonManager implements PersonManagerLocal {
     }
 
     @Override
-    public boolean hasRole(String login, Class<? extends GroupsStubEntity> groupClazz) throws PersonEntityNotFoundException {
+    public boolean hasRole(String group) throws PersonEntityNotFoundException {
+        String login = sessionContext.getCallerPrincipal().getName();
+
         PersonEntity personEntity = this.getPerson(login);
         for (GroupsStubEntity grubStub : personEntity.getGroupStubs()) {
-            if (groupClazz.isInstance(grubStub)) {
+            if (grubStub.getName().equals(group)) {
                 if (grubStub.isActive()) {
                     return true;
                 }

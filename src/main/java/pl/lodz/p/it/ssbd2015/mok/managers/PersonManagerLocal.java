@@ -1,6 +1,5 @@
 package pl.lodz.p.it.ssbd2015.mok.managers;
 
-import pl.lodz.p.it.ssbd2015.entities.GroupsStubEntity;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
 
@@ -70,11 +69,10 @@ public interface PersonManagerLocal {
     void assignAllGroups(PersonEntity person);
 
     /**
-     * Metoda sprawdzająca czy dany użytkownik posiada rolę Administratora
-     * @param login Login użytkownika do sprawdzenia
-     * @param role Obiekt roli któ©y chcemy sprawdzić
-     * @return true - jeżeli użytkownik jest administratorem, false - jeżeli użytkownik nie jest administratorem
+     * Metoda sprawdzająca czy dany użytkownik posiada daną rolę
+     * @param group String grupy który chcemy sprawdzić, musi znajdować się w @Groups
+     * @return true - jeżeli użytkownik posiada daną rolę, false - jeżeli użytkownik nie posiada danej roli
      * @throws PersonEntityNotFoundException Jeżeli nie znajdziemy użytkownika o podanym loginie
      */
-    boolean hasRole(String login, Class<? extends GroupsStubEntity> role) throws PersonEntityNotFoundException;
+    boolean hasRole(String group) throws PersonEntityNotFoundException;
 }

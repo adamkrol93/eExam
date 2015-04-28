@@ -14,6 +14,7 @@ import javax.mail.MessagingException;
 /**
  * Stanowy EJB realizujący interfejs PersonServiceRemote.
  * Utrzymuje w sobie pole z użytkownikiem, którego dane są wyświetlane i na którym przeprowadzane są operacje.
+ *
  * @author Adam Król
  * @author Michał Sośnicki
  */
@@ -39,7 +40,7 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
 
     @Override
     public PersonEntity getLoggedPerson() throws PersonEntityNotFoundException {
-        String login =  sessionContext.getCallerPrincipal().getName();
+        String login = sessionContext.getCallerPrincipal().getName();
         return personManager.getPerson(login);
     }
 
@@ -58,33 +59,4 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
         personManager.togglePersonActivation(this.personEntity);
     }
 
-    @Override
-    public boolean isAdministrator() throws PersonEntityNotFoundException {
-        String login = sessionContext.getCallerPrincipal().getName();
-        return personManager.hasRole(login, AdministratorStubEntity.class);
-    }
-
-    @Override
-    public boolean isStudent() throws PersonEntityNotFoundException {
-        String login = sessionContext.getCallerPrincipal().getName();
-        return personManager.hasRole(login, StudentStubEntity.class);
-    }
-
-    @Override
-    public boolean isTeacher() throws PersonEntityNotFoundException {
-        String login = sessionContext.getCallerPrincipal().getName();
-        return personManager.hasRole(login, TeacherStubEntity.class);
-    }
-
-    @Override
-    public boolean isGuardian() throws PersonEntityNotFoundException {
-        String login = sessionContext.getCallerPrincipal().getName();
-        return personManager.hasRole(login, GuardianStubEntity.class);
-    }
-
-    @Override
-    public boolean isExaminer() throws PersonEntityNotFoundException {
-        String login = sessionContext.getCallerPrincipal().getName();
-        return personManager.hasRole(login, ExaminerStubEntity.class);
-    }
 }

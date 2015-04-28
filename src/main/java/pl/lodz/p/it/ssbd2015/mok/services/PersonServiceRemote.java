@@ -8,7 +8,7 @@ import javax.mail.MessagingException;
 
 /**
  * Interfejs zdalny służący wyświetlania informacji o użytkowniku i dokonywania na prostych operacji.
- * @author Created by adam on 15.04.15
+ * @author Adam Król
  * @author Michał Sośnicki
  */
 @Remote
@@ -48,18 +48,4 @@ public interface PersonServiceRemote {
      */
     void togglePersonActivation();
 
-    /**
-     * Metoda sprawdza czy zalogowana osoba jest Adminstratorem.
-     * @return true - jeżeli jest administratorem, false - jeżeli nie jest administratorem
-     * @throws PersonEntityNotFoundException jeżeli nie znajdzie zalogowanego użytkownika
-     */
-    boolean isAdministrator() throws PersonEntityNotFoundException;
-
-    boolean isStudent() throws PersonEntityNotFoundException;
-
-    boolean isTeacher() throws PersonEntityNotFoundException;
-
-    boolean isGuardian() throws PersonEntityNotFoundException;
-
-    boolean isExaminer() throws PersonEntityNotFoundException;
 }

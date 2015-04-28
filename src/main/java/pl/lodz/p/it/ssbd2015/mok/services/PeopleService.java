@@ -1,5 +1,6 @@
 package pl.lodz.p.it.ssbd2015.mok.services;
 
+import pl.lodz.p.it.ssbd2015.entities.Groups;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
@@ -55,7 +56,6 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
         return personEntityFacade.findAll();
     }
 
-
     @Override
     public void correctLogin(String login, String ipAddress, Calendar time) throws PersonEntityNotFoundException {
 
@@ -70,6 +70,31 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
     @Override
     public List<PersonEntity> findPeopleByPhrase(String phrase){
         return personEntityFacade.findByPhrase(phrase);
+    }
+
+    @Override
+    public boolean isAdministrator() throws PersonEntityNotFoundException {
+        return personManager.hasRole(Groups.ADMIN);
+    }
+
+    @Override
+    public boolean isStudent() throws PersonEntityNotFoundException {
+        return personManager.hasRole(Groups.STUDENT);
+    }
+
+    @Override
+    public boolean isTeacher() throws PersonEntityNotFoundException {
+        return personManager.hasRole(Groups.TEACHER);
+    }
+
+    @Override
+    public boolean isGuardian() throws PersonEntityNotFoundException {
+        return personManager.hasRole(Groups.GUARDIAN);
+    }
+
+    @Override
+    public boolean isExaminer() throws PersonEntityNotFoundException {
+        return personManager.hasRole(Groups.EXAMINER);
     }
 
 }
