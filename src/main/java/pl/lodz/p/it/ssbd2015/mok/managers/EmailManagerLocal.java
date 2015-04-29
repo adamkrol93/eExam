@@ -1,7 +1,6 @@
 package pl.lodz.p.it.ssbd2015.mok.managers;
 
 import javax.ejb.Local;
-import javax.ejb.Remote;
 import javax.mail.MessagingException;
 
 /**
@@ -17,6 +16,6 @@ public interface EmailManagerLocal {
 	 * @param body Zawartość wiadomośc
 	 * @throws MessagingException
 	 */
-	public void sendEmail(String to, String subject, String body) throws MessagingException;
+	void sendEmail(String to, String subject, String body) throws MessagingException;
 
 }

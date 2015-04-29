@@ -13,7 +13,7 @@ import javax.ejb.Remote;
 public interface EditPersonServiceRemote{
     /**
      * Funkcja zwracająca informacje o Użytkowniku na podstawie loginu.
-     * Funkcja ustawia również stanowa zmienna @personEntity
+     * Funkcja ustawia również stanowa zmienna personEntity
      * @param login login użytkownika po którym będzie wyszukany
      * @return PersonEntity zwrócony zostaje użytkownik wyszukany w bazie danych. Nie może być nullem.
      */

@@ -15,9 +15,9 @@ import java.util.Arrays;
 /**
  * Created by adam on 24.04.15.
  */
-@Stateful(name = "pl.lodz.p.it.ssbd2015.mok.managers.PersonManager")
-@Interceptors(LoggingInterceptor.class)
+@Stateless(name = "pl.lodz.p.it.ssbd2015.mok.managers.PersonManager")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
+@Interceptors(LoggingInterceptor.class)
 public class PersonManager implements PersonManagerLocal {
 
     @EJB
@@ -28,6 +28,9 @@ public class PersonManager implements PersonManagerLocal {
 
     @EJB
     private EmailManagerLocal emailManager;
+
+    @EJB
+    private PersonManagerLocal personManager;
 
     @Override
     public void editPerson(PersonEntity oldOne, PersonEntity newOne) {
@@ -44,7 +47,8 @@ public class PersonManager implements PersonManagerLocal {
 
     @Override
     public PersonEntity getPerson(String login) throws PersonEntityNotFoundException {
-        PersonEntity personEntity = personEntityFacade.findByLogin(login).orElseThrow(() -> new PersonEntityNotFoundException("exception.user_not_found"));
+        PersonEntity personEntity = personEntityFacade.findByLogin(login)
+                .orElseThrow(() -> new PersonEntityNotFoundException("exception.user_not_found"));
         return personEntity;
     }
 
@@ -55,14 +59,13 @@ public class PersonManager implements PersonManagerLocal {
     }
 
     @Override
-    public void tooglePersonActivation(PersonEntity personEntity)
-    {
+    public void togglePersonActivation(PersonEntity personEntity) {
         personEntity = personEntityFacade.edit(personEntity);
         personEntity.setActive(!personEntity.isActive());
     }
 
     @Override
-    public void toogleGroupActivation(PersonEntity personEntity, long id) throws MessagingException {
+    public void toggleGroupActivation(PersonEntity personEntity, long id) throws MessagingException {
 
         boolean found = false;
 
@@ -83,8 +86,7 @@ public class PersonManager implements PersonManagerLocal {
     }
 
     @Override
-    public boolean checkUniqueness(String login)
-    {
+    public boolean checkUniqueness(String login) {
         return !personEntityFacade.findByLogin(login).isPresent();
     }
 
@@ -92,48 +94,31 @@ public class PersonManager implements PersonManagerLocal {
     public void register(PersonEntity newPerson) throws MessagingException {
         newPerson.setPassword(PasswordUtils.hashPassword(newPerson.getPassword()));
         newPerson.setActive(true);
-        assignAllGroups(newPerson);
+        personManager.assignAllGroups(newPerson);
         personEntityFacade.create(newPerson);
         emailManager.sendEmail(newPerson.getEmail(),"Założono nowe konto","Właśnie założyłeś konto w serwisie eExam");
     }
 
-
-    /**
-     * Metoda pomocnicza przyspisąjąca wszystkie grupy do uzytkownika
-     * @param person Uzytkownik któremu chcemy przypisać wszystkie grupy
-     */
-    private void assignAllGroups(PersonEntity person) {
+    @Override
+    public void assignAllGroups(PersonEntity person) {
         Arrays.asList(new AdministratorStubEntity(), new ExaminerStubEntity(), new GuardianStubEntity(),
                 new StudentStubEntity(), new TeacherStubEntity())
-                .forEach(group -> assignGroup(person, group));
+                .forEach(group -> {
+                    person.getGroupStubs().add(group);
+                    group.setPerson(person);
+                });
     }
-
-    /**
-     * Metoda tworząca dwustronne powiązanie dla grupy i użytkownika.
-     * Wykorzystywana w @assignAllGroups
-     * @param person Osoba której przypisać grupę
-     * @param group Grupa która należy przypisać
-     */
-    private void assignGroup(PersonEntity person, GroupsStubEntity group) {
-        person.getGroupStubs().add(group);
-        group.setPerson(person);
-    }
-
 
     @Override
     public boolean isAdministrator(String login) throws PersonEntityNotFoundException {
         PersonEntity personEntity = this.getPerson(login);
-        for(GroupsStubEntity grubStub : personEntity.getGroupStubs())
-        {
-            if(grubStub instanceof AdministratorStubEntity)
-            {
-                if(grubStub.isActive())
-                {
+        for (GroupsStubEntity grubStub : personEntity.getGroupStubs()) {
+            if (grubStub instanceof AdministratorStubEntity) {
+                if(grubStub.isActive()) {
                     return true;
                 }
             }
         }
-
         return false;
     }
 

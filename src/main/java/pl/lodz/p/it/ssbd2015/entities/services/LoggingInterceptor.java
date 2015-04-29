@@ -47,9 +47,20 @@ public class LoggingInterceptor {
         try {
             result = context.proceed();
         } catch (Exception ex) {
-            logger.error("{}.{}({}) invoked by person {} has thrown an exception {}: {}",
+            StringBuilder causes = new StringBuilder();
+
+            Throwable cause = ex.getCause();
+            while (cause != null) {
+                if (causes.length() > 0) {
+                    causes.append(", ");
+                }
+                causes.append(cause);
+                cause = cause.getCause();
+            }
+
+            logger.error("{}.{}({}) invoked by person {} has thrown an exception {}: {}. Causes: [{}]",
                     className, methodName, params, personLogin,
-                    ex, ex.getLocalizedMessage()
+                    ex, ex.getLocalizedMessage(), causes
             );
 
             throw ex;

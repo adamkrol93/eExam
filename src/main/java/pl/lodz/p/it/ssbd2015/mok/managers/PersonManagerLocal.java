@@ -37,7 +37,7 @@ public interface PersonManagerLocal {
      * Metoda zmienia status aktywacji użytkownika
      * @param personEntity Uzytkownik któreo chcemy zmodyfikować
      */
-    void tooglePersonActivation(PersonEntity personEntity);
+    void togglePersonActivation(PersonEntity personEntity);
 
     /**
      * Metoda zmienia stan aktywacji grupy.
@@ -45,8 +45,7 @@ public interface PersonManagerLocal {
      * @param id Identyfikator grupy
      * @throws MessagingException
      */
-    void toogleGroupActivation(PersonEntity personEntity, long id) throws MessagingException;
-
+    void toggleGroupActivation(PersonEntity personEntity, long id) throws MessagingException;
 
     /**
      * Metoda sprawdza czy użytkownik o podanym loginie już istenieje.
@@ -62,6 +61,12 @@ public interface PersonManagerLocal {
      * @throws MessagingException jeżeli nie powiedzie się wysłanie wiadomości
      */
     void register(PersonEntity newPerson) throws MessagingException;
+
+    /**
+     * Metoda pomocnicza przyspisąjąca wszystkie grupy do uzytkownika
+     * @param person Uzytkownik któremu chcemy przypisać wszystkie grupy
+     */
+    void assignAllGroups(PersonEntity person);
 
     /**
      * Metoda sprawdzająca czy dany użytkownik posiada rolę Administratora

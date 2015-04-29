@@ -1,9 +1,12 @@
 package pl.lodz.p.it.ssbd2015.mok.managers;
 
+import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
+
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.interceptor.Interceptors;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -15,8 +18,9 @@ import java.util.Date;
 /**
  * @author Bartosz Ignaczewski
  */
-@Stateless(name = "pl.lodz.p.it.ssbd2015.mok.services.EmailService")
+@Stateless(name = "pl.lodz.p.it.ssbd2015.mok.services.EmailManager")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
+@Interceptors(LoggingInterceptor.class)
 public class EmailManager implements EmailManagerLocal {
 
 	@Resource(lookup = "java:app/email")

@@ -17,6 +17,7 @@ import javax.persistence.PersistenceContext;
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 @Interceptors(LoggingInterceptor.class)
 public class GroupsStubEntityFacade implements GroupsStubEntityFacadeLocal {
+
     @PersistenceContext(unitName = "pl.lodz.p.it.ssbd2015.mok_PU")
     private EntityManager entityManager;
 

@@ -1,20 +1,18 @@
 package pl.lodz.p.it.ssbd2015.mok.services;
 
-import pl.lodz.p.it.ssbd2015.entities.*;
+import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
 import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.managers.PersonManagerLocal;
-import pl.lodz.p.it.ssbd2015.mok.utils.PasswordUtils;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import javax.mail.MessagingException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -26,6 +24,7 @@ import java.util.List;
  * @author Adam Król
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mok.services.PeopleService")
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @Interceptors(LoggingInterceptor.class)
 public class PeopleService extends BaseStatefulService implements PeopleServiceRemote {
 

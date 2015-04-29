@@ -291,7 +291,6 @@ public abstract class GroupsEntity {
                 ", login='" + login + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", personName='" + personName + '\'' +
-                ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", personActive=" + personActive +
                 ", confirm=" + confirm +

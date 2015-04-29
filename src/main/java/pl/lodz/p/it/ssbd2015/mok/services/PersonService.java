@@ -1,18 +1,13 @@
 package pl.lodz.p.it.ssbd2015.mok.services;
 
-import pl.lodz.p.it.ssbd2015.entities.GroupsStubEntity;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
-import pl.lodz.p.it.ssbd2015.mok.facades.GroupsStubEntityFacadeLocal;
-import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.managers.PersonManagerLocal;
 
 import javax.annotation.Resource;
-import javax.ejb.EJB;
-import javax.ejb.SessionContext;
-import javax.ejb.Stateful;
+import javax.ejb.*;
 import javax.interceptor.Interceptors;
 import javax.mail.MessagingException;
 
@@ -23,6 +18,7 @@ import javax.mail.MessagingException;
  * @author Michał Sośnicki
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mok.services.PersonService")
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @Interceptors(LoggingInterceptor.class)
 public class PersonService extends BaseStatefulService implements PersonServiceRemote {
 
@@ -33,8 +29,6 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
     private SessionContext sessionContext;
 
     private PersonEntity personEntity;
-
-
 
     @Override
     public PersonEntity getPerson(String login) throws PersonEntityNotFoundException {
@@ -56,7 +50,7 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
 
     @Override
     public void toggleGroupActivation(long id) throws MessagingException {
-        personManager.toogleGroupActivation(this.personEntity, id);
+        personManager.toggleGroupActivation(this.personEntity, id);
     }
 
     @Override
@@ -67,6 +61,6 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
 
     @Override
     public void togglePersonActivation() {
-        personManager.tooglePersonActivation(this.personEntity);
+        personManager.togglePersonActivation(this.personEntity);
     }
 }
