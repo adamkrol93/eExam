@@ -5,8 +5,15 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title>Strona logowania</title>
+        <title><h:outputText value="#{i18n['mok.login.title']}"/></title>
     </h:head>
+    <ui:define name="breadcrumps">
+        <ol class="breadcrumb">
+            <li><h:link outcome="/index" value="#{i18n['home.page']}"/></li>
+            <li class="active"><h:outputText
+                    value="#{i18n['mok.login.title']}"/></li>
+        </ol>
+    </ui:define>
     <h:body>
         <ui:composition template="../template/commonLayout.xhtml">
             <ui:define name="content">

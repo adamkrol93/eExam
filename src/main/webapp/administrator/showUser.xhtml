@@ -2,18 +2,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="../template/commonLayout.xhtml">
     <f:metadata>
         <f:viewParam name="login" value="#{showUserDetailsMOK.login}"/>
         <f:viewParam name="uuid" value="#{showUserDetailsMOK.uuid}" converter="uuidConverter"/>
-        <f:viewAction action="#{showUserDetailsMOK.checkContext}" />
+        <f:viewAction action="#{showUserDetailsMOK.checkContext}"/>
     </f:metadata>
     <ui:define name="head">
         <title><h:outputText value="#{i18n['mok.person.detail']}"/></title>
+    </ui:define>
+    <ui:define name="breadcrumps">
+        <ol class="breadcrumb">
+            <li><h:link outcome="/index" value="#{i18n['home.page']}"/></li>
+            <li><h:link outcome="/administrator/index.xhtml"
+                        value="#{i18n['administrator.page.simple_title']}"/></li>
+            <li><h:link outcome="/administrator/listUsers"
+                        value="#{i18n['mok.list.users']}"/></li>
+            <li class="active"><h:outputText
+                    value="#{i18n['mok.person.detail']}"/></li>
+        </ol>
     </ui:define>
 
     <ui:define name="content">
@@ -57,7 +68,8 @@
                 <h:form>
                     <h:commandButton
                             value="#{showUserDetailsMOK.person.active ? i18n['mok.person.person_deactivate'] : i18n['mok.person.person_activate']}"
-                            action="#{showUserDetailsMOK.togglePersonActive}" onclick="if (!confirm(#{i18n['mok.confirmation.text']})) return false"/>
+                            action="#{showUserDetailsMOK.togglePersonActive}"
+                            onclick="if (!confirm(#{i18n['mok.confirmation.text']})) return false"/>
                 </h:form>
             </div>
         </div>
@@ -77,7 +89,8 @@
                             </f:facet>
                             <h:commandButton
                                     value="#{group.active ? i18n['mok.person.group_active'] : i18n['mok.person.group_inactive']}"
-                                    action="#{showUserDetailsMOK.toggleGroupActive}" onclick="if (!confirm(#{i18n['mok.confirmation.text']})) return false"/>
+                                    action="#{showUserDetailsMOK.toggleGroupActive}"
+                                    onclick="if (!confirm(#{i18n['mok.confirmation.text']})) return false"/>
                         </h:column>
                     </h:dataTable>
                 </h:form>

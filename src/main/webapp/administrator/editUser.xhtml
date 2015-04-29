@@ -15,6 +15,17 @@
     <ui:define name="head">
         <title><h:outputText value="#{i18n['mok.edit.page']}"/></title>
     </ui:define>
+    <ui:define name="breadcrumps">
+        <ol class="breadcrumb">
+            <li><h:link outcome="/index" value="#{i18n['home.page']}"/></li>
+            <li><h:link outcome="/administrator/index.xhtml"
+                        value="#{i18n['administrator.page.simple_title']}"/></li>
+            <li><h:link outcome="/administrator/listUsers"
+                        value="#{i18n['mok.list.users']}"/></li>
+            <li class="active"><h:outputText
+                    value="#{i18n['mok.edit.page']}"/></li>
+        </ol>
+    </ui:define>
 
     <!--@elvariable id="passwordInput" type="javax.faces.component.html.HtmlInputSecret"-->
     <ui:define name="content">
@@ -32,28 +43,32 @@
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-4">
                     <h:outputText value="#{i18n['mok.person.name']}"/>
-                    <h:inputText id="name" required="true" value="#{editUserDetailsMOK.person.name}" requiredMessage="#{i18n['mok.edit.name_required_message']}"/>
+                    <h:inputText id="name" required="true" value="#{editUserDetailsMOK.person.name}"
+                                 requiredMessage="#{i18n['mok.edit.name_required_message']}"/>
                     <h:message for="name" style="color:red"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-4">
                     <h:outputText value="#{i18n['mok.person.last_name']}"/>
-                    <h:inputText id="lastname" required="true" value="#{editUserDetailsMOK.person.lastName}" requiredMessage="#{i18n['mok.edit.last_name_required_message']}"/>
+                    <h:inputText id="lastname" required="true" value="#{editUserDetailsMOK.person.lastName}"
+                                 requiredMessage="#{i18n['mok.edit.last_name_required_message']}"/>
                     <h:message for="lastname" style="color:red"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-4">
                     <h:outputText value="#{i18n['mok.person.email']}"/>
-                    <h:inputText id="email" required="true" value="#{editUserDetailsMOK.person.email}" requiredMessage="#{i18n['mok.edit.email_required_message']}"/>
+                    <h:inputText id="email" required="true" value="#{editUserDetailsMOK.person.email}"
+                                 requiredMessage="#{i18n['mok.edit.email_required_message']}"/>
                     <h:message for="email" style="color:red"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-4">
                     <h:outputText value="#{i18n['mok.edit.password']}"/>
-                    <h:inputSecret id="password" value="#{editUserDetailsMOK.person.password}" binding="#{passwordInput}"/>
+                    <h:inputSecret id="password" value="#{editUserDetailsMOK.person.password}"
+                                   binding="#{passwordInput}"/>
                     <h:message for="password" errorClass="invalid" style="color:red"/>
                 </div>
             </div>
@@ -63,7 +78,8 @@
                     <h:inputSecret id="confirm">
                         <f:validator validatorId="confirmationInputValidator"/>
                         <f:attribute name="toConfirm" value="#{passwordInput.value}"/>
-                        <f:attribute name="confirmationErrorMessage" value="#{i18n['mok.edit.passwords_are_different']}"/>
+                        <f:attribute name="confirmationErrorMessage"
+                                     value="#{i18n['mok.edit.passwords_are_different']}"/>
                     </h:inputSecret>
                     <h:message for="confirm" errorClass="invalid" style="color:red"/>
                 </div>

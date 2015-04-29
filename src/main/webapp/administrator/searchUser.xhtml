@@ -11,6 +11,15 @@
     <ui:define name="head">
         <title><h:outputText value="#{i18n['mok.search.results']}"/></title>
     </ui:define>
+    <ui:define name="breadcrumps">
+        <ol class="breadcrumb">
+            <li><h:link outcome="/index" value="#{i18n['home.page']}"/></li>
+            <li><h:link outcome="/administrator/index.xhtml"
+                        value="#{i18n['administrator.page.simple_title']}"/></li>
+            <li class="active"><h:outputText
+                    value="#{i18n['mok.search']}"/></li>
+        </ol>
+    </ui:define>
 
     <ui:define name="content">
         <div class="row">
@@ -21,10 +30,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <h:form class="input-group">
-                    <h:inputText class="form-control" id="search" required="true" value="#{searchUsersMOK.phrase}" requiredMessage="#{i18n['mok.search.phrase_required_message']}"/>
+                    <h:inputText class="form-control" id="search" required="true" value="#{searchUsersMOK.phrase}"
+                                 requiredMessage="#{i18n['mok.search.phrase_required_message']}"/>
                     <h:message for="search" style="color:red"/>
                      <span class="input-group-btn">
-                         <h:commandButton class="btn btn-default" type="submit" value="#{i18n['mok.search']}" action="#{searchUsersMOK.search}"/>
+                         <h:commandButton class="btn btn-default" type="submit" value="#{i18n['mok.search']}"
+                                          action="#{searchUsersMOK.search}"/>
                       </span>
                 </h:form>
             </div>
@@ -39,7 +50,8 @@
                 <div class="col-lg-12">
                     <div class="table-responsive">
                         <h:form>
-                            <h:dataTable var="user" value="#{searchUsersMOK.personEntities}" styleClass="table table-striped">
+                            <h:dataTable var="user" value="#{searchUsersMOK.personEntities}"
+                                         styleClass="table table-striped">
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="#{i18n['mok.list.login']}"/>

@@ -4,74 +4,155 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
-    <body>
-        <ui:composition>
-            <h:form>
-                <!-- Navigation -->
-                <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-                    <div class="container">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                    data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <h:link outcome="/index" value="eExam"/>
-                        </div>
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">
-                                <ui:insert name="userNavbar">
-
-                                </ui:insert>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <ui:fragment rendered="#{loginBean.isPersonLogged()}">
-                                    <li><h:outputText value="#{i18n['login.message']}" style="color : slateblue"/></li>
-                                </ui:fragment>
-                                <ui:fragment rendered="#{request.remoteUser == null}">
-                                    <li><h:link outcome="/login/login" value="#{i18n['login.link']}"/></li>
-                                </ui:fragment>
-                                <ui:fragment rendered="#{request.remoteUser == null}">
-                                    <li><h:link outcome="/login/register" value="#{i18n['register.link']}"/></li>
-                                </ui:fragment>
-                                <ui:fragment rendered="#{request.remoteUser != null}">
+<body>
+<ui:composition>
+    <h:form>
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only"><h:outputText value="#{i18n['menu.toggle']}"/></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <h:link class="navbar-brand" outcome="/index" value="#{i18n['menu.home']}"/>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <ui:fragment rendered="#{request.remoteUser != null and loginBean.isAdministrator()}">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" aria-expanded="false" role="button"
+                                   data-toggle="dropdown" href="#">
+                                    <h:outputText value="#{i18n['administrator.menu.title']}"/>
+                                    <span class="caret"/>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <h:commandLink action="#{logoutBean.logout()}" value="#{i18n['logout.link']}"/>
+                                        <h:link outcome="/administrator/index.xhtml"
+                                                value="#{i18n['administrator.page.simple_title']}"/>
                                     </li>
-                                </ui:fragment>
-                                <li class="dropdown">
-                                    <a class="dropdown-toggle" aria-expanded="false" role="button"
-                                       data-toggle="dropdown" href="#">
-                                        <h:outputText value="#{i18n['choose.language']}"/>
-                                        <span class="caret"/>
-                                    </a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <ui:repeat value="#{language.countriesInMap}" var="country">
-                                            <li>
-                                                <h:commandLink action="#{language.changeLocale(country.value)}"
-                                                               value="#{country.key}"/>
-                                            </li>
-                                        </ui:repeat>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul class="navbar-inner">
+                                    <li>
+                                        <h:link value="#{i18n['mok.list.users']}"
+                                                outcome="/administrator/listUsers"/>
+                                    </li>
+                                    <li>
+                                        <h:link value="#{i18n['mok.search']}"
+                                                outcome="/administrator/searchUser"/>
+                                    </li>
+                                    <li>
+                                        <h:link value="#{i18n['mok.list.raport']}"
+                                                outcome="/administrator/showUsersReport"/>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ui:fragment>
+                        <ui:fragment rendered="#{request.remoteUser != null and loginBean.isTeacher()}">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" aria-expanded="false" role="button"
+                                   data-toggle="dropdown" href="#">
+                                    <h:outputText value="#{i18n['teacher.menu.title']}"/>
+                                    <span class="caret"/>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <h:link outcome="/teacher/index.xhtml"
+                                                value="#{i18n['teacher.page.simple_title']}"/>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ui:fragment>
+                        <ui:fragment rendered="#{request.remoteUser != null and loginBean.isExaminer()}">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" aria-expanded="false" role="button"
+                                   data-toggle="dropdown" href="#">
+                                    <h:outputText value="#{i18n['examiner.menu.title']}"/>
+                                    <span class="caret"/>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <h:link outcome="/examiner/index.xhtml"
+                                                value="#{i18n['examiner.page.simple_title']}"/>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ui:fragment>
+                        <ui:fragment rendered="#{request.remoteUser != null and loginBean.isGuardian()}">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" aria-expanded="false" role="button"
+                                   data-toggle="dropdown" href="#">
+                                    <h:outputText value="#{i18n['guardian.menu.title']}"/>
+                                    <span class="caret"/>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <h:link outcome="/guardian/index.xhtml"
+                                                value="#{i18n['guardian.page.simple_title']}"/>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ui:fragment>
+                        <ui:fragment rendered="#{request.remoteUser != null and loginBean.isStudent()}">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" aria-expanded="false" role="button"
+                                   data-toggle="dropdown" href="#">
+                                    <h:outputText value="#{i18n['student.menu.title']}"/>
+                                    <span class="caret"/>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <h:link outcome="/student/index.xhtml"
+                                                value="#{i18n['student.page.simple_title']}"/>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ui:fragment>
+                    </ul>
 
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" aria-expanded="false" role="button"
+                               data-toggle="dropdown" href="#">
+                                <h:outputText value="#{i18n['choose.language']}"/>
+                                <span class="caret"/>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <ui:repeat value="#{language.countriesInMap}" var="country">
+                                    <li>
+                                        <h:commandLink action="#{language.changeLocale(country.value)}"
+                                                       value="#{country.key}"/>
+                                    </li>
+                                </ui:repeat>
                             </ul>
-                        </div>
-                        <!-- /.navbar-collapse -->
-                    </div>
-                    <!-- /.container -->
-                </nav>
-                <!-- Header Carousel -->
-                <header>
-                    <h:graphicImage library="img" name="logo2.jpg" alt="logo" styleClass="img-responsive"/>
-                </header>
-            </h:form>
-        </ui:composition>
-    </body>
+                        </li>
+                        <ui:fragment rendered="#{request.remoteUser == null}">
+                            <h:button outcome="/login/login" value="#{i18n['login.link']}"
+                                      styleClass="btn btn-primary navbar-btn"/>
+                        </ui:fragment>
+                        <ui:fragment rendered="#{request.remoteUser == null}">
+                            <h:button outcome="/login/register" value="#{i18n['register.link']}"
+                                      styleClass="btn btn-primary navbar-btn"/>
+                        </ui:fragment>
+                        <ui:fragment rendered="#{request.remoteUser != null}">
+                            <h:commandButton action="#{logoutBean.logout()}" value="#{i18n['logout.link']}"
+                                             styleClass="btn btn-danger navbar-btn"/>
+                        </ui:fragment>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <h:graphicImage library="img" name="logo2.jpg" alt="logo" styleClass="img-responsive"/>
+
+        <div class="container">
+            <ui:insert name="breadcrumps">
+                <ol class="breadcrumb">
+                    <li class="active"><h:outputText value="#{i18n['home.page']}"/></li>
+                </ol>
+            </ui:insert>
+        </div>
+    </h:form>
+</ui:composition>
+</body>
 </html>

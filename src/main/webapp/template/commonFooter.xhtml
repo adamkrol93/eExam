@@ -2,18 +2,40 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
         >
 <body>
 <ui:composition>
     <!-- Footer -->
     <footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <p>Copyright &copy; SSBD01</p>
+        <div class="navbar navbar-default navbar-fixed-bottom">
+            <div class="container">
+                <p class="navbar-text">Copyright &copy; SSBD01</p>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <h:link outcome="/administrator/index.xhtml"
+                                value="#{i18n['administrator.page.simple_title']}"/>
+                    </li>
+                    <li>
+                        <h:link outcome="/teacher/index.xhtml"
+                                value="#{i18n['teacher.page.simple_title']}"/>
+                    </li>
+                    <li>
+                        <h:link outcome="/examiner/index.xhtml"
+                                value="#{i18n['examiner.page.simple_title']}"/>
+                    </li>
+                    <li>
+                        <h:link outcome="/guardian/index.xhtml"
+                                value="#{i18n['guardian.page.simple_title']}"/>
+                    </li>
+                    <li>
+                        <h:link outcome="/student/index.xhtml"
+                                value="#{i18n['student.page.simple_title']}"/>
+                    </li>
+                </ul>
             </div>
         </div>
-        <!-- /.row -->
     </footer>
 </ui:composition>
 </body>
