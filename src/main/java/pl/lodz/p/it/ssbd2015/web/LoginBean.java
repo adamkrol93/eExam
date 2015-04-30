@@ -28,14 +28,13 @@ public class LoginBean implements Serializable {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    private PersonEntity loggedUser;
-
-
     @EJB
     private PersonServiceRemote personService;
 
     @EJB
     private PeopleServiceRemote peopleService;
+
+    private PersonEntity loggedUser;
 
     /**
      * Metoda zapisujaca czas, ip oraz login do bazy zaraz po zalogowaniu się użytkownika
@@ -44,15 +43,13 @@ public class LoginBean implements Serializable {
      * @throws PersonEntityNotFoundException
      */
     public boolean isPersonLogged() throws PersonEntityNotFoundException {
-
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 
         Calendar time = Calendar.getInstance();
 
         logger.info("Uruchomienie funkcji logowania");
-        if(FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal() != null && loggedUser == null){
-
+        if (FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal() != null && loggedUser == null) {
             loggedUser = personService.getLoggedPerson();
             logger.info("Ktoś się właśnie zalogował");
             peopleService.correctLogin(loggedUser.getLogin(), request.getRemoteAddr(), time);

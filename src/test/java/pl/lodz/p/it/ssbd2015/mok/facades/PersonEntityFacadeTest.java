@@ -110,6 +110,7 @@ public class PersonEntityFacadeTest extends BaseArquillianTest {
 
         mandatoryWrapper.getPersonEntityFacade(p -> p.create(person));
     }
+
     //MOK.2 Potwierdź konto użytkownika
     @Test
     @Transactional(TransactionMode.DISABLED)
@@ -121,12 +122,12 @@ public class PersonEntityFacadeTest extends BaseArquillianTest {
 
         mandatoryWrapper.getPersonEntityFacade(p -> p.edit(foundPerson));
     }
+
     //MOK.3 Edytuj dane personalne i hasło
     @Test
     @Transactional(TransactionMode.DISABLED)
     @ShouldMatchDataSet(value = "mok/expected-ValidUser#testEditPerson.yml")
     public void testEditPerson() {
-
         String email = "test@test.pl";
 
         PersonEntity foundPerson = mandatoryWrapper.withPersonEntityFacade(p -> p.findByLogin("osoba").get());
@@ -135,12 +136,12 @@ public class PersonEntityFacadeTest extends BaseArquillianTest {
         //foundPerson.setConfirm(true);
         mandatoryWrapper.getPersonEntityFacade(p -> p.edit(foundPerson));
     }
+
     //MOK.4 Zablokuj/Odblokuj konto
     @Test
     @Transactional(TransactionMode.DISABLED)
     @ShouldMatchDataSet(value = "mok/expected-ValidUser#testBlockPerson.yml")
     public void testBlockPerson() {
-
         PersonEntity foundPerson = mandatoryWrapper.withPersonEntityFacade(p -> p.findByLogin("osoba").get());
         foundPerson.setActive(false);
         //foundPerson.setConfirm(true);

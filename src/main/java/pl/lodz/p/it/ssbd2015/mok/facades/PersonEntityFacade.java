@@ -38,7 +38,7 @@ public class PersonEntityFacade implements PersonEntityFacadeLocal {
     }
 
     @Override
-    @RolesAllowed({"ALL_LOGGED"})
+    @PermitAll
     public Optional<PersonEntity> findByLogin(String login) {
         TypedQuery<PersonEntity> personQuery = entityManager.createNamedQuery("findPersonByLogin", PersonEntity.class);
         personQuery.setParameter("login", login);
@@ -60,17 +60,19 @@ public class PersonEntityFacade implements PersonEntityFacadeLocal {
     }
 
     @Override
+    @PermitAll
     public void create(PersonEntity entity) {
         PersonEntityFacadeLocal.super.create(entity);
     }
 
     @Override
-    @RolesAllowed({"ACTIVATE_ACCOUNT_MOK", "LOCK_ACCOUNT_MOK", "ALL_LOGGED"})
+    @RolesAllowed({"CONFIRM_ACCOUNT_MOK", "ACTIVATE_ACCOUNT_MOK", "EDIT_SOMEBODY_ACCOUNT_MOK"})
     public PersonEntity edit(PersonEntity entity) {
         return PersonEntityFacadeLocal.super.edit(entity);
     }
 
     @Override
+    @RolesAllowed("LIST_ACCOUNTS_MOK")
     public Optional<PersonEntity> findById(Long id) {
         return PersonEntityFacadeLocal.super.findById(id);
     }

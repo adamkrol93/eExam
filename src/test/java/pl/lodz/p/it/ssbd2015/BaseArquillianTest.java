@@ -1,5 +1,6 @@
 package pl.lodz.p.it.ssbd2015;
 
+import com.sun.enterprise.security.ee.auth.login.ProgrammaticLogin;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.persistence.CleanupUsingScript;
@@ -7,6 +8,7 @@ import org.jboss.arquillian.persistence.TestExecutionPhase;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.FileAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Before;
 import org.junit.runner.RunWith;
 
 import java.io.File;
@@ -38,7 +40,16 @@ public abstract class BaseArquillianTest {
                 .addAsWebInfResource(new FileAsset(new File("src/main/resources/META-INF/persistence.xml")),
                         "classes/META-INF/persistence.xml")
                 .addAsWebInfResource(new FileAsset(new File("src/main/webapp/WEB-INF/glassfish-ejb-jar.xml")),
-                        "glassfish-ejb-jar.xml");
+                        "glassfish-ejb-jar.xml")
+                .addAsWebInfResource(new FileAsset(new File("src/test/resources/web.xml")),
+                        "web.xml")
+                .addAsWebInfResource(new FileAsset(new File("src/main/webapp/WEB-INF/glassfish-web.xml")),
+                        "glassfish-web.xml");
     }
 
+    @Before
+    public void login() throws Exception {
+        ProgrammaticLogin programmaticLogin = new ProgrammaticLogin();
+        programmaticLogin.login("osoba", "nauczyciel".toCharArray(), "ssbd01testrealm", true);
+    }
 }

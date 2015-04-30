@@ -33,7 +33,7 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
     private PersonEntity personEntity;
 
     @Override
-    // @RolesAllowed("SHOW_SOMEBODY_ACCOUNT_MOK")
+    @RolesAllowed("SHOW_SOMEBODY_ACCOUNT_MOK")
     public PersonEntity getPerson(String login) throws PersonEntityNotFoundException {
         personEntity = personManager.getPerson(login);
         personEntity.getGroupStubs().isEmpty();
@@ -48,8 +48,7 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
     }
 
     @Override
-    @RolesAllowed("ACTIVATE_ACCOUNT_MOK")
-    //@RolesAllowed("ALL_LOGGED")
+    @RolesAllowed("CONFIRM_ACCOUNT_MOK")
     public void confirmPerson() {
         personManager.confirmPerson(this.personEntity);
     }
@@ -61,8 +60,7 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
     }
 
     @Override
-    @RolesAllowed("LOCK_ACCOUNT_MOK")
-    //@RolesAllowed("ALL_LOGGED")
+    @RolesAllowed("ACTIVATE_ACCOUNT_MOK")
     public void togglePersonActivation() {
         personManager.togglePersonActivation(this.personEntity);
     }

@@ -23,7 +23,15 @@
         <group-name>examiner</group-name>
     </security-role-mapping>
     <security-role-mapping>
-        <role-name>ACTIVATE_ACCOUNT_MOK</role-name>
+        <role-name>ALL_LOGGED</role-name>
+        <group-name>administrator</group-name>
+        <group-name>examiner</group-name>
+        <group-name>teacher</group-name>
+        <group-name>student</group-name>
+        <group-name>guardian</group-name>
+    </security-role-mapping>
+    <security-role-mapping>
+        <role-name>CONFIRM_ACCOUNT_MOK</role-name>
         <group-name>administrator</group-name>
     </security-role-mapping>
     <security-role-mapping>
@@ -31,20 +39,12 @@
         <group-name>administrator</group-name>
     </security-role-mapping>
     <security-role-mapping>
-        <role-name>LOCK_ACCOUNT_MOK</role-name>
+        <role-name>ACTIVATE_ACCOUNT_MOK</role-name>
         <group-name>administrator</group-name>
     </security-role-mapping>
     <security-role-mapping>
         <role-name>CHANGE_GROUP_MOK</role-name>
         <group-name>administrator</group-name>
-    </security-role-mapping>
-    <security-role-mapping>
-        <role-name>ALL_LOGGED</role-name>
-        <group-name>administrator</group-name>
-        <group-name>examiner</group-name>
-        <group-name>teacher</group-name>
-        <group-name>student</group-name>
-        <group-name>guardian</group-name>
     </security-role-mapping>
     <security-role-mapping>
         <role-name>LIST_ACCOUNTS_MOK</role-name>
@@ -115,7 +115,7 @@
         <group-name>examiner</group-name>
     </security-role-mapping>
     <security-role-mapping>
-        <role-name>RATE_APPROACH_MOE</role-name>
+        <role-name>MARK_APPROACH_MOE</role-name>
         <group-name>teacher</group-name>
     </security-role-mapping>
     <security-role-mapping>
@@ -152,7 +152,7 @@
         <group-name>guardian</group-name>
     </security-role-mapping>
     <security-role-mapping>
-        <role-name>SHOW_APRROACHES_MRE</role-name>
+        <role-name>SHOW_APPROACHES_MRE</role-name>
         <group-name>student</group-name>
         <group-name>guardian</group-name>
     </security-role-mapping>
