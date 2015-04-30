@@ -63,24 +63,49 @@ public class LoginBean implements Serializable {
         return false;
     }
 
-    public boolean isAdministrator() throws PersonEntityNotFoundException {
-        return peopleService.isAdministrator();
+    public boolean isAdministrator() {
+        try {
+            return peopleService.isAdministrator();
+        } catch (PersonEntityNotFoundException e) {
+            logger.info("No user is logged in.", e);
+            return false;
+        }
     }
 
-    public boolean isStudent() throws PersonEntityNotFoundException {
-        return peopleService.isStudent();
+    public boolean isStudent() {
+        try {
+            return peopleService.isStudent();
+        } catch (PersonEntityNotFoundException e) {
+            logger.info("No user is logged in.", e);
+            return false;
+        }
     }
 
-    public boolean isTeacher() throws PersonEntityNotFoundException {
-        return peopleService.isTeacher();
+    public boolean isTeacher() {
+        try {
+            return peopleService.isTeacher();
+        } catch (PersonEntityNotFoundException e) {
+            logger.info("No user is logged in.", e);
+            return false;
+        }
     }
 
-    public boolean isGuardian() throws PersonEntityNotFoundException {
-        return peopleService.isGuardian();
+    public boolean isGuardian() {
+        try {
+            return peopleService.isGuardian();
+        } catch (PersonEntityNotFoundException e) {
+            logger.info("No user is logged in.", e);
+            return false;
+        }
     }
 
-    public boolean isExaminer() throws PersonEntityNotFoundException {
-        return peopleService.isExaminer();
+    public boolean isExaminer() {
+        try {
+            return peopleService.isExaminer();
+        } catch (PersonEntityNotFoundException e) {
+            logger.info("No user is logged in.", e);
+            return false;
+        }
     }
 
 }

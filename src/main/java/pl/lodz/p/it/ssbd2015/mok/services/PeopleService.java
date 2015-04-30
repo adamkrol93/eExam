@@ -79,27 +79,27 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
 
     @Override
     public boolean isAdministrator() throws PersonEntityNotFoundException {
-        return personManager.hasRole(Groups.ADMIN);
+        return personManager.hasGroup(Groups.ADMIN);
     }
 
     @Override
     public boolean isStudent() throws PersonEntityNotFoundException {
-        return personManager.hasRole(Groups.STUDENT);
+        return personManager.hasGroup(Groups.STUDENT);
     }
 
     @Override
     public boolean isTeacher() throws PersonEntityNotFoundException {
-        return personManager.hasRole(Groups.TEACHER);
+        return personManager.hasGroup(Groups.TEACHER);
     }
 
     @Override
     public boolean isGuardian() throws PersonEntityNotFoundException {
-        return personManager.hasRole(Groups.GUARDIAN);
+        return personManager.hasGroup(Groups.GUARDIAN);
     }
 
     @Override
     public boolean isExaminer() throws PersonEntityNotFoundException {
-        return personManager.hasRole(Groups.EXAMINER);
+        return personManager.hasGroup(Groups.EXAMINER);
     }
 
 }

@@ -13,25 +13,40 @@
                 <p class="navbar-text">Copyright &copy; SSBD01</p>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <h:link outcome="/administrator/index.xhtml"
+                    <li class="#{loginBean.administrator ? '' : 'disabled'}">
+                        <h:link outcome="/administrator/index" rendered="#{loginBean.administrator}"
                                 value="#{i18n['administrator.page.simple_title']}"/>
+                        <h:outputLink value="#" rendered="#{not loginBean.administrator}">
+                           <h:outputText value="#{i18n['administrator.page.simple_title']}"/>
+                        </h:outputLink>
                     </li>
-                    <li>
-                        <h:link outcome="/teacher/index.xhtml"
+                    <li class="#{loginBean.teacher ? '' : 'disabled'}">
+                        <h:link outcome="/teacher/index" rendered="#{loginBean.teacher}"
                                 value="#{i18n['teacher.page.simple_title']}"/>
+                        <h:outputLink value="#" rendered="#{not loginBean.teacher}">
+                            <h:outputText value="#{i18n['teacher.page.simple_title']}"/>
+                        </h:outputLink>
                     </li>
-                    <li>
-                        <h:link outcome="/examiner/index.xhtml"
+                    <li class="#{loginBean.examiner ? '' : 'disabled'}">
+                        <h:link outcome="/examiner/index" rendered="#{loginBean.examiner}"
                                 value="#{i18n['examiner.page.simple_title']}"/>
+                        <h:outputLink value="#" rendered="#{not loginBean.examiner}">
+                            <h:outputText value="#{i18n['examiner.page.simple_title']}"/>
+                        </h:outputLink>
                     </li>
-                    <li>
-                        <h:link outcome="/guardian/index.xhtml"
+                    <li class="#{loginBean.guardian ? '' : 'disabled'}">
+                        <h:link outcome="/guardian/index" rendered="#{loginBean.guardian}"
                                 value="#{i18n['guardian.page.simple_title']}"/>
+                        <h:outputLink value="#" rendered="#{not loginBean.guardian}">
+                            <h:outputText value="#{i18n['guardian.page.simple_title']}"/>
+                        </h:outputLink>
                     </li>
-                    <li>
-                        <h:link outcome="/student/index.xhtml"
+                    <li class="#{loginBean.student ? '' : 'disabled'}">
+                        <h:link outcome="/student/index" rendered="#{loginBean.student}"
                                 value="#{i18n['student.page.simple_title']}"/>
+                        <h:outputLink value="#" rendered="#{not loginBean.student}">
+                            <h:outputText value="#{i18n['student.page.simple_title']}"/>
+                        </h:outputLink>
                     </li>
                 </ul>
             </div>

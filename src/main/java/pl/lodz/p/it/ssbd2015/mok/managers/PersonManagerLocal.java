@@ -69,10 +69,10 @@ public interface PersonManagerLocal {
     void assignAllGroups(PersonEntity person);
 
     /**
-     * Metoda sprawdzająca czy dany użytkownik posiada daną rolę
-     * @param group String grupy który chcemy sprawdzić, musi znajdować się w @Groups
+     * Metoda sprawdzająca czy dany użytkownik posiada daną grupę
+     * @param group String grupy który chcemy sprawdzić, musi znajdować się w Groups
      * @return true - jeżeli użytkownik posiada daną rolę, false - jeżeli użytkownik nie posiada danej roli
      * @throws PersonEntityNotFoundException Jeżeli nie znajdziemy użytkownika o podanym loginie
      */
-    boolean hasRole(String group) throws PersonEntityNotFoundException;
+    boolean hasGroup(String group) throws PersonEntityNotFoundException;
 }

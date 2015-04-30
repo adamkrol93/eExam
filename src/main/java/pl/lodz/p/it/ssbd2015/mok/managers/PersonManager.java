@@ -115,7 +115,7 @@ public class PersonManager implements PersonManagerLocal {
     }
 
     @Override
-    public boolean hasRole(String group) throws PersonEntityNotFoundException {
+    public boolean hasGroup(String group) throws PersonEntityNotFoundException {
         String login = sessionContext.getCallerPrincipal().getName();
 
         PersonEntity personEntity = this.getPerson(login);
