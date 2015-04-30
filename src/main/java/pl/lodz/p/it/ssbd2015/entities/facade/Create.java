@@ -7,6 +7,7 @@ public interface Create<K, E> extends FacadeBase<K, E> {
 
     default void create(E entity) {
         getEntityManager().persist(entity);
+        getEntityManager().flush();
     }
 
 }

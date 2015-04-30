@@ -285,15 +285,6 @@ public abstract class GroupsEntity {
         return "GroupsEntity{" +
                 "id=" + id +
                 ", version=" + version +
-                ", groupActive=" + groupActive +
-                ", dateModification=" + (dateModification != null ? timestampFormat.format(dateModification.getTime()) : "null") +
-                ", personId=" + personId +
-                ", login='" + login + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", personName='" + personName + '\'' +
-                ", email='" + email + '\'' +
-                ", personActive=" + personActive +
-                ", confirm=" + confirm +
                 '}';
     }
 }

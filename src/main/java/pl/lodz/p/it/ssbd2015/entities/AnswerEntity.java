@@ -160,10 +160,6 @@ public class AnswerEntity {
         return "AnswerEntity{" +
                 "id=" + id +
                 ", version=" + version +
-                ", dateModification=" + (dateModification != null ? timestampFormat.format(dateModification.getTime()) : "null") +
-                ", dateAdd=" + (dateAdd != null ? timestampFormat.format(dateAdd.getTime()) : "null") +
-                ", grade=" + grade +
-                ", content='" + content + '\'' +
                 '}';
     }
 }

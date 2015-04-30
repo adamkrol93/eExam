@@ -172,11 +172,6 @@ public class ApproachEntity {
         return "ApproachEntity{" +
                 "id=" + id +
                 ", version=" + version +
-                ", dateModification=" + (dateModification != null ? timestampFormat.format(dateModification.getTime()) : "null") +
-                ", dateAdd=" + (dateAdd != null ? timestampFormat.format(dateAdd.getTime()) : "null") +
-                ", disqualification=" + disqualification +
-                ", dateStart=" + (dateStart != null ? timestampFormat.format(dateStart.getTime()) : "null") +
-                ", dateEnd=" + (dateEnd != null ? timestampFormat.format(dateEnd.getTime()) : "null") +
                 '}';
     }
 }

@@ -93,8 +93,6 @@ public abstract class GroupsStubEntity implements Serializable {
         return "GroupsStubEntity{" +
                 "id=" + id +
                 ", version=" + version +
-                ", active=" + active +
-                ", dateModification=" + (dateModification != null ? timestampFormat.format(dateModification.getTime()) : "null") +
                 '}';
     }
 }

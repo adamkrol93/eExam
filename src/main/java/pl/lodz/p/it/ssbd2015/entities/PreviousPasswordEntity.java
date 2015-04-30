@@ -110,9 +110,6 @@ public class PreviousPasswordEntity {
         return "PreviousPasswordEntity{" +
                 "id=" + id +
                 ", version=" + version +
-                ", dateModification=" + (dateModification != null ? timestampFormat.format(dateModification.getTime()) : "null") +
-                ", dateAdd=" + (dateAdd != null ? timestampFormat.format(dateAdd.getTime()) : "null") +
-                ", password='" + password + '\'' +
                 '}';
     }
 }

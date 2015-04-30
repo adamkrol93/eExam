@@ -136,8 +136,8 @@
                                       styleClass="btn btn-primary navbar-btn"/></li>
                         </ui:fragment>
                         <ui:fragment rendered="#{request.remoteUser != null}">
-                            <h:commandButton action="#{logoutBean.logout()}" value="#{i18n['logout.link']}"
-                                             styleClass="btn btn-danger navbar-btn"/>
+                            <li><h:commandButton action="#{logoutBean.logout()}" value="#{i18n['logout.link']}"
+                                             styleClass="btn btn-primary navbar-btn"/></li>
                         </ui:fragment>
                     </ul>
                 </div>

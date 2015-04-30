@@ -299,16 +299,6 @@ public class ExamEntity {
         return "ExamEntity{" +
                 "id=" + id +
                 ", version=" + version +
-                ", title='" + title + '\'' +
-                ", countTakeExam=" + countTakeExam +
-                ", dateStart=" + (dateStart != null ? timestampFormat.format(dateStart.getTime()) : "null") +
-                ", dateEnd=" + (dateEnd != null ? timestampFormat.format(dateEnd.getTime()) : "null") +
-                ", duration=" + duration +
-                ", countQuestion=" + countQuestion +
-                ", countFinishExam=" + countFinishExam +
-                ", avgResults=" + avgResults +
-                ", dateAdd=" + (dateAdd != null ? timestampFormat.format(dateAdd.getTime()) : "null") +
-                ", dateModification=" + (dateModification != null ? timestampFormat.format(dateModification.getTime()) : "null") +
                 '}';
     }
 }

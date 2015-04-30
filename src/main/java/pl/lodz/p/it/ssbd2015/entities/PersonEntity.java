@@ -287,18 +287,6 @@ public class PersonEntity implements Serializable {
         return "PersonEntity{" +
                 "id=" + id +
                 ", version=" + version +
-                ", login='" + login + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", lastTimeLogin=" + (lastTimeLogin != null ? timestampFormat.format(lastTimeLogin.getTime()) : "null") +
-                ", lastTimeLoginFail=" + (lastTimeLoginFail != null ? timestampFormat.format(lastTimeLoginFail.getTime()) : "null") +
-                ", countLoginFail=" + countLoginFail +
-                ", lastIpLogin='" + lastIpLogin + '\'' +
-                ", active=" + active +
-                ", confirm=" + confirm +
-                ", dateAdd=" + (dateAdd != null ? timestampFormat.format(dateAdd.getTime()) : "null") +
-                ", dateModification=" + (dateModification != null ? timestampFormat.format(dateModification.getTime()) : "null") +
                 '}';
     }
 }
