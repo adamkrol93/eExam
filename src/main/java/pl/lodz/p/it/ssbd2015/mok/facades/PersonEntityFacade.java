@@ -71,7 +71,11 @@ public class PersonEntityFacade implements PersonEntityFacadeLocal {
         } catch (PersistenceException ex) {
             if (ex.getMessage().contains("person_login_key")) {
                 throw new LoginNotUniqueException("Login " + entity.getLogin() + " is not unique.", ex);
-            } else {
+            } else if (ex.getMessage().contains("groups_groups_guardian_fkey")) {
+                throw new GroupsGuardianForeignKeyException("Guardian id is incorrect for entity:" + entity, ex);
+            } else if (ex.getMessage().contains("groups_person_id_fkey")) {
+                throw new GroupsPersonForeignKeyException("PersonEntity id is incorrect for entity" + entity, ex);
+            }else {
                 throw new PersonUnknownException("Persisting " + entity + " violated a database constraint.", ex);
             }
         }
@@ -92,7 +96,11 @@ public class PersonEntityFacade implements PersonEntityFacadeLocal {
         {
             if (ex.getMessage().contains("person_login_key")) {
                 throw new LoginNotUniqueException("Login " + entity.getLogin() + " is not unique.", ex);
-            } else {
+            } else if (ex.getMessage().contains("groups_groups_guardian_fkey")) {
+                throw new GroupsGuardianForeignKeyException("Guardian id is incorrect for entity:" + entity, ex);
+            } else if (ex.getMessage().contains("groups_person_id_fkey")) {
+                throw new GroupsPersonForeignKeyException("PersonEntity id is incorrect for entity" + entity, ex);
+            }else {
                 throw new PersonUnknownException("Persisting " + entity + " violated a database constraint.", ex);
             }
         }
