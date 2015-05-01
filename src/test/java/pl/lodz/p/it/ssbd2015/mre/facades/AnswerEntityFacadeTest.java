@@ -8,6 +8,7 @@ import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.TestUtils;
 import pl.lodz.p.it.ssbd2015.entities.AnswerEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -70,7 +71,13 @@ public class AnswerEntityFacadeTest extends BaseArquillianTest {
         answer.setContent("Dziedziczenie z wykorzystaniem strategii SINGLE nie narusza 3NF.");
         answer.setDateModification(TestUtils.makeCalendar(2015, 4, 7, 16, 30, 17));
 
-        mandatoryWrapper.getAnswerEntityFacadeLocal(a -> a.edit(answer));
+        mandatoryWrapper.getAnswerEntityFacadeLocal(a -> {
+            try {
+                a.edit(answer);
+            } catch (ApplicationBaseException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
 }

@@ -28,7 +28,7 @@ public interface PeopleServiceRemote {
      * @throws MessagingException jeżeli nie powiedzie się wysłanie maila
      * @throws ApplicationBaseException Jeżeli nie zostaną przekazane poprawne dane
      */
-    void register(PersonEntity person) throws MessagingException, ApplicationBaseException;
+    void register(PersonEntity person) throws ApplicationBaseException;
 
     /**
      * Metoda zwraca listę wszystkich uzytkowników w systemie

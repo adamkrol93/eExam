@@ -1,6 +1,7 @@
 package pl.lodz.p.it.ssbd2015.mre.facades;
 
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 
 import javax.ejb.Stateless;
@@ -44,7 +45,7 @@ public class ExamEntityFacade implements ExamEntityFacadeLocal {
     }
 
     @Override
-    public void edit(ExamEntity entity) {
+    public void edit(ExamEntity entity) throws ApplicationBaseException {
         ExamEntityFacadeLocal.super.edit(entity);
     }
 

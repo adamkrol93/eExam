@@ -1,6 +1,7 @@
 package pl.lodz.p.it.ssbd2015.moe.facades;
 
 import pl.lodz.p.it.ssbd2015.entities.AnswerEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 
 import javax.ejb.Stateless;
@@ -34,7 +35,7 @@ public class AnswerEntityFacade implements AnswerEntityFacadeLocal {
     }
 
     @Override
-    public void edit(AnswerEntity entity) {
+    public void edit(AnswerEntity entity) throws ApplicationBaseException {
         AnswerEntityFacadeLocal.super.edit(entity);
     }
 

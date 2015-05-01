@@ -151,7 +151,13 @@ public class ApproachEntityFacadeTest extends BaseArquillianTest {
 
         approach.setDisqualification(true);
 
-        mandatoryWrapper.getApproachEntityFacadeLocal(a -> a.edit(approach));
+        mandatoryWrapper.getApproachEntityFacadeLocal(a -> {
+            try {
+                a.edit(approach);
+            } catch (ApplicationBaseException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
 }

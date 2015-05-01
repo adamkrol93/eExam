@@ -79,8 +79,23 @@ public class PersonEntityFacade implements PersonEntityFacadeLocal {
 
     @Override
     @RolesAllowed({"CONFIRM_ACCOUNT_MOK", "ACTIVATE_ACCOUNT_MOK", "EDIT_SOMEBODY_ACCOUNT_MOK"})
-    public void edit(PersonEntity entity) {
-        PersonEntityFacadeLocal.super.edit(entity);
+    public void edit(PersonEntity entity) throws ApplicationBaseException {
+        try {
+            PersonEntityFacadeLocal.super.edit(entity);
+        }catch (IllegalArgumentException ex)
+        {
+            throw new PersonIllegalArgumentException(entity + " is an illegal argument to Merge.edit(e)", ex);
+        }catch (OptimisticLockException ex)
+        {
+            throw new PersonOptimisticLockException(entity + " is being edit by someone else",ex);
+        }catch (PersistenceException ex)
+        {
+            if (ex.getMessage().contains("person_login_key")) {
+                throw new LoginNotUniqueException("Login " + entity.getLogin() + " is not unique.", ex);
+            } else {
+                throw new PersonUnknownException("Persisting " + entity + " violated a database constraint.", ex);
+            }
+        }
     }
 
     @Override

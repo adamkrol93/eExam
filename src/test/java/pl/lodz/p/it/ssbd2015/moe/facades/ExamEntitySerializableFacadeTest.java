@@ -7,6 +7,7 @@ import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -62,7 +63,13 @@ public class ExamEntitySerializableFacadeTest extends BaseArquillianTest {
 
         examEntity.setDuration(20);
 
-        mandatoryWrapper.getExamEntitySerializableFacadeLocal(e -> e.edit(examEntity));
+        mandatoryWrapper.getExamEntitySerializableFacadeLocal(e -> {
+            try {
+                e.edit(examEntity);
+            } catch (ApplicationBaseException e1) {
+                e1.printStackTrace();
+            }
+        });
     }
 
 }

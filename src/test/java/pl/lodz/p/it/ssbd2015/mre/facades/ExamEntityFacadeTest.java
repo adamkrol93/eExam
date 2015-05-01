@@ -7,6 +7,7 @@ import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -91,7 +92,13 @@ public class ExamEntityFacadeTest extends BaseArquillianTest {
         exam.setTitle("Zmieniony egzamin 3");
         exam.setDuration(90);
 
-        mandatoryWrapper.getExamEntityFacadeLocal(e -> e.edit(exam));
+        mandatoryWrapper.getExamEntityFacadeLocal(e -> {
+            try {
+                e.edit(exam);
+            } catch (ApplicationBaseException e1) {
+                e1.printStackTrace();
+            }
+        });
     }
 
 }

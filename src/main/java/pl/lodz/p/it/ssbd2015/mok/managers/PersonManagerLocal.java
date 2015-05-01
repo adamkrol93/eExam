@@ -18,7 +18,7 @@ public interface PersonManagerLocal {
      * @param oldOne Stara wersj, żeby można było sprawdzić hasło
      * @param newOne Nowa wersja, która przyszła z formularza
      */
-    void editPerson(PersonEntity oldOne, PersonEntity newOne);
+    void editPerson(PersonEntity oldOne, PersonEntity newOne) throws ApplicationBaseException;
 
     /**
      * Metoda pobiera z bazy użytkownika o podanym loginie.
@@ -32,21 +32,21 @@ public interface PersonManagerLocal {
      * Metoda potwierdza przekazanego użytkownika.
      * @param personEntity Uzytkownik, którego chcemy potwierdzić
      */
-    void confirmPerson(PersonEntity personEntity);
+    void confirmPerson(PersonEntity personEntity) throws ApplicationBaseException;
 
     /**
      * Metoda zmienia status aktywacji użytkownika
      * @param personEntity Uzytkownik któreo chcemy zmodyfikować
      */
-    void togglePersonActivation(PersonEntity personEntity);
+    void togglePersonActivation(PersonEntity personEntity) throws ApplicationBaseException;
 
     /**
      * Metoda zmienia stan aktywacji grupy.
      * @param personEntity Użytkownik któremu chcemy zmodyfikować aktualne grupy
      * @param id Identyfikator grupy
-     * @throws MessagingException
+     * @throws ApplicationBaseException
      */
-    void toggleGroupActivation(PersonEntity personEntity, long id) throws MessagingException;
+    void toggleGroupActivation(PersonEntity personEntity, long id) throws ApplicationBaseException;
 
     /**
      * Metoda sprawdza czy użytkownik o podanym loginie już istenieje.
@@ -59,10 +59,9 @@ public interface PersonManagerLocal {
      * Metoda odpowiada za stworzenie nowego uzytkownika. DO metody przekazujemy obiekt z
      * wypełnionymi danymi podstawowymi. Hasło będzie hashowane później.
      * @param newPerson Dane osoby którą chcemy zarejestrować
-     * @throws MessagingException jeżeli nie powiedzie się wysłanie wiadomości
      * @throws ApplicationBaseException Jeżeli dane przekazane do metody są niepoprawne
      */
-    void register(PersonEntity newPerson) throws MessagingException, ApplicationBaseException;
+    void register(PersonEntity newPerson) throws  ApplicationBaseException;
 
     /**
      * Metoda pomocnicza przyspisąjąca wszystkie grupy do uzytkownika

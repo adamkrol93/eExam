@@ -8,6 +8,7 @@ import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.entities.GuardianEntity;
 import pl.lodz.p.it.ssbd2015.entities.StudentEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -77,6 +78,12 @@ public class StudentEntityFacadeTest extends BaseArquillianTest {
 
         studentEntity1.setGuardian(guardianEntity1);
 
-        mandatoryWrapper.getStudentEntityFacadeLocal(s -> s.edit(studentEntity1));
+        mandatoryWrapper.getStudentEntityFacadeLocal(s -> {
+            try {
+                s.edit(studentEntity1);
+            } catch (ApplicationBaseException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }

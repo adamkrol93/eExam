@@ -7,6 +7,7 @@ import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.entities.AnswerEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -61,7 +62,13 @@ public class AnswerEntityFacadeTest extends BaseArquillianTest {
 
         answerEntity.setGrade(2);
 
-        mandatoryWrapper.getAnswerEntityFacade(a -> a.edit(answerEntity));
+        mandatoryWrapper.getAnswerEntityFacade(a -> {
+            try {
+                a.edit(answerEntity);
+            } catch (ApplicationBaseException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
 }

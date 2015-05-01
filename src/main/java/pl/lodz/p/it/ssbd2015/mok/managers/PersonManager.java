@@ -44,7 +44,7 @@ public class PersonManager implements PersonManagerLocal {
 
     @Override
     @RolesAllowed("ALL_LOGGED")
-    public void editPerson(PersonEntity oldOne, PersonEntity newOne) {
+    public void editPerson(PersonEntity oldOne, PersonEntity newOne) throws ApplicationBaseException {
         oldOne.setName(newOne.getName());
         oldOne.setLastName(newOne.getLastName());
         oldOne.setEmail(newOne.getEmail());
@@ -65,27 +65,28 @@ public class PersonManager implements PersonManagerLocal {
 
     @Override
     @RolesAllowed("CONFIRM_ACCOUNT_MOK")
-    public void confirmPerson(PersonEntity personEntity) {
-        personEntityFacade.edit(personEntity);
+    public void confirmPerson(PersonEntity personEntity) throws ApplicationBaseException {
         personEntity.setConfirm(true);
+        personEntityFacade.edit(personEntity);
     }
 
     @Override
     @RolesAllowed("ACTIVATE_ACCOUNT_MOK")
-    public void togglePersonActivation(PersonEntity personEntity) {
+        public void togglePersonActivation(PersonEntity personEntity) throws ApplicationBaseException {
         personEntityFacade.edit(personEntity);
         personEntity.setActive(!personEntity.isActive());
+        personEntityFacade.edit(personEntity);
     }
 
     @Override
     @RolesAllowed("CHANGE_GROUP_MOK")
-    public void toggleGroupActivation(PersonEntity personEntity, long id) throws MessagingException {
+    public void toggleGroupActivation(PersonEntity personEntity, long id) throws ApplicationBaseException {
         boolean found = false;
 
         for (GroupsStubEntity groupsStub : personEntity.getGroupStubs()) {
             if (groupsStub.getId() == id) {
-                groupsStubEntityFacade.edit(groupsStub);
                 groupsStub.setActive(!groupsStub.isActive());
+                groupsStubEntityFacade.edit(groupsStub);
                 found = true;
                 break;
             }
@@ -106,7 +107,7 @@ public class PersonManager implements PersonManagerLocal {
 
     @Override
     @PermitAll
-    public void register(PersonEntity newPerson) throws MessagingException, ApplicationBaseException {
+    public void register(PersonEntity newPerson) throws ApplicationBaseException {
         newPerson.setPassword(PasswordUtils.hashPassword(newPerson.getPassword()));
         newPerson.setActive(true);
         personManager.assignAllGroups(newPerson);

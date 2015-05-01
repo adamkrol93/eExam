@@ -49,19 +49,19 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
 
     @Override
     @RolesAllowed("CONFIRM_ACCOUNT_MOK")
-    public void confirmPerson() {
+    public void confirmPerson() throws ApplicationBaseException {
         personManager.confirmPerson(this.personEntity);
     }
 
     @Override
     @RolesAllowed("CHANGE_GROUP_MOK")
-    public void toggleGroupActivation(long id) throws MessagingException {
+    public void toggleGroupActivation(long id) throws ApplicationBaseException {
         personManager.toggleGroupActivation(this.personEntity, id);
     }
 
     @Override
     @RolesAllowed("ACTIVATE_ACCOUNT_MOK")
-    public void togglePersonActivation() {
+    public void togglePersonActivation() throws ApplicationBaseException {
         personManager.togglePersonActivation(this.personEntity);
     }
 

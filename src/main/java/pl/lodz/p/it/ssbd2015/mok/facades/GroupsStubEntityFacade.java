@@ -1,6 +1,7 @@
 package pl.lodz.p.it.ssbd2015.mok.facades;
 
 import pl.lodz.p.it.ssbd2015.entities.GroupsStubEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 
 import javax.annotation.security.RolesAllowed;
@@ -34,7 +35,7 @@ public class GroupsStubEntityFacade implements GroupsStubEntityFacadeLocal {
 
     @Override
     @RolesAllowed("CHANGE_GROUP_MOK")
-    public void edit(GroupsStubEntity entity) {
+    public void edit(GroupsStubEntity entity) throws ApplicationBaseException {
         GroupsStubEntityFacadeLocal.super.edit(entity);
     }
 }

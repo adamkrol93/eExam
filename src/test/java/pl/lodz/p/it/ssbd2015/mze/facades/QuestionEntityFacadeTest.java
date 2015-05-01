@@ -119,6 +119,12 @@ public class QuestionEntityFacadeTest extends BaseArquillianTest {
         question.setModifier(examiner);
         question.setDateModification(TestUtils.makeCalendar(2015, 4, 8, 23, 0, 1));
 
-        mandatoryWrapper.getQuestionEntityFacadeLocal(q -> q.edit(question));
+        mandatoryWrapper.getQuestionEntityFacadeLocal(q -> {
+            try {
+                q.edit(question);
+            } catch (ApplicationBaseException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }

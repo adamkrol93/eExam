@@ -23,5 +23,5 @@ public interface EditPersonServiceRemote{
      * Funkcja edycji użytkownika. Edytuje dane uzytkownika.
      * @param person dane osobe użytkownika
      */
-    void editPerson(PersonEntity person);
+    void editPerson(PersonEntity person) throws ApplicationBaseException;
 }

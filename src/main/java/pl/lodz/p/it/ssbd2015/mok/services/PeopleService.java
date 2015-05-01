@@ -45,7 +45,7 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
 
     @Override
     @PermitAll
-    public void register(PersonEntity person) throws MessagingException, ApplicationBaseException {
+    public void register(PersonEntity person) throws ApplicationBaseException {
         PersonEntity newPerson = new PersonEntity();
         newPerson.setLogin(person.getLogin());
         newPerson.setEmail(person.getEmail());

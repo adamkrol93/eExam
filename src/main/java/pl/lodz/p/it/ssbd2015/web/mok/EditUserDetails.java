@@ -55,7 +55,7 @@ public class EditUserDetails extends BaseContextBean {
         return person;
     }
 
-    public String editPerson() {
+    public String editPerson() throws ApplicationBaseException {
         editPersonServiceRemote.editPerson(person);
 
         setContext(EditUserDetails.class, bean -> bean.message = "mok.edit.person_changed_message");

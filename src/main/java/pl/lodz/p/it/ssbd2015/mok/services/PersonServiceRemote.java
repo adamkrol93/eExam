@@ -34,18 +34,18 @@ public interface PersonServiceRemote {
     /**
      * Metoda potwierdzająca odnalezionego wcześniej użytkownika.
      */
-    void confirmPerson();
+    void confirmPerson() throws ApplicationBaseException;
 
     /**
      * Funkcja aktywuje bądź deaktywuje grupę wczytanego użytkownika o wskazanym kluczu głównym.
      * @param id Klucz główny grupy do aktywacji/deaktywacji.
-     * @throws MessagingException
+     * @throws ApplicationBaseException
      */
-    void toggleGroupActivation(long id) throws MessagingException;
+    void toggleGroupActivation(long id) throws ApplicationBaseException;
 
     /**
      * Funkcja służy do  blokowania i odblokowywania użytkownika w zależności od bieżącego stanu
      */
-    void togglePersonActivation();
+    void togglePersonActivation() throws ApplicationBaseException;
 
 }

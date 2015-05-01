@@ -47,7 +47,8 @@ public class Register extends BaseContextBean {
         return person;
     }
 
-    public String register() throws MessagingException, ApplicationBaseException {
+    public String register() throws ApplicationBaseException {
+
         peopleService.register(person);
 
         setContext(Register.class, bean -> bean.message = "mok.register.registered_message");

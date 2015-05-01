@@ -101,7 +101,13 @@ public class ExamEntityFacadeTest extends BaseArquillianTest {
         exam.setCreator(examiner);
         exam.setDateAdd(TestUtils.makeCalendar(2015, 4, 8, 22, 0, 1));
 
-        mandatoryWrapper.getExamEntityFacadeLocal(e -> e.edit(exam));
+        mandatoryWrapper.getExamEntityFacadeLocal(e -> {
+            try {
+                e.edit(exam);
+            } catch (ApplicationBaseException e1) {
+                e1.printStackTrace();
+            }
+        });
     }
 
     @Test
@@ -115,6 +121,12 @@ public class ExamEntityFacadeTest extends BaseArquillianTest {
         exam.setDateModification(TestUtils.makeCalendar(2015, 4, 8, 22, 10, 1));
         exam.setModifier(examiner);
 
-        mandatoryWrapper.getExamEntityFacadeLocal(e -> e.edit(exam));
+        mandatoryWrapper.getExamEntityFacadeLocal(e -> {
+            try {
+                e.edit(exam);
+            } catch (ApplicationBaseException e1) {
+                e1.printStackTrace();
+            }
+        });
     }
 }

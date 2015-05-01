@@ -1,6 +1,7 @@
 package pl.lodz.p.it.ssbd2015.moe.facades;
 
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 
 import javax.ejb.Stateless;
@@ -34,7 +35,7 @@ public class ExamEntitySerializableFacade implements ExamEntitySerializableFacad
     }
 
     @Override
-    public void edit(ExamEntity entity) {
+    public void edit(ExamEntity entity) throws ApplicationBaseException {
         ExamEntitySerializableFacadeLocal.super.edit(entity);
     }
 

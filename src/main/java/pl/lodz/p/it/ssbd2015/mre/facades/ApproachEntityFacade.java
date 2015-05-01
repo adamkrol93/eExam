@@ -40,7 +40,7 @@ public class ApproachEntityFacade implements ApproachEntityFacadeLocal {
     }
 
     @Override
-    public void edit(ApproachEntity entity) {
+    public void edit(ApproachEntity entity) throws ApplicationBaseException {
         ApproachEntityFacadeLocal.super.edit(entity);
 
     }

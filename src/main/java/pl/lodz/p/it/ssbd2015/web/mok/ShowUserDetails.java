@@ -70,21 +70,21 @@ public class ShowUserDetails extends BaseContextBean {
         return groupStubs;
     }
 
-    public String confirmUser() {
+    public String confirmUser() throws ApplicationBaseException {
         personService.confirmPerson();
 
         setContext(ShowUserDetails.class, bean -> bean.message = "mok.person.confirm_message");
         return "showUser?faces-redirect=true&includeViewParams=true";
     }
 
-    public String toggleGroupActive() throws MessagingException {
+    public String toggleGroupActive() throws ApplicationBaseException{
         personService.toggleGroupActivation(groupStubs.getRowData().getId());
 
         setContext(ShowUserDetails.class, bean -> bean.message = "mok.person.toggle_group_active_message");
         return "showUser?faces-redirect=true&includeViewParams=true";
     }
 
-    public String togglePersonActive() {
+    public String togglePersonActive() throws ApplicationBaseException {
         personService.togglePersonActivation();
 
         setContext(ShowUserDetails.class, bean -> bean.message = "mok.person.toggle_person_active_message");

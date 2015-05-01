@@ -40,7 +40,7 @@ public class QuestionEntityFacade implements QuestionEntityFacadeLocal {
     }
 
     @Override
-    public void edit(QuestionEntity entity) {
+    public void edit(QuestionEntity entity) throws ApplicationBaseException {
         QuestionEntityFacadeLocal.super.edit(entity);
     }
 

@@ -7,6 +7,7 @@ import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.entities.ApproachEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -61,6 +62,13 @@ public class ApproachEntityFacadeTest extends BaseArquillianTest {
 
         approachEntity.setDisqualification(true);
 
-        mandatoryWrapper.getApproachEntityFacade(a -> a.edit(approachEntity));
+        mandatoryWrapper.getApproachEntityFacade(a -> {
+            try {
+                a.edit(approachEntity);
+            } catch (ApplicationBaseException e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 }

@@ -37,7 +37,7 @@ public class EditPersonService extends BaseStatefulService implements EditPerson
 
     @Override
     @RolesAllowed("EDIT_SOMEBODY_ACCOUNT_MOK")
-    public void editPerson(PersonEntity person) {
+    public void editPerson(PersonEntity person) throws ApplicationBaseException {
        personManager.editPerson(this.personEntity,person);
     }
 

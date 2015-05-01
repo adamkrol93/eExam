@@ -127,7 +127,13 @@ public class PersonEntityFacadeTest extends BaseArquillianTest {
 
         foundPerson.setConfirm(true);
 
-        mandatoryWrapper.getPersonEntityFacade(p -> p.edit(foundPerson));
+        mandatoryWrapper.getPersonEntityFacade(p -> {
+            try {
+                p.edit(foundPerson);
+            } catch (ApplicationBaseException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     //MOK.3 Edytuj dane personalne i hasło
@@ -141,7 +147,13 @@ public class PersonEntityFacadeTest extends BaseArquillianTest {
         foundPerson.setEmail(email);
         foundPerson.setPassword("9743a66f914cc249efca164485a19c5c");
         //foundPerson.setConfirm(true);
-        mandatoryWrapper.getPersonEntityFacade(p -> p.edit(foundPerson));
+        mandatoryWrapper.getPersonEntityFacade(p -> {
+            try {
+                p.edit(foundPerson);
+            } catch (ApplicationBaseException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     //MOK.4 Zablokuj/Odblokuj konto
@@ -152,6 +164,12 @@ public class PersonEntityFacadeTest extends BaseArquillianTest {
         PersonEntity foundPerson = mandatoryWrapper.withPersonEntityFacade(p -> p.findByLogin("osoba").get());
         foundPerson.setActive(false);
         //foundPerson.setConfirm(true);
-        mandatoryWrapper.getPersonEntityFacade(p -> p.edit(foundPerson));
+        mandatoryWrapper.getPersonEntityFacade(p -> {
+            try {
+                p.edit(foundPerson);
+            } catch (ApplicationBaseException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }
