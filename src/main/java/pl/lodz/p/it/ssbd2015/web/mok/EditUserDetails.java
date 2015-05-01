@@ -1,7 +1,7 @@
 package pl.lodz.p.it.ssbd2015.web.mok;
 
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mok.services.EditPersonServiceRemote;
 import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
 
@@ -32,7 +32,7 @@ public class EditUserDetails extends BaseContextBean {
     protected void doInContext() {
         try {
             person = editPersonServiceRemote.findPersonForEdit(login);
-        } catch (PersonEntityNotFoundException ex) {
+        } catch (ApplicationBaseException ex) {
             logger.error("Encountered exception while initializing the bean.", ex);
         }
 
@@ -43,7 +43,7 @@ public class EditUserDetails extends BaseContextBean {
         return login;
     }
 
-    public void setLogin(String login) throws PersonEntityNotFoundException {
+    public void setLogin(String login) throws ApplicationBaseException {
         this.login = login;
     }
 

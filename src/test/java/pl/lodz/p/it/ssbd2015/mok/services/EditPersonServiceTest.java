@@ -7,7 +7,7 @@ import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 
 import javax.ejb.EJB;
 
@@ -32,7 +32,7 @@ public class EditPersonServiceTest extends BaseArquillianTest {
         assertThat("Person with login = " + login + " can be found.", found.getLogin(), is(login));
     }
 
-    @Test(expected = PersonEntityNotFoundException.class)
+    @Test(expected = ApplicationBaseException.class)
     public void shouldThrowExceptionWhenThePersonDoesntExists() throws Exception {
         String login = "niemamnie";
 

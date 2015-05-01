@@ -3,7 +3,7 @@ package pl.lodz.p.it.ssbd2015.web.mok;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mok.services.PersonServiceRemote;
 
 import javax.annotation.PostConstruct;
@@ -33,7 +33,7 @@ public class ShowLoggedUserDetails implements Serializable {
     private void initializeModel() {
         try {
             this.person = personService.getLoggedPerson();
-        } catch (PersonEntityNotFoundException ex) {
+        } catch (ApplicationBaseException ex) {
             logger.error("Encountered exception while initializing the bean.", ex);
         }
     }

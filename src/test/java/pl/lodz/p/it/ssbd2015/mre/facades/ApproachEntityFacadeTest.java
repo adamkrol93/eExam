@@ -8,6 +8,8 @@ import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.TestUtils;
 import pl.lodz.p.it.ssbd2015.entities.*;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.UserManagementException;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -100,7 +102,13 @@ public class ApproachEntityFacadeTest extends BaseArquillianTest {
         approach.setEntrant(student);
         approach.setDateAdd(TestUtils.makeCalendar(2015, 4, 8, 22, 0, 1));
 
-        mandatoryWrapper.getApproachEntityFacadeLocal(a -> a.create(approach));
+        mandatoryWrapper.getApproachEntityFacadeLocal(a -> {
+            try {
+                a.create(approach);
+            } catch (ApplicationBaseException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Test
@@ -127,7 +135,13 @@ public class ApproachEntityFacadeTest extends BaseArquillianTest {
             approach.getAnswers().add(answer);
         }
 
-        mandatoryWrapper.getApproachEntityFacadeLocal(a -> a.create(approach));
+        mandatoryWrapper.getApproachEntityFacadeLocal(a -> {
+            try {
+                a.create(approach);
+            } catch (ApplicationBaseException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Test

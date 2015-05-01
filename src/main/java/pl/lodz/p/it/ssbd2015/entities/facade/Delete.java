@@ -11,6 +11,7 @@ public interface Delete<K, E> extends FacadeBase<K, E> {
         EntityManager entityManager = getEntityManager();
         E entity = entityManager.find(getEntityClass(), id);
         entityManager.remove(entity);
+        entityManager.flush();
     }
 
 }

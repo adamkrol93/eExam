@@ -5,8 +5,9 @@ package pl.lodz.p.it.ssbd2015.entities.facade;
  */
 public interface Merge<K, E> extends FacadeBase<K, E> {
 
-    default E edit(E entity) {
-        return getEntityManager().merge(entity);
+    default void edit(E entity) {
+        getEntityManager().merge(entity);
+        getEntityManager().flush();
     }
 
 }

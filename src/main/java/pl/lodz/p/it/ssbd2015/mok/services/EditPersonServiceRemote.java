@@ -1,7 +1,7 @@
 package pl.lodz.p.it.ssbd2015.mok.services;
 
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 
 import javax.ejb.Remote;
 
@@ -17,7 +17,7 @@ public interface EditPersonServiceRemote{
      * @param login login użytkownika po którym będzie wyszukany
      * @return PersonEntity zwrócony zostaje użytkownik wyszukany w bazie danych. Nie może być nullem.
      */
-    PersonEntity findPersonForEdit(String login) throws PersonEntityNotFoundException;
+    PersonEntity findPersonForEdit(String login) throws ApplicationBaseException;
 
     /**
      * Funkcja edycji użytkownika. Edytuje dane uzytkownika.

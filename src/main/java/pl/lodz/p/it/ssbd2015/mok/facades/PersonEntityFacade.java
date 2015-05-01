@@ -1,7 +1,9 @@
 package pl.lodz.p.it.ssbd2015.mok.facades;
 
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.UserManagementException;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
@@ -9,15 +11,14 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.jws.soap.SOAPBinding;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Optional;
 
 /**
- * Created by Marcin on 2015-04-08.
+ * @author Marcin Kabza
+ * @author Adam Król
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacade")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
@@ -61,14 +62,33 @@ public class PersonEntityFacade implements PersonEntityFacadeLocal {
 
     @Override
     @PermitAll
-    public void create(PersonEntity entity) {
-        PersonEntityFacadeLocal.super.create(entity);
+    public void create(PersonEntity entity) throws ApplicationBaseException {
+        try {
+            PersonEntityFacadeLocal.super.create(entity);
+        }catch (IllegalArgumentException ex)
+        {
+            throw new UserManagementException(UserManagementException.ILLEGAL_ARGUMENT);
+        }catch (EntityExistsException ex)
+        {
+            throw new UserManagementException(UserManagementException.PERSON_EXISTS);
+        }catch (TransactionRequiredException ex)
+        {
+            throw new UserManagementException(UserManagementException.TRANSACTION_NOT_EXISTS);
+        }catch (PersistenceException ex)
+        {
+            if(ex.getMessage().contains("person_login_key"))
+            {
+                throw new UserManagementException(UserManagementException.LOGIN_IS_NOT_UNIQUE);
+            }else{
+                throw new UserManagementException(UserManagementException.UNKNOWN);
+            }
+        }
     }
 
     @Override
     @RolesAllowed({"CONFIRM_ACCOUNT_MOK", "ACTIVATE_ACCOUNT_MOK", "EDIT_SOMEBODY_ACCOUNT_MOK"})
-    public PersonEntity edit(PersonEntity entity) {
-        return PersonEntityFacadeLocal.super.edit(entity);
+    public void edit(PersonEntity entity) {
+        PersonEntityFacadeLocal.super.edit(entity);
     }
 
     @Override

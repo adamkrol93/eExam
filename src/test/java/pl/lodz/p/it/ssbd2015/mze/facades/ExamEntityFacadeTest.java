@@ -9,6 +9,8 @@ import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.TestUtils;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.ExaminerEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.UserManagementException;
 
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
@@ -79,7 +81,7 @@ public class ExamEntityFacadeTest extends BaseArquillianTest {
     }
 
     @Test(expected = EJBException.class)
-    public void shouldThrowExceptionBeacuseOfCreatingExamWithNullCreator() {
+    public void shouldThrowExceptionBeacuseOfCreatingExamWithNullCreator() throws ApplicationBaseException {
         ExamEntity exam = TestUtils.makeValidExam(null);
         examEntityFacade.create(exam);
     }

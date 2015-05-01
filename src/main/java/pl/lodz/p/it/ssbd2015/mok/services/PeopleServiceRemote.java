@@ -1,7 +1,8 @@
 package pl.lodz.p.it.ssbd2015.mok.services;
 
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.UserManagementException;
 
 import javax.ejb.Remote;
 import javax.mail.MessagingException;
@@ -26,8 +27,9 @@ public interface PeopleServiceRemote {
      * Metoda rejestrująca użytkownika
      * @param person encja reprezentująca dane użytkownika
      * @throws MessagingException jeżeli nie powiedzie się wysłanie maila
+     * @throws ApplicationBaseException Jeżeli nie zostaną przekazane poprawne dane
      */
-    void register(PersonEntity person) throws MessagingException;
+    void register(PersonEntity person) throws MessagingException, ApplicationBaseException;
 
     /**
      * Metoda zwraca listę wszystkich uzytkowników w systemie
@@ -40,9 +42,9 @@ public interface PeopleServiceRemote {
      * @param login login użytkownika
      * @param ipAddress adres IP
      * @param time czas logowania
-     * @throws PersonEntityNotFoundException Rzucany, gdy użytkownik o danym loginie nie zostanie odnaleziony.
+     * @throws ApplicationBaseException Rzucany, gdy użytkownik o danym loginie nie zostanie odnaleziony.
      */
-    void correctLogin(String login, String ipAddress, Calendar time) throws PersonEntityNotFoundException;
+    void correctLogin(String login, String ipAddress, Calendar time) throws ApplicationBaseException;
 
     /**
      * Metoda zwraca istę użytkowników w którzych imieniu, nazwisku, mailu lub loginie występuje podana fraza.
@@ -53,35 +55,35 @@ public interface PeopleServiceRemote {
     /**
      * Metoda sprawdza czy zalogowana osoba jest Adminstratorem.
      * @return true - jeżeli jest administratorem, false - jeżeli nie jest administratorem
-     * @throws PersonEntityNotFoundException jeżeli nie znajdzie zalogowanego użytkownika
+     * @throws ApplicationBaseException jeżeli nie znajdzie zalogowanego użytkownika
      */
-    boolean isAdministrator() throws PersonEntityNotFoundException;
+    boolean isAdministrator() throws ApplicationBaseException;
 
     /**
      * Metoda sprawdza czy zalogowana osoba jest Studentem.
      * @return true - jeżeli jest studentem, false - jeżeli nie jest studentem
-     * @throws PersonEntityNotFoundException jeżeli nie znajdzie zalogowanego użytkownika
+     * @throws ApplicationBaseException jeżeli nie znajdzie zalogowanego użytkownika
      */
-    boolean isStudent() throws PersonEntityNotFoundException;
+    boolean isStudent() throws ApplicationBaseException;
 
     /**
      * Metoda sprawdza czy zalogowana osoba jest Nauczycielem (Teacher).
      * @return true - jeżeli jest nauczycielem, false - jeżeli nie jest nauczycielem
-     * @throws PersonEntityNotFoundException jeżeli nie znajdzie zalogowanego użytkownika
+     * @throws ApplicationBaseException jeżeli nie znajdzie zalogowanego użytkownika
      */
-    boolean isTeacher() throws PersonEntityNotFoundException;
+    boolean isTeacher() throws ApplicationBaseException;
 
     /**
      * Metoda sprawdza czy zalogowana osoba jest Opiekunem(Guardianem).
      * @return true - jeżeli jest opiekunem, false - jeżeli nie jest opiekunem
-     * @throws PersonEntityNotFoundException jeżeli nie znajdzie zalogowanego użytkownika
+     * @throws ApplicationBaseException jeżeli nie znajdzie zalogowanego użytkownika
      */
-    boolean isGuardian() throws PersonEntityNotFoundException;
+    boolean isGuardian() throws ApplicationBaseException;
 
     /**
      * Metoda sprawdza czy zalogowana osoba jest Egzaminatorem(Examiner).
      * @return true - jeżeli jest egzaminatorem, false - jeżeli nie jest egzaminatorem
-     * @throws PersonEntityNotFoundException jeżeli nie znajdzie zalogowanego użytkownika
+     * @throws ApplicationBaseException jeżeli nie znajdzie zalogowanego użytkownika
      */
-    boolean isExaminer() throws PersonEntityNotFoundException;
+    boolean isExaminer() throws ApplicationBaseException;
 }

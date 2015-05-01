@@ -44,8 +44,8 @@ public class ExamEntityFacade implements ExamEntityFacadeLocal {
     }
 
     @Override
-    public ExamEntity edit(ExamEntity entity) {
-        return ExamEntityFacadeLocal.super.edit(entity);
+    public void edit(ExamEntity entity) {
+        ExamEntityFacadeLocal.super.edit(entity);
     }
 
     @Override

@@ -34,8 +34,8 @@ public class ExamEntitySerializableFacade implements ExamEntitySerializableFacad
     }
 
     @Override
-    public ExamEntity edit(ExamEntity entity) {
-        return ExamEntitySerializableFacadeLocal.super.edit(entity);
+    public void edit(ExamEntity entity) {
+        ExamEntitySerializableFacadeLocal.super.edit(entity);
     }
 
     @Override

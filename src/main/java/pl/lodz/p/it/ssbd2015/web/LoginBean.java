@@ -2,10 +2,10 @@ package pl.lodz.p.it.ssbd2015.web;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
+import pl.lodz.p.it.ssbd2015.entities.PersonEntity;;
 import pl.lodz.p.it.ssbd2015.mok.services.PeopleServiceRemote;
 import pl.lodz.p.it.ssbd2015.mok.services.PersonServiceRemote;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -39,9 +39,9 @@ public class LoginBean implements Serializable {
      * Metoda zapisujaca czas, ip oraz login do bazy zaraz po zalogowaniu się użytkownika
      *
      * @return metoda zwraca wartość true gdy użytkownik zalogował się poprawnie do systemu
-     * @throws PersonEntityNotFoundException
+     * @throws ApplicationBaseException
      */
-    public boolean isPersonLogged() throws PersonEntityNotFoundException {
+    public boolean isPersonLogged() throws ApplicationBaseException {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 
@@ -65,7 +65,7 @@ public class LoginBean implements Serializable {
     public boolean isAdministrator() {
         try {
             return peopleService.isAdministrator();
-        } catch (PersonEntityNotFoundException e) {
+        } catch (ApplicationBaseException e) {
             logger.info("No user is logged in.", e);
             return false;
         }
@@ -74,7 +74,7 @@ public class LoginBean implements Serializable {
     public boolean isStudent() {
         try {
             return peopleService.isStudent();
-        } catch (PersonEntityNotFoundException e) {
+        } catch (ApplicationBaseException e) {
             logger.info("No user is logged in.", e);
             return false;
         }
@@ -83,7 +83,7 @@ public class LoginBean implements Serializable {
     public boolean isTeacher() {
         try {
             return peopleService.isTeacher();
-        } catch (PersonEntityNotFoundException e) {
+        } catch (ApplicationBaseException e) {
             logger.info("No user is logged in.", e);
             return false;
         }
@@ -92,7 +92,7 @@ public class LoginBean implements Serializable {
     public boolean isGuardian() {
         try {
             return peopleService.isGuardian();
-        } catch (PersonEntityNotFoundException e) {
+        } catch (ApplicationBaseException e) {
             logger.info("No user is logged in.", e);
             return false;
         }
@@ -101,7 +101,7 @@ public class LoginBean implements Serializable {
     public boolean isExaminer() {
         try {
             return peopleService.isExaminer();
-        } catch (PersonEntityNotFoundException e) {
+        } catch (ApplicationBaseException e) {
             logger.info("No user is logged in.", e);
             return false;
         }

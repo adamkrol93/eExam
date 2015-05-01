@@ -3,7 +3,7 @@ package pl.lodz.p.it.ssbd2015.mok.services;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mok.managers.PersonManagerLocal;
 
 import javax.annotation.Resource;
@@ -34,7 +34,7 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
 
     @Override
     @RolesAllowed("SHOW_SOMEBODY_ACCOUNT_MOK")
-    public PersonEntity getPerson(String login) throws PersonEntityNotFoundException {
+    public PersonEntity getPerson(String login) throws ApplicationBaseException {
         personEntity = personManager.getPerson(login);
         personEntity.getGroupStubs().isEmpty();
         return personEntity;
@@ -42,7 +42,7 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
 
     @Override
     @RolesAllowed("ALL_LOGGED")
-    public PersonEntity getLoggedPerson() throws PersonEntityNotFoundException {
+    public PersonEntity getLoggedPerson() throws ApplicationBaseException {
         String login = sessionContext.getCallerPrincipal().getName();
         return personManager.getPerson(login);
     }

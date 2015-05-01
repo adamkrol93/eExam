@@ -1,7 +1,8 @@
 package pl.lodz.p.it.ssbd2015.mok.managers;
 
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.UserManagementException;
 
 import javax.ejb.Local;
 import javax.mail.MessagingException;
@@ -23,9 +24,10 @@ public interface PersonManagerLocal {
     /**
      * Metoda pobiera z bazy użytkownika o podanym loginie.
      * @param login Login użytkownika którego szukamy
+     * @throws ApplicationBaseException Jeżeli nie znajdzie uzytkownika o podanym loginie
      * @return PesonEntity jeżeli została znaleziona
      */
-    PersonEntity getPerson(String login) throws PersonEntityNotFoundException;
+    PersonEntity getPerson(String login) throws ApplicationBaseException;
 
     /**
      * Metoda potwierdza przekazanego użytkownika.
@@ -59,8 +61,9 @@ public interface PersonManagerLocal {
      * wypełnionymi danymi podstawowymi. Hasło będzie hashowane później.
      * @param newPerson Dane osoby którą chcemy zarejestrować
      * @throws MessagingException jeżeli nie powiedzie się wysłanie wiadomości
+     * @throws ApplicationBaseException Jeżeli dane przekazane do metody są niepoprawne
      */
-    void register(PersonEntity newPerson) throws MessagingException;
+    void register(PersonEntity newPerson) throws MessagingException, ApplicationBaseException;
 
     /**
      * Metoda pomocnicza przyspisąjąca wszystkie grupy do uzytkownika
@@ -72,7 +75,7 @@ public interface PersonManagerLocal {
      * Metoda sprawdzająca czy dany użytkownik posiada daną grupę
      * @param group String grupy który chcemy sprawdzić, musi znajdować się w Groups
      * @return true - jeżeli użytkownik posiada daną rolę, false - jeżeli użytkownik nie posiada danej roli
-     * @throws PersonEntityNotFoundException Jeżeli nie znajdziemy użytkownika o podanym loginie
+     * @throws ApplicationBaseException Jeżeli nie znajdziemy użytkownika o podanym loginie
      */
-    boolean hasGroup(String group) throws PersonEntityNotFoundException;
+    boolean hasGroup(String group) throws ApplicationBaseException;
 }

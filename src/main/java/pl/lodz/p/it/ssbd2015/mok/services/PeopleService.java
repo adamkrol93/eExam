@@ -4,7 +4,8 @@ import pl.lodz.p.it.ssbd2015.entities.Groups;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.UserManagementException;
 import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.managers.PersonManagerLocal;
 
@@ -45,7 +46,7 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
 
     @Override
     @PermitAll
-    public void register(PersonEntity person) throws MessagingException {
+    public void register(PersonEntity person) throws MessagingException, ApplicationBaseException {
         PersonEntity newPerson = new PersonEntity();
         newPerson.setLogin(person.getLogin());
         newPerson.setEmail(person.getEmail());
@@ -62,7 +63,7 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
     }
 
     @Override
-    public void correctLogin(String login, String ipAddress, Calendar time) throws PersonEntityNotFoundException {
+    public void correctLogin(String login, String ipAddress, Calendar time) throws ApplicationBaseException {
         PersonEntity personEntity;
 
         personEntity = personManager.getPerson(login);
@@ -78,27 +79,27 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
     }
 
     @Override
-    public boolean isAdministrator() throws PersonEntityNotFoundException {
+    public boolean isAdministrator() throws ApplicationBaseException {
         return personManager.hasGroup(Groups.ADMIN);
     }
 
     @Override
-    public boolean isStudent() throws PersonEntityNotFoundException {
+    public boolean isStudent() throws ApplicationBaseException {
         return personManager.hasGroup(Groups.STUDENT);
     }
 
     @Override
-    public boolean isTeacher() throws PersonEntityNotFoundException {
+    public boolean isTeacher() throws ApplicationBaseException {
         return personManager.hasGroup(Groups.TEACHER);
     }
 
     @Override
-    public boolean isGuardian() throws PersonEntityNotFoundException {
+    public boolean isGuardian() throws ApplicationBaseException {
         return personManager.hasGroup(Groups.GUARDIAN);
     }
 
     @Override
-    public boolean isExaminer() throws PersonEntityNotFoundException {
+    public boolean isExaminer() throws ApplicationBaseException {
         return personManager.hasGroup(Groups.EXAMINER);
     }
 

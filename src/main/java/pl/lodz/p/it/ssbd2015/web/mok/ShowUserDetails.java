@@ -3,7 +3,7 @@ package pl.lodz.p.it.ssbd2015.web.mok;
 
 import pl.lodz.p.it.ssbd2015.entities.GroupsStubEntity;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mok.services.PersonServiceRemote;
 import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
 
@@ -40,7 +40,7 @@ public class ShowUserDetails extends BaseContextBean {
     protected void doInContext() {
         try {
             person = personService.getPerson(login);
-        } catch (PersonEntityNotFoundException ex) {
+        } catch (ApplicationBaseException ex) {
             logger.error("Encountered exception while initializing the bean.", ex);
         }
 

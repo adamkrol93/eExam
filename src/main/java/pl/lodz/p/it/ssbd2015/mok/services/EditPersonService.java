@@ -1,9 +1,9 @@
 package pl.lodz.p.it.ssbd2015.mok.services;
 
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
 import pl.lodz.p.it.ssbd2015.mok.managers.PersonManagerLocal;
 
 import javax.annotation.security.RolesAllowed;
@@ -30,7 +30,7 @@ public class EditPersonService extends BaseStatefulService implements EditPerson
 
     @Override
     @RolesAllowed("EDIT_SOMEBODY_ACCOUNT_MOK")
-    public PersonEntity findPersonForEdit(String login) throws PersonEntityNotFoundException {
+    public PersonEntity findPersonForEdit(String login) throws ApplicationBaseException {
         personEntity = personManager.getPerson(login);
         return personEntity;
     }

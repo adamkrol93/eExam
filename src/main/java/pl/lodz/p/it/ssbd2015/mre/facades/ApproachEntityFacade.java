@@ -1,7 +1,9 @@
 package pl.lodz.p.it.ssbd2015.mre.facades;
 
 import pl.lodz.p.it.ssbd2015.entities.ApproachEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.UserManagementException;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -34,13 +36,13 @@ public class ApproachEntityFacade implements ApproachEntityFacadeLocal {
     }
 
     @Override
-    public void create(ApproachEntity entity) {
+    public void create(ApproachEntity entity) throws ApplicationBaseException {
         ApproachEntityFacadeLocal.super.create(entity);
     }
 
     @Override
-    public ApproachEntity edit(ApproachEntity entity) {
-        return ApproachEntityFacadeLocal.super.edit(entity);
+    public void edit(ApproachEntity entity) {
+        ApproachEntityFacadeLocal.super.edit(entity);
 
     }
 

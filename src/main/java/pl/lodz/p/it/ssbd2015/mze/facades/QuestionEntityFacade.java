@@ -1,7 +1,9 @@
 package pl.lodz.p.it.ssbd2015.mze.facades;
 
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.UserManagementException;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -34,13 +36,13 @@ public class QuestionEntityFacade implements QuestionEntityFacadeLocal {
     }
 
     @Override
-    public void create(QuestionEntity entity) {
+    public void create(QuestionEntity entity) throws ApplicationBaseException {
         QuestionEntityFacadeLocal.super.create(entity);
     }
 
     @Override
-    public QuestionEntity edit(QuestionEntity entity) {
-        return QuestionEntityFacadeLocal.super.edit(entity);
+    public void edit(QuestionEntity entity) {
+        QuestionEntityFacadeLocal.super.edit(entity);
     }
 
     @Override

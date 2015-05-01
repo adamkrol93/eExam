@@ -9,7 +9,7 @@ import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.entities.Groups;
 import pl.lodz.p.it.ssbd2015.entities.GroupsStubEntity;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 
 import javax.ejb.EJB;
 
@@ -45,7 +45,7 @@ public class PersonServiceTest extends BaseArquillianTest {
         assertThat("Person is unconfirmed.", !found.isConfirm());
     }
 
-    @Test(expected = PersonEntityNotFoundException.class)
+    @Test(expected = ApplicationBaseException.class)
     public void shouldThrowExceptionWhenThePersonDoesntExists() throws Exception {
         String login = "niemamnie";
 

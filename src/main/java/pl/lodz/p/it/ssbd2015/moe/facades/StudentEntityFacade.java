@@ -34,8 +34,8 @@ public class StudentEntityFacade implements StudentEntityFacadeLocal {
     }
 
     @Override
-    public StudentEntity edit(StudentEntity entity) {
-        return StudentEntityFacadeLocal.super.edit(entity);
+    public void edit(StudentEntity entity) {
+        StudentEntityFacadeLocal.super.edit(entity);
     }
 
     @Override

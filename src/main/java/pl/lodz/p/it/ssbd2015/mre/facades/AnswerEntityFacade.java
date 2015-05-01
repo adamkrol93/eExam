@@ -34,8 +34,8 @@ public class AnswerEntityFacade implements AnswerEntityFacadeLocal {
     }
 
     @Override
-    public AnswerEntity edit(AnswerEntity entity) {
-        return AnswerEntityFacadeLocal.super.edit(entity);
+    public void edit(AnswerEntity entity) {
+        AnswerEntityFacadeLocal.super.edit(entity);
     }
 
     @Override

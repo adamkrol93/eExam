@@ -9,6 +9,8 @@ import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.TestUtils;
 import pl.lodz.p.it.ssbd2015.entities.ExaminerEntity;
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.UserManagementException;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -98,7 +100,13 @@ public class QuestionEntityFacadeTest extends BaseArquillianTest {
         question.setCreator(examiner);
         question.setDateAdd(TestUtils.makeCalendar(2015, 4, 8, 22, 0, 1));
 
-        mandatoryWrapper.getQuestionEntityFacadeLocal(q -> q.create(question));
+        mandatoryWrapper.getQuestionEntityFacadeLocal(q -> {
+            try {
+                q.create(question);
+            } catch (ApplicationBaseException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Test

@@ -34,8 +34,8 @@ public class ApproachEntityFacade implements ApproachEntityFacadeLocal {
     }
 
     @Override
-    public ApproachEntity edit(ApproachEntity entity) {
-        return ApproachEntityFacadeLocal.super.edit(entity);
+    public void edit(ApproachEntity entity) {
+        ApproachEntityFacadeLocal.super.edit(entity);
     }
 
     @Override

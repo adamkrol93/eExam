@@ -1,8 +1,9 @@
 package pl.lodz.p.it.ssbd2015.mok.managers;
 
 import pl.lodz.p.it.ssbd2015.entities.*;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonEntityNotFoundException;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.UserManagementException;
 import pl.lodz.p.it.ssbd2015.mok.facades.GroupsStubEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.utils.PasswordUtils;
@@ -44,7 +45,7 @@ public class PersonManager implements PersonManagerLocal {
     @Override
     @RolesAllowed("ALL_LOGGED")
     public void editPerson(PersonEntity oldOne, PersonEntity newOne) {
-        oldOne = personEntityFacade.edit(oldOne);
+        personEntityFacade.edit(oldOne);
         oldOne.setName(newOne.getName());
         oldOne.setLastName(newOne.getLastName());
         oldOne.setEmail(newOne.getEmail());
@@ -56,23 +57,23 @@ public class PersonManager implements PersonManagerLocal {
 
     @Override
     @PermitAll
-    public PersonEntity getPerson(String login) throws PersonEntityNotFoundException {
+    public PersonEntity getPerson(String login) throws ApplicationBaseException {
         PersonEntity personEntity = personEntityFacade.findByLogin(login)
-                .orElseThrow(() -> new PersonEntityNotFoundException("exception.user_not_found"));
+                .orElseThrow(() -> new UserManagementException(UserManagementException.PERSON_NOT_FOUND));
         return personEntity;
     }
 
     @Override
     @RolesAllowed("CONFIRM_ACCOUNT_MOK")
     public void confirmPerson(PersonEntity personEntity) {
-        personEntity = personEntityFacade.edit(personEntity);
+        personEntityFacade.edit(personEntity);
         personEntity.setConfirm(true);
     }
 
     @Override
     @RolesAllowed("ACTIVATE_ACCOUNT_MOK")
     public void togglePersonActivation(PersonEntity personEntity) {
-        personEntity = personEntityFacade.edit(personEntity);
+        personEntityFacade.edit(personEntity);
         personEntity.setActive(!personEntity.isActive());
     }
 
@@ -83,7 +84,7 @@ public class PersonManager implements PersonManagerLocal {
 
         for (GroupsStubEntity groupsStub : personEntity.getGroupStubs()) {
             if (groupsStub.getId() == id) {
-                groupsStub = groupsStubEntityFacade.edit(groupsStub);
+                groupsStubEntityFacade.edit(groupsStub);
                 groupsStub.setActive(!groupsStub.isActive());
                 found = true;
                 break;
@@ -105,7 +106,7 @@ public class PersonManager implements PersonManagerLocal {
 
     @Override
     @PermitAll
-    public void register(PersonEntity newPerson) throws MessagingException {
+    public void register(PersonEntity newPerson) throws MessagingException, ApplicationBaseException {
         newPerson.setPassword(PasswordUtils.hashPassword(newPerson.getPassword()));
         newPerson.setActive(true);
         personManager.assignAllGroups(newPerson);
@@ -125,7 +126,7 @@ public class PersonManager implements PersonManagerLocal {
     }
 
     @Override
-    public boolean hasGroup(String group) throws PersonEntityNotFoundException {
+    public boolean hasGroup(String group) throws ApplicationBaseException {
         String login = sessionContext.getCallerPrincipal().getName();
 
         PersonEntity personEntity = this.getPerson(login);

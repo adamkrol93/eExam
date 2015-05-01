@@ -10,6 +10,8 @@ import pl.lodz.p.it.ssbd2015.TestUtils;
 import pl.lodz.p.it.ssbd2015.entities.GroupsStubEntity;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.entities.PreviousPasswordEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.UserManagementException;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -108,7 +110,13 @@ public class PersonEntityFacadeTest extends BaseArquillianTest {
         person.setPreviousPasswords(previousPasswords);
         person.setGroupStubs(groupStubs);
 
-        mandatoryWrapper.getPersonEntityFacade(p -> p.create(person));
+        mandatoryWrapper.getPersonEntityFacade(p -> {
+            try {
+                p.create(person);
+            } catch (ApplicationBaseException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     //MOK.2 Potwierdź konto użytkownika
