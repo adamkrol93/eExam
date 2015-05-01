@@ -44,7 +44,9 @@ public class PersonEntityFacade implements PersonEntityFacadeLocal {
         personQuery.setParameter("login", login);
 
         try {
-            return Optional.of(personQuery.getSingleResult());
+            PersonEntity personEntity = personQuery.getSingleResult();
+            personEntity.getGroupStubs().size();
+            return Optional.of(personEntity);
         }
         catch (NoResultException e) {
             return Optional.empty();

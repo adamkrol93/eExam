@@ -20,6 +20,14 @@ public interface EditPersonServiceRemote{
     PersonEntity findPersonForEdit(String login) throws ApplicationBaseException;
 
     /**
+     * Funkcja zwracająca informacje o Użytkowniku aktualnie zalogowanym.
+     * Funkcja ustawia również stanową zmienną @personEntity
+     * @return Dane odnalezionego użytkownika
+     * @throws ApplicationBaseException
+     */
+    PersonEntity getLoggedPersonForEdit() throws ApplicationBaseException;
+
+    /**
      * Funkcja edycji użytkownika. Edytuje dane uzytkownika.
      * @param person dane osobe użytkownika
      */

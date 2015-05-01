@@ -1,12 +1,15 @@
 package pl.lodz.p.it.ssbd2015.web.mok;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mok.services.EditPersonServiceRemote;
-import pl.lodz.p.it.ssbd2015.web.ApplicationErrorBean;
+import pl.lodz.p.it.ssbd2015.mok.services.PersonServiceRemote;
 import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
 import pl.lodz.p.it.ssbd2015.web.interceptors.TryCatchInterceptor;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -14,58 +17,46 @@ import javax.interceptor.Interceptors;
 import java.io.Serializable;
 
 /**
- * Backing bean dla strony dostępnej dla wszystkich do edycji własnego profilu.
- * @author Created by Marcin on 2015-04-17.
+ * BackingBean dla uzytkownika nie będącego administratorem.
+ * @author Marcin Kabza
  */
-@ManagedBean(name = "editUserDetailsMOK")
+@ManagedBean(name = "editLoggedUserDetailsMOK")
 @ViewScoped
 @Interceptors({TryCatchInterceptor.class})
-public class EditUserDetails extends BaseContextBean implements Serializable {
+public class EditLoggedUserDetails extends BaseContextBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    protected static final Logger logger = LoggerFactory.getLogger(EditLoggedUserDetails.class);
+
     @EJB
-    private EditPersonServiceRemote editPersonServiceRemote;
-
-    private String login;
-
-    private String message;
+    private EditPersonServiceRemote editPersonService;
+    @EJB
+    private PersonServiceRemote personService;
 
     private PersonEntity person;
+    private String message;
 
-    @Override
-    protected void doInContext() {
+    @PostConstruct
+    private void initializeModel() {
         try {
-            person = editPersonServiceRemote.findPersonForEdit(login);
+            this.person = editPersonService.getLoggedPersonForEdit();
+            //this.person = personService.getLoggedPerson();
         } catch (ApplicationBaseException ex) {
             logger.error("Encountered exception while initializing the bean.", ex);
         }
-
         resetContext();
     }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) throws ApplicationBaseException {
-        this.login = login;
-    }
-
     public String getMessage() {
         return message;
     }
-
     public PersonEntity getPerson() {
         return person;
     }
-
     public String editPerson() throws ApplicationBaseException {
+        editPersonService.editPerson(person);
 
-        editPersonServiceRemote.editPerson(person);
-
-        setContext(EditUserDetails.class, bean -> bean.message = "mok.edit.person_changed_message");
+        setContext(EditLoggedUserDetails.class, bean -> bean.message = "mok.edit.person_changed_message");
         return "editUser?faces-redirect=true&includeViewParams=true";
     }
-
 }

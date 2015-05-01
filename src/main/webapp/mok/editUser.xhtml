@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="../template/commonLayout.xhtml">
+    <ui:define name="head">
+        <title><h:outputText value="#{i18n['mok.person.detail']}"/></title>
+    </ui:define>
+
+    <!--@elvariable id="passwordInput" type="javax.faces.component.html.HtmlInputSecret"-->
+    <ui:define name="content">
+        <div class="container">
+            <div class="row">
+            <h1><h:outputText value="#{i18n['mok.editUser.title']}"/></h1>
+            <hr/>
+                <div class="col-md-8 personal-info">
+                    <h:form class="form-horizontal" id="editForm">
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-lg-5 col-lg-offset-4">
+                                    <h:outputText value="#{i18n[editUserDetailsMOK.message]}" styleClass="text-success"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <h3>
+                                    <h:outputText class="col-lg-6 control-label" value="#{i18n['mok.person.login']} #{editLoggedUserDetailsMOK.person.login}"/>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                             <div class="form-group">
+                                    <h:outputText class="col-lg-3 control-label" value="#{i18n['mok.person.name']}"/>
+                                    <div class="col-lg-8">
+                                        <h:inputText class="form-control" id="name" required="true" value="#{editLoggedUserDetailsMOK.person.name}"
+                                                     requiredMessage="#{i18n['mok.edit.name_required_message']}"/>
+                                        <h:message for="name" style="color:red"/>
+                                    </div>
+                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <h:outputText class="col-lg-3 control-label" value="#{i18n['mok.person.last_name']}"/>
+                                <div class="col-lg-8">
+                                    <h:inputText class="form-control" id="lastname" required="true" value="#{editLoggedUserDetailsMOK.person.lastName}"
+                                                 requiredMessage="#{i18n['mok.edit.last_name_required_message']}"/>
+                                    <h:message for="lastname" style="color:red"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <h:outputText class="col-lg-3 control-label" value="#{i18n['mok.person.email']}"/>
+                                <div class="col-lg-8">
+                                    <h:inputText class="form-control" id="email" required="true" value="#{editLoggedUserDetailsMOK.person.email}"
+                                                     requiredMessage="#{i18n['mok.edit.email_required_message']}"/>
+                                    <h:message for="email" style="color:red"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <h:outputText class="col-lg-3 control-label" value="#{i18n['mok.edit.password']}"/>
+                                <div class="col-lg-8">
+                                    <h:inputSecret class="form-control" id="password" value="#{editLoggedUserDetailsMOK.person.password}"
+                                                       binding="#{passwordInput}"/>
+                                    <h:message for="password" errorClass="invalid" style="color:red"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                    <h:outputText class="col-lg-3 control-label" value="#{i18n['mok.edit.confirm_password']}"/>
+                                <div class="col-lg-8">
+                                    <h:inputSecret class="form-control" id="confirm">
+                                        <f:validator validatorId="confirmationInputValidator"/>
+                                        <f:attribute name="toConfirm" value="#{passwordInput.value}"/>
+                                        <f:attribute name="confirmationErrorMessage"
+                                                     value="#{i18n['mok.edit.passwords_are_different']}"/>
+                                    </h:inputSecret>
+                                    <h:message for="confirm" errorClass="invalid" style="color:red"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-lg-3 control-label"></div>
+                                <div class="col-lg-8">
+                                    <h:commandButton class="btn btn-primary" type="submit" value="#{i18n['save']}" action="#{editLoggedUserDetailsMOK.editPerson}"/>
+                                    <h:commandButton class="btn btn-default" type="reset" value="#{i18n['reset']}"/><br/>
+                                </div>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>
