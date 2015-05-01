@@ -20,10 +20,10 @@
 
     <ui:define name="content">
         <div class="page-header text-center">
-            <h1><h:outputText value="#{i18n['application.exception']}  #{exceptionHandler.statusCode}"/></h1>
+            <h1><h:outputText value="#{i18n['application.exception']} #{exceptionHandler.statusCode}"/></h1>
         </div>
         <h2>
-            <h:outputLabel value="#{i18n[exceptionHandler.plainMessage]}"/>
+            <h:outputLabel value="#{i18n['application.exception.500']}"/>
         </h2>
     </ui:define>
 </ui:composition>

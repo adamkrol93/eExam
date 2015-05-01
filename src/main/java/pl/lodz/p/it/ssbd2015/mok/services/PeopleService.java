@@ -5,7 +5,6 @@ import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.UserManagementException;
 import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.managers.PersonManagerLocal;
 

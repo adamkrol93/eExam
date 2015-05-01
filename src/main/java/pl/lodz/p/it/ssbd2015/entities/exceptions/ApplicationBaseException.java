@@ -4,7 +4,7 @@ package pl.lodz.p.it.ssbd2015.entities.exceptions;
  * Created by adam on 01.05.15.
  */
 @javax.ejb.ApplicationException(rollback = true)
-public class ApplicationBaseException extends Exception {
+public abstract class ApplicationBaseException extends Exception {
 
     public ApplicationBaseException(String message) {
         super(message);
@@ -14,5 +14,7 @@ public class ApplicationBaseException extends Exception {
         super(message, cause);
     }
 
-    public static final String I18N_EXCEPTION_KEY = "application.exception";
+    public String getCode() {
+        return "application.exception";
+    }
 }

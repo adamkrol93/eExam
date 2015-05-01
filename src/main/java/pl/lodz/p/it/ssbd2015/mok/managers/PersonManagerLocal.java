@@ -2,7 +2,6 @@ package pl.lodz.p.it.ssbd2015.mok.managers;
 
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.UserManagementException;
 
 import javax.ejb.Local;
 import javax.mail.MessagingException;

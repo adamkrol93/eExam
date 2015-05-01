@@ -10,7 +10,6 @@ import pl.lodz.p.it.ssbd2015.TestUtils;
 import pl.lodz.p.it.ssbd2015.entities.ExaminerEntity;
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.UserManagementException;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;

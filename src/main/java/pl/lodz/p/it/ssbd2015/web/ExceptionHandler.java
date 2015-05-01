@@ -1,5 +1,7 @@
 package pl.lodz.p.it.ssbd2015.web;
 
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -45,7 +47,11 @@ public class ExceptionHandler {
     public String getPlainMessage()
     {
         if (exception != null) {
-            return exception.getMessage();
+            try{
+                return ((ApplicationBaseException)exception.getCause()).getCode();
+            }catch (ClassCastException ex) {
+                return exception.getLocalizedMessage();
+            }
         }
         else {
             return (String) FacesContext.getCurrentInstance().getExternalContext().

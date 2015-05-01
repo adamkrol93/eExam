@@ -3,7 +3,6 @@ package pl.lodz.p.it.ssbd2015.mze.facades;
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.UserManagementException;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;

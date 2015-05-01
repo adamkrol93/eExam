@@ -11,7 +11,6 @@ import pl.lodz.p.it.ssbd2015.entities.GroupsStubEntity;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.entities.PreviousPasswordEntity;
 import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.UserManagementException;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;

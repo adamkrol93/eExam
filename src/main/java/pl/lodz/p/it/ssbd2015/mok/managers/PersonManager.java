@@ -3,7 +3,7 @@ package pl.lodz.p.it.ssbd2015.mok.managers;
 import pl.lodz.p.it.ssbd2015.entities.*;
 import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.UserManagementException;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonNotFoundException;
 import pl.lodz.p.it.ssbd2015.mok.facades.GroupsStubEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.utils.PasswordUtils;
@@ -45,7 +45,6 @@ public class PersonManager implements PersonManagerLocal {
     @Override
     @RolesAllowed("ALL_LOGGED")
     public void editPerson(PersonEntity oldOne, PersonEntity newOne) {
-        personEntityFacade.edit(oldOne);
         oldOne.setName(newOne.getName());
         oldOne.setLastName(newOne.getLastName());
         oldOne.setEmail(newOne.getEmail());
@@ -53,13 +52,14 @@ public class PersonManager implements PersonManagerLocal {
                 && !oldOne.getPassword().equals(newOne.getPassword())) {
             oldOne.setPassword(PasswordUtils.hashPassword(newOne.getPassword()));
         }
+        personEntityFacade.edit(oldOne);
     }
 
     @Override
     @PermitAll
     public PersonEntity getPerson(String login) throws ApplicationBaseException {
         PersonEntity personEntity = personEntityFacade.findByLogin(login)
-                .orElseThrow(() -> new UserManagementException(UserManagementException.PERSON_NOT_FOUND));
+                .orElseThrow(() -> new PersonNotFoundException("Person with login: "+login+ "does not exists"));
         return personEntity;
     }
 

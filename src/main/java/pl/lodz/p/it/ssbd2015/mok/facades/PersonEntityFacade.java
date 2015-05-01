@@ -3,7 +3,7 @@ package pl.lodz.p.it.ssbd2015.mok.facades;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.UserManagementException;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.*;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
@@ -11,7 +11,6 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
-import javax.jws.soap.SOAPBinding;
 import javax.persistence.*;
 import java.util.List;
 import java.util.Optional;
@@ -65,22 +64,15 @@ public class PersonEntityFacade implements PersonEntityFacadeLocal {
     public void create(PersonEntity entity) throws ApplicationBaseException {
         try {
             PersonEntityFacadeLocal.super.create(entity);
-        }catch (IllegalArgumentException ex)
-        {
-            throw new UserManagementException(UserManagementException.ILLEGAL_ARGUMENT);
-        }catch (EntityExistsException ex)
-        {
-            throw new UserManagementException(UserManagementException.PERSON_EXISTS);
-        }catch (TransactionRequiredException ex)
-        {
-            throw new UserManagementException(UserManagementException.TRANSACTION_NOT_EXISTS);
-        }catch (PersistenceException ex)
-        {
-            if(ex.getMessage().contains("person_login_key"))
-            {
-                throw new UserManagementException(UserManagementException.LOGIN_IS_NOT_UNIQUE);
-            }else{
-                throw new UserManagementException(UserManagementException.UNKNOWN);
+        } catch (IllegalArgumentException ex) {
+            throw new PersonIllegalArgumentException(entity + " is an illegal argument to Create.create(e)", ex);
+        } catch (EntityExistsException ex) {
+            throw new PersonExistsException(entity + " has been already persisted.", ex);
+        } catch (PersistenceException ex) {
+            if (ex.getMessage().contains("person_login_key")) {
+                throw new LoginNotUniqueException("Login " + entity.getLogin() + " is not unique.", ex);
+            } else {
+                throw new PersonUnknownException("Persisting " + entity + " violated a database constraint.", ex);
             }
         }
     }
