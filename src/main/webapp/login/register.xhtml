@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="row">
-            <h:form styleClass="form-horizontal">
+            <h:form id="register-form" styleClass="form-horizontal">
                 <!--@elvariable id="passwordInput" type="javax.faces.component.html.HtmlInputSecret"-->
                 <div class="form-group row">
                     <div class="col-sm-2">
@@ -142,9 +142,9 @@
                 <div class="row">
                     <div class="col-sm-offset-2 col-sm-10">
                         <div class="btn-toolbar">
-                            <h:commandButton type="submit" value="#{i18n['mok.register.register']}"
+                            <h:commandButton id="submit-button" type="submit" value="#{i18n['mok.register.register']}"
                                              styleClass="btn btn-default" action="#{registerUserMOK.register}"/>
-                            <h:commandButton type="reset" value="#{i18n['mok.register.reset']}"
+                            <h:commandButton id="reset-button" type="reset" value="#{i18n['mok.register.reset']}"
                                              styleClass="btn btn-default"/>
                         </div>
                     </div>

@@ -2,7 +2,6 @@ package pl.lodz.p.it.ssbd2015;
 
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.ExaminerEntity;
-import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 
 import java.util.Calendar;
 import java.util.Random;
@@ -27,19 +26,19 @@ public class TestUtils {
         return exam;
     }
 
-    public static PersonEntity makeValidPerson() {
-        PersonEntity person = new PersonEntity();
-        person.setLogin("Person" + getProbablyUniqueString());
-        person.setName(getRandomString());
-        person.setLastName(getRandomString());
-        person.setPassword(getRandomString());
-        person.setEmail(getRandomString() + "@gmail.com");
-        person.setDateAdd(Calendar.getInstance());
-        return person;
-    }
-
     public static String getRandomString() {
         return Integer.toUnsignedString(random.nextInt(), 36);
+    }
+
+    private static final char[] ALPHAS = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+                                          'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'w', 'x', 'y', 'z' };
+
+    public static String getRandomAlphas(int length) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < length; ++i) {
+            sb.append(ALPHAS[random.nextInt(ALPHAS.length)]);
+        }
+        return sb.toString();
     }
 
     public static String getProbablyUniqueString() {

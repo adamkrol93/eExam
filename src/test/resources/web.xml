@@ -149,10 +149,6 @@
             <description/>
             <role-name>STUDENT</role-name>
         </auth-constraint>
-        <user-data-constraint>
-            <description/>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
     </security-constraint>
 
     <!-- kontrola dostępu do zasobów nauczyciela -->
@@ -167,10 +163,6 @@
             <description/>
             <role-name>TEACHER</role-name>
         </auth-constraint>
-        <user-data-constraint>
-            <description/>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
     </security-constraint>
 
     <!-- kontrola dostępu do zasobów egzaminatora -->
@@ -185,10 +177,6 @@
             <description/>
             <role-name>EXAMINER</role-name>
         </auth-constraint>
-        <user-data-constraint>
-            <description/>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
     </security-constraint>
 
     <!-- kontrola dostępu do zasobów opiekuna -->
@@ -203,10 +191,6 @@
             <description/>
             <role-name>GUARDIAN</role-name>
         </auth-constraint>
-        <user-data-constraint>
-            <description/>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
     </security-constraint>
 
     <!-- kontrola dostępu do zasobów administratora -->
@@ -221,10 +205,6 @@
             <description/>
             <role-name>ADMINISTRATOR</role-name>
         </auth-constraint>
-        <user-data-constraint>
-            <description/>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
     </security-constraint>
 
     <!-- kontrola dostępu do zasobów mok -->
@@ -243,10 +223,6 @@
             <role-name>STUDENT</role-name>
             <role-name>TEACHER</role-name>
         </auth-constraint>
-        <user-data-constraint>
-            <description/>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
     </security-constraint>
 
     <!-- kontrola dostępu do stron logowania -->
@@ -257,10 +233,6 @@
             <description/>
             <url-pattern>/login/*</url-pattern>
         </web-resource-collection>
-        <user-data-constraint>
-            <description/>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
     </security-constraint>
 
     <!-- kontrola dostępu do stron błędów -->
@@ -271,10 +243,6 @@
             <description/>
             <url-pattern>/error/*</url-pattern>
         </web-resource-collection>
-        <user-data-constraint>
-            <description/>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
     </security-constraint>
 
     <!-- definicja metody logowania, odwołanie do stron z formularzem logowania i komunikatem błędu -->

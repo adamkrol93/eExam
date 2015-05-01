@@ -46,4 +46,4 @@ nb-configuration.xml
 ### OS Specific
 Thumbs.db
 .DS_Store
-*.swp
+*.log

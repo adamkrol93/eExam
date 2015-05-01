@@ -6,7 +6,7 @@
       xmlns:f="http://java.sun.com/jsf/core">
 <body>
 <ui:composition>
-    <h:form>
+    <h:form id="header-login-form">
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
@@ -128,15 +128,13 @@
                             </ul>
                         </li>
                         <ui:fragment rendered="#{request.remoteUser == null}">
-                            <li><h:button outcome="/login/login" value="#{i18n['login.link']}"
+                            <li><h:button id="login-button" outcome="/login/login" value="#{i18n['login.link']}"
                                       styleClass="btn btn-primary navbar-btn"/></li>
-                        </ui:fragment>
-                        <ui:fragment rendered="#{request.remoteUser == null}">
-                            <li><h:button outcome="/login/register" value="#{i18n['register.link']}"
+                            <li><h:button id="register-button" outcome="/login/register" value="#{i18n['register.link']}"
                                       styleClass="btn btn-primary navbar-btn"/></li>
                         </ui:fragment>
                         <ui:fragment rendered="#{request.remoteUser != null}">
-                            <li><h:commandButton action="#{logoutBean.logout()}" value="#{i18n['logout.link']}"
+                            <li><h:commandButton id="logout-button" action="#{logoutBean.logout()}" value="#{i18n['logout.link']}"
                                              styleClass="btn btn-primary navbar-btn"/></li>
                         </ui:fragment>
                     </ul>

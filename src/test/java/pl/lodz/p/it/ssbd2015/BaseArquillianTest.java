@@ -6,7 +6,6 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.persistence.CleanupUsingScript;
 import org.jboss.arquillian.persistence.TestExecutionPhase;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.FileAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -33,17 +32,19 @@ public abstract class BaseArquillianTest {
     public static WebArchive createArchive() {
         return ShrinkWrap.create(WebArchive.class)
                 .addPackages(true, "pl.lodz.p.it.ssbd2015")
-                .addAsWebInfResource(new FileAsset(new File("src/main/webapp/WEB-INF/beans.xml")),
-                        "beans.xml")
-                .addAsWebInfResource(new FileAsset(new File("src/test/resources/glassfish-resources.xml")),
-                        "glassfish-resources.xml")
-                .addAsWebInfResource(new FileAsset(new File("src/main/resources/META-INF/persistence.xml")),
+                .addAsWebInfResource(new File("src/main/resources/META-INF/persistence.xml"),
                         "classes/META-INF/persistence.xml")
-                .addAsWebInfResource(new FileAsset(new File("src/main/webapp/WEB-INF/glassfish-ejb-jar.xml")),
+                .addAsWebInfResource(new File("src/main/resources/META-INF/validation.xml"),
+                        "classes/META-INF/validation.xml")
+                .addAsWebInfResource(new File("src/main/webapp/WEB-INF/beans.xml"),
+                        "beans.xml")
+                .addAsWebInfResource(new File("src/test/resources/glassfish-resources.xml"),
+                        "glassfish-resources.xml")
+                .addAsWebInfResource(new File("src/main/webapp/WEB-INF/glassfish-ejb-jar.xml"),
                         "glassfish-ejb-jar.xml")
-                .addAsWebInfResource(new FileAsset(new File("src/test/resources/web.xml")),
+                .addAsWebInfResource(new File("src/test/resources/web.xml"),
                         "web.xml")
-                .addAsWebInfResource(new FileAsset(new File("src/main/webapp/WEB-INF/glassfish-web.xml")),
+                .addAsWebInfResource(new File("src/main/webapp/WEB-INF/glassfish-web.xml"),
                         "glassfish-web.xml");
     }
 

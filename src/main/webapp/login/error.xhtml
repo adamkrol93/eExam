@@ -1,14 +1,30 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="../template/commonLayout.xhtml">
+    <ui:define name="head">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title>Błąd logowania</title>
-    </h:head>
-    <h:body>
-        Nieprawidłowy login lub hasło.
-        <br/><h:link outcome="/login/login.xhtml" value="Powrót do logowania"/>
-    </h:body>
+        <title><h:outputText value="#{i18n['mok.login.error']}"/></title>
+    </ui:define>
+    <ui:define name="breadcrumps">
+        <ol class="breadcrumb">
+            <li><h:link outcome="/index" value="#{i18n['home.page']}"/></li>
+            <li><h:link outcome="/login/login" value="#{i18n['mok.login.title']}"/></li>
+            <li class="active"><h:outputText value="#{i18n['mok.login.error']}"/></li>
+        </ol>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="row">
+            <div class="col-lg-4 center-block">
+                <h:outputText id="login-error-message" value="#{i18n['mok.login.error_message']}"/>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
 </html>
 

@@ -29,7 +29,7 @@
 
             <div class="container  container-margin">
                 <ui:fragment rendered="#{loginBean.isPersonLogged()}">
-                    <div class="alert alert-success" role="alert"><h:outputText value="#{i18n['login.message']}"/></div>
+                    <div id="login-message" class="alert alert-success" role="alert"><h:outputText value="#{i18n['login.message']}"/></div>
                 </ui:fragment>
                 <div id="content">
                     <ui:insert name="content">

@@ -1,0 +1,15 @@
+generator:
+  - class_name: "PersonEntity"
+    id_range: 1
+  - class_name: "GroupsEntity"
+    id_range: 6
+  - class_name: "PreviousPasswordEntity"
+    id_range: 0
+  - class_name: "ExamEntity"
+    id_range: 0
+  - class_name: "ApproachEntity"
+    id_range: 0
+  - class_name: "QuestionEntity"
+    id_range: 0
+  - class_name: "AnswerEntity"
+    id_range: 0
