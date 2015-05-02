@@ -8,6 +8,8 @@ import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.utils.PasswordUtils;
 
 import javax.annotation.Resource;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.*;
 import javax.interceptor.Interceptors;
 import javax.mail.MessagingException;
@@ -40,6 +42,7 @@ public class PersonManager implements PersonManagerLocal {
     private SessionContext sessionContext;
 
     @Override
+    @RolesAllowed("EDIT_SOMEBODY_ACCOUNT_MOK")
     public void editPerson(PersonEntity oldOne, PersonEntity newOne) {
         oldOne = personEntityFacade.edit(oldOne);
         oldOne.setName(newOne.getName());
@@ -52,6 +55,7 @@ public class PersonManager implements PersonManagerLocal {
     }
 
     @Override
+    @PermitAll
     public PersonEntity getPerson(String login) throws PersonEntityNotFoundException {
         PersonEntity personEntity = personEntityFacade.findByLogin(login)
                 .orElseThrow(() -> new PersonEntityNotFoundException("exception.user_not_found"));
@@ -59,18 +63,21 @@ public class PersonManager implements PersonManagerLocal {
     }
 
     @Override
+    @RolesAllowed("CONFIRM_ACCOUNT_MOK")
     public void confirmPerson(PersonEntity personEntity) {
         personEntity = personEntityFacade.edit(personEntity);
         personEntity.setConfirm(true);
     }
 
     @Override
+    @RolesAllowed("ACTIVATE_ACCOUNT_MOK")
     public void togglePersonActivation(PersonEntity personEntity) {
         personEntity = personEntityFacade.edit(personEntity);
         personEntity.setActive(!personEntity.isActive());
     }
 
     @Override
+    @RolesAllowed("CHANGE_GROUP_MOK")
     public void toggleGroupActivation(PersonEntity personEntity, long id) throws MessagingException {
         boolean found = false;
 
@@ -91,11 +98,13 @@ public class PersonManager implements PersonManagerLocal {
     }
 
     @Override
+    @PermitAll
     public boolean checkUniqueness(String login) {
         return !personEntityFacade.findByLogin(login).isPresent();
     }
 
     @Override
+    @PermitAll
     public void register(PersonEntity newPerson) throws MessagingException {
         newPerson.setPassword(PasswordUtils.hashPassword(newPerson.getPassword()));
         newPerson.setActive(true);
@@ -105,6 +114,7 @@ public class PersonManager implements PersonManagerLocal {
     }
 
     @Override
+    @PermitAll
     public void assignAllGroups(PersonEntity person) {
         Arrays.asList(new AdministratorStubEntity(), new ExaminerStubEntity(), new GuardianStubEntity(),
                 new StudentStubEntity(), new TeacherStubEntity())

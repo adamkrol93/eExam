@@ -3,6 +3,7 @@ package pl.lodz.p.it.ssbd2015.mok.managers;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 
 import javax.annotation.Resource;
+import javax.annotation.security.PermitAll;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -26,6 +27,7 @@ public class EmailManager implements EmailManagerLocal {
 	@Resource(lookup = "java:app/email")
 	private Session smtpSession;
 
+	@PermitAll
 	public void sendEmail(String to, String subject, String body) throws MessagingException {
 		MimeMessage message = new MimeMessage(smtpSession);
 		message.setFrom(new InternetAddress(smtpSession.getProperty("mail.from")));
