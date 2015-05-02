@@ -1,5 +1,7 @@
 package pl.lodz.p.it.ssbd2015.web;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 
 import javax.annotation.PostConstruct;
@@ -8,6 +10,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Bean udostępnia informację o zaistniałej sytuacji wyjątkowej.
@@ -17,10 +20,16 @@ import java.util.List;
 @RequestScoped
 public class ExceptionHandler {
 
+    private Logger logger = LoggerFactory.getLogger(getClass());
+
     private Exception exception;
+    private String uuid;
+
 
     @PostConstruct
     public void applyStatusCode() {
+        UUID uuid = UUID.randomUUID();
+        this.uuid = uuid.toString();
         exception = (Exception) FacesContext.getCurrentInstance().getExternalContext().
                 getRequestMap().get("javax.servlet.error.exception");
     }
@@ -46,16 +55,21 @@ public class ExceptionHandler {
     }
     public String getPlainMessage()
     {
+        logger.error("Error with uuid: " + getUuid());
+        logger.error(getUuid(),exception);
         if (exception != null) {
             try{
-                return ((ApplicationBaseException)exception.getCause()).getCode();
+                if(exception.getCause()!= null)
+                {
+                    return ((ApplicationBaseException)exception.getCause()).getCode();
+                }
+                return "application.exception.500";
             }catch (ClassCastException ex) {
-                return exception.getLocalizedMessage();
+                return "application.exception.500";
             }
         }
         else {
-            return (String) FacesContext.getCurrentInstance().getExternalContext().
-                    getRequestMap().get("javax.servlet.error.message");
+            return "application.exception.500";
         }
     }
 
@@ -96,4 +110,11 @@ public class ExceptionHandler {
         }
     }
 
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 }

@@ -23,7 +23,9 @@
             <h1><h:outputText value="#{i18n['application.exception']}  #{exceptionHandler.statusCode}"/></h1>
         </div>
         <h2>
-            <h:outputLabel value="#{i18n[exceptionHandler.plainMessage]}"/>
+            <h:outputLabel value="#{i18n[exceptionHandler.plainMessage]}"/><br/>
+            <h:outputText value="#{i18n['application.exception.uuid_code']}"/><br/>
+            <h:outputText value="#{exceptionHandler.uuid}"/><br/>
         </h2>
     </ui:define>
 </ui:composition>
