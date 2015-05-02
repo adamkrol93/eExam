@@ -45,7 +45,6 @@ public class PersonEntityFacade implements PersonEntityFacadeLocal {
 
         try {
             PersonEntity personEntity = personQuery.getSingleResult();
-            personEntity.getGroupStubs().size();
             return Optional.of(personEntity);
         }
         catch (NoResultException e) {

@@ -44,6 +44,8 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
     @RolesAllowed("ALL_LOGGED")
     public PersonEntity getLoggedPerson() throws ApplicationBaseException {
         String login = sessionContext.getCallerPrincipal().getName();
+        PersonEntity personEntity = personManager.getPerson(login);
+        personEntity.getGroupStubs().isEmpty();
         return personManager.getPerson(login);
     }
 
