@@ -61,7 +61,7 @@ public class BaseContextBean implements Serializable {
         }
     }
 
-    protected <T> void setContext(Class<T> clazz, Consumer<T> consumer) {
+    public <T> void setContext(Class<T> clazz, Consumer<T> consumer) {
         logger.info("Setting new context using Consumer");
 
         if (consumer == null) {

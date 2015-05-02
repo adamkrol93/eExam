@@ -4,11 +4,13 @@ import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mok.services.PeopleServiceRemote;
 import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
+import pl.lodz.p.it.ssbd2015.web.interceptors.TryCatchInterceptor;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.interceptor.Interceptors;
 import javax.mail.MessagingException;
 
 /**
@@ -18,6 +20,7 @@ import javax.mail.MessagingException;
  */
 @ManagedBean(name = "registerUserMOK")
 @ViewScoped
+@Interceptors({TryCatchInterceptor.class})
 public class Register extends BaseContextBean {
 
     private static final long serialVersionUID = 1L;
