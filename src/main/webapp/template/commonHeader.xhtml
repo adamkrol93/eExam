@@ -134,6 +134,10 @@
                                       styleClass="btn btn-primary navbar-btn"/></li>
                         </ui:fragment>
                         <ui:fragment rendered="#{request.remoteUser != null}">
+                            <li class="navbar-brand navbar-brand-centered"><i class="glyphicon glyphicon-user"></i></li>
+                            <li><h:link value="#{loginBean.login}" outcome="/mok/showUser" /></li>
+                        </ui:fragment>
+                        <ui:fragment rendered="#{request.remoteUser != null}">
                             <li><h:commandButton id="logout-button" action="#{logoutBean.logout()}" value="#{i18n['logout.link']}"
                                              styleClass="btn btn-primary navbar-btn"/></li>
                         </ui:fragment>

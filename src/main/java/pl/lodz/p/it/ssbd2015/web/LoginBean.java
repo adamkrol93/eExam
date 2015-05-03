@@ -13,6 +13,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
+import java.security.Principal;
 import java.util.Calendar;
 
 
@@ -106,5 +107,9 @@ public class LoginBean implements Serializable {
             return false;
         }
     }
-
+    public String getLogin()
+    {
+        Principal p = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
+        return p.getName();
+    }
 }
