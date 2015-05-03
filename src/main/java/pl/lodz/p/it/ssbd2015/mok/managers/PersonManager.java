@@ -42,7 +42,7 @@ public class PersonManager implements PersonManagerLocal {
     private SessionContext sessionContext;
 
     @Override
-    @RolesAllowed("EDIT_SOMEBODY_ACCOUNT_MOK")
+    @RolesAllowed("ALL_LOGGED")
     public void editPerson(PersonEntity oldOne, PersonEntity newOne) {
         oldOne = personEntityFacade.edit(oldOne);
         oldOne.setName(newOne.getName());
