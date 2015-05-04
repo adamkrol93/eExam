@@ -46,7 +46,7 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
         String login = sessionContext.getCallerPrincipal().getName();
         PersonEntity personEntity = personManager.getPerson(login);
         personEntity.getGroupStubs().isEmpty();
-        return personManager.getPerson(login);
+        return personEntity;
     }
 
     @Override

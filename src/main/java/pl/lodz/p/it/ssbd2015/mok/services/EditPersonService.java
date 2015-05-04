@@ -48,4 +48,11 @@ public class EditPersonService extends BaseStatefulService implements EditPerson
         personManager.editPerson(this.personEntity,person);
     }
 
+    @RolesAllowed("ALL_LOGGED")
+    public PersonEntity findLogPersonFroEdit() throws PersonEntityNotFoundException {
+        String login = sessionContext.getCallerPrincipal().getName();
+        PersonEntity personEntity = personManager.getPerson(login);
+        return personEntity;
+    }
+
 }
