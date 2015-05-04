@@ -40,7 +40,7 @@ public class EditLoggedUserDetails extends BaseContextBean implements Serializab
     @PostConstruct
     private void initializeModel() {
         try {
-            this.person = editPersonService.getLoggedPersonForEdit();
+            this.person = editPersonService.findLoggedPersonForEdit();
         } catch (ApplicationBaseException ex) {
             logger.error("Encountered exception while initializing the bean.", ex);
         }

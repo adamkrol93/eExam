@@ -36,23 +36,18 @@ public class EditPersonService extends BaseStatefulService implements EditPerson
         return personEntity;
     }
 
-    @Override
-    public PersonEntity getLoggedPersonForEdit() throws ApplicationBaseException {
+
+    @RolesAllowed("ALL_LOGGED")
+    public PersonEntity findLoggedPersonForEdit() throws ApplicationBaseException {
         String login = sessionContext.getCallerPrincipal().getName();
-        return personManager.getPerson(login);
+        PersonEntity personEntity = personManager.getPerson(login);
+        return personEntity;
     }
 
     @Override
     @RolesAllowed("EDIT_SOMEBODY_ACCOUNT_MOK")
     public void editPerson(PersonEntity person) throws ApplicationBaseException {
         personManager.editPerson(this.personEntity,person);
-    }
-
-    @RolesAllowed("ALL_LOGGED")
-    public PersonEntity findLoggedPersonForEdit() throws PersonEntityNotFoundException {
-        String login = sessionContext.getCallerPrincipal().getName();
-        PersonEntity personEntity = personManager.getPerson(login);
-        return personEntity;
     }
 
 }

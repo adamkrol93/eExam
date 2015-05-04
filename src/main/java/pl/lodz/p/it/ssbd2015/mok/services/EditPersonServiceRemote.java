@@ -10,7 +10,7 @@ import javax.ejb.Remote;
  * @author Created by marcin on 17.04.15.
  */
 @Remote
-public interface EditPersonServiceRemote{
+public interface EditPersonServiceRemote {
     /**
      * Funkcja zwracająca informacje o Użytkowniku na podstawie loginu.
      * Funkcja ustawia również stanowa zmienna personEntity
@@ -25,7 +25,7 @@ public interface EditPersonServiceRemote{
      * @return Dane odnalezionego użytkownika
      * @throws ApplicationBaseException
      */
-    PersonEntity getLoggedPersonForEdit() throws ApplicationBaseException;
+    PersonEntity findLoggedPersonForEdit() throws ApplicationBaseException;
 
     /**
      * Funkcja edycji użytkownika. Edytuje dane uzytkownika.
