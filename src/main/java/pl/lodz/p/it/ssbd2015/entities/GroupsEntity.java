@@ -70,13 +70,6 @@ public abstract class GroupsEntity {
     @Column(name = "person_last_time_login", table = "person", nullable = true)
     private Calendar lastTimeLogin;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "person_last_time_login_fail", table = "person", nullable = true)
-    private Calendar lastTimeLoginFail;
-
-    @Column(name = "person_count_login_fail", table = "person", nullable = true)
-    private Integer countLoginFail;
-
     @Column(name = "person_last_ip_login", table = "person", nullable = true)
     private String lastIpLogin;
 
@@ -170,22 +163,6 @@ public abstract class GroupsEntity {
         this.lastTimeLogin = lastTimeLogin;
     }
 
-    public Calendar getLastTimeLoginFail() {
-        return lastTimeLoginFail;
-    }
-
-    public void setLastTimeLoginFail(Calendar lastTimeLoginFail) {
-        this.lastTimeLoginFail = lastTimeLoginFail;
-    }
-
-    public Integer getCountLoginFail() {
-        return countLoginFail;
-    }
-
-    public void setCountLoginFail(Integer countLoginFail) {
-        this.countLoginFail = countLoginFail;
-    }
-
     public String getLastIpLogin() {
         return lastIpLogin;
     }
@@ -247,10 +224,6 @@ public abstract class GroupsEntity {
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (lastTimeLogin != null ? !lastTimeLogin.equals(that.lastTimeLogin) : that.lastTimeLogin != null)
             return false;
-        if (lastTimeLoginFail != null ? !lastTimeLoginFail.equals(that.lastTimeLoginFail) : that.lastTimeLoginFail != null)
-            return false;
-        if (countLoginFail != null ? !countLoginFail.equals(that.countLoginFail) : that.countLoginFail != null)
-            return false;
         if (lastIpLogin != null ? !lastIpLogin.equals(that.lastIpLogin) : that.lastIpLogin != null) return false;
         if (personDateAdd != null ? !personDateAdd.equals(that.personDateAdd) : that.personDateAdd != null)
             return false;
@@ -269,8 +242,6 @@ public abstract class GroupsEntity {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (lastTimeLogin != null ? lastTimeLogin.hashCode() : 0);
-        result = 31 * result + (lastTimeLoginFail != null ? lastTimeLoginFail.hashCode() : 0);
-        result = 31 * result + (countLoginFail != null ? countLoginFail.hashCode() : 0);
         result = 31 * result + (lastIpLogin != null ? lastIpLogin.hashCode() : 0);
         result = 31 * result + (personActive ? 1 : 0);
         result = 31 * result + (confirm ? 1 : 0);

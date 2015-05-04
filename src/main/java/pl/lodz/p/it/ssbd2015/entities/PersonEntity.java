@@ -71,13 +71,6 @@ public class PersonEntity implements Serializable {
     @Column(name = "person_last_time_login", nullable = true)
     private Calendar lastTimeLogin;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "person_last_time_login_fail", nullable = true)
-    private Calendar lastTimeLoginFail;
-
-    @Column(name = "person_count_login_fail", nullable = true)
-    private Integer countLoginFail;
-
     @Column(name = "person_last_ip_login", nullable = true)
     private String lastIpLogin;
 
@@ -157,22 +150,6 @@ public class PersonEntity implements Serializable {
         this.lastTimeLogin = lastTimeLogin;
     }
 
-    public Calendar getLastTimeLoginFail() {
-        return lastTimeLoginFail;
-    }
-
-    public void setLastTimeLoginFail(Calendar lastTimeLoginFail) {
-        this.lastTimeLoginFail = lastTimeLoginFail;
-    }
-
-    public Integer getCountLoginFail() {
-        return countLoginFail;
-    }
-
-    public void setCountLoginFail(Integer countLoginFail) {
-        this.countLoginFail = countLoginFail;
-    }
-
     public String getLastIpLogin() {
         return lastIpLogin;
     }
@@ -239,8 +216,6 @@ public class PersonEntity implements Serializable {
         if (active != that.active) return false;
         if (confirm != that.confirm) return false;
         if (id != that.id) return false;
-        if (countLoginFail != null ? !countLoginFail.equals(that.countLoginFail) : that.countLoginFail != null)
-            return false;
         if (dateAdd != null ? !dateAdd.equals(that.dateAdd) : that.dateAdd != null)
             return false;
         if (dateModification != null ? !dateModification.equals(that.dateModification) : that.dateModification != null)
@@ -251,8 +226,6 @@ public class PersonEntity implements Serializable {
         if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null)
             return false;
         if (lastTimeLogin != null ? !lastTimeLogin.equals(that.lastTimeLogin) : that.lastTimeLogin != null)
-            return false;
-        if (lastTimeLoginFail != null ? !lastTimeLoginFail.equals(that.lastTimeLoginFail) : that.lastTimeLoginFail != null)
             return false;
         if (login != null ? !login.equals(that.login) : that.login != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
@@ -271,8 +244,6 @@ public class PersonEntity implements Serializable {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (lastTimeLogin != null ? lastTimeLogin.hashCode() : 0);
-        result = 31 * result + (lastTimeLoginFail != null ? lastTimeLoginFail.hashCode() : 0);
-        result = 31 * result + (countLoginFail != null ? countLoginFail.hashCode() : 0);
         result = 31 * result + (lastIpLogin != null ? lastIpLogin.hashCode() : 0);
         result = 31 * result + (active ? 1 : 0);
         result = 31 * result + (confirm ? 1 : 0);
