@@ -98,8 +98,6 @@ public class PersonEntityFacadeTest extends BaseArquillianTest {
         person.setPassword(password);
         person.setEmail(email);
         person.setLastTimeLogin(null);
-        person.setLastTimeLoginFail(null);
-        person.setCountLoginFail(null);
         person.setLastIpLogin(null);
 
         person.setConfirm(true);

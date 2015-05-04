@@ -65,7 +65,6 @@ public class PeopleServiceTest extends BaseArquillianTest {
         person.setPassword("keczup");
         person.setEmail("smaczny@pomidor.pl");
 
-        person.setCountLoginFail(5);
         person.setLastTimeLogin(Calendar.getInstance());
 
         peopleService.register(person);
