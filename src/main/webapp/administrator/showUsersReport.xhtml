@@ -59,14 +59,6 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="#{i18n['mok.list.last_time_login_fail']}"/>
-                                </f:facet>
-                                <h:outputText value="#{user.lastTimeLoginFail.getTime()}">
-                                    <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
-                                </h:outputText>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
                                     <h:outputText value="#{i18n['mok.list.ip']}"/>
                                 </f:facet>
                                 <h:outputText value="#{user.lastIpLogin}"/>
