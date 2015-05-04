@@ -1,11 +1,7 @@
 package pl.lodz.p.it.ssbd2015.moe.managers;
 
 import pl.lodz.p.it.ssbd2015.entities.*;
-import pl.lodz.p.it.ssbd2015.moe.facades.AnswerEntityFacadeLocal;
-import pl.lodz.p.it.ssbd2015.moe.facades.ApproachEntityFacadeLocal;
-import pl.lodz.p.it.ssbd2015.moe.facades.StudentEntityFacadeLocal;
-import pl.lodz.p.it.ssbd2015.moe.facades.TeacherEntityFacadeLocal;
-import pl.lodz.p.it.ssbd2015.mre.facades.ExamEntityFacadeSerializableLocal;
+import pl.lodz.p.it.ssbd2015.moe.facades.*;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -23,7 +19,7 @@ public class ApproachesManager implements ApproachesManagerLocal {
 
 	private AnswerEntityFacadeLocal answerEntityFacade;
 
-	private ExamEntityFacadeSerializableLocal examEntityFacade;
+	private ExamEntityFacade examEntityFacade;
 
 	private TeacherEntityFacadeLocal teacherEntityFacade;
 

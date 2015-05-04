@@ -1,6 +1,7 @@
-package pl.lodz.p.it.ssbd2015.mre.facades;
+package pl.lodz.p.it.ssbd2015.moe.facades;
 
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 
 import javax.ejb.Stateless;
@@ -13,14 +14,14 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * Created by tobiasz_kowalski on 08.04.15.
  */
-@Stateless(name = "pl.lodz.p.it.ssbd2015.mre.facades.ExamEntityFacadeSerializable")
+@Stateless(name = "pl.lodz.p.it.ssbd2015.moe.facades.ExamEntityFacade")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 @Interceptors(LoggingInterceptor.class)
-public class ExamEntityFacadeSerializable implements ExamEntityFacadeSerializableLocal {
+public class ExamEntityFacade implements ExamEntityFacadeLocal {
 
-    @PersistenceContext(unitName = "pl.lodz.p.it.ssbd2015.mreser_PU")
+    @PersistenceContext(unitName = "pl.lodz.p.it.ssbd2015.moe_PU")
     private EntityManager entityManager;
 
     @Override
@@ -34,12 +35,17 @@ public class ExamEntityFacadeSerializable implements ExamEntityFacadeSerializabl
     }
 
     @Override
+    public void edit(ExamEntity entity) throws ApplicationBaseException {
+        ExamEntityFacadeLocal.super.edit(entity);
+    }
+
+    @Override
     public Optional<ExamEntity> findById(Long id) {
-        return ExamEntityFacadeSerializableLocal.super.findById(id);
+        return ExamEntityFacadeLocal.super.findById(id);
     }
 
     @Override
     public List<ExamEntity> findAll() {
-        return ExamEntityFacadeSerializableLocal.super.findAll();
+        return ExamEntityFacadeLocal.super.findAll();
     }
 }

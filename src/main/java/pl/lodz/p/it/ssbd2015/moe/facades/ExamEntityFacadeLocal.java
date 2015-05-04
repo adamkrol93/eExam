@@ -12,6 +12,6 @@ import java.util.Optional;
  * @author Andrzej Kurczewski
  */
 @Local
-public interface ExamEntitySerializableFacadeLocal extends Merge<Long,ExamEntity>, Read<Long,ExamEntity>{
+public interface ExamEntityFacadeLocal extends Merge<Long,ExamEntity>, Read<Long,ExamEntity>{
 
 }
