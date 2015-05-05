@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.security.Principal;
 import java.util.Calendar;
+import java.util.ResourceBundle;
 
 
 /**
@@ -33,6 +34,9 @@ public class LoginBean implements Serializable {
 
     @EJB
     private PeopleServiceRemote peopleService;
+
+//    @Resource
+//    private SessionContext sessionContext;
 
     private PersonEntity loggedUser;
 
@@ -59,56 +63,34 @@ public class LoginBean implements Serializable {
             loggedUser = null;
             return false;
         }
-
         return false;
     }
 
+    private boolean isInRole(String role){
+        return FacesContext.getCurrentInstance().getExternalContext().isUserInRole(ResourceBundle.getBundle("roles").getString(role));
+    }
+
     public boolean isAdministrator() {
-        try {
-            return peopleService.isAdministrator();
-        } catch (ApplicationBaseException e) {
-            logger.info("No user is logged in.", e);
-            return false;
-        }
+        return isInRole("admin");
     }
 
     public boolean isStudent() {
-        try {
-            return peopleService.isStudent();
-        } catch (ApplicationBaseException e) {
-            logger.info("No user is logged in.", e);
-            return false;
-        }
+        return isInRole("student");
     }
 
     public boolean isTeacher() {
-        try {
-            return peopleService.isTeacher();
-        } catch (ApplicationBaseException e) {
-            logger.info("No user is logged in.", e);
-            return false;
-        }
+        return isInRole("teacher");
     }
 
     public boolean isGuardian() {
-        try {
-            return peopleService.isGuardian();
-        } catch (ApplicationBaseException e) {
-            logger.info("No user is logged in.", e);
-            return false;
-        }
+        return isInRole("guardian");
     }
 
     public boolean isExaminer() {
-        try {
-            return peopleService.isExaminer();
-        } catch (ApplicationBaseException e) {
-            logger.info("No user is logged in.", e);
-            return false;
-        }
+        return isInRole("examiner");
     }
-    public String getLogin()
-    {
+
+    public String getLogin() {
         Principal p = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
         return p.getName();
     }

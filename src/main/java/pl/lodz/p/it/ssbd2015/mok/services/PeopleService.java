@@ -1,6 +1,5 @@
 package pl.lodz.p.it.ssbd2015.mok.services;
 
-import pl.lodz.p.it.ssbd2015.entities.Groups;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
@@ -76,28 +75,4 @@ public class PeopleService extends BaseStatefulService implements PeopleServiceR
         return personEntityFacade.findByPhrase(phrase);
     }
 
-    @Override
-    public boolean isAdministrator() throws ApplicationBaseException {
-        return personManager.hasGroup(Groups.ADMIN);
-    }
-
-    @Override
-    public boolean isStudent() throws ApplicationBaseException {
-        return personManager.hasGroup(Groups.STUDENT);
-    }
-
-    @Override
-    public boolean isTeacher() throws ApplicationBaseException {
-        return personManager.hasGroup(Groups.TEACHER);
-    }
-
-    @Override
-    public boolean isGuardian() throws ApplicationBaseException {
-        return personManager.hasGroup(Groups.GUARDIAN);
-    }
-
-    @Override
-    public boolean isExaminer() throws ApplicationBaseException {
-        return personManager.hasGroup(Groups.EXAMINER);
-    }
 }

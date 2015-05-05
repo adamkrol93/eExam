@@ -50,39 +50,4 @@ public interface PeopleServiceRemote {
      * @return Listę uzytkowników, tzn. listę z obiektami PersonEntity
      */
     List<PersonEntity> findPeopleByPhrase(String phrase);
-
-    /**
-     * Metoda sprawdza czy zalogowana osoba jest Adminstratorem.
-     * @return true - jeżeli jest administratorem, false - jeżeli nie jest administratorem
-     * @throws ApplicationBaseException jeżeli nie znajdzie zalogowanego użytkownika
-     */
-    boolean isAdministrator() throws ApplicationBaseException;
-
-    /**
-     * Metoda sprawdza czy zalogowana osoba jest Studentem.
-     * @return true - jeżeli jest studentem, false - jeżeli nie jest studentem
-     * @throws ApplicationBaseException jeżeli nie znajdzie zalogowanego użytkownika
-     */
-    boolean isStudent() throws ApplicationBaseException;
-
-    /**
-     * Metoda sprawdza czy zalogowana osoba jest Nauczycielem (Teacher).
-     * @return true - jeżeli jest nauczycielem, false - jeżeli nie jest nauczycielem
-     * @throws ApplicationBaseException jeżeli nie znajdzie zalogowanego użytkownika
-     */
-    boolean isTeacher() throws ApplicationBaseException;
-
-    /**
-     * Metoda sprawdza czy zalogowana osoba jest Opiekunem(Guardianem).
-     * @return true - jeżeli jest opiekunem, false - jeżeli nie jest opiekunem
-     * @throws ApplicationBaseException jeżeli nie znajdzie zalogowanego użytkownika
-     */
-    boolean isGuardian() throws ApplicationBaseException;
-
-    /**
-     * Metoda sprawdza czy zalogowana osoba jest Egzaminatorem(Examiner).
-     * @return true - jeżeli jest egzaminatorem, false - jeżeli nie jest egzaminatorem
-     * @throws ApplicationBaseException jeżeli nie znajdzie zalogowanego użytkownika
-     */
-    boolean isExaminer() throws ApplicationBaseException;
 }
