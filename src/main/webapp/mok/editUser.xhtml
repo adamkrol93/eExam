@@ -9,6 +9,13 @@
     <ui:define name="head">
         <title><h:outputText value="#{i18n['mok.person.detail']}"/></title>
     </ui:define>
+    <ui:define name="breadcrumps">
+        <ol class="breadcrumb">
+            <li><h:link outcome="/index" value="#{i18n['home.page']}"/></li>
+            <li><h:link outcome="/mok/showUser" value="#{i18n['mok.person.detail']}"/></li>
+            <li class="active"><h:outputText value="#{i18n['mok.edit.person.detail']}"/></li>
+        </ol>
+    </ui:define>
 
     <!--@elvariable id="passwordInput" type="javax.faces.component.html.HtmlInputSecret"-->
     <ui:define name="content">

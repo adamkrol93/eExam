@@ -10,6 +10,12 @@
     <ui:define name="head">
         <title><h:outputText value="#{i18n['mok.person.detail']}"/></title>
     </ui:define>
+    <ui:define name="breadcrumps">
+        <ol class="breadcrumb">
+            <li><h:link outcome="/index" value="#{i18n['home.page']}"/></li>
+            <li class="active"><h:outputText value="#{i18n['mok.person.detail']}"/></li>
+        </ol>
+    </ui:define>
 
     <ui:define name="content">
         <div class="row">

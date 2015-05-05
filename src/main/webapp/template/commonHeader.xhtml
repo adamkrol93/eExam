@@ -22,7 +22,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <ui:fragment rendered="#{request.remoteUser != null and loginBean.isAdministrator()}">
+                        <ui:fragment rendered="#{isAdmin}">
                             <li class="dropdown">
                                 <a class="dropdown-toggle" aria-expanded="false" role="button"
                                    data-toggle="dropdown" href="#">
@@ -49,7 +49,7 @@
                                 </ul>
                             </li>
                         </ui:fragment>
-                        <ui:fragment rendered="#{request.remoteUser != null and loginBean.isTeacher()}">
+                        <ui:fragment rendered="#{isTeacher}">
                             <li class="dropdown">
                                 <a class="dropdown-toggle" aria-expanded="false" role="button"
                                    data-toggle="dropdown" href="#">
@@ -64,7 +64,7 @@
                                 </ul>
                             </li>
                         </ui:fragment>
-                        <ui:fragment rendered="#{request.remoteUser != null and loginBean.isExaminer()}">
+                        <ui:fragment rendered="#{isExaminer}">
                             <li class="dropdown">
                                 <a class="dropdown-toggle" aria-expanded="false" role="button"
                                    data-toggle="dropdown" href="#">
@@ -79,7 +79,7 @@
                                 </ul>
                             </li>
                         </ui:fragment>
-                        <ui:fragment rendered="#{request.remoteUser != null and loginBean.isGuardian()}">
+                        <ui:fragment rendered="#{isGuardian}">
                             <li class="dropdown">
                                 <a class="dropdown-toggle" aria-expanded="false" role="button"
                                    data-toggle="dropdown" href="#">
@@ -94,7 +94,7 @@
                                 </ul>
                             </li>
                         </ui:fragment>
-                        <ui:fragment rendered="#{request.remoteUser != null and loginBean.isStudent()}">
+                        <ui:fragment rendered="#{isStudent}">
                             <li class="dropdown">
                                 <a class="dropdown-toggle" aria-expanded="false" role="button"
                                    data-toggle="dropdown" href="#">
@@ -110,7 +110,6 @@
                             </li>
                         </ui:fragment>
                     </ul>
-
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a class="dropdown-toggle" aria-expanded="false" role="button"
@@ -146,7 +145,6 @@
             </div>
         </nav>
         <h:graphicImage library="img" name="logo2.jpg" alt="logo" styleClass="img-responsive"/>
-
         <div class="container">
             <ui:insert name="breadcrumps">
                 <ol class="breadcrumb">
