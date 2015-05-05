@@ -6,6 +6,7 @@ import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonNotFoundException;
 import pl.lodz.p.it.ssbd2015.mok.facades.GroupsStubEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
+import pl.lodz.p.it.ssbd2015.mok.localization.Text;
 import pl.lodz.p.it.ssbd2015.mok.utils.PasswordUtils;
 
 import javax.annotation.Resource;
@@ -13,7 +14,6 @@ import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.*;
 import javax.interceptor.Interceptors;
-import javax.mail.MessagingException;
 import java.util.Arrays;
 
 /**
@@ -67,7 +67,9 @@ public class PersonManager implements PersonManagerLocal {
     @RolesAllowed("CONFIRM_ACCOUNT_MOK")
     public void confirmPerson(PersonEntity personEntity) throws ApplicationBaseException {
         personEntity.setConfirm(true);
-        personEntityFacade.edit(personEntity);
+	    Text text = new Text();
+	    emailManager.sendEmail(personEntity.getEmail(), text.getString("account.confirm"), text.getString("account.confirmed"));
+	    personEntityFacade.edit(personEntity);
     }
 
     @Override
@@ -76,6 +78,12 @@ public class PersonManager implements PersonManagerLocal {
         personEntityFacade.edit(personEntity);
         personEntity.setActive(!personEntity.isActive());
         personEntityFacade.edit(personEntity);
+	    Text text = new Text();
+	    if (personEntity.isActive()) {
+		    emailManager.sendEmail(personEntity.getEmail(), text.getString("account.unlock"), text.getString("account.unlocked"));
+	    } else {
+		    emailManager.sendEmail(personEntity.getEmail(), text.getString("account.lock"), text.getString("account.locked"));
+	    }
     }
 
     @Override
@@ -96,7 +104,8 @@ public class PersonManager implements PersonManagerLocal {
             throw new IllegalArgumentException("The Person has no Group with id = " + id);
         }
 
-        emailManager.sendEmail(personEntity.getEmail(), "Zmiana grupy", "Zmieniono Twoją grupę w systemie eexam");
+	    Text text = new Text();
+        emailManager.sendEmail(personEntity.getEmail(), text.getString("group.change"), text.getString("group.changed"));
     }
 
     @Override
@@ -112,7 +121,8 @@ public class PersonManager implements PersonManagerLocal {
         newPerson.setActive(true);
         personManager.assignAllGroups(newPerson);
         personEntityFacade.create(newPerson);
-        emailManager.sendEmail(newPerson.getEmail(), "Założono nowe konto", "Właśnie założyłeś konto w serwisie eExam");
+	    Text text = new Text();
+        emailManager.sendEmail(newPerson.getEmail(), text.getString("account.created"), text.getString("account.just.created"));
     }
 
     @Override
