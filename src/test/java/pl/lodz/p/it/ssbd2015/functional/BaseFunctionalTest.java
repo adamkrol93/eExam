@@ -33,10 +33,7 @@ public abstract class BaseFunctionalTest {
                         "/", Filters.include(".*\\.xhtml$"))
                 .merge(ShrinkWrap.create(GenericArchive.class).as(ExplodedImporter.class)
                                 .importDirectory("src/main/webapp/resources").as(GenericArchive.class),
-                        "/resources/", Filters.includeAll())
-                .merge(ShrinkWrap.create(GenericArchive.class).as(ExplodedImporter.class)
-                                .importDirectory("src/main/resources").as(GenericArchive.class),
-                        "/WEB-INF/classes/", Filters.include(".*\\.properties$"));
+                        "/resources/", Filters.includeAll());
     }
 
     @Drone

@@ -5,7 +5,10 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.persistence.CleanupUsingScript;
 import org.jboss.arquillian.persistence.TestExecutionPhase;
+import org.jboss.shrinkwrap.api.Filters;
+import org.jboss.shrinkwrap.api.GenericArchive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.importer.ExplodedImporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -45,7 +48,10 @@ public abstract class BaseArquillianTest {
                 .addAsWebInfResource(new File("src/test/resources/web.xml"),
                         "web.xml")
                 .addAsWebInfResource(new File("src/main/webapp/WEB-INF/glassfish-web.xml"),
-                        "glassfish-web.xml");
+                        "glassfish-web.xml")
+                .merge(ShrinkWrap.create(GenericArchive.class).as(ExplodedImporter.class)
+                                .importDirectory("src/main/resources").as(GenericArchive.class),
+                        "/WEB-INF/classes/", Filters.include(".*\\.properties$"));
     }
 
     @Before

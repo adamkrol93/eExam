@@ -2,6 +2,7 @@ package pl.lodz.p.it.ssbd2015.mok.localization;
 
 import javax.faces.context.FacesContext;
 import java.util.Enumeration;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -16,8 +17,9 @@ public class Text extends ResourceBundle {
     protected static final Control UTF8_CONTROL = new UTF8Control(BUNDLE_EXTENSION);
 
     public Text() {
-        setParent(ResourceBundle.getBundle(BUNDLE_NAME,
-                FacesContext.getCurrentInstance().getViewRoot().getLocale(), UTF8_CONTROL));
+        FacesContext context = FacesContext.getCurrentInstance();
+        Locale locale = context != null ? context.getViewRoot().getLocale() : new Locale("en");
+        setParent(ResourceBundle.getBundle(BUNDLE_NAME, locale, UTF8_CONTROL));
     }
 
     @Override

@@ -35,9 +35,6 @@ public class LoginBean implements Serializable {
     @EJB
     private PeopleServiceRemote peopleService;
 
-//    @Resource
-//    private SessionContext sessionContext;
-
     private PersonEntity loggedUser;
 
     /**
