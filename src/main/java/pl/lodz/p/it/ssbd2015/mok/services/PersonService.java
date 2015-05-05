@@ -1,16 +1,15 @@
 package pl.lodz.p.it.ssbd2015.mok.services;
 
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
-import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mok.managers.PersonManagerLocal;
 
 import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.*;
 import javax.interceptor.Interceptors;
-import javax.mail.MessagingException;
 
 /**
  * Stanowy EJB realizujący interfejs PersonServiceRemote.
@@ -44,7 +43,7 @@ public class PersonService extends BaseStatefulService implements PersonServiceR
     @RolesAllowed("ALL_LOGGED")
     public PersonEntity getLoggedPerson() throws ApplicationBaseException {
         String login = sessionContext.getCallerPrincipal().getName();
-        PersonEntity personEntity = personManager.getPerson(login);
+        personEntity = personManager.getPerson(login);
         personEntity.getGroupStubs().isEmpty();
         return personEntity;
     }

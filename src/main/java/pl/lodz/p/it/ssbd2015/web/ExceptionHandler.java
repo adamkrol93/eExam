@@ -53,10 +53,11 @@ public class ExceptionHandler {
                     getRequestMap().get("javax.servlet.error.message");
         }
     }
-    public String getPlainMessage()
-    {
+
+    public String getPlainMessage() {
+        logger.info("INFO DUPA Error with uuid: " + getUuid());
         logger.error("Error with uuid: " + getUuid());
-        logger.error(getUuid(),exception);
+        logger.error(getUuid(), exception);
         if (exception != null) {
             try{
                 if(exception.getCause()!= null)

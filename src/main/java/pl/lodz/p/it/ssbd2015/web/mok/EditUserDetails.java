@@ -1,16 +1,12 @@
 package pl.lodz.p.it.ssbd2015.web.mok;
 
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
-import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mok.services.EditPersonServiceRemote;
-import pl.lodz.p.it.ssbd2015.web.ApplicationErrorBean;
 import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
-import pl.lodz.p.it.ssbd2015.web.interceptors.TryCatchInterceptor;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.interceptor.Interceptors;
 import java.io.Serializable;
 
 /**
@@ -19,13 +15,12 @@ import java.io.Serializable;
  */
 @ManagedBean(name = "editUserDetailsMOK")
 @ViewScoped
-@Interceptors({TryCatchInterceptor.class})
 public class EditUserDetails extends BaseContextBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @EJB
-    private EditPersonServiceRemote editPersonServiceRemote;
+    private EditPersonServiceRemote editPersonService;
 
     private String login;
 
@@ -35,11 +30,9 @@ public class EditUserDetails extends BaseContextBean implements Serializable {
 
     @Override
     protected void doInContext() {
-        try {
-            person = editPersonServiceRemote.findPersonForEdit(login);
-        } catch (ApplicationBaseException ex) {
-            logger.error("Encountered exception while initializing the bean.", ex);
-        }
+        expectApplicationException(() -> {
+            person = editPersonService.findPersonForEdit(login);
+        });
 
         resetContext();
     }
@@ -48,7 +41,7 @@ public class EditUserDetails extends BaseContextBean implements Serializable {
         return login;
     }
 
-    public void setLogin(String login) throws ApplicationBaseException {
+    public void setLogin(String login) {
         this.login = login;
     }
 
@@ -60,12 +53,13 @@ public class EditUserDetails extends BaseContextBean implements Serializable {
         return person;
     }
 
-    public String editPerson() throws ApplicationBaseException {
+    public String editPerson() {
+        return expectApplicationException(() -> {
+            editPersonService.editPerson(person);
 
-        editPersonServiceRemote.editPerson(person);
-
-        setContext(EditUserDetails.class, bean -> bean.message = "mok.edit.person_changed_message");
-        return "editUser?faces-redirect=true&includeViewParams=true";
+            setContext(EditUserDetails.class, bean -> bean.message = "mok.edit.person_changed_message");
+            return "editUser?faces-redirect=true&includeViewParams=true";
+        });
     }
 
 }

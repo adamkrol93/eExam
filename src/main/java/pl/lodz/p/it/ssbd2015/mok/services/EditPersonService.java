@@ -40,14 +40,14 @@ public class EditPersonService extends BaseStatefulService implements EditPerson
     @RolesAllowed("ALL_LOGGED")
     public PersonEntity findLoggedPersonForEdit() throws ApplicationBaseException {
         String login = sessionContext.getCallerPrincipal().getName();
-        PersonEntity personEntity = personManager.getPerson(login);
+        personEntity = personManager.getPerson(login);
         return personEntity;
     }
 
     @Override
     @RolesAllowed("EDIT_SOMEBODY_ACCOUNT_MOK")
     public void editPerson(PersonEntity person) throws ApplicationBaseException {
-        personManager.editPerson(this.personEntity,person);
+        personManager.editPerson(this.personEntity, person);
     }
 
 }

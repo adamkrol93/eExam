@@ -6,6 +6,10 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="../template/commonLayout.xhtml">
+    <f:metadata>
+        <f:viewParam name="uuid" value="#{editLoggedUserDetailsMOK.uuid}" converter="uuidConverter"/>
+        <f:viewAction action="#{editLoggedUserDetailsMOK.checkContext}"/>
+    </f:metadata>
     <ui:define name="head">
         <title><h:outputText value="#{i18n['mok.person.detail']}"/></title>
     </ui:define>
@@ -28,7 +32,7 @@
                         <div class="row">
                             <div class="form-group">
                                 <div class="col-lg-5 col-lg-offset-4">
-                                    <h:outputText value="#{i18n[editUserDetailsMOK.message]}" styleClass="text-success"/>
+                                    <h:outputText value="#{i18n[editLoggedUserDetailsMOK.message]}" styleClass="text-success"/>
                                 </div>
                             </div>
                         </div>

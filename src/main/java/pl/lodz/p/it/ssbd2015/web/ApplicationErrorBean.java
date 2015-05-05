@@ -1,6 +1,5 @@
 package pl.lodz.p.it.ssbd2015.web;
 
-import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
 
 import javax.faces.bean.ManagedBean;
@@ -11,7 +10,7 @@ import javax.faces.bean.RequestScoped;
  */
 @ManagedBean(name = "applicationError")
 @RequestScoped
-public class ApplicationErrorBean extends BaseContextBean{
+public class ApplicationErrorBean extends BaseContextBean {
 
     private String exceptionMessage;
 

@@ -3,8 +3,8 @@ package pl.lodz.p.it.ssbd2015.web.mok;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
-import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mok.services.PersonServiceRemote;
+import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -18,7 +18,7 @@ import java.io.Serializable;
  */
 @ManagedBean(name = "showLoggedUserDetailsMOK")
 @ViewScoped
-public class ShowLoggedUserDetails implements Serializable {
+public class ShowLoggedUserDetails extends BaseContextBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,11 +31,9 @@ public class ShowLoggedUserDetails implements Serializable {
 
     @PostConstruct
     private void initializeModel() {
-        try {
+        expectApplicationException(() -> {
             this.person = personService.getLoggedPerson();
-        } catch (ApplicationBaseException ex) {
-            logger.error("Encountered exception while initializing the bean.", ex);
-        }
+        });
     }
 
     public PersonEntity getPerson() {

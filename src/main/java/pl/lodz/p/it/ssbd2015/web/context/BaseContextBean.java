@@ -2,8 +2,12 @@ package pl.lodz.p.it.ssbd2015.web.context;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.web.ApplicationErrorBean;
 
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.UUID;
 import java.util.function.Consumer;
@@ -61,7 +65,7 @@ public class BaseContextBean implements Serializable {
         }
     }
 
-    public <T> void setContext(Class<T> clazz, Consumer<T> consumer) {
+    protected <T> void setContext(Class<T> clazz, Consumer<T> consumer) {
         logger.info("Setting new context using Consumer");
 
         if (consumer == null) {
@@ -77,4 +81,39 @@ public class BaseContextBean implements Serializable {
 
         contextMap.removeViewContext(uuid);
     }
+
+    protected String expectApplicationException(ApplicationErrorProducer action) {
+        String result;
+        try {
+            result = action.get();
+        } catch (ApplicationBaseException e) {
+            setContext(ApplicationErrorBean.class, bean -> bean.setExceptionMessage(e.getCode()));
+            return "/error/applicationError?faces-redirect=true&uuid=" + getUuid();
+        }
+
+        return result;
+    }
+
+    protected void expectApplicationException(ApplicationErrorAction action) {
+        try {
+            action.run();
+        } catch (ApplicationBaseException e) {
+            setContext(ApplicationErrorBean.class, bean -> bean.setExceptionMessage(e.getCode()));
+            String redirectUrl = "/error/applicationError?faces-redirect=true&uuid=" + getUuid();
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect(redirectUrl);
+            } catch (IOException e1) {
+                throw new RuntimeException(e1);
+            }
+        }
+    }
+
+    protected interface ApplicationErrorProducer {
+        String get() throws ApplicationBaseException;
+    }
+
+    protected interface ApplicationErrorAction {
+        void run() throws ApplicationBaseException;
+    }
+
 }

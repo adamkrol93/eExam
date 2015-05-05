@@ -3,10 +3,14 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="../template/commonLayout.xhtml">
+    <f:metadata>
+        <f:viewParam name="uuid" value="#{showLoggedUserDetailsMOK.uuid}" converter="uuidConverter"/>
+        <f:viewAction action="#{showLoggedUserDetailsMOK.checkContext}"/>
+    </f:metadata>
     <ui:define name="head">
         <title><h:outputText value="#{i18n['mok.person.detail']}"/></title>
     </ui:define>

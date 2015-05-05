@@ -2,13 +2,11 @@ package pl.lodz.p.it.ssbd2015.web.mok;
 
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.mok.services.PeopleServiceRemote;
-import pl.lodz.p.it.ssbd2015.web.interceptors.TryCatchInterceptor;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.interceptor.Interceptors;
 import java.util.List;
 
 /**
@@ -18,7 +16,6 @@ import java.util.List;
  */
 @ManagedBean(name = "listUsersMOK")
 @RequestScoped
-@Interceptors({TryCatchInterceptor.class})
 public class ListUsers {
 
     @EJB
