@@ -3,6 +3,7 @@ package pl.lodz.p.it.ssbd2015.entities;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -20,7 +21,7 @@ import java.util.Calendar;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "groups_name")
 @SecondaryTable(name = "person", pkJoinColumns = {@PrimaryKeyJoinColumn(name = "person_id", referencedColumnName = "person_id")})
-public abstract class GroupsEntity {
+public abstract class GroupsEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "groups_id_generator")

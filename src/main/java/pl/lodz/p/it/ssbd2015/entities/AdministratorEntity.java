@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue(Groups.ADMIN)
 public class AdministratorEntity extends GroupsEntity {
+
     @Override
     public String toString() {
         return "AdministratorEntity{" + super.toString() + "}";

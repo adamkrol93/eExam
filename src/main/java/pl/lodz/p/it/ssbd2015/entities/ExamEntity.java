@@ -3,6 +3,7 @@ package pl.lodz.p.it.ssbd2015.entities;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ import java.util.List;
         name = "findExamByDate",
         query = "SELECT e FROM ExamEntity e WHERE :date BETWEEN e.dateStart AND e.dateEnd"
 )
-public class ExamEntity {
+public class ExamEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "exam_id_generator")

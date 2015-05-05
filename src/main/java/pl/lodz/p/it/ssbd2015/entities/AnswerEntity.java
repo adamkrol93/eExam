@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -18,7 +19,8 @@ import java.util.Calendar;
         valueColumnName = "id_range",
         pkColumnValue = "AnswerEntity",
         allocationSize = 10)
-public class AnswerEntity {
+public class AnswerEntity implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "answer_id_generator")
     @Column(name = "answer_id", nullable = false, updatable = false)

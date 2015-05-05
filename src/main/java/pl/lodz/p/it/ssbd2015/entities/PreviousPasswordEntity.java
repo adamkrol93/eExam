@@ -1,6 +1,7 @@
 package pl.lodz.p.it.ssbd2015.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -15,7 +16,7 @@ import java.util.Calendar;
         valueColumnName = "id_range",
         pkColumnValue = "PreviousPasswordEntity",
         allocationSize = 1)
-public class PreviousPasswordEntity {
+public class PreviousPasswordEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "previous_password_id_generator")

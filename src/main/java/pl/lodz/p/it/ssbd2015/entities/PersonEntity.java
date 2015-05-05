@@ -37,8 +37,6 @@ import java.util.List;
 @EntityListeners(PersonEntityListener.class)
 public class PersonEntity implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "person_id_generator")
     @Column(name = "person_id", nullable = false, updatable = false)

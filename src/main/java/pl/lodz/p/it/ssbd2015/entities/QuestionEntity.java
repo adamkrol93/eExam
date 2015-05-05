@@ -2,6 +2,7 @@ package pl.lodz.p.it.ssbd2015.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -18,7 +19,7 @@ import java.util.List;
         valueColumnName = "id_range",
         pkColumnValue = "QuestionEntity",
         allocationSize = 1)
-public class QuestionEntity {
+public class QuestionEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "question_id_generator")
