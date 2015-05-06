@@ -3,8 +3,11 @@ package pl.lodz.p.it.ssbd2015.web.mok;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.PasswordTooShortException;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonPasswordNotUniqueException;
 import pl.lodz.p.it.ssbd2015.mok.services.EditPersonServiceRemote;
 import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
+import pl.lodz.p.it.ssbd2015.web.localization.MessageUtils;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -31,9 +34,7 @@ public class EditLoggedUserDetails extends BaseContextBean implements Serializab
 
     @Override
     protected void doInContext() {
-        expectApplicationException(() -> {
-            this.person = editPersonService.findLoggedPersonForEdit();
-        });
+        expectApplicationException(() -> this.person = editPersonService.findLoggedPersonForEdit());
         resetContext();
     }
 
@@ -47,7 +48,12 @@ public class EditLoggedUserDetails extends BaseContextBean implements Serializab
 
     public String editPerson() {
         return expectApplicationException(() -> {
-            editPersonService.editPerson(person);
+            try {
+                editPersonService.editPerson(person);
+            } catch (PersonPasswordNotUniqueException | PasswordTooShortException ex) {
+                MessageUtils.addLocalizedMessage(ex.getCode(), "editForm:password");
+                return null;
+            }
 
             setContext(EditLoggedUserDetails.class, bean -> bean.message = "mok.edit.person_changed_message");
             return "editUser?faces-redirect=true&includeViewParams=true";

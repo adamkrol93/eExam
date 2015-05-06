@@ -3,6 +3,9 @@ package pl.lodz.p.it.ssbd2015.web.mok;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.mok.services.PeopleServiceRemote;
 import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.LoginNotUniqueException;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.PasswordTooShortException;
+import pl.lodz.p.it.ssbd2015.web.localization.MessageUtils;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -47,7 +50,15 @@ public class Register extends BaseContextBean {
 
     public String register() {
         return expectApplicationException(() -> {
-            peopleService.register(person);
+            try {
+                peopleService.register(person);
+            } catch (LoginNotUniqueException ex) {
+                MessageUtils.addLocalizedMessage(ex.getCode(), "register-form:login");
+                return null;
+            } catch (PasswordTooShortException ex) {
+                MessageUtils.addLocalizedMessage(ex.getCode(), "register-form:password");
+                return null;
+            }
 
             setContext(Register.class, bean -> bean.message = "mok.register.registered_message");
             return "register?faces-redirect=true&includeViewParams=true";

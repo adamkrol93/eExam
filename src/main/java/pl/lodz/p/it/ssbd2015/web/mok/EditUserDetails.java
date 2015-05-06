@@ -3,6 +3,9 @@ package pl.lodz.p.it.ssbd2015.web.mok;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.mok.services.EditPersonServiceRemote;
 import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.PasswordTooShortException;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonPasswordNotUniqueException;
+import pl.lodz.p.it.ssbd2015.web.localization.MessageUtils;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -55,11 +58,15 @@ public class EditUserDetails extends BaseContextBean implements Serializable {
 
     public String editPerson() {
         return expectApplicationException(() -> {
-            editPersonService.editPerson(person);
+            try {
+                editPersonService.editPerson(person);
+            } catch (PersonPasswordNotUniqueException | PasswordTooShortException ex) {
+                MessageUtils.addLocalizedMessage(ex.getCode(), "editForm:password");
+                return null;
+            }
 
             setContext(EditUserDetails.class, bean -> bean.message = "mok.edit.person_changed_message");
             return "editUser?faces-redirect=true&includeViewParams=true";
         });
     }
-
 }

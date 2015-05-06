@@ -83,7 +83,7 @@ public class PersonEntityFacade implements PersonEntityFacadeLocal {
     }
 
     @Override
-    @RolesAllowed({"CONFIRM_ACCOUNT_MOK", "ACTIVATE_ACCOUNT_MOK", "EDIT_SOMEBODY_ACCOUNT_MOK"})
+    @RolesAllowed({"CONFIRM_ACCOUNT_MOK", "ACTIVATE_ACCOUNT_MOK", "EDIT_SOMEBODY_ACCOUNT_MOK", "ALL_LOGGED"})
     public void edit(PersonEntity entity) throws ApplicationBaseException {
         try {
             PersonEntityFacadeLocal.super.edit(entity);

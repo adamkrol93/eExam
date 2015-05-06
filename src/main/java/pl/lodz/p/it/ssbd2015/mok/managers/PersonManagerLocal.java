@@ -4,11 +4,11 @@ import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 
 import javax.ejb.Local;
-import javax.mail.MessagingException;
 
 /**
  * Klasa menadżera do zarządzania wszystim co jest powiązane z kontami uzytkownika
  * @author Adam Król
+ * @author Andrzej Kurczewski
  */
 @Local
 public interface PersonManagerLocal {
@@ -54,6 +54,13 @@ public interface PersonManagerLocal {
      * @return True - jeżeli nie ma takigo loginu w bazie, False - jeżeli login jest zajęty
      */
     boolean checkUniqueness(String login);
+
+    /**
+     * Metoda sprawdza, czy aktualny skrót hasła podanego użytkownika znajduje się też w jego historii haseł
+     * @param person Osoba, której hasło jest sprawdzane
+     * @return Wartość logiczna true, jeśli skrót występuje w historii, false w przeciwnym przypadku.
+     */
+    boolean checkIfHashExistsInUserHistory(PersonEntity person);
 
     /**
      * Metoda odpowiada za stworzenie nowego uzytkownika. DO metody przekazujemy obiekt z

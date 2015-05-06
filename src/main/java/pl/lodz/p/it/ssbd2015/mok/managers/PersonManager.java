@@ -3,7 +3,9 @@ package pl.lodz.p.it.ssbd2015.mok.managers;
 import pl.lodz.p.it.ssbd2015.entities.*;
 import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.PasswordTooShortException;
 import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonNotFoundException;
+import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonPasswordNotUniqueException;
 import pl.lodz.p.it.ssbd2015.mok.facades.GroupsStubEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.localization.Text;
@@ -15,9 +17,11 @@ import javax.annotation.security.RolesAllowed;
 import javax.ejb.*;
 import javax.interceptor.Interceptors;
 import java.util.Arrays;
+import java.util.Calendar;
 
 /**
  * Created by adam on 24.04.15.
+ * @author Andrzej Kurczewski
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mok.managers.PersonManager")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
@@ -43,14 +47,30 @@ public class PersonManager implements PersonManagerLocal {
     private SessionContext sessionContext;
 
     @Override
-    @RolesAllowed("ALL_LOGGED")
+    @RolesAllowed({"ALL_LOGGED", "EDIT_SOMEBODY_ACCOUNT_MOK"})
     public void editPerson(PersonEntity oldOne, PersonEntity newOne) throws ApplicationBaseException {
         oldOne.setName(newOne.getName());
         oldOne.setLastName(newOne.getLastName());
         oldOne.setEmail(newOne.getEmail());
-        if (newOne.getPassword() != null && !newOne.getPassword().isEmpty()
-                && !oldOne.getPassword().equals(newOne.getPassword())) {
-            oldOne.setPassword(PasswordUtils.hashPassword(newOne.getPassword()));
+        if (newOne.getPassword() != null && !newOne.getPassword().isEmpty()) {
+            String newHash = PasswordUtils.hashPassword(newOne.getPassword());
+            if (!oldOne.getPassword().equals(newHash)) {
+                if (newOne.getPassword().length() < 6) {
+                    throw new PasswordTooShortException(String.format("Password must have at least 6 characters, was: %d",
+                                                                      newOne.getPassword().length()));
+                }
+                PreviousPasswordEntity previous = new PreviousPasswordEntity();
+                previous.setPerson(oldOne);
+                previous.setPassword(oldOne.getPassword());
+                previous.setDateAdd(Calendar.getInstance()); //TODO: Przenieść do listenera
+                oldOne.setPassword(newHash);
+                if (personManager.checkIfHashExistsInUserHistory(oldOne)) {
+                    throw new PersonPasswordNotUniqueException(
+                        "Person with login " + oldOne.getLogin() + " already used password with hash " + oldOne
+                            .getPassword());
+                }
+                oldOne.getPreviousPasswords().add(previous);
+            }
         }
         personEntityFacade.edit(oldOne);
     }
@@ -112,6 +132,17 @@ public class PersonManager implements PersonManagerLocal {
     @PermitAll
     public boolean checkUniqueness(String login) {
         return !personEntityFacade.findByLogin(login).isPresent();
+    }
+
+    @Override
+    @RolesAllowed("ALL_LOGGED")
+    public boolean checkIfHashExistsInUserHistory(PersonEntity person) {
+        for (PreviousPasswordEntity previousPassword : person.getPreviousPasswords()) {
+            if (previousPassword.getPassword().equals(person.getPassword())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

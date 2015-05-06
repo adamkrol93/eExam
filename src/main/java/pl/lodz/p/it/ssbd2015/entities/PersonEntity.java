@@ -1,8 +1,6 @@
 package pl.lodz.p.it.ssbd2015.entities;
 
 import pl.lodz.p.it.ssbd2015.entities.listeners.PersonEntityListener;
-import pl.lodz.p.it.ssbd2015.entities.validators.NotExistsAsPersonLoginInDatabase;
-import pl.lodz.p.it.ssbd2015.entities.validators.PersonCreation;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
@@ -44,7 +42,6 @@ public class PersonEntity implements Serializable {
 
     @Pattern(regexp = "^[a-zA-Z0-9._-]+$", message = "{person.login.pattern}")
     @Size(min = 4, max = 30, message = "{groups.login.size}")
-    @NotExistsAsPersonLoginInDatabase(groups = PersonCreation.class, message = "{person.login.exists}")
     @Column(name = "person_login", nullable = false, length = 30, unique = true)
     private String login;
 
@@ -59,6 +56,7 @@ public class PersonEntity implements Serializable {
     private String name;
 
     @Column(name = "person_password", nullable = false, length = 32)
+    @Size(min = 6, message = "{person.password.size}")
     private String password;
 
     @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$", message = "{person.email.pattern}")
