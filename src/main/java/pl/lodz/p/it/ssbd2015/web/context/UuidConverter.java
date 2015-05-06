@@ -7,6 +7,7 @@ import javax.faces.convert.FacesConverter;
 import java.util.UUID;
 
 /**
+ * Konwerter JSFowy dla typu UUID z biblioteki Javy.
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  */
 @FacesConverter(value = "uuidConverter")

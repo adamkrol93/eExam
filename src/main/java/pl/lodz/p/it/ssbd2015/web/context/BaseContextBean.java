@@ -13,6 +13,8 @@ import java.util.UUID;
 import java.util.function.Consumer;
 
 /**
+ * Klasa bazowa dla beanów stanowych, które mają współpracować z ContextMapą. Dodaje do nich pole do przechowywania
+ * UUID i kilka metod, które będą korzystać w ContextMapy z kluczem równym UUID temu beana.
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  */
 public class BaseContextBean implements Serializable {
@@ -38,22 +40,45 @@ public class BaseContextBean implements Serializable {
         this.uuid = uuid;
     }
 
+    /**
+     * Metoda, którą trzeba wywołać w .xhtmlu korzystającym z danego beana w <f:viewAction action="#{bean.checkContext}"/>
+     * Dzięki temu zostanie ona wywołana po ustawieniu viewParamów, a koniecznie musi być przed jej wywołaniem ustawiony
+     * UUID tego widoku, jeżeli ma on na początku wyszukać swój kontekst.
+     * Ustawienie UUID może wyglądać tak <f:viewParam name="uuid" value="#{bean.uuid}" converter="uuidConverter"/>
+     * Po ustawieniu kontekstu wywołuje metodę szablonową doInContext
+     */
     public void checkContext() {
         contextMap.applyContext(this);
         doInContext();
     }
 
+    /**
+     * Metoda, która, przy spełenieniu wymagań dla checkContextu, zostanie wywołana przy tworzeniu beana. ale
+     * po ustawieniu kontekstu oczekującego na niego w ContextMapie.
+     */
     protected void doInContext() {
     }
 
+    /**
+     * Resetuje uuid tego beana. Dobrze to zrobić w doInContext, by dzieci tego beana otwarte na wielu kartach
+     * dostały osobne UUID.
+     */
     protected void resetUuid() {
         uuid = null;
     }
 
+    /**
+     * Zwraca PartialConsumera dla uuid z tego beana w contextMapie.
+     * @return PartialConsumer dla widoków o uuid równym uuid temu beanowi.
+     */
     protected PartialConsumer getContext() {
         return contextMap.getViewContext(uuid);
     }
 
+    /**
+     * Ustawia PartialConsumera dla widoków o uuid równym uuid tego beana, a zatem być może dla jego potomków.
+     * @param consumer PartialConsument to ustawiania stanu w dzieciach tego beana.
+     */
     protected void setContext(PartialConsumer consumer) {
         logger.info("Setting new context using PartialConsumer");
 
@@ -65,6 +90,13 @@ public class BaseContextBean implements Serializable {
         }
     }
 
+    /**
+     * Przeładowanie setContextu przyjmującego PartialConsumera, które tworzy i ustawia PartialConsumera
+     * zdefiniowanego dla tylko jednej klasy.
+     * @param clazz Klasa oczekiwanego potomka.
+     * @param consumer Konsument, który ustawia stan na potomkach danego typu.
+     * @param <T> Typ oczekiwanego potomka.
+     */
     protected <T> void setContext(Class<T> clazz, Consumer<T> consumer) {
         logger.info("Setting new context using Consumer");
 
@@ -76,12 +108,22 @@ public class BaseContextBean implements Serializable {
         }
     }
 
+    /**
+     * Usuwa PartialConsumera przypisanego dla uuid tego beana z ContextMapy.
+     */
     protected void resetContext() {
         logger.info("Resetting context");
 
         contextMap.removeViewContext(uuid);
     }
 
+    /**
+     * Wykonuje akcję przekazaną w argumencie. W razie wyjątku ApplicationBaseException przechwyuje go,
+     * zwraca outcome string do strony /error/applicationError i ustawia w ContextMapie komunikat do wyświetlenia
+     * na tej podstronie.
+     * @param action Akcja do wykonania, która może zakończyć się ApplicationBaseException.
+     * @return Outcome danej akcji lub do applicationError.
+     */
     protected String expectApplicationException(ApplicationErrorProducer action) {
         String result;
         try {
@@ -94,6 +136,12 @@ public class BaseContextBean implements Serializable {
         return result;
     }
 
+    /**
+     * Wykonuje akcję przekazaną w argumencie. W razie wyjątku ApplicationBaseException przechwyuje go
+     * i przekierowuje do strony /error/applicationError przez FacesContext i ustawia w ContextMapie
+     * komunikat do wyświetlenia.
+     * @param action Akcja do wykonania, która może zakończyć się ApplicationBaseException.
+     */
     protected void expectApplicationException(ApplicationErrorAction action) {
         try {
             action.run();
