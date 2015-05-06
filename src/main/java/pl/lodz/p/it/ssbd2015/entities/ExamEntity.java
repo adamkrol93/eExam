@@ -28,7 +28,7 @@ import java.util.List;
         name = "findExamByDate",
         query = "SELECT e FROM ExamEntity e WHERE :date BETWEEN e.dateStart AND e.dateEnd"
 )
-public class ExamEntity extends TimeModificationBaseClass implements Serializable {
+public class ExamEntity extends TimeBaseEntity implements Serializable {
 
 
     static private Logger logger = LoggerFactory.getLogger(PersonEntity.class);
@@ -310,7 +310,7 @@ public class ExamEntity extends TimeModificationBaseClass implements Serializabl
     }
 
     @Override
-    public void setCreationDateBase(Calendar date) {
+    public void setCreationDate(Calendar date) {
 
         if(this.getDateAdd()==null){
             this.setDateAdd(date);
@@ -321,7 +321,7 @@ public class ExamEntity extends TimeModificationBaseClass implements Serializabl
     }
 
     @Override
-    public void setModificationDateBase(Calendar date) {
+    public void setModificationDate(Calendar date) {
         this.setDateModification(date);
     }
 }

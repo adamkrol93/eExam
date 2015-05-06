@@ -21,7 +21,7 @@ import java.util.List;
         valueColumnName = "id_range",
         pkColumnValue = "ApproachEntity",
         allocationSize = 1)
-public class ApproachEntity extends TimeModificationBaseClass implements Serializable {
+public class ApproachEntity extends TimeBaseEntity implements Serializable {
 
 
     static private Logger logger = LoggerFactory.getLogger(PersonEntity.class);
@@ -183,7 +183,7 @@ public class ApproachEntity extends TimeModificationBaseClass implements Seriali
     }
 
     @Override
-    public void setCreationDateBase(Calendar date) {
+    public void setCreationDate(Calendar date) {
 
         if(this.getDateAdd()==null){
             this.setDateAdd(date);
@@ -194,7 +194,7 @@ public class ApproachEntity extends TimeModificationBaseClass implements Seriali
     }
 
     @Override
-    public void setModificationDateBase(Calendar date) {
+    public void setModificationDate(Calendar date) {
         this.setDateModification(date);
     }
 }

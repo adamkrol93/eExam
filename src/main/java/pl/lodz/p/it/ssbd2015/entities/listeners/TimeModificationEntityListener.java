@@ -2,7 +2,7 @@ package pl.lodz.p.it.ssbd2015.entities.listeners;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.lodz.p.it.ssbd2015.entities.TimeModificationBaseClass;
+import pl.lodz.p.it.ssbd2015.entities.TimeBaseEntity;
 
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -14,8 +14,7 @@ import java.util.Calendar;
  */
 public class TimeModificationEntityListener {
 
-    private static Logger logger = LoggerFactory.getLogger(TimeModificationEntityListener.class);
-
+    private static final Logger logger = LoggerFactory.getLogger(TimeModificationEntityListener.class);
 
     /**
      * Metoda wywoływana przed wykonaniem operacji persist przez entity managera.
@@ -23,7 +22,7 @@ public class TimeModificationEntityListener {
      */
     @PrePersist
     public void setRegistrationDate(Object timeModificationEntity) {
-        ((TimeModificationBaseClass)timeModificationEntity).setCreationDateBase(Calendar.getInstance());
+        ((TimeBaseEntity)timeModificationEntity).setCreationDate(Calendar.getInstance());
     }
 
     /**
@@ -33,6 +32,6 @@ public class TimeModificationEntityListener {
     @PreUpdate
     public void setModificationDate(Object timeModificationEntity)
     {
-        ((TimeModificationBaseClass)timeModificationEntity).setModificationDateBase(Calendar.getInstance());
+        ((TimeBaseEntity)timeModificationEntity).setModificationDate(Calendar.getInstance());
     }
 }

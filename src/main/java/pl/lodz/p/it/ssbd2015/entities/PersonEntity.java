@@ -34,7 +34,7 @@ import java.util.List;
         )
 })
 //@EntityListeners(PersonEntityListener.class)
-public class PersonEntity extends TimeModificationBaseClass implements Serializable {
+public class PersonEntity extends TimeBaseEntity implements Serializable {
 
 
     static private Logger logger = LoggerFactory.getLogger(PersonEntity.class);
@@ -262,7 +262,7 @@ public class PersonEntity extends TimeModificationBaseClass implements Serializa
     }
 
     @Override
-    public void setCreationDateBase(Calendar date) {
+    public void setCreationDate(Calendar date) {
 
         if(this.getDateAdd()==null){
             this.setDateAdd(date);
@@ -273,7 +273,7 @@ public class PersonEntity extends TimeModificationBaseClass implements Serializa
     }
 
     @Override
-    public void setModificationDateBase(Calendar date) {
+    public void setModificationDate(Calendar date) {
         this.setDateModification(date);
     }
 }

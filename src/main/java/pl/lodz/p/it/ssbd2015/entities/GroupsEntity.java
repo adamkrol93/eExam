@@ -21,7 +21,7 @@ import java.util.Calendar;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "groups_name")
 @SecondaryTable(name = "person", pkJoinColumns = {@PrimaryKeyJoinColumn(name = "person_id", referencedColumnName = "person_id")})
-public abstract class GroupsEntity extends TimeModificationBaseClass implements Serializable {
+public abstract class GroupsEntity extends TimeBaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "groups_id_generator")
@@ -261,12 +261,11 @@ public abstract class GroupsEntity extends TimeModificationBaseClass implements 
     }
 
     @Override
-    public void setCreationDateBase(Calendar date) {
-
+    public void setCreationDate(Calendar date) {
     }
 
     @Override
-    public void setModificationDateBase(Calendar date) {
+    public void setModificationDate(Calendar date) {
         this.setDateModification(date);
     }
 }

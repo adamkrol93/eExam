@@ -11,21 +11,20 @@ import java.util.Calendar;
  * Klasa bazowa dla klas encyjnych.
  * @author tobiasz_kowalski
  */
-
 @MappedSuperclass
 @EntityListeners(TimeModificationEntityListener.class)
-public abstract class TimeModificationBaseClass {
+public abstract class TimeBaseEntity {
 
     /**
-     *Metoda służąca do zapisywania czasu tworzenia encji
+     * Metoda służąca do zapisywania czasu tworzenia encji
      * @param date jako parametr przekazywana jest aktualna data
      */
-    public abstract void setCreationDateBase(Calendar date);
+    public abstract void setCreationDate(Calendar date);
 
     /**
-     *Metoda służąca do zapisywania czasu edycji encji
+     * Metoda służąca do zapisywania czasu edycji encji
      * @param date jako parametr przekazywana jest aktualna data
      */
-    public abstract void setModificationDateBase(Calendar date);
+    public abstract void setModificationDate(Calendar date);
 
 }

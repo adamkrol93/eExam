@@ -22,7 +22,7 @@ import java.util.Calendar;
         valueColumnName = "id_range",
         pkColumnValue = "AnswerEntity",
         allocationSize = 10)
-public class AnswerEntity extends TimeModificationBaseClass implements Serializable {
+public class AnswerEntity extends TimeBaseEntity implements Serializable {
 
 
     static private Logger logger = LoggerFactory.getLogger(PersonEntity.class);
@@ -172,7 +172,7 @@ public class AnswerEntity extends TimeModificationBaseClass implements Serializa
     }
 
     @Override
-    public void setCreationDateBase(Calendar date) {
+    public void setCreationDate(Calendar date) {
 
         if(this.getDateAdd()==null){
             this.setDateAdd(date);
@@ -184,7 +184,7 @@ public class AnswerEntity extends TimeModificationBaseClass implements Serializa
     }
 
     @Override
-    public void setModificationDateBase(Calendar date) {
+    public void setModificationDate(Calendar date) {
         this.setDateModification(date);
     }
 }

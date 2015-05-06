@@ -12,7 +12,7 @@ import java.util.Calendar;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "groups_name")
 @Table(name = "groups")
-public abstract class GroupsStubEntity implements Serializable {
+public abstract class GroupsStubEntity extends TimeBaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "groups_id_generator")
@@ -94,5 +94,14 @@ public abstract class GroupsStubEntity implements Serializable {
                 "id=" + id +
                 ", version=" + version +
                 '}';
+    }
+
+    @Override
+    public void setCreationDate(Calendar date) {
+    }
+
+    @Override
+    public void setModificationDate(Calendar date) {
+        this.setDateModification(date);
     }
 }
