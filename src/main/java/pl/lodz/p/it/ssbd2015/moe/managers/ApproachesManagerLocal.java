@@ -1,7 +1,7 @@
 package pl.lodz.p.it.ssbd2015.moe.managers;
 
 import pl.lodz.p.it.ssbd2015.entities.*;
-import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 
 import javax.ejb.Local;
 import java.util.List;

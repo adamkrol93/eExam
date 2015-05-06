@@ -1,7 +1,6 @@
 package pl.lodz.p.it.ssbd2015.entities.facade;
 
-import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonIllegalArgumentException;
+import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 
 /**
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>

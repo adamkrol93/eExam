@@ -1,11 +1,11 @@
 package pl.lodz.p.it.ssbd2015.mok.managers;
 
 import pl.lodz.p.it.ssbd2015.entities.*;
-import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.PasswordTooShortException;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonNotFoundException;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.PersonPasswordNotUniqueException;
+import pl.lodz.p.it.ssbd2015.exceptions.PasswordTooShortException;
+import pl.lodz.p.it.ssbd2015.exceptions.PersonNotFoundException;
+import pl.lodz.p.it.ssbd2015.exceptions.PersonPasswordNotUniqueException;
 import pl.lodz.p.it.ssbd2015.mok.facades.GroupsStubEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.localization.Text;

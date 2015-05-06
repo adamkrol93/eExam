@@ -3,11 +3,10 @@ package pl.lodz.p.it.ssbd2015.mok.services;
 import org.jboss.arquillian.persistence.UsingDataSet;
 import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
-import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mok.managers.EmailManagerLocal;
 
 import javax.ejb.EJB;
-import javax.mail.MessagingException;
 
 /**
  * @author Bartosz Ignaczewski

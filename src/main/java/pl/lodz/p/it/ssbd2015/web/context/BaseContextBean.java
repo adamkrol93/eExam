@@ -2,7 +2,7 @@ package pl.lodz.p.it.ssbd2015.web.context;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.web.ApplicationErrorBean;
 
 import javax.faces.bean.ManagedProperty;

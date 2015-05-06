@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;;
 import pl.lodz.p.it.ssbd2015.mok.services.PeopleServiceRemote;
 import pl.lodz.p.it.ssbd2015.mok.services.PersonServiceRemote;
-import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;

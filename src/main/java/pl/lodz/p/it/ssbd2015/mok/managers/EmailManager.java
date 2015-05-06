@@ -1,9 +1,9 @@
 package pl.lodz.p.it.ssbd2015.mok.managers;
 
-import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.MailAddressException;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.MailCommunicationException;
+import pl.lodz.p.it.ssbd2015.exceptions.MailAddressException;
+import pl.lodz.p.it.ssbd2015.exceptions.MailCommunicationException;
 
 import javax.annotation.Resource;
 import javax.annotation.security.PermitAll;

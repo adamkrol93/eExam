@@ -1,7 +1,7 @@
 package pl.lodz.p.it.ssbd2015.mze.managers;
 
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
-import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExaminerEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.facades.QuestionEntityFacadeLocal;
 

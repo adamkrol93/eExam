@@ -1,9 +1,8 @@
 package pl.lodz.p.it.ssbd2015.mok.facades;
 
 import pl.lodz.p.it.ssbd2015.entities.GroupsStubEntity;
-import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.*;
+import pl.lodz.p.it.ssbd2015.exceptions.*;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;

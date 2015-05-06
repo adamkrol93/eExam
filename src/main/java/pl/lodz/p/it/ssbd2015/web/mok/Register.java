@@ -3,8 +3,8 @@ package pl.lodz.p.it.ssbd2015.web.mok;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.mok.services.PeopleServiceRemote;
 import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.LoginNotUniqueException;
-import pl.lodz.p.it.ssbd2015.mok.exceptions.PasswordTooShortException;
+import pl.lodz.p.it.ssbd2015.exceptions.LoginNotUniqueException;
+import pl.lodz.p.it.ssbd2015.exceptions.PasswordTooShortException;
 import pl.lodz.p.it.ssbd2015.web.localization.MessageUtils;
 
 import javax.annotation.PostConstruct;
