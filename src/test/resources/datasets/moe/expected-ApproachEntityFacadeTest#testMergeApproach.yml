@@ -6,7 +6,6 @@ approach:
     approach_exam_id: 1
     approach_entrant_id: 3
     approach_date_add: "2015-03-30 22:59:07.393572"
-    approach_date_modification: "[NULL]"
     approach_version: 2
   - approach_id: 2
     approach_date_start: "2015-04-04 22:59:07.39357"
@@ -15,7 +14,6 @@ approach:
     approach_exam_id: 2
     approach_entrant_id: 3
     approach_date_add: "2015-03-30 22:59:07.393572"
-    approach_date_modification: "[NULL]"
     approach_version: 1
   - approach_id: 3
     approach_date_start: "2015-04-04 22:59:07.39357"
@@ -24,7 +22,6 @@ approach:
     approach_exam_id: 1
     approach_entrant_id: 6
     approach_date_add: "2015-03-30 22:59:07.393572"
-    approach_date_modification: "[NULL]"
     approach_version: 1
   - approach_id: 4
     approach_date_start: "2015-04-04 22:59:07.39357"
@@ -33,7 +30,6 @@ approach:
     approach_exam_id: 1
     approach_entrant_id: 6
     approach_date_add: "2015-03-30 22:59:07.393572"
-    approach_date_modification: "[NULL]"
     approach_version: 1
   - approach_id: 5
     approach_date_start: "2015-04-04 22:59:07.39357"
@@ -42,7 +38,6 @@ approach:
     approach_exam_id: 2
     approach_entrant_id: 6
     approach_date_add: "2015-03-30 22:59:07.393572"
-    approach_date_modification: "[NULL]"
     approach_version: 1
   - approach_id: 6
     approach_date_start: "2015-04-04 22:59:07.39357"
@@ -51,5 +46,4 @@ approach:
     approach_exam_id: 2
     approach_entrant_id: 7
     approach_date_add: "2015-03-30 22:59:07.393572"
-    approach_date_modification: "[NULL]"
     approach_version: 1

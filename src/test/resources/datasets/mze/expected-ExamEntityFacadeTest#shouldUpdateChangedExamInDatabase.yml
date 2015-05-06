@@ -11,7 +11,6 @@ exam:
     exam_creator_id: 1
     exam_modifier_id: 4
     exam_date_add: "2015-03-30 22:59:07.393572"
-    exam_date_modification: "2015-04-08 22:10:01.0"
     exam_version: 2
   - exam_id: 2
     exam_title: "Pewien egzamin 2"
@@ -25,5 +24,4 @@ exam:
     exam_creator_id: 1
     exam_modifier_id: "[NULL]"
     exam_date_add: "2015-03-30 22:59:07.393572"
-    exam_date_modification: "[NULL]"
     exam_version: 1

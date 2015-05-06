@@ -1,12 +1,10 @@
 package pl.lodz.p.it.ssbd2015.entities;
 
-import pl.lodz.p.it.ssbd2015.entities.listeners.PersonEntityListener;
-
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.text.SimpleDateFormat;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -32,8 +30,8 @@ import java.util.List;
                 query = "SELECT p FROM PersonEntity p WHERE lower(p.name) like lower(:phrase) or lower(p.lastName) like lower(:phrase)"
         )
 })
-@EntityListeners(PersonEntityListener.class)
-public class PersonEntity implements Serializable {
+//@EntityListeners(PersonEntityListener.class)
+public class PersonEntity extends TimeModificationBaseClass implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "person_id_generator")
@@ -255,5 +253,15 @@ public class PersonEntity implements Serializable {
                 "id=" + id +
                 ", version=" + version +
                 '}';
+    }
+
+    @Override
+    public void setCreationDateBase(Calendar date) {
+        this.setDateAdd(date);
+    }
+
+    @Override
+    public void setModificationDateBase(Calendar date) {
+        this.setDateModification(date);
     }
 }

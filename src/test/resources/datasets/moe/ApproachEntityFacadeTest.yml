@@ -12,7 +12,6 @@ person:
     person_active: true
     person_confirm: true
     person_date_add: "2015-03-30 22:59:07.393572"
-    person_date_modification: "[NULL]"
     person_version: 1
   - person_id: 3
     person_login: "osoba3"
@@ -27,7 +26,6 @@ person:
     person_active: true
     person_confirm: true
     person_date_add: "2015-03-30 22:59:07.393572"
-    person_date_modification: "[NULL]"
     person_version: 1
 
 groups:
@@ -36,14 +34,12 @@ groups:
     groups_name: "student"
     groups_guardian: "[NULL]"
     groups_active: true
-    groups_date_modification: "[NULL]"
     groups_version: 1
   - groups_id: 7
     person_id: 3
     groups_name: "student"
     groups_guardian: "[NULL]"
     groups_active: true
-    groups_date_modification: "[NULL]"
     groups_version: 1
 
 approach:
@@ -54,7 +50,6 @@ approach:
     approach_exam_id: 1
     approach_entrant_id: 3
     approach_date_add: "2015-03-30 22:59:07.393572"
-    approach_date_modification: "[NULL]"
     approach_version: 1
   - approach_id: 2
     approach_date_start: "2015-04-04 22:59:07.39357"
@@ -63,7 +58,6 @@ approach:
     approach_exam_id: 2
     approach_entrant_id: 3
     approach_date_add: "2015-03-30 22:59:07.393572"
-    approach_date_modification: "[NULL]"
     approach_version: 1
   - approach_id: 3
     approach_date_start: "2015-04-04 22:59:07.39357"
@@ -72,7 +66,6 @@ approach:
     approach_exam_id: 1
     approach_entrant_id: 6
     approach_date_add: "2015-03-30 22:59:07.393572"
-    approach_date_modification: "[NULL]"
     approach_version: 1
   - approach_id: 4
     approach_date_start: "2015-04-04 22:59:07.39357"
@@ -81,7 +74,6 @@ approach:
     approach_exam_id: 1
     approach_entrant_id: 6
     approach_date_add: "2015-03-30 22:59:07.393572"
-    approach_date_modification: "[NULL]"
     approach_version: 1
   - approach_id: 5
     approach_date_start: "2015-04-04 22:59:07.39357"
@@ -90,7 +82,6 @@ approach:
     approach_exam_id: 2
     approach_entrant_id: 6
     approach_date_add: "2015-03-30 22:59:07.393572"
-    approach_date_modification: "[NULL]"
     approach_version: 1
   - approach_id: 6
     approach_date_start: "2015-04-04 22:59:07.39357"
@@ -99,7 +90,6 @@ approach:
     approach_exam_id: 2
     approach_entrant_id: 7
     approach_date_add: "2015-03-30 22:59:07.393572"
-    approach_date_modification: "[NULL]"
     approach_version: 1
   - approach_id: 7
     approach_date_start: "2015-04-08 22:00:02.0"
@@ -108,5 +98,4 @@ approach:
     approach_exam_id: 1
     approach_entrant_id: 7
     approach_date_add: "2015-04-08 22:00:01.0"
-    approach_date_modification: "[NULL]"
     approach_version: 1

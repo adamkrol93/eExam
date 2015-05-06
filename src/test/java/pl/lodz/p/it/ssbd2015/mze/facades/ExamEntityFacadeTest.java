@@ -99,7 +99,6 @@ public class ExamEntityFacadeTest extends BaseArquillianTest {
         exam.setDuration(30);
         exam.setCountQuestion(12);
         exam.setCreator(examiner);
-        exam.setDateAdd(TestUtils.makeCalendar(2015, 4, 8, 22, 0, 1));
 
         mandatoryWrapper.getExamEntityFacadeLocal(e -> {
             try {

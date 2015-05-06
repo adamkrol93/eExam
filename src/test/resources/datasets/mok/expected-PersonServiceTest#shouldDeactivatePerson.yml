@@ -12,7 +12,6 @@ person:
     person_active: true
     person_confirm: true
     person_date_add: "2015-03-30 22:59:07.393572"
-    person_date_modification: "[NULL]"
     person_version: 1
   - person_id: 2
     person_login: "koks"
@@ -27,5 +26,4 @@ person:
     person_active: false
     person_confirm: false
     person_date_add: "2015-03-30 22:59:07.393572"
-    person_date_modification: "[NULL]"
     person_version: 2

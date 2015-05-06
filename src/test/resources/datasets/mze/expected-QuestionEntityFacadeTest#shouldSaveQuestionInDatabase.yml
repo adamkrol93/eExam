@@ -5,7 +5,6 @@ question:
     question_creator_id: 4
     question_modifier_id: "[NULL]"
     question_date_add: "2015-03-30 22:59:07.393572"
-    question_date_modification: "[NULL]"
     question_version: 1
   - question_id: 2
     question_content: "Jak?"
@@ -13,5 +12,4 @@ question:
     question_creator_id: 4
     question_modifier_id: "[NULL]"
     question_date_add: "2015-04-08 22:00:01.0"
-    question_date_modification: "[NULL]"
     question_version: 1

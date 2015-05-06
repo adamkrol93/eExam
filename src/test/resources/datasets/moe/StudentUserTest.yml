@@ -18,7 +18,6 @@ person:
     person_active: true
     person_confirm: true
     person_date_add: "2015-03-30 22:59:07.393572"
-    person_date_modification: "[NULL]"
     person_version: 1
 
 groups:
@@ -27,5 +26,4 @@ groups:
     groups_name: "student"
     groups_guardian: "[NULL]"
     groups_active: true
-    groups_date_modification: "[NULL]"
     groups_version: 1

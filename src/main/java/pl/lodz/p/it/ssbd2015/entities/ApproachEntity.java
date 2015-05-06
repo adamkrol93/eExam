@@ -18,7 +18,7 @@ import java.util.List;
         valueColumnName = "id_range",
         pkColumnValue = "ApproachEntity",
         allocationSize = 1)
-public class ApproachEntity implements Serializable {
+public class ApproachEntity extends TimeModificationBaseClass implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "approach_id_generator")
@@ -174,5 +174,15 @@ public class ApproachEntity implements Serializable {
                 "id=" + id +
                 ", version=" + version +
                 '}';
+    }
+
+    @Override
+    public void setCreationDateBase(Calendar date) {
+        this.setDateAdd(date);
+    }
+
+    @Override
+    public void setModificationDateBase(Calendar date) {
+        this.setDateModification(date);
     }
 }

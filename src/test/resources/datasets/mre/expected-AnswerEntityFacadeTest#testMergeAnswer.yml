@@ -6,7 +6,6 @@
     answer_content: "Przykładowa odpowiedź na pytanie 1 w podejściu 1"
     answer_grade: 1
     answer_date_add: "2015-03-30 22:59:07.393572"
-    answer_date_modification: "[NULL]"
     answer_version: 1
   - answer_id: 2
     answer_approach_id: 1
@@ -15,7 +14,6 @@
     answer_content: "Przykładowa odpowiedź na pytanie 2 w podejściu 1"
     answer_grade: 1
     answer_date_add: "2015-03-30 22:59:07.393572"
-    answer_date_modification: "[NULL]"
     answer_version: 1
   - answer_id: 3
     answer_approach_id: 1
@@ -24,7 +22,6 @@
     answer_content: "Przykładowa odpowiedź na pytanie 3 w podejściu 1"
     answer_grade: 1
     answer_date_add: "2015-03-30 22:59:07.393572"
-    answer_date_modification: "[NULL]"
     answer_version: 1
   - answer_id: 4
     answer_approach_id: 1
@@ -33,7 +30,6 @@
     answer_content: "Przykładowa odpowiedź na pytanie 4 w podejściu 1"
     answer_grade: 1
     answer_date_add: "2015-03-30 22:59:07.393572"
-    answer_date_modification: "[NULL]"
     answer_version: 1
   - answer_id: 5
     answer_approach_id: 2
@@ -42,7 +38,6 @@
     answer_content: "Przykładowa odpowiedź na pytanie 3 w podejściu 2"
     answer_grade: 1
     answer_date_add: "2015-03-30 22:59:07.393572"
-    answer_date_modification: "[NULL]"
     answer_version: 1
   - answer_id: 6
     answer_approach_id: 2
@@ -51,7 +46,6 @@
     answer_content: "Przykładowa odpowiedź na pytanie 5 w podejściu 2"
     answer_grade: 1
     answer_date_add: "2015-03-30 22:59:07.393572"
-    answer_date_modification: "[NULL]"
     answer_version: 1
   - answer_id: 7
     answer_approach_id: 3
@@ -60,7 +54,6 @@
     answer_content: "Przykładowa odpowiedź na pytanie 1 w podejściu 3"
     answer_grade: 1
     answer_date_add: "2015-03-30 22:59:07.393572"
-    answer_date_modification: "[NULL]"
     answer_version: 1
   - answer_id: 8
     answer_approach_id: 3
@@ -69,7 +62,6 @@
     answer_content: "Przykładowa odpowiedź na pytanie 2 w podejściu 3"
     answer_grade: 0
     answer_date_add: "2015-03-30 22:59:07.393572"
-    answer_date_modification: "[NULL]"
     answer_version: 1
   - answer_id: 9
     answer_approach_id: 3
@@ -78,7 +70,6 @@
     answer_content: "Dziedziczenie z wykorzystaniem strategii SINGLE nie narusza 3NF."
     answer_grade: 0
     answer_date_add: "2015-03-30 22:59:07.393572"
-    answer_date_modification: "2015-04-07 16:30:17.0"
     answer_version: 2
   - answer_id: 10
     answer_approach_id: 3
@@ -87,6 +78,5 @@
     answer_content: ""
     answer_grade: 0
     answer_date_add: "2015-03-30 22:59:07.393572"
-    answer_date_modification: "[NULL]"
     answer_version: 1
 

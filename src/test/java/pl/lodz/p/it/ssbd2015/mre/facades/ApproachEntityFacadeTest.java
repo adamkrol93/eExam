@@ -89,7 +89,7 @@ public class ApproachEntityFacadeTest extends BaseArquillianTest {
 
     @Test
     @Transactional(TransactionMode.DISABLED)
-    @ShouldMatchDataSet(value = "mre/expected-ApproachEntityFacadeTest#testCreate.yml")
+    @ShouldMatchDataSet(value = "mre/expected-ApproachEntityFacadeTest#testCreate.yml", excludeColumns = "approach_date_add")
     public void testCreate() {
         ExamEntity exam = mandatoryWrapper.withExamEntityFacadeLocal(e -> e.findById(1l).get());
         StudentEntity student = mandatoryWrapper.withStudentEntityFacadeLocal(s -> s.findById(7l).get());
@@ -99,7 +99,6 @@ public class ApproachEntityFacadeTest extends BaseArquillianTest {
         approach.setDateEnd(TestUtils.makeCalendar(2015, 4, 8, 23, 0, 1));
         approach.setExam(exam);
         approach.setEntrant(student);
-        approach.setDateAdd(TestUtils.makeCalendar(2015, 4, 8, 22, 0, 1));
 
         mandatoryWrapper.getApproachEntityFacadeLocal(a -> {
             try {
@@ -122,13 +121,11 @@ public class ApproachEntityFacadeTest extends BaseArquillianTest {
         approach.setDateEnd(TestUtils.makeCalendar(2015, 4, 8, 23, 0, 1));
         approach.setExam(exam);
         approach.setEntrant(student);
-        approach.setDateAdd(TestUtils.makeCalendar(2015, 4, 8, 22, 0, 1));
 
         for (QuestionEntity question : exam.getQuestions()) {
             AnswerEntity answer = new AnswerEntity();
             answer.setApproach(approach);
             answer.setContent("");
-            answer.setDateAdd(TestUtils.makeCalendar(2015, 4, 7, 17, 0, 7));
             answer.setGrade(0);
             answer.setQuestion(question);
             approach.getAnswers().add(answer);

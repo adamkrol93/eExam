@@ -6,7 +6,6 @@ import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
 import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
-import pl.lodz.p.it.ssbd2015.TestUtils;
 import pl.lodz.p.it.ssbd2015.entities.GroupsStubEntity;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.entities.PreviousPasswordEntity;
@@ -81,7 +80,7 @@ public class PersonEntityFacadeTest extends BaseArquillianTest {
     //MOK.1 Zarejestruj się
     @Test
     @Transactional(TransactionMode.DISABLED)
-    @ShouldMatchDataSet(value = "mok/expected-ValidUser#testCreatePerson.yml")
+    @ShouldMatchDataSet(value = "mok/expected-ValidUser#testCreatePerson.yml", excludeColumns = "person_date_add")
     public void testCreatePerson() {
         String login  = "ziomek";
         String lastName = "Kabza";
@@ -102,7 +101,6 @@ public class PersonEntityFacadeTest extends BaseArquillianTest {
 
         person.setConfirm(true);
         person.setActive(true);
-        person.setDateAdd(TestUtils.makeCalendar(2015, 4, 8, 22, 0, 1));
         person.setDateModification(null);
         person.setPreviousPasswords(previousPasswords);
         person.setGroupStubs(groupStubs);

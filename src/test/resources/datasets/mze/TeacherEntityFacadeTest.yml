@@ -28,7 +28,6 @@ person:
     person_active: true
     person_confirm: true
     person_date_add: "2015-03-30 22:59:07.393572"
-    person_date_modification: "[NULL]"
     person_version: 1
   - person_id: 3
     person_login: "osoba3"
@@ -43,7 +42,6 @@ person:
     person_active: true
     person_confirm: true
     person_date_add: "2015-03-30 22:59:07.393572"
-    person_date_modification: "[NULL]"
     person_version: 1
 
 groups:
@@ -52,14 +50,12 @@ groups:
     groups_name: "teacher"
     groups_guardian: "[NULL]"
     groups_active: true
-    groups_date_modification: "[NULL]"
     groups_version: 1
   - groups_id: 7
     person_id: 3
     groups_name: "teacher"
     groups_guardian: "[NULL]"
     groups_active: true
-    groups_date_modification: "[NULL]"
     groups_version: 1
 
 exam:
@@ -75,7 +71,6 @@ exam:
     exam_creator_id: 1
     exam_modifier_id: "[NULL]"
     exam_date_add: "2015-03-30 22:59:07.393572"
-    exam_date_modification: "[NULL]"
     exam_version: 1
   - exam_id: 2
     exam_title: "Pewien egzamin 2"
@@ -89,7 +84,6 @@ exam:
     exam_creator_id: 1
     exam_modifier_id: "[NULL]"
     exam_date_add: "2015-03-30 22:59:07.393572"
-    exam_date_modification: "[NULL]"
     exam_version: 1
 
 exam_groups:

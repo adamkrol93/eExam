@@ -19,7 +19,7 @@ import java.util.Calendar;
         valueColumnName = "id_range",
         pkColumnValue = "AnswerEntity",
         allocationSize = 10)
-public class AnswerEntity implements Serializable {
+public class AnswerEntity extends TimeModificationBaseClass implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "answer_id_generator")
@@ -163,5 +163,15 @@ public class AnswerEntity implements Serializable {
                 "id=" + id +
                 ", version=" + version +
                 '}';
+    }
+
+    @Override
+    public void setCreationDateBase(Calendar date) {
+        this.setDateAdd(date);
+    }
+
+    @Override
+    public void setModificationDateBase(Calendar date) {
+        this.setDateModification(date);
     }
 }

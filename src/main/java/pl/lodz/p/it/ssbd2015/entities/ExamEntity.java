@@ -25,7 +25,7 @@ import java.util.List;
         name = "findExamByDate",
         query = "SELECT e FROM ExamEntity e WHERE :date BETWEEN e.dateStart AND e.dateEnd"
 )
-public class ExamEntity implements Serializable {
+public class ExamEntity extends TimeModificationBaseClass implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "exam_id_generator")
@@ -301,5 +301,15 @@ public class ExamEntity implements Serializable {
                 "id=" + id +
                 ", version=" + version +
                 '}';
+    }
+
+    @Override
+    public void setCreationDateBase(Calendar date) {
+        this.setDateAdd(date);
+    }
+
+    @Override
+    public void setModificationDateBase(Calendar date) {
+        this.setDateModification(date);
     }
 }
