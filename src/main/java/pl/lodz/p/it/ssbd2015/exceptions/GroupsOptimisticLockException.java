@@ -1,7 +1,8 @@
-package pl.lodz.p.it.ssbd2015.mok.exceptions;
+package pl.lodz.p.it.ssbd2015.exceptions;
 
 /**
- * Created by adam on 01.05.15.
+ * Klasa związana z wyjątakami związanymi z blokadami optymistycznymi
+ * @author Adam Król
  */
 public class GroupsOptimisticLockException extends GroupsManagementException {
     public GroupsOptimisticLockException(String message) {

@@ -1,7 +1,7 @@
-package pl.lodz.p.it.ssbd2015.mok.exceptions;
+package pl.lodz.p.it.ssbd2015.exceptions;
 
 /**
- * Klasa wyjątku odpowiedzilna za problemy związane z użytkownikami
+ * Klasa wyjątku odpowiedzialna za problemy związane z użytkownikami
  * @author Adam Król
  */
 public class PersonManagementException extends MokBaseException {

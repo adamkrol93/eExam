@@ -1,6 +1,7 @@
-package pl.lodz.p.it.ssbd2015.mok.exceptions;
+package pl.lodz.p.it.ssbd2015.exceptions;
 
 /**
+ * Klasa wyjątku sygnalizującego problem z zakrótnik hasłem podanym przez użytkownika
  * @author Andrzej Kurczewski
  */
 public class PasswordTooShortException extends PersonManagementException {

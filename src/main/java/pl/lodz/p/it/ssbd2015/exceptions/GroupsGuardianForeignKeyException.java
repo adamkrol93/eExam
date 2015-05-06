@@ -1,7 +1,8 @@
-package pl.lodz.p.it.ssbd2015.mok.exceptions;
+package pl.lodz.p.it.ssbd2015.exceptions;
 
 /**
- * Created by adam on 01.05.15.
+ * Klasa stworzona dla wyjątków związanych z kluczem obcym na tabeli Groups
+ * @author Adam Król
  */
 public class GroupsGuardianForeignKeyException extends GroupsManagementException {
     public GroupsGuardianForeignKeyException(String message) {

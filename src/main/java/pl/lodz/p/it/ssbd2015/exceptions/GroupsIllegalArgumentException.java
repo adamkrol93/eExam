@@ -1,7 +1,8 @@
-package pl.lodz.p.it.ssbd2015.mok.exceptions;
+package pl.lodz.p.it.ssbd2015.exceptions;
 
 /**
- * Created by adam on 01.05.15.
+ * Klasa stworzona dla wyjątków związanych z przekazananiem nielegalnych lub niestosownych argumentów.
+ * @author Adam Król
  */
 public class GroupsIllegalArgumentException extends GroupsManagementException {
     public GroupsIllegalArgumentException(String message) {

@@ -1,7 +1,8 @@
-package pl.lodz.p.it.ssbd2015.entities.exceptions;
+package pl.lodz.p.it.ssbd2015.exceptions;
 
 /**
- * Created by adam on 01.05.15.
+ * Klasy bazowa dla wyjątków aplikacyjnych.
+ * @author Adam Król
  */
 @javax.ejb.ApplicationException(rollback = true)
 public abstract class ApplicationBaseException extends Exception {

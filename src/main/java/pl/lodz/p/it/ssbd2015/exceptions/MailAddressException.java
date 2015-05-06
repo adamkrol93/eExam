@@ -1,4 +1,4 @@
-package pl.lodz.p.it.ssbd2015.mok.exceptions;
+package pl.lodz.p.it.ssbd2015.exceptions;
 
 /**
  * Klasa sygnalizująca błąd z niepoprawnym adresem email lub konfiguracją serwera

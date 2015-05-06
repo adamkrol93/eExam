@@ -1,6 +1,7 @@
-package pl.lodz.p.it.ssbd2015.mok.exceptions;
+package pl.lodz.p.it.ssbd2015.exceptions;
 
 /**
+ * Klasa wyjątku związanym z blokadami optymistycznymi
  * Created by adam on 01.05.15.
  */
 public class PersonOptimisticLockException extends PersonManagementException{

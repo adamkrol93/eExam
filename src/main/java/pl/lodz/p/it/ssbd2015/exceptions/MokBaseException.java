@@ -1,8 +1,7 @@
-package pl.lodz.p.it.ssbd2015.mok.exceptions;
-
-import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
+package pl.lodz.p.it.ssbd2015.exceptions;
 
 /**
+ * Klasy bazowa dla wyjątków z modułu MOK
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  */
 public abstract class MokBaseException extends ApplicationBaseException {

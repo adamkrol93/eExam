@@ -1,7 +1,8 @@
-package pl.lodz.p.it.ssbd2015.mok.exceptions;
+package pl.lodz.p.it.ssbd2015.exceptions;
 
 /**
- * Created by adam on 01.05.15.
+ * Klasa baza wyjątku sygnalizującego problem z obługą maila
+ * @author Adam Król
  */
 public abstract class MailException extends MokBaseException {
 

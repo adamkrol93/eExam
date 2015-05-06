@@ -1,7 +1,8 @@
-package pl.lodz.p.it.ssbd2015.mok.exceptions;
+package pl.lodz.p.it.ssbd2015.exceptions;
 
 /**
- * Created by adam on 01.05.15.
+ * Klasa powiązania z wyjatkami rzucanymi przezz moduł MOK
+ * @author Adam Król
  */
 public class GroupsManagementException extends MokBaseException {
     public GroupsManagementException(String message) {

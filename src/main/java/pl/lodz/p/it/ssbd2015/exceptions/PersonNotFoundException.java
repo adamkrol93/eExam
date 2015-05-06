@@ -1,6 +1,7 @@
-package pl.lodz.p.it.ssbd2015.mok.exceptions;
+package pl.lodz.p.it.ssbd2015.exceptions;
 
 /**
+ * Klasa wyjątku sygnalizującego problem z tym iż nie znaleziono danego użytkownika w bazie danych
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  */
 public class PersonNotFoundException extends PersonManagementException {
