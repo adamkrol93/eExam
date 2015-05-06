@@ -56,13 +56,6 @@ public interface PersonManagerLocal {
     boolean checkUniqueness(String login);
 
     /**
-     * Metoda sprawdza, czy aktualny skrót hasła podanego użytkownika znajduje się też w jego historii haseł
-     * @param person Osoba, której hasło jest sprawdzane
-     * @return Wartość logiczna true, jeśli skrót występuje w historii, false w przeciwnym przypadku.
-     */
-    boolean checkIfHashExistsInUserHistory(PersonEntity person);
-
-    /**
      * Metoda odpowiada za stworzenie nowego uzytkownika. DO metody przekazujemy obiekt z
      * wypełnionymi danymi podstawowymi. Hasło będzie hashowane później.
      * @param newPerson Dane osoby którą chcemy zarejestrować

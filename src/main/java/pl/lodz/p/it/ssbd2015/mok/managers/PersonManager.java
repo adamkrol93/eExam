@@ -60,12 +60,14 @@ public class PersonManager implements PersonManagerLocal {
                 previous.setPerson(oldOne);
                 previous.setPassword(oldOne.getPassword());
                 previous.setDateAdd(Calendar.getInstance()); //TODO: Przenieść do listenera
-                oldOne.setPassword(newHash);
-                if (personManager.checkIfHashExistsInUserHistory(oldOne)) {
-                    throw new PersonPasswordNotUniqueException(
-                        "Person with login " + oldOne.getLogin() + " already used password with hash " + oldOne
-                            .getPassword());
+                for (PreviousPasswordEntity previousPassword : oldOne.getPreviousPasswords()) {
+                    if (previousPassword.getPassword().equals(newHash)) {
+                        throw new PersonPasswordNotUniqueException(
+                            "Person with login " + oldOne.getLogin() + " already used password with hash " + oldOne
+                                .getPassword());
+                    }
                 }
+                oldOne.setPassword(newHash);
                 oldOne.getPreviousPasswords().add(previous);
             }
         }
@@ -85,7 +87,8 @@ public class PersonManager implements PersonManagerLocal {
     public void confirmPerson(PersonEntity personEntity) throws ApplicationBaseException {
         personEntity.setConfirm(true);
 	    Text text = new Text();
-	    emailManager.sendEmail(personEntity.getEmail(), text.getString("account.confirm"), text.getString("account.confirmed"));
+	    emailManager.sendEmail(personEntity.getEmail(), text.getString("account.confirm"),
+                               text.getString("account.confirmed"));
 	    personEntityFacade.edit(personEntity);
     }
 
@@ -131,17 +134,6 @@ public class PersonManager implements PersonManagerLocal {
     }
 
     @Override
-    @RolesAllowed("ALL_LOGGED")
-    public boolean checkIfHashExistsInUserHistory(PersonEntity person) {
-        for (PreviousPasswordEntity previousPassword : person.getPreviousPasswords()) {
-            if (previousPassword.getPassword().equals(person.getPassword())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
     @PermitAll
     public void register(PersonEntity newPerson) throws ApplicationBaseException {
         newPerson.setPassword(PasswordUtils.hashPassword(newPerson.getPassword()));
@@ -149,7 +141,8 @@ public class PersonManager implements PersonManagerLocal {
         personManager.assignAllGroups(newPerson);
         personEntityFacade.create(newPerson);
 	    Text text = new Text();
-        emailManager.sendEmail(newPerson.getEmail(), text.getString("account.created"), text.getString("account.just.created"));
+        emailManager.sendEmail(newPerson.getEmail(), text.getString("account.created"),
+                               text.getString("account.just.created"));
     }
 
     @Override
