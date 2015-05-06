@@ -9,7 +9,7 @@ import pl.lodz.p.it.ssbd2015.exceptions.PersonPasswordNotUniqueException;
 import pl.lodz.p.it.ssbd2015.mok.facades.GroupsStubEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.localization.Text;
-import pl.lodz.p.it.ssbd2015.mok.utils.PasswordUtils;
+import pl.lodz.p.it.ssbd2015.utils.PasswordUtils;
 
 import javax.annotation.Resource;
 import javax.annotation.security.PermitAll;

@@ -18,6 +18,10 @@ public class LogoutBean {
 
     private static final Logger logger = Logger.getLogger(LogoutBean.class.getName());
 
+    /**
+     * Metoda niszczy sesję użytkonika, co powoduje wylogowanie go z aplikacji.
+     * @return Strona na którą uzytkownik ma trafić po wylogowaniu.
+     */
     public String logout() {
         String result = "/index";
 

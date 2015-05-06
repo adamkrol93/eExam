@@ -10,6 +10,8 @@ import javax.ejb.SessionContext;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
+ * Bazowa klasa abstrakcyjna dla beanów Stateful wykorzystywany do tworzenia Endpointów.
+ * Główne zadanie tej klasy to logowanie informacji o transkakcjach aplikacyjnych.
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  */
 public abstract class BaseStatefulService {
@@ -23,6 +25,10 @@ public abstract class BaseStatefulService {
 
     private long txId;
 
+
+    /**
+     * Loguje rozpoczęcie transakcji aplikacyjnej
+     */
     @AfterBegin
     private void logTransactionBegan() {
         txId = txCounter.getAndIncrement();
@@ -31,6 +37,11 @@ public abstract class BaseStatefulService {
         logger.info("Transaction(id={}, person={}) has begun.", txId, personLogin);
     }
 
+
+    /**
+     * Loguje zakończenie transakcji aplikacyjnej
+     * @param committed
+     */
     @AfterCompletion
     private void logTransactionEnded(boolean committed) {
         String personLogin = sessionContext.getCallerPrincipal().getName();

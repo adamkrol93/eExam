@@ -10,6 +10,8 @@ import javax.interceptor.InvocationContext;
 import java.util.Objects;
 
 /**
+ * Interceptor do logowania transakcji bazodanowych.
+ * Wykorzsytywany przez wszystkie fasady, aby zapisać w dzienniku zdzarzeń informacje o przetwarzanej transakcji.
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  */
 public class LoggingInterceptor {
@@ -19,6 +21,12 @@ public class LoggingInterceptor {
     @Resource
     private SessionContext sessionContext;
 
+    /**
+     * Metoda interceptora, która opakowywuje całą transakcję we obowiązkowe logowanie informacji o niej
+     * @param context Context wywołanej metody
+     * @return Object przekazuje to co zwróciła metoda
+     * @throws Exception
+     */
     @AroundInvoke
     public Object logMethodInvoked(InvocationContext context) throws Exception {
         if (!logger.isInfoEnabled()) {

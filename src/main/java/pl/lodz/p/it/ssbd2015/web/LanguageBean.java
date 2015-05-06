@@ -50,6 +50,11 @@ public class LanguageBean implements Serializable {
 		this.localeCode = localeCode;
 	}
 
+
+	/**
+	 * Pozwala zmienić język strony dla uzytkownika, utrzymywany w sesji.
+	 * @param newLocale Nowa wartość języka do ustawienia
+	 */
 	public void changeLocale(Locale newLocale) {
 		locale = newLocale;
 		FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);

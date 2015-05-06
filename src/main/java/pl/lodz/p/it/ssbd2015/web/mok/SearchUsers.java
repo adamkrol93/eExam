@@ -22,6 +22,10 @@ public class SearchUsers {
 
     private String phrase;
 
+    /**
+     * Metoda akcji wykonywanej podczas wyszukiwania uzytkownika w bazie
+     * @return strona na która ma zostać przekierowany uzytkownik po wykonaniu akcji
+     */
     public void search() {
         if (phrase != null) {
             this.personEntities = peopleService.findPeopleByPhrase(phrase);

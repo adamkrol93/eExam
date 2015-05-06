@@ -1,4 +1,4 @@
-package pl.lodz.p.it.ssbd2015.mok.utils;
+package pl.lodz.p.it.ssbd2015.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +9,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
+ * Klasa zawierająca metody pomocnicze do operacji na haśle
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  */
 public class PasswordUtils {

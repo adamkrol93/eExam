@@ -48,6 +48,10 @@ public class Register extends BaseContextBean {
         return person;
     }
 
+    /**
+     * Metoda akcji wykonywanej podczas rejestracji nowego użytkownika
+     * @return strona na która ma zostać przekierowany uzytkownik po wykonaniu akcji
+     */
     public String register() {
         return expectApplicationException(() -> {
             try {

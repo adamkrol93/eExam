@@ -24,14 +24,6 @@ public class UTF8ResourceBundleLocator implements ResourceBundleLocator {
         this.bundleName = bundleName;
     }
 
-
-    /**
-     * Search current thread classloader for the resource bundle. If not found,
-     * search validator (this) classloader.
-     *
-     * @param locale The locale of the bundle to load.
-     * @return the resource bundle or <code>null</code> if none is found.
-     */
     @Override
     public ResourceBundle getResourceBundle(Locale locale) {
         ResourceBundle rb = null;

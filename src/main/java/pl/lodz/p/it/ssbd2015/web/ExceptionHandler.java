@@ -54,8 +54,13 @@ public class ExceptionHandler {
         }
     }
 
+    /**
+     * Metoda wyciąga inormacje o wyjątku.
+     * Jeżeli jest to klasa {@link ApplicationBaseException} to wyciąga z niej kod internacjonalizacji, jeżeli nie to wyświetla informacje o wewnętrznym błędzie serwera.
+     * Metoda loguje również UUID błędu który wystąpił, aby łatwiej było go znaleźć.
+     * @return Komunikat do wyświetlenia na stronie
+     */
     public String getPlainMessage() {
-        logger.info("INFO DUPA Error with uuid: " + getUuid());
         logger.error("Error with uuid: " + getUuid());
         logger.error(getUuid(), exception);
         if (exception != null) {

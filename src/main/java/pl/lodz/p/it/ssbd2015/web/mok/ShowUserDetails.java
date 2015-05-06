@@ -66,6 +66,10 @@ public class ShowUserDetails extends BaseContextBean {
         return groupStubs;
     }
 
+    /**
+     * Metoda akcji wykonywanej podczas potwierdzenia użytkownika
+     * @return strona na która ma zostać przekierowany uzytkownik po wykonaniu akcji
+     */
     public String confirmUser() {
         return expectApplicationException(() -> {
             personService.confirmPerson();
@@ -75,6 +79,10 @@ public class ShowUserDetails extends BaseContextBean {
         });
     }
 
+    /**
+     * Metoda akcji wykonywanej podczas dodawania lub usuwania aktywności grupy użytkownika
+     * @return strona na która ma zostać przekierowany uzytkownik po wykonaniu akcji
+     */
     public String toggleGroupActive() {
         return expectApplicationException(() -> {
             personService.toggleGroupActivation(groupStubs.getRowData().getId());
@@ -84,6 +92,10 @@ public class ShowUserDetails extends BaseContextBean {
         });
     }
 
+    /**
+     * Metoda akcji wykonywanej podczas zmiany statusu aktywności użytkownika ( można użytkownika zablokować)
+     * @return strona na która ma zostać przekierowany uzytkownik po wykonaniu akcji
+     */
     public String togglePersonActive() {
         return expectApplicationException(() -> {
             personService.togglePersonActivation();

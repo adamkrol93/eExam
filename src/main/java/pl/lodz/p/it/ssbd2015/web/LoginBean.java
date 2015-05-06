@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 
 /**
- * Bean zapewnia obsługę poprawnego zalogowania się użytkownika
+ * Bean zapewnia obsługę poprawnego zalogowania się użytkownika oraz sprawdzenia jego roli
  *
  * @author Tobiasz Kowalski
  */
@@ -63,30 +63,66 @@ public class LoginBean implements Serializable {
         return false;
     }
 
+
+    /**
+     * Metoda sprawdzająca czy uzytkownik znajduje się w roli.
+     * Metoda korzysta z ResourceBundle o nazwie roles.properties. Role tam zawarte musza odpowiedać poszczególnym menu.
+     * @param role klucz z pliku roles.properties roli którą chcemy sprawdzić.
+     * @return true - jeżeli użytkownik jest w danej roli, false - jeżeli użytkownik nie znajduje się w roli
+     */
     private boolean isInRole(String role){
         return FacesContext.getCurrentInstance().getExternalContext().isUserInRole(ResourceBundle.getBundle("roles").getString(role));
     }
 
+    /**
+     * Metoda sprawdza czy zalogowany użytkownik jest administratorem.
+     * Więcej informacji patrz {@link LoginBean#isInRole(String)}
+     * @return true - jeżeli użytkownik jest w Administratorem, false - jeżeli użytkownik nie jest Administratorem
+     */
     public boolean isAdministrator() {
         return isInRole("admin");
     }
 
+    /**
+     * Metoda sprawdza czy zalogowany użytkownik jest studentem.
+     * Więcej informacji patrz {@link LoginBean#isInRole(String)}
+     * @return true - jeżeli użytkownik jest w studentem, false - jeżeli użytkownik nie jest studentem
+     */
     public boolean isStudent() {
         return isInRole("student");
     }
 
+    /**
+     * Metoda sprawdza czy zalogowany użytkownik jest nauczycielem.
+     * Więcej informacji patrz {@link LoginBean#isInRole(String)}
+     * @return true - jeżeli użytkownik jest w nauczycielem, false - jeżeli użytkownik nie jest nauczycielem
+     */
     public boolean isTeacher() {
         return isInRole("teacher");
     }
 
+    /**
+     * Metoda sprawdza czy zalogowany użytkownik jest opiekunem.
+     * Więcej informacji patrz {@link LoginBean#isInRole(String)}
+     * @return true - jeżeli użytkownik jest w opiekunem, false - jeżeli użytkownik nie jest opiekunem
+     */
     public boolean isGuardian() {
         return isInRole("guardian");
     }
 
+    /**
+     * Metoda sprawdza czy zalogowany użytkownik jest egzaminatorem.
+     * Więcej informacji patrz {@link LoginBean#isInRole(String)}
+     * @return true - jeżeli użytkownik jest w egzaminatorem, false - jeżeli użytkownik nie jest egzaminatorem
+     */
     public boolean isExaminer() {
         return isInRole("examiner");
     }
 
+    /**
+     * Metoda wyciąga login aktualnego użytkownika.
+     * @return
+     */
     public String getLogin() {
         Principal p = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
         return p.getName();

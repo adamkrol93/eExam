@@ -6,6 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 /**
+ * BackingBean wykorzsytywany do obsługi wyjątków aplikacyjnych {@link pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException}
  * @author Adam Król
  */
 @ManagedBean(name = "applicationError")

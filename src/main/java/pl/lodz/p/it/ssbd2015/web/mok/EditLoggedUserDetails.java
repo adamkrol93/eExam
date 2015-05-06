@@ -46,6 +46,10 @@ public class EditLoggedUserDetails extends BaseContextBean implements Serializab
         return person;
     }
 
+    /**
+     * Metoda akcji wykonywanej podczas edycji zalogowanego uzytkownika
+     * @return strona na która ma zostać przekierowany uzytkownik po wykonaniu akcji
+     */
     public String editPerson() {
         return expectApplicationException(() -> {
             try {
