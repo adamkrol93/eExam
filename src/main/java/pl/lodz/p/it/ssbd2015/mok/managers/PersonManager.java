@@ -51,7 +51,7 @@ public class PersonManager implements PersonManagerLocal {
         oldOne.setEmail(newOne.getEmail());
         if (newOne.getPassword() != null && !newOne.getPassword().isEmpty()) {
             String newHash = PasswordUtils.hashPassword(newOne.getPassword());
-            if (!oldOne.getPassword().equals(newHash)) {
+            if (!oldOne.getPassword().equals(newOne.getPassword()) && !oldOne.getPassword().equals(newHash)) {
                 if (newOne.getPassword().length() < 6) {
                     throw new PasswordTooShortException(String.format("Password must have at least 6 characters, was: %d",
                                                                       newOne.getPassword().length()));
@@ -92,7 +92,6 @@ public class PersonManager implements PersonManagerLocal {
     @Override
     @RolesAllowed("ACTIVATE_ACCOUNT_MOK")
         public void togglePersonActivation(PersonEntity personEntity) throws ApplicationBaseException {
-        personEntityFacade.edit(personEntity);
         personEntity.setActive(!personEntity.isActive());
         personEntityFacade.edit(personEntity);
 	    Text text = new Text();

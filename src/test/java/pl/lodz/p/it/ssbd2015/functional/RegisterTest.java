@@ -68,8 +68,8 @@ public class RegisterTest extends BaseFunctionalTest {
         registerPage.register(login, password, name, lastname, email);
 
         assertThat(registerLoginError.getText(), anyOf(
-                containsString("User with this login already exists"),
-                containsString("Istnieje już użytkownik o takim loginie")
+                containsString("Login nie jest unikalny"),
+                containsString("Login is not unique")
         ));
     }
 }

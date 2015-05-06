@@ -15,7 +15,7 @@ public interface PersonManagerLocal {
 
     /**
      * Metoda edyująca dane użytkownika. Zmienia również hasła i sprawdza czy nie jest unikalne.
-     * @param oldOne Stara wersj, żeby można było sprawdzić hasło
+     * @param oldOne Stara wersja, żeby można było sprawdzić hasło
      * @param newOne Nowa wersja, która przyszła z formularza
      */
     void editPerson(PersonEntity oldOne, PersonEntity newOne) throws ApplicationBaseException;
