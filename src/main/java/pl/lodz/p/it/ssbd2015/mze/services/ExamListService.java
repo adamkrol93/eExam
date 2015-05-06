@@ -1,6 +1,7 @@
 package pl.lodz.p.it.ssbd2015.mze.services;
 
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExamEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.managers.ExamsManagerLocal;
 
@@ -28,7 +29,7 @@ public class ExamListService implements ExamListServiceRemote {
 	}
 
 	@Override
-	public void cloneExam(long examId) {
+	public void cloneExam(long examId) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 }

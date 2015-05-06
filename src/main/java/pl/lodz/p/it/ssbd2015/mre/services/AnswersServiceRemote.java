@@ -2,6 +2,7 @@ package pl.lodz.p.it.ssbd2015.mre.services;
 
 import pl.lodz.p.it.ssbd2015.entities.AnswerEntity;
 import pl.lodz.p.it.ssbd2015.entities.ApproachEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 
 import javax.ejb.Remote;
 import java.util.List;
@@ -12,11 +13,11 @@ import java.util.List;
 @Remote
 public interface AnswersServiceRemote {
 
-	Long createApproach(String title);
+	Long createApproach(String title) throws ApplicationBaseException;
 
-	ApproachEntity findById(long approachId);
+	ApproachEntity findById(long approachId) throws ApplicationBaseException;
 
-	void editAnswer(List<AnswerEntity> answers);
+	void editAnswer(List<AnswerEntity> answers) throws ApplicationBaseException;
 
-	void endApproach();
+	void endApproach() throws ApplicationBaseException;
 }

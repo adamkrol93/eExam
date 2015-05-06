@@ -2,6 +2,7 @@ package pl.lodz.p.it.ssbd2015.mze.services;
 
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 
 import javax.ejb.Remote;
 import java.util.List;
@@ -12,16 +13,16 @@ import java.util.List;
 @Remote
 public interface EditExamServiceRemote {
 
-	ExamEntity findById(long examId);
+	ExamEntity findById(long examId) throws ApplicationBaseException;
 
 	List<TeacherEntity> findAllNotInExam();
 
-	void editExam(ExamEntity exam);
+	void editExam(ExamEntity exam) throws ApplicationBaseException;
 
-	void addTeacher(long teacherId);
+	void addTeacher(long teacherId) throws ApplicationBaseException;
 
-	void removeQuestion(long questionId);
+	void removeQuestion(long questionId) throws ApplicationBaseException;
 
-	void removeTeacher(long teacherId);
+	void removeTeacher(long teacherId) throws ApplicationBaseException;
 
 }

@@ -3,6 +3,7 @@ package pl.lodz.p.it.ssbd2015.mze.services;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 
 import javax.ejb.Remote;
 import java.util.List;
@@ -17,6 +18,6 @@ public interface ExamCreationServiceRemote {
 
 	List<TeacherEntity> findAllTeachers();
 
-	void create(ExamEntity exam, List<Long> questions, List<Long> teachers);
+	void create(ExamEntity exam, List<Long> questions, List<Long> teachers) throws ApplicationBaseException;
 
 }

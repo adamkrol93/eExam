@@ -2,6 +2,7 @@ package pl.lodz.p.it.ssbd2015.moe.services;
 
 import pl.lodz.p.it.ssbd2015.entities.GuardianEntity;
 import pl.lodz.p.it.ssbd2015.entities.StudentEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 
 import javax.ejb.Remote;
 import java.util.List;
@@ -16,6 +17,6 @@ public interface GuardianStudentServiceRemote {
 
 	List<StudentEntity> findAllStudents();
 
-	void connect(long guardianId, long studentId);
+	void connect(long guardianId, long studentId) throws ApplicationBaseException;
 
 }

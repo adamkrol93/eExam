@@ -3,6 +3,7 @@ package pl.lodz.p.it.ssbd2015.mre.managers;
 import pl.lodz.p.it.ssbd2015.entities.AnswerEntity;
 import pl.lodz.p.it.ssbd2015.entities.ApproachEntity;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mre.facades.AnswerEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mre.facades.ApproachEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mre.facades.ExamEntityFacadeLocal;
@@ -29,17 +30,17 @@ public class AnswersManager implements AnswersManagerLocal {
 	private StudentEntityFacadeLocal studentEntityFacade;
 
 	@Override
-	public Long createApproach(String title) {
+	public Long createApproach(String title) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void editApproach(ApproachEntity approach, List<AnswerEntity> answers) {
+	public void editApproach(ApproachEntity approach, List<AnswerEntity> answers) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void endApproach(ApproachEntity approach) {
+	public void endApproach(ApproachEntity approach) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 

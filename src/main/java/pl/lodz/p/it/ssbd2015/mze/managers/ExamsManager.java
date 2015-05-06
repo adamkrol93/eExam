@@ -3,6 +3,7 @@ package pl.lodz.p.it.ssbd2015.mze.managers;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExamEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExaminerEntityFacadeLocal;
 
@@ -23,37 +24,37 @@ public class ExamsManager implements ExamsManagerLocal {
 	private ExaminerEntityFacadeLocal examinerEntityFacade;
 
 	@Override
-	public void createExam(ExamEntity exam, List<QuestionEntity> questions, List<TeacherEntity> teachers) {
+	public void createExam(ExamEntity exam, List<QuestionEntity> questions, List<TeacherEntity> teachers) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void cloneExam(ExamEntity exam) {
+	public void cloneExam(ExamEntity exam) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public List<TeacherEntity> findAllNotInExam(ExamEntity exam) {
+	public List<TeacherEntity> findAllNotInExam(ExamEntity exam) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void editExam(ExamEntity exam, ExamEntity newExam) {
+	public void editExam(ExamEntity exam, ExamEntity newExam) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void addTeacher(ExamEntity exam, TeacherEntity teacher) {
+	public void addTeacher(ExamEntity exam, TeacherEntity teacher) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void removeQuestion(ExamEntity exam, long questionId) {
+	public void removeQuestion(ExamEntity exam, long questionId) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void removeTeacher(ExamEntity exam, long teacherId) {
+	public void removeTeacher(ExamEntity exam, long teacherId) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 }

@@ -2,6 +2,7 @@ package pl.lodz.p.it.ssbd2015.mze.services;
 
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExamEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.facades.TeacherEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.managers.ExamsManagerLocal;
@@ -29,7 +30,7 @@ public class EditExamService implements EditExamServiceRemote {
 	private List<TeacherEntity> teachersNotInExam;
 
 	@Override
-	public ExamEntity findById(long examId) {
+	public ExamEntity findById(long examId) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
@@ -39,22 +40,22 @@ public class EditExamService implements EditExamServiceRemote {
 	}
 
 	@Override
-	public void editExam(ExamEntity exam) {
+	public void editExam(ExamEntity exam) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void addTeacher(long teacherId) {
+	public void addTeacher(long teacherId) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void removeQuestion(long questionId) {
+	public void removeQuestion(long questionId) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void removeTeacher(long teacherId) {
+	public void removeTeacher(long teacherId) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 }

@@ -3,6 +3,7 @@ package pl.lodz.p.it.ssbd2015.mze.services;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mze.facades.TeacherEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.managers.ExamsManagerLocal;
 import pl.lodz.p.it.ssbd2015.mze.managers.QuestionsManagerLocal;
@@ -40,7 +41,7 @@ public class ExamCreationService implements ExamCreationServiceRemote {
 	}
 
 	@Override
-	public void create(ExamEntity exam, List<Long> questions, List<Long> teachers) {
+	public void create(ExamEntity exam, List<Long> questions, List<Long> teachers) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 }

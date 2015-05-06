@@ -1,6 +1,7 @@
 package pl.lodz.p.it.ssbd2015.mze.services;
 
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mze.facades.QuestionEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.managers.QuestionsManagerLocal;
 
@@ -22,12 +23,12 @@ public class EditQuestionService implements EditQuestionServiceRemote {
 	private QuestionEntity question;
 
 	@Override
-	public QuestionEntity findById(long id) {
+	public QuestionEntity findById(long id) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void editQuestion(QuestionEntity question) {
+	public void editQuestion(QuestionEntity question) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 }

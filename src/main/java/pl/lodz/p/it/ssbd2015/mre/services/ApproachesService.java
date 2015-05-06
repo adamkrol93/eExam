@@ -2,6 +2,7 @@ package pl.lodz.p.it.ssbd2015.mre.services;
 
 import pl.lodz.p.it.ssbd2015.entities.ApproachEntity;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.moe.facades.GuardianEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mre.facades.ApproachEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mre.facades.StudentEntityFacadeLocal;
@@ -28,22 +29,22 @@ public class ApproachesService implements ApproachesServiceRemote {
 	private GuardianEntityFacadeLocal guardianEntityFacade;
 
 	@Override
-	public List<ApproachEntity> findAllForStudent() {
+	public List<ApproachEntity> findAllForStudent() throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public List<ApproachEntity> findAllForGuardian() {
+	public List<ApproachEntity> findAllForGuardian() throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public ApproachEntity findById(long id) {
+	public ApproachEntity findById(long id) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public List<ExamEntity> findAvailableExams() {
+	public List<ExamEntity> findAvailableExams() throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 }

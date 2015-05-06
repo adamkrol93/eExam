@@ -1,6 +1,7 @@
 package pl.lodz.p.it.ssbd2015.mze.services;
 
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 
 import javax.ejb.Remote;
 
@@ -10,8 +11,8 @@ import javax.ejb.Remote;
 @Remote
 public interface EditQuestionServiceRemote {
 
-	QuestionEntity findById(long id);
+	QuestionEntity findById(long id) throws ApplicationBaseException;
 
-	void editQuestion(QuestionEntity question);
+	void editQuestion(QuestionEntity question) throws ApplicationBaseException;
 
 }

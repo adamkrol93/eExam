@@ -2,6 +2,7 @@ package pl.lodz.p.it.ssbd2015.moe.services;
 
 import pl.lodz.p.it.ssbd2015.entities.AnswerEntity;
 import pl.lodz.p.it.ssbd2015.entities.ApproachEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.moe.facades.ApproachEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.moe.managers.ApproachesManagerLocal;
 
@@ -24,17 +25,17 @@ public class MarkApproachService implements MarkApproachServiceRemote {
 	private ApproachEntity approach;
 
 	@Override
-	public ApproachEntity findById(long id) {
+	public ApproachEntity findById(long id) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void mark(List<AnswerEntity> gradedAnswers) {
+	public void mark(List<AnswerEntity> gradedAnswers) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void disqualify() {
+	public void disqualify() throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 }

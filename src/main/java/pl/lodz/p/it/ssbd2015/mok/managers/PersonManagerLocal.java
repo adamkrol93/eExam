@@ -75,12 +75,4 @@ public interface PersonManagerLocal {
      * @param person Uzytkownik któremu chcemy przypisać wszystkie grupy
      */
     void assignAllGroups(PersonEntity person);
-
-    /**
-     * Metoda sprawdzająca czy dany użytkownik posiada daną grupę
-     * @param group String grupy który chcemy sprawdzić, musi znajdować się w Groups
-     * @return true - jeżeli użytkownik posiada daną rolę, false - jeżeli użytkownik nie posiada danej roli
-     * @throws ApplicationBaseException Jeżeli nie znajdziemy użytkownika o podanym loginie
-     */
-    boolean hasGroup(String group) throws ApplicationBaseException;
 }

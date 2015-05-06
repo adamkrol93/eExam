@@ -2,6 +2,7 @@ package pl.lodz.p.it.ssbd2015.moe.services;
 
 import pl.lodz.p.it.ssbd2015.entities.AnswerEntity;
 import pl.lodz.p.it.ssbd2015.entities.ApproachEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 
 import javax.ejb.Remote;
 import java.util.List;
@@ -12,10 +13,10 @@ import java.util.List;
 @Remote
 public interface MarkApproachServiceRemote {
 
-	ApproachEntity findById(long id);
+	ApproachEntity findById(long id) throws ApplicationBaseException;
 
-	void mark(List<AnswerEntity> gradedAnswers);
+	void mark(List<AnswerEntity> gradedAnswers) throws ApplicationBaseException;
 
-	void disqualify();
+	void disqualify() throws ApplicationBaseException;
 
 }

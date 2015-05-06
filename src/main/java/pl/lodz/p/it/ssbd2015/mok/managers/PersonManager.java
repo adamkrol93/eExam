@@ -35,9 +35,6 @@ public class PersonManager implements PersonManagerLocal {
     private GroupsStubEntityFacadeLocal groupsStubEntityFacade;
 
     @EJB
-    private PersonManagerLocal personManagerLocal;
-
-    @EJB
     private EmailManagerLocal emailManager;
 
     @EJB
@@ -166,20 +163,4 @@ public class PersonManager implements PersonManagerLocal {
                     group.setPerson(person);
                 });
     }
-
-    @Override
-    public boolean hasGroup(String group) throws ApplicationBaseException {
-        String login = sessionContext.getCallerPrincipal().getName();
-
-        PersonEntity personEntity = this.getPerson(login);
-        for (GroupsStubEntity grubStub : personEntity.getGroupStubs()) {
-            if (grubStub.getName().equals(group)) {
-                if (grubStub.isActive()) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
 }

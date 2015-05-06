@@ -2,6 +2,7 @@ package pl.lodz.p.it.ssbd2015.mre.services;
 
 import pl.lodz.p.it.ssbd2015.entities.AnswerEntity;
 import pl.lodz.p.it.ssbd2015.entities.ApproachEntity;
+import pl.lodz.p.it.ssbd2015.entities.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mre.managers.AnswersManagerLocal;
 
 import javax.ejb.Stateful;
@@ -21,22 +22,22 @@ public class AnswersService implements AnswersServiceRemote {
 	private ApproachEntity approach;
 
 	@Override
-	public Long createApproach(String title) {
+	public Long createApproach(String title) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public ApproachEntity findById(long approachId) {
+	public ApproachEntity findById(long approachId) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void editAnswer(List<AnswerEntity> answers) {
+	public void editAnswer(List<AnswerEntity> answers) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void endApproach() {
+	public void endApproach() throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 }
