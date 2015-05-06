@@ -1,5 +1,8 @@
 package pl.lodz.p.it.ssbd2015.entities;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -32,6 +35,9 @@ import java.util.List;
 })
 //@EntityListeners(PersonEntityListener.class)
 public class PersonEntity extends TimeModificationBaseClass implements Serializable {
+
+
+    static private Logger logger = LoggerFactory.getLogger(PersonEntity.class);
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "person_id_generator")
@@ -257,7 +263,13 @@ public class PersonEntity extends TimeModificationBaseClass implements Serializa
 
     @Override
     public void setCreationDateBase(Calendar date) {
-        this.setDateAdd(date);
+
+        if(this.getDateAdd()==null){
+            this.setDateAdd(date);
+        }
+        else{
+            logger.warn("{} already has registration date set. Skipping.", this);
+        }
     }
 
     @Override
