@@ -178,7 +178,7 @@ public class AnswerEntity extends TimeModificationBaseClass implements Serializa
             this.setDateAdd(date);
         }
         else{
-            logger.warn("{} already has registration date set. Skipping.", this);
+            logger.warn("{} already has creation date set. Skipping.", this);
         }
 
     }

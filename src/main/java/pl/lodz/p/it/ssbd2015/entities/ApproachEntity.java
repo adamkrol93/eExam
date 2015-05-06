@@ -189,7 +189,7 @@ public class ApproachEntity extends TimeModificationBaseClass implements Seriali
             this.setDateAdd(date);
         }
         else{
-            logger.warn("{} already has registration date set. Skipping.", this);
+            logger.warn("{} already has creation date set. Skipping.", this);
         }
     }
 
