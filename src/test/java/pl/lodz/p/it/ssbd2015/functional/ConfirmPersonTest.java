@@ -51,5 +51,7 @@ public class ConfirmPersonTest extends BaseFunctionalTest {
         showUserPage.confirm(browser);
 
         assertThat("User is confirmed.", showUserPage.isConfirmed(browser));
+
+        loginPage.logout();
     }
 }

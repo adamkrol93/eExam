@@ -22,10 +22,10 @@ public class LoggingInterceptor {
     private SessionContext sessionContext;
 
     /**
-     * Metoda interceptora, która opakowywuje całą transakcję we obowiązkowe logowanie informacji o niej
-     * @param context Context wywołanej metody
-     * @return Object przekazuje to co zwróciła metoda
-     * @throws Exception
+     * Metoda interceptora, która loguje informacje o wywołaniach metod oraz rezultatach tych wywołań.
+     * @param context Kontekst wywołania przekazany nam przez framework
+     * @return Object to co zwróciła metoda
+     * @throws Exception to co rzuciła metoda
      */
     @AroundInvoke
     public Object logMethodInvoked(InvocationContext context) throws Exception {
@@ -74,9 +74,9 @@ public class LoggingInterceptor {
             throw ex;
         }
 
+        String resultString = context.getMethod().getReturnType().equals(Void.TYPE) ? "void" : Objects.toString(result);
         logger.info("{}.{}({}) invoked by person {} has returned {}",
-                className, methodName, params, personLogin,
-                context.getMethod().getReturnType().equals(Void.TYPE) ? "void" : Objects.toString(result)
+                className, methodName, params, personLogin, resultString
         );
 
         return result;

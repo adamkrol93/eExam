@@ -12,7 +12,7 @@
     </f:metadata>
     <ui:define name="head">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <h:outputText value="#{i18n['application.exception']} #{i18n['application.exception.500']}"/>
+        <title><h:outputText value="#{i18n['application.exception']}"/></title>
     </ui:define>
     <ui:define name="breadcrumps">
         <ol class="breadcrumb">
@@ -24,7 +24,7 @@
 
     <ui:define name="content">
         <div class="page-header text-center">
-            <h1><h:outputText value="#{i18n['application.exception']}  #{i18n['application.exception.500']}"/></h1>
+            <h1><h:outputText value="#{i18n['application.exception']}"/></h1>
         </div>
         <h2>
             <h:outputLabel value="#{i18n[applicationError.exceptionMessage]}"/>

@@ -9,6 +9,8 @@ import javax.ejb.AfterCompletion;
 import javax.ejb.SessionContext;
 import java.util.concurrent.atomic.AtomicLong;
 
+import static pl.lodz.p.it.ssbd2015.utils.ExceptionUtils.elvis;
+
 /**
  * Bazowa klasa abstrakcyjna dla beanów Stateful wykorzystywany do tworzenia Endpointów.
  * Główne zadanie tej klasy to logowanie informacji o transkakcjach aplikacyjnych.
@@ -25,14 +27,13 @@ public abstract class BaseStatefulService {
 
     private long txId;
 
-
     /**
      * Loguje rozpoczęcie transakcji aplikacyjnej
      */
     @AfterBegin
     private void logTransactionBegan() {
         txId = txCounter.getAndIncrement();
-        String personLogin = sessionContext.getCallerPrincipal().getName();
+        String personLogin = elvis(() -> sessionContext.getCallerPrincipal().getName());
 
         logger.info("Transaction(id={}, person={}) has begun.", txId, personLogin);
     }
@@ -40,11 +41,11 @@ public abstract class BaseStatefulService {
 
     /**
      * Loguje zakończenie transakcji aplikacyjnej
-     * @param committed
+     * @param committed Czy transakcja zakończyła się utrwaleniem zmian
      */
     @AfterCompletion
     private void logTransactionEnded(boolean committed) {
-        String personLogin = sessionContext.getCallerPrincipal().getName();
+        String personLogin = elvis(() -> sessionContext.getCallerPrincipal().getName());
         String result = committed ? "committed" : "rolled back";
 
         logger.info("Transaction(id={}, person={}) has been {}.", txId, personLogin, result);

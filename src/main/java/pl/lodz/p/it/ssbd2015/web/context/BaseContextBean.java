@@ -6,6 +6,7 @@ import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.web.ApplicationErrorBean;
 
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.io.IOException;
 import java.io.Serializable;
@@ -139,7 +140,7 @@ public class BaseContextBean implements Serializable {
     /**
      * Wykonuje akcję przekazaną w argumencie. W razie wyjątku ApplicationBaseException przechwyuje go
      * i przekierowuje do strony /error/applicationError przez FacesContext i ustawia w ContextMapie
-     * komunikat do wyświetlenia.
+     * komunikat do wyświetlenia.error/applicationError.xhtml?uuid=ee7f5392-7c00-452b-a727-121a267900ae
      * @param action Akcja do wykonania, która może zakończyć się ApplicationBaseException.
      */
     protected void expectApplicationException(ApplicationErrorAction action) {
@@ -147,9 +148,10 @@ public class BaseContextBean implements Serializable {
             action.run();
         } catch (ApplicationBaseException e) {
             setContext(ApplicationErrorBean.class, bean -> bean.setExceptionMessage(e.getCode()));
-            String redirectUrl = "/error/applicationError?faces-redirect=true&uuid=" + getUuid();
             try {
-                FacesContext.getCurrentInstance().getExternalContext().redirect(redirectUrl);
+                ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+                String redirectResource = "/error/applicationError.xhtml?uuid=" + getUuid();
+                externalContext.redirect(externalContext.getRequestContextPath() + redirectResource);
             } catch (IOException e1) {
                 throw new RuntimeException(e1);
             }

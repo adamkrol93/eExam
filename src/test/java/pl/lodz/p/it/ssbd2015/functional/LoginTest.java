@@ -87,5 +87,7 @@ public class LoginTest extends BaseFunctionalTest {
         loginPage.login(login, password);
 
         assertThat("User sees a logout button.", loginPage.isLogged(browser));
+
+        loginPage.logout();
     }
 }

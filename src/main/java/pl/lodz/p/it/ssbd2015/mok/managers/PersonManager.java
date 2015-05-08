@@ -78,7 +78,7 @@ public class PersonManager implements PersonManagerLocal {
     @PermitAll
     public PersonEntity getPerson(String login) throws ApplicationBaseException {
         PersonEntity personEntity = personEntityFacade.findByLogin(login)
-                .orElseThrow(() -> new PersonNotFoundException("Person with login: "+login+ "does not exists"));
+                .orElseThrow(() -> new PersonNotFoundException("Person with login: "+login+ " does not exists"));
         return personEntity;
     }
 

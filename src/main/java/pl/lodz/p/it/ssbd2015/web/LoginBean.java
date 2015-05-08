@@ -2,10 +2,10 @@ package pl.lodz.p.it.ssbd2015.web;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.lodz.p.it.ssbd2015.entities.PersonEntity;;
+import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
+import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mok.services.PeopleServiceRemote;
 import pl.lodz.p.it.ssbd2015.mok.services.PersonServiceRemote;
-import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -13,9 +13,12 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
-import java.security.Principal;
 import java.util.Calendar;
 import java.util.ResourceBundle;
+
+import static pl.lodz.p.it.ssbd2015.utils.ExceptionUtils.elvis;
+
+;
 
 
 /**
@@ -71,7 +74,8 @@ public class LoginBean implements Serializable {
      * @return true - jeżeli użytkownik jest w danej roli, false - jeżeli użytkownik nie znajduje się w roli
      */
     private boolean isInRole(String role){
-        return FacesContext.getCurrentInstance().getExternalContext().isUserInRole(ResourceBundle.getBundle("roles").getString(role));
+        String roleName = ResourceBundle.getBundle("roles").getString(role);
+        return FacesContext.getCurrentInstance().getExternalContext().isUserInRole(roleName);
     }
 
     /**
@@ -121,10 +125,9 @@ public class LoginBean implements Serializable {
 
     /**
      * Metoda wyciąga login aktualnego użytkownika.
-     * @return
+     * @return Login aktualnego użytkownika.
      */
     public String getLogin() {
-        Principal p = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
-        return p.getName();
+        return elvis(() -> FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName());
     }
 }

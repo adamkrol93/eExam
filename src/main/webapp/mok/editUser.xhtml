@@ -28,11 +28,11 @@
             <h1><h:outputText value="#{i18n['mok.editUser.title']}"/></h1>
             <hr/>
                 <div class="col-md-8 personal-info">
-                    <h:form class="form-horizontal" id="editForm">
+                    <h:form class="form-horizontal" id="edit-form">
                         <div class="row">
                             <div class="form-group">
                                 <div class="col-lg-5 col-lg-offset-4">
-                                    <h:outputText value="#{i18n[editLoggedUserDetailsMOK.message]}" styleClass="text-success"/>
+                                    <h:outputText id="message" value="#{i18n[editLoggedUserDetailsMOK.message]}" styleClass="text-success"/>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                                     <div class="col-lg-8">
                                         <h:inputText class="form-control" id="name" required="true" value="#{editLoggedUserDetailsMOK.person.name}"
                                                      requiredMessage="#{i18n['mok.edit.name_required_message']}"/>
-                                        <h:message for="name" style="color:red"/>
+                                        <h:message for="name" styleClass="text-danger"/>
                                     </div>
                              </div>
                         </div>
@@ -59,7 +59,7 @@
                                 <div class="col-lg-8">
                                     <h:inputText class="form-control" id="lastname" required="true" value="#{editLoggedUserDetailsMOK.person.lastName}"
                                                  requiredMessage="#{i18n['mok.edit.last_name_required_message']}"/>
-                                    <h:message for="lastname" style="color:red"/>
+                                    <h:message for="lastname" styleClass="text-danger"/>
                                 </div>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                                 <div class="col-lg-8">
                                     <h:inputText class="form-control" id="email" required="true" value="#{editLoggedUserDetailsMOK.person.email}"
                                                      requiredMessage="#{i18n['mok.edit.email_required_message']}"/>
-                                    <h:message for="email" style="color:red"/>
+                                    <h:message for="email" styleClass="text-danger"/>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +79,7 @@
                                 <div class="col-lg-8">
                                     <h:inputSecret class="form-control" id="password" value="#{editLoggedUserDetailsMOK.person.password}"
                                                        binding="#{passwordInput}"/>
-                                    <h:message for="password" errorClass="invalid" style="color:red"/>
+                                    <h:message for="password" errorClass="invalid" styleClass="text-danger"/>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                                         <f:attribute name="confirmationErrorMessage"
                                                      value="#{i18n['mok.edit.passwords_are_different']}"/>
                                     </h:inputSecret>
-                                    <h:message for="confirm" errorClass="invalid" style="color:red"/>
+                                    <h:message for="confirm" errorClass="invalid" styleClass="text-danger"/>
                                 </div>
                             </div>
                         </div>

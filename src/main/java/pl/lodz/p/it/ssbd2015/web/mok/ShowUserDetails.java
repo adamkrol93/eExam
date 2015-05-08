@@ -38,9 +38,8 @@ public class ShowUserDetails extends BaseContextBean {
     protected void doInContext() {
         expectApplicationException(() -> {
             person = personService.getPerson(login);
+            resetContext();
         });
-
-        resetContext();
     }
 
     public String getLogin() {

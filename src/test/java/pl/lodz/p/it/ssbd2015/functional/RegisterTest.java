@@ -31,6 +31,12 @@ public class RegisterTest extends BaseFunctionalTest {
     @FindBy(css = "label[for=\"register-form:login\"] > span[class=\"text-danger\"]")
     private WebElement registerLoginError;
 
+    @FindBy(css = "label[for=\"register-form:password\"] > span[class=\"text-danger\"]")
+    private WebElement registerPasswordError;
+
+    @FindBy(css = "label[for=\"register-form:confirm\"] > span[class=\"text-danger\"]")
+    private WebElement registerConfirmError;
+
     @Test
     public void shouldSeePersonAfterItRegisters() {
         String login = getProbablyUniqueString();
@@ -51,6 +57,8 @@ public class RegisterTest extends BaseFunctionalTest {
         assertThat(showUserPage.getName(), is(name));
         assertThat(showUserPage.getLastname(), is(lastname));
         assertThat(showUserPage.getEmail(), is(email));
+
+        loginPage.logout();
     }
 
     @Test
@@ -70,6 +78,65 @@ public class RegisterTest extends BaseFunctionalTest {
         assertThat(registerLoginError.getText(), anyOf(
                 containsString("Login nie jest unikalny"),
                 containsString("Login is not unique")
+        ));
+    }
+
+    @Test
+    public void shouldNotRegisterWithShortPassword() {
+        String login = getProbablyUniqueString();
+        String password = "short"; // shorter than 6
+        String name = getRandomAlphas(10);
+        String lastname = getRandomAlphas(10);
+        String email = name + "@gmail.com";
+
+        Graphene.goTo(RegisterPage.class);
+        registerPage.register(login, password, name, lastname, email);
+
+        assertThat(registerPasswordError.getText(), anyOf(
+                containsString("Hasło musi zawierać przynajmniej 6 znaków"),
+                containsString("Password must have at least 6 characters")
+        ));
+    }
+
+    @Test
+    public void shouldRegisterWithPasswordOfLengthSix() throws InterruptedException {
+        String login = getProbablyUniqueString();
+        String password = "longer"; // (>=6) . length
+        String name = getRandomAlphas(10);
+        String lastname = getRandomAlphas(10);
+        String email = name + "@gmail.com";
+
+        Graphene.goTo(RegisterPage.class);
+        registerPage.register(login, password, name, lastname, email);
+
+        Graphene.goTo(LoginPage.class);
+        loginPage.loginAsAdmin();
+
+        browser.get(deploymentUrl + ShowUserPage.urlTo(login));
+
+        assertThat(showUserPage.getLogin(), is(login));
+        assertThat(showUserPage.getName(), is(name));
+        assertThat(showUserPage.getLastname(), is(lastname));
+        assertThat(showUserPage.getEmail(), is(email));
+
+        loginPage.logout();
+    }
+
+    @Test
+    public void shouldNotRegisterWithUnconfirmedPassword() {
+        String login = getProbablyUniqueString();
+        String password = getProbablyUniqueString();
+        String confirm = getProbablyUniqueString();
+        String name = getRandomAlphas(10);
+        String lastname = getRandomAlphas(10);
+        String email = name + "@gmail.com";
+
+        Graphene.goTo(RegisterPage.class);
+        registerPage.register(login, password, confirm, name, lastname, email);
+
+        assertThat(registerConfirmError.getText(), anyOf(
+                containsString("Podane hasła są różne"),
+                containsString("Passwords are different")
         ));
     }
 }

@@ -29,10 +29,10 @@
 
     <!--@elvariable id="passwordInput" type="javax.faces.component.html.HtmlInputSecret"-->
     <ui:define name="content">
-        <h:form id="editForm">
+        <h:form id="edit-form">
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-4">
-                    <h:outputText value="#{i18n[editUserDetailsMOK.message]}" styleClass="text-success"/>
+                    <h:outputText id="message" value="#{i18n[editUserDetailsMOK.message]}" styleClass="text-success"/>
                 </div>
             </div>
             <div class="row">
@@ -45,7 +45,7 @@
                     <h:outputText value="#{i18n['mok.person.name']}*"/>
                     <h:inputText id="name" required="true" value="#{editUserDetailsMOK.person.name}"
                                  requiredMessage="#{i18n['mok.edit.name_required_message']}"/>
-                    <h:message for="name" style="color:red"/>
+                    <h:message for="name" styleClass="text-danger"/>
                 </div>
             </div>
             <div class="row">
@@ -53,7 +53,7 @@
                     <h:outputText value="#{i18n['mok.person.last_name']}*"/>
                     <h:inputText id="lastname" required="true" value="#{editUserDetailsMOK.person.lastName}"
                                  requiredMessage="#{i18n['mok.edit.last_name_required_message']}"/>
-                    <h:message for="lastname" style="color:red"/>
+                    <h:message for="lastname" styleClass="text-danger"/>
                 </div>
             </div>
             <div class="row">
@@ -61,7 +61,7 @@
                     <h:outputText value="#{i18n['mok.person.email']}*"/>
                     <h:inputText id="email" required="true" value="#{editUserDetailsMOK.person.email}"
                                  requiredMessage="#{i18n['mok.edit.email_required_message']}"/>
-                    <h:message for="email" style="color:red"/>
+                    <h:message for="email" styleClass="text-danger"/>
                 </div>
             </div>
             <div class="row">
@@ -69,7 +69,7 @@
                     <h:outputText value="#{i18n['mok.edit.password']}"/>
                     <h:inputSecret id="password" value="#{editUserDetailsMOK.person.password}"
                                    binding="#{passwordInput}"/>
-                    <h:message for="password" errorClass="invalid" style="color:red"/>
+                    <h:message for="password" errorClass="invalid" styleClass="text-danger"/>
                 </div>
             </div>
             <div class="row">
@@ -81,13 +81,13 @@
                         <f:attribute name="confirmationErrorMessage"
                                      value="#{i18n['mok.edit.passwords_are_different']}"/>
                     </h:inputSecret>
-                    <h:message for="confirm" errorClass="invalid" style="color:red"/>
+                    <h:message for="confirm" errorClass="invalid" styleClass="text-danger"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-6 col-lg-offset-4">
-                    <h:commandButton type="submit" value="#{i18n['save']}" action="#{editUserDetailsMOK.editPerson}"/>
-                    <h:commandButton type="reset" value="#{i18n['reset']}"/><br/>
+                    <h:commandButton id="submit-button" type="submit" value="#{i18n['save']}" action="#{editUserDetailsMOK.editPerson}"/>
+                    <h:commandButton id="reset-button" type="reset" value="#{i18n['reset']}"/><br/>
                 </div>
             </div>
         </h:form>
