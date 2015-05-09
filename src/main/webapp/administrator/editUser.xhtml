@@ -66,10 +66,14 @@
             </div>
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-4">
-                    <h:outputText value="#{i18n['mok.edit.password']}"/>
-                    <h:inputSecret id="password" value="#{editUserDetailsMOK.person.password}"
-                                   binding="#{passwordInput}"/>
-                    <h:message for="password" errorClass="invalid" styleClass="text-danger"/>
+                    <f:validateBean disabled="true">
+                        <h:outputText value="#{i18n['mok.edit.password']}"/>
+                        <h:inputSecret id="password" value="#{editUserDetailsMOK.person.password}"
+                                       binding="#{passwordInput}">
+                            <f:validateBean binding="#{facesContext.application.createValidator('validateBeanIfNotEmpty')}"/>
+                        </h:inputSecret>
+                        <h:message for="password" errorClass="invalid" styleClass="text-danger"/>
+                    </f:validateBean>
                 </div>
             </div>
             <div class="row">

@@ -77,9 +77,13 @@
                             <div class="form-group">
                                 <h:outputText class="col-lg-3 control-label" value="#{i18n['mok.edit.password']}"/>
                                 <div class="col-lg-8">
-                                    <h:inputSecret class="form-control" id="password" value="#{editLoggedUserDetailsMOK.person.password}"
-                                                       binding="#{passwordInput}"/>
-                                    <h:message for="password" errorClass="invalid" styleClass="text-danger"/>
+                                    <f:validateBean disabled="true">
+                                        <h:inputSecret class="form-control" id="password" value="#{editLoggedUserDetailsMOK.person.password}"
+                                                           binding="#{passwordInput}">
+                                            <f:validateBean binding="#{facesContext.application.createValidator('validateBeanIfNotEmpty')}"/>
+                                        </h:inputSecret>
+                                        <h:message for="password" errorClass="invalid" styleClass="text-danger"/>
+                                    </f:validateBean>
                                 </div>
                             </div>
                         </div>

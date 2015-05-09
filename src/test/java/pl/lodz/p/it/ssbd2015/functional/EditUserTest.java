@@ -2,13 +2,12 @@ package pl.lodz.p.it.ssbd2015.functional;
 
 import org.jboss.arquillian.graphene.Graphene;
 import org.jboss.arquillian.graphene.page.Page;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import static pl.lodz.p.it.ssbd2015.TestUtils.getProbablyUniqueString;
-import static pl.lodz.p.it.ssbd2015.TestUtils.getRandomAlphas;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static pl.lodz.p.it.ssbd2015.TestUtils.getProbablyUniqueString;
+import static pl.lodz.p.it.ssbd2015.TestUtils.getRandomAlphas;
 
 /**
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
@@ -51,7 +50,6 @@ public class EditUserTest extends BaseFunctionalTest {
     }
 
     @Test
-    @Ignore
     public void shouldSucceedChangingNothingWhenNoChangesAreMade() throws Exception {
         String login = getProbablyUniqueString();
         String password = getProbablyUniqueString();
