@@ -9,6 +9,8 @@ import javax.faces.validator.BeanValidator;
 import javax.faces.validator.FacesValidator;
 
 /**
+ * Dekorator domyślnego {@link BeanValidator}, który uruchamia walidację Baen Validation
+ * jedynie wtedy, gdy walidowana wartość jest niepusta.
  * @author Andrzej Kurczewski
  */
 @FacesValidator("validateBeanIfNotEmpty")
