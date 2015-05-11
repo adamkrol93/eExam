@@ -1,0 +1,11 @@
+generator:
+  - class_name: "QuestionEntity"
+    id_range: 1
+question:
+  - question_id: 1
+    question_content: "Bla bla bla"
+    question_sample_answer: "Pan da 3"
+    question_creator_id: 4
+    question_modifier_id: 4
+    question_date_add: "2015-03-30 22:59:07.393572"
+    question_version: 1

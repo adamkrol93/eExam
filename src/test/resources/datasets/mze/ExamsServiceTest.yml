@@ -1,0 +1,3 @@
+generator:
+  - class_name: "QuestionEntity"
+    id_range: 0
