@@ -5,6 +5,7 @@ import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.moe.ApproachNotFoundException;
 import pl.lodz.p.it.ssbd2015.moe.facades.ApproachEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.moe.managers.ApproachesManagerLocal;
 
@@ -35,7 +36,9 @@ public class ApproachesService extends BaseStatefulService implements Approaches
 	@Override
 	@RolesAllowed("SHOW_APPROACH_MOE")
 	public ApproachEntity findById(long id) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
+		ApproachEntity approachEntity = approachEntityFacade.findById(id)
+				.orElseThrow(() -> new ApproachNotFoundException("Approach with id: " + id + " does not exists"));
+		return approachEntity;
 	}
 
 	@Override

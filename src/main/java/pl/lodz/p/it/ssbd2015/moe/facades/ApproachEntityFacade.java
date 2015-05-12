@@ -46,7 +46,7 @@ public class ApproachEntityFacade implements ApproachEntityFacadeLocal {
     }
 
     @Override
-    @RolesAllowed({"MARK_APPROACH_MOE", "DISQUALIFY_APPROACH_MOE", "SHOW_APPROACH_MOE"})
+    @RolesAllowed("SHOW_APPROACH_MOE")
     public Optional<ApproachEntity> findById(Long id) {
         return ApproachEntityFacadeLocal.super.findById(id);
     }
