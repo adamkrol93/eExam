@@ -1,6 +1,8 @@
 generator:
   - class_name: "QuestionEntity"
     id_range: 1
+  - class_name: "ExamEntity"
+    id_range: 1
 
 exam:
   - exam_id: 1

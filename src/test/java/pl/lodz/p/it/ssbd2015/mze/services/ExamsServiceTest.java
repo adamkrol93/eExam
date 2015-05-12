@@ -10,9 +10,12 @@ import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamNotFoundException;
 
 import javax.ejb.EJB;
 
-import static org.junit.Assert.assertNotNull;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 /**
+ * @author Andrzej Kurczewski
  * @author Adam Król
  * @author Piotr Jurewicz
  */
@@ -35,12 +38,23 @@ public class ExamsServiceTest extends BaseArquillianTest {
     @Test
     public void shouldFindExam() throws Exception {
         ExamEntity examEntity = examsService.findById(1);
-        assertNotNull(examEntity);
+        assertThat(examEntity, notNullValue());
     }
 
     @Test(expected = ExamNotFoundException.class)
     public void shouldNotFindExam() throws Exception {
         examsService.findById(2);
     }
-}
 
+    @Test
+    public void shouldReturnExistingExam() throws Exception {
+        long id = 1l;
+        ExamEntity exam = examsService.findById(id);
+        assertThat(String.format("Exam with id = %d can be found.", id), exam.getId(), is(id));
+    }
+
+    @Test(expected = ExamNotFoundException.class)
+    public void shouldThrowExceptionWhenExamDoNotExist() throws Exception {
+        examsService.findById(20l);
+    }
+}

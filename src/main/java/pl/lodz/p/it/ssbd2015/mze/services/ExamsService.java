@@ -6,6 +6,7 @@ import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamNotFoundException;
+import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.moe.facades.TeacherEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mre.facades.ExamEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.facades.QuestionEntityFacadeLocal;
@@ -24,11 +25,12 @@ import java.util.List;
  * Klasa nie posiada dodatkowych pól
  * @author Bartosz Ignaczewski
  * @author Piotr Jurewicz
+ * @author Andrzej Kurczewski
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mze.services.ExamsService")
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @Interceptors(LoggingInterceptor.class)
-public class ExamsService implements ExamsServiceRemote {
+public class ExamsService extends BaseStatefulService implements ExamsServiceRemote {
 
     @EJB
     private ExamEntityFacadeLocal examEntityFacade;
