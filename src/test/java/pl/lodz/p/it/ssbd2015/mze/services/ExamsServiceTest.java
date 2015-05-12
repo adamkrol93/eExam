@@ -9,10 +9,10 @@ import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamNotFoundException;
 
 import javax.ejb.EJB;
+import java.util.List;
 
-import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 
 /**
  * @author Andrzej Kurczewski
@@ -57,4 +57,13 @@ public class ExamsServiceTest extends BaseArquillianTest {
     public void shouldThrowExceptionWhenExamDoNotExist() throws Exception {
         examsService.findById(20l);
     }
+
+    @Test
+    @UsingDataSet({"ValidUser.yml", "mze/QuestionEntityFacadeTest.yml"})
+    public void shouldFindAllQuestions()throws Exception{
+        List<QuestionEntity> questionEntity =examsService.findAllQuestions();
+
+        assertThat(questionEntity, hasSize(1));
+    }
+
 }

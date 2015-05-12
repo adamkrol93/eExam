@@ -21,11 +21,13 @@ import javax.interceptor.Interceptors;
 import java.util.List;
 
 /**
+<<<<<<< HEAD
  * Klasa pozwalająca na wyszukiwanie pytań, nauczycieli oraz tworzenie pytań.
  * Klasa nie posiada dodatkowych pól
  * @author Bartosz Ignaczewski
  * @author Piotr Jurewicz
  * @author Andrzej Kurczewski
+ * @author Tobiasz Kowalski
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mze.services.ExamsService")
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
@@ -57,10 +59,10 @@ public class ExamsService extends BaseStatefulService implements ExamsServiceRem
         questionsManager.createQuestion(questionEntity);
     }
 
-    @Override
-	@RolesAllowed("LIST_QUESTIONS_MZE")
-    public List<QuestionEntity> findAllQuestions() {
-        throw new UnsupportedOperationException();
+	@Override
+    @RolesAllowed("LIST_QUESTIONS_MZE")
+	public List<QuestionEntity> findAllQuestions() {
+        return questionEntityFacade.findAll();
     }
 
     @Override
