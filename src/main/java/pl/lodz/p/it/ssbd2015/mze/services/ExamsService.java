@@ -3,9 +3,9 @@ package pl.lodz.p.it.ssbd2015.mze.services;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
-import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamNotFoundException;
 import pl.lodz.p.it.ssbd2015.moe.facades.TeacherEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mre.facades.ExamEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.facades.QuestionEntityFacadeLocal;
@@ -27,41 +27,42 @@ import java.util.List;
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mze.services.ExamsService")
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @Interceptors(LoggingInterceptor.class)
-public class ExamsService extends BaseStatefulService implements ExamsServiceRemote {
+public class ExamsService implements ExamsServiceRemote {
+
+    @EJB
+    private ExamEntityFacadeLocal examEntityFacade;
 
 	@EJB
-	private ExamEntityFacadeLocal examEntityFacade;
+    private TeacherEntityFacadeLocal teacherEntityFacade;
 
 	@EJB
-	private TeacherEntityFacadeLocal teacherEntityFacade;
-
-	@EJB
-	private QuestionEntityFacadeLocal questionEntityFacade;
+    private QuestionEntityFacadeLocal questionEntityFacade;
 
 	@EJB
 	private QuestionsManagerLocal questionsManager;
 
-	@Override
-	@RolesAllowed({"SHOW_EXAM_MZE", "SHOW_EXAM_STATS_MZE"})
-	public ExamEntity findById(long id) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed({"SHOW_EXAM_MZE", "SHOW_EXAM_STATS_MZE"})
+    public ExamEntity findById(long id) throws ApplicationBaseException {
+        return examEntityFacade.findById(id)
+                .orElseThrow(() -> new ExamNotFoundException("Exam with id: " + id + " does not exists"));
+    }
 
-	@Override
+    @Override
 	@RolesAllowed("CREATE_QUESTION_MZE")
-	public void create(QuestionEntity questionEntity) throws ApplicationBaseException {
-		questionsManager.createQuestion(questionEntity);
-	}
+    public void create(QuestionEntity questionEntity) throws ApplicationBaseException {
+        throw new UnsupportedOperationException();
+    }
 
-	@Override
+    @Override
 	@RolesAllowed("LIST_QUESTIONS_MZE")
-	public List<QuestionEntity> findAllQuestions() {
-		throw new UnsupportedOperationException();
-	}
+    public List<QuestionEntity> findAllQuestions() {
+        throw new UnsupportedOperationException();
+    }
 
-	@Override
+    @Override
 	@RolesAllowed("SHOW_TEACHER_LIST_MZE")
-	public List<TeacherEntity> findAllTeachers() {
-		throw new UnsupportedOperationException();
-	}
+    public List<TeacherEntity> findAllTeachers() {
+        throw new UnsupportedOperationException();
+    }
 }

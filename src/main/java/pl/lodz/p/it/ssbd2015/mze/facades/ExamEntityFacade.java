@@ -18,6 +18,7 @@ import java.util.Optional;
 /**
  * Implementacja interfejsu {@link ExamEntityFacadeLocal}, pozwala na zarządzanie Egzaminami.
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Piotr Jurewicz
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mze.facades.ExamEntityFacade")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
