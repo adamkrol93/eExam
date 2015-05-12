@@ -21,12 +21,12 @@ public class ApproachesServiceTest extends BaseArquillianTest {
 
 	@Test
 	public void shouldFindApproach() throws Exception {
-		ApproachEntity approachEntity = approachesService.findById(1);
+		ApproachEntity approachEntity = approachesService.findById(1L);
 		assertNotNull(approachEntity);
 	}
 
 	@Test(expected = ApproachNotFoundException.class)
 	public void shouldNotFindApproach() throws Exception {
-		approachesService.findById(2);
+		approachesService.findById(2L);
 	}
 }
