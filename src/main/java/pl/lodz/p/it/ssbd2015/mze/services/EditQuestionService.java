@@ -5,6 +5,8 @@ import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mze.facades.QuestionEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.managers.QuestionsManagerLocal;
 
+import javax.annotation.security.RolesAllowed;
+import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -16,18 +18,22 @@ import javax.ejb.TransactionAttributeType;
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class EditQuestionService implements EditQuestionServiceRemote {
 
-	private QuestionsManagerLocal questionsManager;
-
+	@EJB
 	private QuestionEntityFacadeLocal questionEntityFacade;
+
+	@EJB
+	private QuestionsManagerLocal questionsManager;
 
 	private QuestionEntity question;
 
 	@Override
+	@RolesAllowed("EDIT_QUESTION_MZE")
 	public QuestionEntity findById(long id) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
+	@RolesAllowed("EDIT_QUESTION_MZE")
 	public void editQuestion(QuestionEntity question) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}

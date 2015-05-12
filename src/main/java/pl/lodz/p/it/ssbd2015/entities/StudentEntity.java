@@ -9,6 +9,7 @@ import java.util.List;
  */
 @Entity
 @DiscriminatorValue(Groups.STUDENT)
+@NamedQuery(name = "findStudentByLogin", query = "SELECT e FROM StudentEntity e WHERE e.login = :login")
 public class StudentEntity extends GroupsEntity {
 
     @ManyToOne

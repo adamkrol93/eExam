@@ -7,6 +7,7 @@ import pl.lodz.p.it.ssbd2015.entities.facade.Read;
 import javax.ejb.Local;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
@@ -17,4 +18,5 @@ public interface ExamEntityFacadeLocal extends Read<Long, ExamEntity>, Merge<Lon
 
     List<ExamEntity> findByDate(Calendar timestamp);
 
+    Optional<ExamEntity> findByTitle(String title);
 }

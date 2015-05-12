@@ -1,6 +1,6 @@
 package pl.lodz.p.it.ssbd2015.mre.facades;
 
-import pl.lodz.p.it.ssbd2015.entities.StudentEntity;
+import pl.lodz.p.it.ssbd2015.entities.GuardianEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 
 import javax.annotation.security.DenyAll;
@@ -19,18 +19,18 @@ import java.util.Optional;
 /**
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  */
-@Stateless(name = "pl.lodz.p.it.ssbd2015.mre.facades.StudentEntityFacade")
+@Stateless(name = "pl.lodz.p.it.ssbd2015.mre.facades.GuardianEntityFacade")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 @Interceptors(LoggingInterceptor.class)
-public class StudentEntityFacade implements StudentEntityFacadeLocal {
+public class GuardianEntityFacade implements GuardianEntityFacadeLocal {
 
     @PersistenceContext(unitName = "pl.lodz.p.it.ssbd2015.mre_PU")
     private EntityManager entityManager;
 
     @Override
     @DenyAll
-    public Class<StudentEntity> getEntityClass() {
-        return StudentEntity.class;
+    public Class<GuardianEntity> getEntityClass() {
+        return GuardianEntity.class;
     }
 
     @Override
@@ -40,24 +40,24 @@ public class StudentEntityFacade implements StudentEntityFacadeLocal {
     }
 
     @Override
-    @RolesAllowed({"START_SOLVING_EXAM_MRE", "LIST_APPROACHES_MRE"})
-    public Optional<StudentEntity> findById(Long id) {
-        return StudentEntityFacadeLocal.super.findById(id);
+    @RolesAllowed("LIST_APPROACHES_MRE")
+    public Optional<GuardianEntity> findById(Long id) {
+        return GuardianEntityFacadeLocal.super.findById(id);
     }
 
     @Override
-    @RolesAllowed({"START_SOLVING_EXAM_MRE", "LIST_APPROACHES_MRE"})
-    public List<StudentEntity> findAll() {
-        return StudentEntityFacadeLocal.super.findAll();
+    @RolesAllowed("LIST_APPROACHES_MRE")
+    public List<GuardianEntity> findAll() {
+        return GuardianEntityFacadeLocal.super.findAll();
     }
 
     @Override
-    @RolesAllowed({"START_SOLVING_EXAM_MRE", "LIST_APPROACHES_MRE"})
-    public Optional<StudentEntity> findByLogin(String login) {
-        TypedQuery<StudentEntity> studentQuery = entityManager.createNamedQuery("findStudentByLogin", StudentEntity.class);
-        studentQuery.setParameter("login", login);
+    @RolesAllowed("LIST_APPROACHES_MRE")
+    public Optional<GuardianEntity> findByLogin(String login) {
+        TypedQuery<GuardianEntity> guardianQuery = entityManager.createNamedQuery("findGuardianByLogin", GuardianEntity.class);
+        guardianQuery.setParameter("login", login);
         try {
-            return Optional.of(studentQuery.getSingleResult());
+            return Optional.of(guardianQuery.getSingleResult());
         } catch (NoResultException ex) {
             return Optional.empty();
         }

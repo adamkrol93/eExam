@@ -1,9 +1,11 @@
 package pl.lodz.p.it.ssbd2015.moe.facades;
 
 import pl.lodz.p.it.ssbd2015.entities.StudentEntity;
-import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
+import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 
+import javax.annotation.security.DenyAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -25,26 +27,31 @@ public class StudentEntityFacade implements StudentEntityFacadeLocal {
     private EntityManager entityManager;
 
     @Override
+    @DenyAll
     public Class<StudentEntity> getEntityClass() {
         return StudentEntity.class;
     }
 
     @Override
+    @DenyAll
     public EntityManager getEntityManager() {
         return this.entityManager;
     }
 
     @Override
+    @RolesAllowed("ADD_STUDENTS_GUARDIAN_MOE")
     public void edit(StudentEntity entity) throws ApplicationBaseException {
         StudentEntityFacadeLocal.super.edit(entity);
     }
 
     @Override
+    @RolesAllowed("ADD_STUDENTS_GUARDIAN_MOE")
     public Optional<StudentEntity> findById(Long id) {
         return StudentEntityFacadeLocal.super.findById(id);
     }
 
     @Override
+    @RolesAllowed("ADD_STUDENTS_GUARDIAN_MOE")
     public List<StudentEntity> findAll() {
         return StudentEntityFacadeLocal.super.findAll();
     }

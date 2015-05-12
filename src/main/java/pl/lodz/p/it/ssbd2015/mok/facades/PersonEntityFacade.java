@@ -4,6 +4,7 @@ import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.*;
 
+import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
@@ -27,11 +28,13 @@ public class PersonEntityFacade implements PersonEntityFacadeLocal {
     private EntityManager entityManager;
 
     @Override
+    @DenyAll
     public Class<PersonEntity> getEntityClass() {
         return PersonEntity.class;
     }
 
     @Override
+    @DenyAll
     public EntityManager getEntityManager() {
         return this.entityManager;
     }

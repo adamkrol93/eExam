@@ -24,10 +24,16 @@ import java.util.List;
         valueColumnName = "id_range",
         pkColumnValue = "ExamEntity",
         allocationSize = 1)
-@NamedQuery(
-        name = "findExamByDate",
-        query = "SELECT e FROM ExamEntity e WHERE :date BETWEEN e.dateStart AND e.dateEnd"
-)
+@NamedQueries({
+        @NamedQuery(
+                name = "findExamByDate",
+                query = "SELECT e FROM ExamEntity e WHERE :date BETWEEN e.dateStart AND e.dateEnd"
+        ),
+        @NamedQuery(
+                name = "findExamByTitle",
+                query = "SELECT e FROM ExamEntity e WHERE e.title = :title"
+        )
+})
 public class ExamEntity extends TimeBaseEntity implements Serializable {
 
 

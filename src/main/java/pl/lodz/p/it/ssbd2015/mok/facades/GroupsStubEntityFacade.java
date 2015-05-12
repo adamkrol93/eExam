@@ -4,6 +4,7 @@ import pl.lodz.p.it.ssbd2015.entities.GroupsStubEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.*;
 
+import javax.annotation.security.DenyAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -26,11 +27,13 @@ public class GroupsStubEntityFacade implements GroupsStubEntityFacadeLocal {
     private EntityManager entityManager;
 
     @Override
+    @DenyAll
     public Class<GroupsStubEntity> getEntityClass() {
         return GroupsStubEntity.class;
     }
 
     @Override
+    @DenyAll
     public EntityManager getEntityManager() {
         return this.entityManager;
     }

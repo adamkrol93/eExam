@@ -33,9 +33,7 @@ import java.util.List;
                 query = "SELECT p FROM PersonEntity p WHERE lower(p.name) like lower(:phrase) or lower(p.lastName) like lower(:phrase)"
         )
 })
-//@EntityListeners(PersonEntityListener.class)
 public class PersonEntity extends TimeBaseEntity implements Serializable {
-
 
     static private Logger logger = LoggerFactory.getLogger(PersonEntity.class);
 

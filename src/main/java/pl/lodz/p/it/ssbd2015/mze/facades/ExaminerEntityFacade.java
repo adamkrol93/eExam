@@ -3,6 +3,8 @@ package pl.lodz.p.it.ssbd2015.mze.facades;
 import pl.lodz.p.it.ssbd2015.entities.ExaminerEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 
+import javax.annotation.security.DenyAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -26,16 +28,20 @@ public class ExaminerEntityFacade implements ExaminerEntityFacadeLocal {
     private EntityManager entityManager;
 
     @Override
+    @DenyAll
     public Class<ExaminerEntity> getEntityClass() {
         return ExaminerEntity.class;
     }
 
     @Override
+    @DenyAll
     public EntityManager getEntityManager() {
         return entityManager;
     }
 
     @Override
+    @RolesAllowed({"CREATE_EXAM_MZE", "CREATE_QUESTION_MZE", "EDIT_QUESTION_MZE", "EDIT_EXAM_MZE",
+            "ADD_TEACHER_TO_EXAM_MZE", "REMOVE_QUESTION_FROM_EXAM_MZE", "REMOVE_TEACHER_FROM_EXAM_MZE", "CLONE_EXAM_MZE"})
     public Optional<ExaminerEntity> findByLogin(String login) {
         TypedQuery<ExaminerEntity> query = entityManager.createNamedQuery("findExaminerByLogin", ExaminerEntity.class);
         query.setParameter("login", login);
@@ -48,11 +54,15 @@ public class ExaminerEntityFacade implements ExaminerEntityFacadeLocal {
     }
 
     @Override
+    @RolesAllowed({"CREATE_EXAM_MZE", "CREATE_QUESTION_MZE", "EDIT_QUESTION_MZE", "EDIT_EXAM_MZE",
+            "ADD_TEACHER_TO_EXAM_MZE", "REMOVE_QUESTION_FROM_EXAM_MZE", "REMOVE_TEACHER_FROM_EXAM_MZE", "CLONE_EXAM_MZE"})
     public Optional<ExaminerEntity> findById(Long id) {
         return ExaminerEntityFacadeLocal.super.findById(id);
     }
 
     @Override
+    @RolesAllowed({"CREATE_EXAM_MZE", "CREATE_QUESTION_MZE", "EDIT_QUESTION_MZE", "EDIT_EXAM_MZE",
+            "ADD_TEACHER_TO_EXAM_MZE", "REMOVE_QUESTION_FROM_EXAM_MZE", "REMOVE_TEACHER_FROM_EXAM_MZE", "CLONE_EXAM_MZE"})
     public List<ExaminerEntity> findAll() {
         return ExaminerEntityFacadeLocal.super.findAll();
     }

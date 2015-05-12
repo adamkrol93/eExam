@@ -1,9 +1,11 @@
 package pl.lodz.p.it.ssbd2015.mze.facades;
 
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
-import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
+import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 
+import javax.annotation.security.DenyAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -25,31 +27,37 @@ public class QuestionEntityFacade implements QuestionEntityFacadeLocal {
     private EntityManager entityManager;
 
     @Override
+    @DenyAll
     public Class<QuestionEntity> getEntityClass() {
         return QuestionEntity.class;
     }
 
     @Override
+    @DenyAll
     public EntityManager getEntityManager() {
         return entityManager;
     }
 
     @Override
+    @RolesAllowed("CREATE_QUESTION_MZE")
     public void create(QuestionEntity entity) throws ApplicationBaseException {
         QuestionEntityFacadeLocal.super.create(entity);
     }
 
     @Override
+    @RolesAllowed("EDIT_QUESTION_MZE")
     public void edit(QuestionEntity entity) throws ApplicationBaseException {
         QuestionEntityFacadeLocal.super.edit(entity);
     }
 
     @Override
+    @RolesAllowed("EDIT_QUESTION_MZE")
     public Optional<QuestionEntity> findById(Long id) {
         return QuestionEntityFacadeLocal.super.findById(id);
     }
 
     @Override
+    @RolesAllowed({"CREATE_EXAM_MZE", "LIST_QUESTIONS_MZE"})
     public List<QuestionEntity> findAll() {
         return QuestionEntityFacadeLocal.super.findAll();
     }

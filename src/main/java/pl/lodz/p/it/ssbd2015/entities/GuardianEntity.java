@@ -2,6 +2,7 @@ package pl.lodz.p.it.ssbd2015.entities;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
  */
 @Entity
 @DiscriminatorValue(Groups.GUARDIAN)
+@NamedQuery(name = "findGuardianByLogin", query = "SELECT e FROM GuardianEntity e WHERE e.login = :login")
 public class GuardianEntity extends GroupsEntity {
 
     @OneToMany(mappedBy = "guardian")

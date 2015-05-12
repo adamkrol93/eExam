@@ -6,6 +6,8 @@ import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.moe.facades.ApproachEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.moe.managers.ApproachesManagerLocal;
 
+import javax.annotation.security.RolesAllowed;
+import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -18,23 +20,28 @@ import java.util.List;
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class MarkApproachService implements MarkApproachServiceRemote {
 
+	@EJB
 	private ApproachesManagerLocal approachesManager;
 
+	@EJB
 	private ApproachEntityFacadeLocal approachEntityFacade;
 
 	private ApproachEntity approach;
 
 	@Override
+	@RolesAllowed({"MARK_APPROACH_MOE", "DISQUALIFY_APPROACH_MOE"})
 	public ApproachEntity findById(long id) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
+	@RolesAllowed("MARK_APPROACH_MOE")
 	public void mark(List<AnswerEntity> gradedAnswers) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
+	@RolesAllowed("DISQUALIFY_APPROACH_MOE")
 	public void disqualify() throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}

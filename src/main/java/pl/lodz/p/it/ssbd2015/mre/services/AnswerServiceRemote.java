@@ -11,13 +11,13 @@ import java.util.List;
  * Created by Bartosz Ignaczewski on 04.05.15.
  */
 @Remote
-public interface AnswersServiceRemote {
+public interface AnswerServiceRemote {
 
 	Long createApproach(String title) throws ApplicationBaseException;
 
 	ApproachEntity findById(long approachId) throws ApplicationBaseException;
 
-	void editAnswer(List<AnswerEntity> answers) throws ApplicationBaseException;
+	void editApproach(List<AnswerEntity> answers) throws ApplicationBaseException;
 
 	void endApproach() throws ApplicationBaseException;
 }

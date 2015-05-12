@@ -3,6 +3,8 @@ package pl.lodz.p.it.ssbd2015.moe.facades;
 import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 
+import javax.annotation.security.DenyAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -26,6 +28,31 @@ public class TeacherEntityFacade implements TeacherEntityFacadeLocal {
     private EntityManager entityManager;
 
     @Override
+    @DenyAll
+    public Class<TeacherEntity> getEntityClass() {
+        return TeacherEntity.class;
+    }
+
+    @Override
+    @DenyAll
+    public EntityManager getEntityManager() {
+        return this.entityManager;
+    }
+
+    @Override
+    @RolesAllowed({"MARK_APPROACH_MOE", "LIST_APPROACHES_MOE"})
+    public Optional<TeacherEntity> findById(Long id) {
+        return TeacherEntityFacadeLocal.super.findById(id);
+    }
+
+    @Override
+    @RolesAllowed({"MARK_APPROACH_MOE", "LIST_APPROACHES_MOE"})
+    public List<TeacherEntity> findAll() {
+        return TeacherEntityFacadeLocal.super.findAll();
+    }
+
+    @Override
+    @RolesAllowed({"MARK_APPROACH_MOE", "LIST_APPROACHES_MOE"})
     public Optional<TeacherEntity> findByLogin(String login) {
         TypedQuery<TeacherEntity> typedQuery = entityManager.createNamedQuery("findTeacherByLogin", TeacherEntity.class);
         typedQuery.setParameter("login",login);
@@ -34,25 +61,5 @@ public class TeacherEntityFacade implements TeacherEntityFacadeLocal {
         } catch (NoResultException ex) {
             return Optional.empty();
         }
-    }
-
-    @Override
-    public Class<TeacherEntity> getEntityClass() {
-        return TeacherEntity.class;
-    }
-
-    @Override
-    public EntityManager getEntityManager() {
-        return this.entityManager;
-    }
-
-    @Override
-    public Optional<TeacherEntity> findById(Long id) {
-        return TeacherEntityFacadeLocal.super.findById(id);
-    }
-
-    @Override
-    public List<TeacherEntity> findAll() {
-        return TeacherEntityFacadeLocal.super.findAll();
     }
 }

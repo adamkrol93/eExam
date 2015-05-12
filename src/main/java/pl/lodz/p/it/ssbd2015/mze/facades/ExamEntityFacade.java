@@ -1,9 +1,11 @@
 package pl.lodz.p.it.ssbd2015.mze.facades;
 
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
-import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
+import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 
+import javax.annotation.security.DenyAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -25,31 +27,37 @@ public class ExamEntityFacade implements ExamEntityFacadeLocal {
     private EntityManager entityManager;
 
     @Override
+    @DenyAll
     public Class<ExamEntity> getEntityClass() {
         return ExamEntity.class;
     }
 
     @Override
+    @DenyAll
     public EntityManager getEntityManager() {
         return entityManager;
     }
 
     @Override
+    @RolesAllowed({"CREATE_EXAM_MZE", "CLONE_EXAM_MZE"})
     public void create(ExamEntity entity) throws ApplicationBaseException {
         ExamEntityFacadeLocal.super.create(entity);
     }
 
     @Override
+    @RolesAllowed({"EDIT_EXAM_MZE", "ADD_TEACHER_TO_EXAM_MZE", "REMOVE_QUESTION_FROM_EXAM_MZE", "REMOVE_TEACHER_FROM_EXAM_MZE"})
     public void edit(ExamEntity entity) throws ApplicationBaseException {
         ExamEntityFacadeLocal.super.edit(entity);
     }
 
     @Override
+    @RolesAllowed({"EDIT_EXAM_MZE", "SHOW_EXAM_MZE", "SHOW_EXAM_STATS_MZE"})
     public Optional<ExamEntity> findById(Long id) {
         return ExamEntityFacadeLocal.super.findById(id);
     }
 
     @Override
+    @RolesAllowed("LIST_EXAMS_MZE")
     public List<ExamEntity> findAll() {
         return ExamEntityFacadeLocal.super.findAll();
     }

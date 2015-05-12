@@ -1,9 +1,11 @@
 package pl.lodz.p.it.ssbd2015.moe.facades;
 
 import pl.lodz.p.it.ssbd2015.entities.ApproachEntity;
-import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
+import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 
+import javax.annotation.security.DenyAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -25,26 +27,31 @@ public class ApproachEntityFacade implements ApproachEntityFacadeLocal {
     private EntityManager entityManager;
 
     @Override
+    @DenyAll
     public Class<ApproachEntity> getEntityClass() {
         return ApproachEntity.class;
     }
 
     @Override
+    @DenyAll
     public EntityManager getEntityManager() {
         return entityManager;
     }
 
     @Override
+    @RolesAllowed({"MARK_APPROACH_MOE", "DISQUALIFY_APPROACH_MOE"})
     public void edit(ApproachEntity entity) throws ApplicationBaseException {
         ApproachEntityFacadeLocal.super.edit(entity);
     }
 
     @Override
+    @RolesAllowed({"MARK_APPROACH_MOE", "DISQUALIFY_APPROACH_MOE", "SHOW_APPROACH_MOE"})
     public Optional<ApproachEntity> findById(Long id) {
         return ApproachEntityFacadeLocal.super.findById(id);
     }
 
     @Override
+    @RolesAllowed({"MARK_APPROACH_MOE", "DISQUALIFY_APPROACH_MOE", "SHOW_APPROACH_MOE"})
     public List<ApproachEntity> findAll() {
         return ApproachEntityFacadeLocal.super.findAll();
     }

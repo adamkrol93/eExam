@@ -7,6 +7,8 @@ import pl.lodz.p.it.ssbd2015.mze.facades.ExamEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.facades.TeacherEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.managers.ExamsManagerLocal;
 
+import javax.annotation.security.RolesAllowed;
+import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -19,42 +21,51 @@ import java.util.List;
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class EditExamService implements EditExamServiceRemote {
 
-	private ExamsManagerLocal examsManager;
-
+	@EJB
 	private ExamEntityFacadeLocal examEntityFacade;
 
+	@EJB
 	private TeacherEntityFacadeLocal teacherEntityFacade;
+
+	@EJB
+	private ExamsManagerLocal examsManager;
 
 	private ExamEntity exam;
 
 	private List<TeacherEntity> teachersNotInExam;
 
 	@Override
+	@RolesAllowed("EDIT_EXAM_MZE")
 	public ExamEntity findById(long examId) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
+	@RolesAllowed("ADD_TEACHER_TO_EXAM_MZE")
 	public List<TeacherEntity> findAllNotInExam() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
+	@RolesAllowed("EDIT_EXAM_MZE")
 	public void editExam(ExamEntity exam) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
+	@RolesAllowed("ADD_TEACHER_TO_EXAM_MZE")
 	public void addTeacher(long teacherId) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
+	@RolesAllowed("REMOVE_QUESTION_FROM_EXAM_MZE")
 	public void removeQuestion(long questionId) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
+	@RolesAllowed("REMOVE_TEACHER_FROM_EXAM_MZE")
 	public void removeTeacher(long teacherId) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
