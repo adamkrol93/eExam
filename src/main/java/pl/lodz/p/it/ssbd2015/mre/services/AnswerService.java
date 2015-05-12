@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * @author Bartosz Ignaczewski
  */
-@Stateful(name = "pl.lodz.p.it.ssbd2015.mre.services.AnswersService")
+@Stateful(name = "pl.lodz.p.it.ssbd2015.mre.services.AnswerService")
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @Interceptors(LoggingInterceptor.class)
 public class AnswerService extends BaseStatefulService implements AnswerServiceRemote {
