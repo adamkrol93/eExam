@@ -18,7 +18,9 @@ import javax.interceptor.Interceptors;
 import java.util.List;
 
 /**
- * @author Bartosz Ignaczewski
+ * Implementacje Endpointu zgodnie z interfejsem {@link EditExamServiceRemote}.
+ * Klasa przechowuje pole exam oraz teachesNotInExam.
+ * @author Bartosz Ignaczewski on 04.05.15.
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mze.services.EditExamService")
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)

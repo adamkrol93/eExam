@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
+ * Klasa zapewnia mozliwośc operowania na encjach typu {@link PersonEntity}
  * @author Marcin Kabza
  * @author Adam Król
  */

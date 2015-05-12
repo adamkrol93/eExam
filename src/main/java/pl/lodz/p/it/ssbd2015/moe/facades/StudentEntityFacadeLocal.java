@@ -5,10 +5,9 @@ import pl.lodz.p.it.ssbd2015.entities.facade.Merge;
 import pl.lodz.p.it.ssbd2015.entities.facade.Read;
 
 import javax.ejb.Local;
-import java.util.List;
-import java.util.Optional;
 
 /**
+ * Interfejs definiujący operacje dozwolone do wykonania na encji Student
  * @author Andrzej Kurczewski
  */
 @Local

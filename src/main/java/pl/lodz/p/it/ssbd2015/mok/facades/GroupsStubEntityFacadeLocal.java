@@ -4,10 +4,9 @@ import pl.lodz.p.it.ssbd2015.entities.GroupsStubEntity;
 import pl.lodz.p.it.ssbd2015.entities.facade.Merge;
 
 import javax.ejb.Local;
-import java.util.List;
-import java.util.Optional;
 
 /**
+ * Interfejs definiujący metody potrzebne do zarządzania encjami typu {@link GroupsStubEntity}
  * @author Andrzej Kurczewski
  */
 @Local

@@ -8,15 +8,32 @@ import javax.ejb.Remote;
 import java.util.List;
 
 /**
- * Created by Bartosz Ignaczewski on 04.05.15.
+ *Interfejs do obsługi łączenia studenta i opiekuna.
+ *@author Bartosz Ignaczewski
  */
 @Remote
 public interface GuardianStudentServiceRemote {
 
+	/**
+	 * Wyszukuje w bazie danych wszystkich opiekunów
+	 * @return lista opiekunów w aplikacji
+	 */
 	List<GuardianEntity> findAllGuardians();
 
+
+	/**
+	 * Wyszukuje w bazie danych wszystkich studentów
+	 * @return lista studentów w aplikacji
+	 */
 	List<StudentEntity> findAllStudents();
 
+
+	/**
+	 * Dokonuje przypisania opiekuna do studenta
+	 * @param guardianId identyfikator opiekuna do przypisania
+	 * @param studentId identyfikator studenta do przypisania
+	 * @throws ApplicationBaseException
+	 */
 	void connect(long guardianId, long studentId) throws ApplicationBaseException;
 
 }

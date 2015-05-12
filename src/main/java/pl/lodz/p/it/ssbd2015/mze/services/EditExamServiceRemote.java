@@ -8,7 +8,8 @@ import javax.ejb.Remote;
 import java.util.List;
 
 /**
- * Created by Bartosz Ignaczewski on 04.05.15.
+ * Interfejst pozwalający na zarządzanie egzaminem tzn. dodawaniem/usuwaniem nauczycieli, oraz usuwaniem pytań.
+ * @author Bartosz Ignaczewski
  */
 @Remote
 public interface EditExamServiceRemote {

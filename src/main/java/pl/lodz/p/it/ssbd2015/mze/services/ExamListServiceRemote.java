@@ -7,7 +7,8 @@ import javax.ejb.Remote;
 import java.util.List;
 
 /**
- * Created by Bartosz Ignaczewski on 04.05.15.
+ * Interfejs pozwalający na wyświetlenie wszystkich egzaminów oraz skolnowanie egzaminu.
+ * @author Bartosz Ignaczewski
  */
 @Remote
 public interface ExamListServiceRemote {

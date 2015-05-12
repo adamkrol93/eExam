@@ -21,6 +21,8 @@ import javax.mail.internet.MimeMessage;
 import java.util.Date;
 
 /**
+ * Klasa obsługująca dodoatkową funkcjonalność mok, wysyłanie wiadomości E-mail.
+ * Maile są poddawane internacjonalizacji.
  * @author Bartosz Ignaczewski
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mok.services.EmailManager")

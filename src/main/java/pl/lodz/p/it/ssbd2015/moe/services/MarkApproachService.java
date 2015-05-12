@@ -17,6 +17,7 @@ import javax.interceptor.Interceptors;
 import java.util.List;
 
 /**
+ * Klasa pozwalająca dokonywać ocen i dyskwalifikacji podejść.
  * @author Bartosz Ignaczewski
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.moe.services.MarkApproachService")

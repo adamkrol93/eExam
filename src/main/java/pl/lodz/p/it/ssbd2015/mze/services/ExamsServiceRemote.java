@@ -9,7 +9,8 @@ import javax.ejb.Remote;
 import java.util.List;
 
 /**
- * Created by Bartosz Ignaczewski on 04.05.15.
+ * Interfejs wykorzystywany do tworzenia pytań, wyszkiwania egzaminów, pytań i nauczycieli.
+ * @author Bartosz Ignaczewski
  */
 @Remote
 public interface ExamsServiceRemote {

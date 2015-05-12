@@ -16,6 +16,8 @@ import javax.interceptor.Interceptors;
 import java.util.List;
 
 /**
+ * Implementacja Endpointu, pozwala na obsługę podejścia (rozpoczęcie, zakończenie edycja).
+ * Klasa posiada pole typu {@link ApproachEntity}
  * @author Bartosz Ignaczewski
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mre.services.AnswerService")

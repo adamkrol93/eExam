@@ -20,6 +20,11 @@ public class UTF8ResourceBundleLocator implements ResourceBundleLocator {
     private static final Logger logger = LoggerFactory.getLogger(UTF8ResourceBundleLocator.class);
     private final String bundleName;
 
+    /**
+     * Tworzy nową instancję lokalizatora bundli,
+     * pozwalającą obsługiwać pliki properties kodowane w UTF-8
+     * @param bundleName nazwa pliku properties, która jest wyszukiwana
+     */
     public UTF8ResourceBundleLocator(String bundleName) {
         this.bundleName = bundleName;
     }
@@ -39,6 +44,14 @@ public class UTF8ResourceBundleLocator implements ResourceBundleLocator {
         return rb;
     }
 
+    /**
+     * Kopia metody loadBundle z {@link PlatformResourceBundleLocator}, która dodatkowo wskazuje wykorzystanie
+     * kodowania UTF-8 do wczytywania, podając obiekt klasy {@link UTF8Control}
+     * @param classLoader wykorzystywany ClassLoader
+     * @param locale obiekt wskazujący poszukiwaną wersję językową
+     * @param message wiadomość do wyświetlenia w razie niepowodzenia
+     * @return wczytane bundle
+     */
     private ResourceBundle loadBundle(ClassLoader classLoader, Locale locale, String message) {
         ResourceBundle rb = null;
         try {

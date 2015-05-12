@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
+ * Implementacja interfejsu {@link TeacherEntityFacadeLocal}, pozwala na wyszukiwanie Nauczycieli.
  * @author Andrzej Kurczewski
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mze.facades.TeacherEntityFacade")

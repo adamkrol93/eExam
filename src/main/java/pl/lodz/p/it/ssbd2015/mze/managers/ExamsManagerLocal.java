@@ -9,7 +9,8 @@ import javax.ejb.Local;
 import java.util.List;
 
 /**
- * Created by Bartosz Ignaczewski on 04.05.15.
+ * Interfejs służący do zarządzania Egzaminami. Pozwala na tworzenie, klonowanie, edycję.
+ * @author Bartosz Ignaczewski
  */
 @Local
 public interface ExamsManagerLocal {

@@ -17,7 +17,8 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Created by adam on 08.04.15.
+ * Klasa obsługująca obsługę bazodanową encji Teacher.
+ * @author Adam Król
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.moe.facades.TeacherEntityFacade")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)

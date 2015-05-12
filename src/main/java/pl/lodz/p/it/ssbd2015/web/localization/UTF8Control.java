@@ -20,6 +20,18 @@ public class UTF8Control extends ResourceBundle.Control {
         this.bundleExtension = bundleExtension;
     }
 
+    /**
+     * Tworzy bundle,, obsługującego pliki properties z kodowaniem UTF-8
+     * @param baseName nazwa podstawowa dla plików properties
+     * @param locale język w którym ma działać ta klasa
+     * @param format format zwracanych danych
+     * @param loader classLoader w którym szukać ma plików properties
+     * @param reload zmienna sygnalizująca czy mamy przeładować całą konfigurację
+     * @return Bundle do wykonywania operacji internacjonalizowania
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     * @throws IOException
+     */
     public ResourceBundle newBundle
         (String baseName, Locale locale, String format, ClassLoader loader, boolean reload)
         throws IllegalAccessException, InstantiationException, IOException

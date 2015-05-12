@@ -20,7 +20,8 @@ import java.util.Arrays;
 import java.util.Calendar;
 
 /**
- * Created by adam on 24.04.15.
+ * Klasa obsługująca zarządzanie obiektami typu {@link PersonEntity}
+ * @author Adam Król
  * @author Andrzej Kurczewski
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mok.managers.PersonManager")

@@ -19,6 +19,7 @@ import javax.interceptor.Interceptors;
 import java.util.List;
 
 /**
+ * Klasa do zarządzania podejściami juz rozwiązanymi. Klasa nie posiada żadnego pola encyjnego.
  * @author Bartosz Ignaczewski
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mre.services.ApproachesService")

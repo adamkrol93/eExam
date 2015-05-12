@@ -16,7 +16,8 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Created by tobiasz_kowalski on 08.04.15.
+ * Klasa obsługująca obsługę bazodanową encji Approach.
+ * @author Tobiasz Kowalski
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.moe.facades.ApproachEntityFacade")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)

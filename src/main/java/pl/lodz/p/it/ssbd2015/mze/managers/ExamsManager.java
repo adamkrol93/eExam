@@ -17,6 +17,7 @@ import javax.interceptor.Interceptors;
 import java.util.List;
 
 /**
+ * Implementacja interfejsu {@link ExamsManagerLocal}, pozwala na zarządzanie Egzaminami
  * @author Bartosz Ignaczewski
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mze.managers.ExamsManager")

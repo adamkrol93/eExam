@@ -18,6 +18,8 @@ import javax.interceptor.Interceptors;
 import java.util.List;
 
 /**
+ * Implementacja interfejsu {@link AnswersManagerLocal} do do zarządzania podejściem.
+ * Pozwala na operacje rozpoczęcia, edycji oraz zakończenia podejścia.
  * @author Bartosz Ignaczewski
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mre.managers.AnswersManager")

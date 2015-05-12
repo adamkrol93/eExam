@@ -16,6 +16,8 @@ import javax.interceptor.Interceptors;
 import java.util.List;
 
 /**
+ * Klasa pozwalająca na wyświetlanie i klonowanie egzaminów.
+ * Klasa posiada pole exams typu listy encji {@link ExamEntity}
  * @author Bartosz Ignaczewski
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mze.services.ExamListService")

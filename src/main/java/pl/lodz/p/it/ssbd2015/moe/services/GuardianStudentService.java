@@ -18,6 +18,8 @@ import javax.interceptor.Interceptors;
 import java.util.List;
 
 /**
+ * Metoda implementująca {@link GuardianStudentServiceRemote} pozwala na wykonanie metod związanych z łączeniem opiekunów i studentów.
+ * Klasa zawiera pole z listami studentów oraz opiekunów.
  * @author Bartosz Ignaczewski
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.moe.services.GuardianStudentService")

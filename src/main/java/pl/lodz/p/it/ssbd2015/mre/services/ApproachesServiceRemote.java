@@ -8,7 +8,8 @@ import javax.ejb.Remote;
 import java.util.List;
 
 /**
- * Created by Bartosz Ignaczewski on 04.05.15.
+ * Interfejs pozwalający na zarządzani zakończonymi podejściami, a raczej na ich wyświetlanie.
+ * @author Bartosz Ignaczewski
  */
 @Remote
 public interface ApproachesServiceRemote {

@@ -8,6 +8,7 @@ import pl.lodz.p.it.ssbd2015.entities.facade.Read;
 import javax.ejb.Local;
 
 /**
+ * Interfejs do zarządzania Egzaminami w bazie danych.
  * @author Andrzej Kurczewski
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  */

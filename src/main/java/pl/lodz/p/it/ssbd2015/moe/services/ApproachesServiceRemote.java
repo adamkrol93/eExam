@@ -8,13 +8,25 @@ import javax.ejb.Remote;
 import java.util.List;
 
 /**
- * Created by Bartosz Ignaczewski on 04.05.15.
+ * Interfejs do obsługi odczytów z bazy encji Approach.
+ * @author Bartosz Ignaczewski
  */
 @Remote
 public interface ApproachesServiceRemote {
 
+	/**
+	 * Wyszukuje w bazie encji o podanym id
+	 * @param id identyfikator, któ©ego szukamy
+	 * @return ApproachEntity jeżeli coś znajdzie
+	 * @throws ApplicationBaseException
+	 */
 	ApproachEntity findById(long id) throws ApplicationBaseException;
 
+	/**
+	 * Metoda znajduje wszystkie egzaminy zalogowanego nauczyciela
+	 * @return lista egzaminów zalogowanego nauczyciela
+	 * @throws ApplicationBaseException
+	 */
 	List<ExamEntity> findAllByLoggedTeacher() throws ApplicationBaseException;
 
 }

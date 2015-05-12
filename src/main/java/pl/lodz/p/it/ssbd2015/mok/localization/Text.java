@@ -16,6 +16,10 @@ public class Text extends ResourceBundle {
     protected static final String BUNDLE_EXTENSION = "properties";
     protected static final Control UTF8_CONTROL = new UTF8Control(BUNDLE_EXTENSION);
 
+
+    /**
+     * Tworzy bundla do internacjonalizacji z wykorzystaniem stałych podanych w klasie
+     */
     public Text() {
         FacesContext context = FacesContext.getCurrentInstance();
         Locale locale = context != null ? context.getViewRoot().getLocale() : new Locale("en");

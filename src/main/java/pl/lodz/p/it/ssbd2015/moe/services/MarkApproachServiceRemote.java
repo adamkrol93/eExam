@@ -8,13 +8,25 @@ import javax.ejb.Remote;
 import java.util.List;
 
 /**
- * Created by Bartosz Ignaczewski on 04.05.15.
+ * Intefejs służy do oceniania podejść.
+ * @author Bartosz Ignaczewski
  */
 @Remote
 public interface MarkApproachServiceRemote {
 
+	/**
+	 * Wyszukuje z bazy danych podejście o okreslonym id
+	 * @param id identyfikator podejścia które chcemy pobrać z bazy
+	 * @return obiekt ApproachEntity
+	 * @throws ApplicationBaseException
+	 */
 	ApproachEntity findById(long id) throws ApplicationBaseException;
 
+	/**
+	 * Metoda pozwala ocenić podejście
+	 * @param gradedAnswers lista z wypełnionymi ocenami w odpowiedziach
+	 * @throws ApplicationBaseException
+	 */
 	void mark(List<AnswerEntity> gradedAnswers) throws ApplicationBaseException;
 
 	void disqualify() throws ApplicationBaseException;

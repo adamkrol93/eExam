@@ -17,7 +17,9 @@ import javax.interceptor.Interceptors;
 import java.util.List;
 
 /**
- * @author  Bartosz Ignaczewski
+ * Metoda implementująca {@link ApproachesServiceRemote} pozwala na wykonanie metod związanych z wyszukiwaniem Podejść.
+ * Klasa nie przechowuje żadnych pól.
+ * @author Bartosz Ignaczewski
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.moe.services.ApproachesService")
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)

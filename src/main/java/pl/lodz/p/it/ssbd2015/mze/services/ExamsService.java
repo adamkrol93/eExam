@@ -20,6 +20,8 @@ import javax.interceptor.Interceptors;
 import java.util.List;
 
 /**
+ * Klasa pozwalająca na wyszukiwanie pytań, nauczycieli oraz tworzenie pytań.
+ * Klasa nie posiada dodatkowych pól
  * @author Bartosz Ignaczewski
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mze.services.ExamsService")

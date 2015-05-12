@@ -16,7 +16,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 
 /**
- * Created by Marcin on 2015-04-08.
+ * Klasa realizuje połaczenie z bazą danych dla encji GroupsStub.
+ * @author Marcin Kabza
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mok.facades.GroupsStubEntityFacade")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)

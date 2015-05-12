@@ -8,6 +8,7 @@ import pl.lodz.p.it.ssbd2015.entities.facade.Read;
 import javax.ejb.Local;
 
 /**
+ * Interfejs do zarządzania Pytaniami w bazie danych.
  * @author Andrzej Kurczewski
  */
 @Local

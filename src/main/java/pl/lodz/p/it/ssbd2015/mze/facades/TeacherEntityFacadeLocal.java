@@ -8,6 +8,7 @@ import javax.ejb.Local;
 import java.util.List;
 
 /**
+ * Interfejs do wyszukiwania Nauczycieli w bazie danych.
  * @author Andrzej Kurczewski
  */
 @Local

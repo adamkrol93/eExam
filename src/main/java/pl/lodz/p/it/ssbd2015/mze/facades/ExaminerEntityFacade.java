@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
+ * Implementacja interfejsu {@link ExaminerEntityFacadeLocal}, pozwala na wyszukiwania Egzaminatorów.
  * @author Andrzej Kurczewski
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mze.facades.ExaminerEntityFacade")

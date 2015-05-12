@@ -15,6 +15,8 @@ import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 
 /**
+ * Klasa wykorzsytywana do edycji pytania.
+ * Klasa zawiera pole typue {@link QuestionEntity}
  * @author Bartosz Ignaczewski
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mze.services.EditQuestionService")

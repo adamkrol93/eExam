@@ -19,6 +19,8 @@ import javax.interceptor.Interceptors;
 import java.util.List;
 
 /**
+ * Klasa do zarządzania tworzeniem egzaminów.
+ * Klasa posiada pola questions oraz teachers.
  * @author Bartosz Ignaczewski
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mze.services.ExamCreationService")

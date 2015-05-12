@@ -7,6 +7,9 @@ import org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpo
  * @author Andrzej Kurczewski
  */
 public class UTF8ResourceBundleMessageInterpolator extends ResourceBundleMessageInterpolator {
+    /**
+     * Tworzy nowy interpolator, pozwalający wykorzystywać pliki properties kodowane w UTF-8
+     */
     public UTF8ResourceBundleMessageInterpolator() {
         super(new UTF8ResourceBundleLocator(ResourceBundleMessageInterpolator.USER_VALIDATION_MESSAGES));
     }

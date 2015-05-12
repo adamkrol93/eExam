@@ -8,6 +8,7 @@ import pl.lodz.p.it.ssbd2015.entities.facade.Read;
 import javax.ejb.Local;
 
 /**
+ * Interfejs do operacji bazodanowych dla encji {@link ApproachEntity}
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  * @author Andrzej Kurczewski
  */

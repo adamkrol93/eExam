@@ -14,7 +14,8 @@ import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 
 /**
- * Created by Bartosz Ignaczewski on 04.05.15.
+ * Implementacja interfejsu {@link QuestionsManagerLocal}. Pozwala na edycje i dodawanie pytań do systemu.
+ * @author Bartosz Ignaczewski
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mze.managers.QuestionManager")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)

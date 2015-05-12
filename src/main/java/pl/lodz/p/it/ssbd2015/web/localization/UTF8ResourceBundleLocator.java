@@ -20,6 +20,11 @@ public class UTF8ResourceBundleLocator implements ResourceBundleLocator {
     private static final Logger logger = LoggerFactory.getLogger(UTF8ResourceBundleLocator.class);
     private final String bundleName;
 
+    /**
+     * Tworzy nową instancję lokalizatora bundli,
+     * pozwalającą obsługiwać pliki properties kodowane w UTF-8
+     * @param bundleName nazwa pliku properties, która jest wyszukiwana
+     */
     public UTF8ResourceBundleLocator(String bundleName) {
         this.bundleName = bundleName;
     }
@@ -39,6 +44,14 @@ public class UTF8ResourceBundleLocator implements ResourceBundleLocator {
         return rb;
     }
 
+    /**
+     * Kopia metody loadBundle z {@link PlatformResourceBundleLocator}, która dodatkowo wskazuje wykorzystanie
+     * kodowania UTF-8 do wczytywania, podając obiekt klasy {@link UTF8Control}
+     * @param classLoader wykorzystywany ClassLoader
+     * @param locale obiekt wskazujący poszukiwaną wersję językową
+     * @param message wiadomość do wyświetlenia w razie niepowodzenia
+     * @return wczytane bundle
+     */
     private ResourceBundle loadBundle(ClassLoader classLoader, Locale locale, String message) {
         ResourceBundle rb = null;
         try {
@@ -49,13 +62,24 @@ public class UTF8ResourceBundleLocator implements ResourceBundleLocator {
         return rb;
     }
 
+    /**
+     * Kopia z {@link org.hibernate.validator.resourceloading.PlatformResourceBundleLocator.GetClassLoader}
+     */
     private static class GetClassLoader implements PrivilegedAction<ClassLoader> {
         private final Class<?> clazz;
 
+        /**
+         * Kopia konstruktora klasy {@link org.hibernate.validator.resourceloading.PlatformResourceBundleLocator.GetClassLoader}
+         * @param clazz klasa, dla której pobierany jest ClassLoader
+         */
         private GetClassLoader(Class<?> clazz) {
             this.clazz = clazz;
         }
 
+        /**
+         * Kopia metody fromContext z klasy {@link org.hibernate.validator.resourceloading.PlatformResourceBundleLocator.GetClassLoader}
+         * @return ClassLoader z kontekstu
+         */
         private static ClassLoader fromContext() {
             final GetClassLoader action = new GetClassLoader(null);
             if (System.getSecurityManager() != null) {
@@ -74,6 +98,11 @@ public class UTF8ResourceBundleLocator implements ResourceBundleLocator {
             }
         }
 
+        /**
+         * Kopia metody fromClass z klasy {@link org.hibernate.validator.resourceloading.PlatformResourceBundleLocator.GetClassLoader}
+         * @param clazz Klasa, dla której szukamy ClassLoadera
+         * @return ClassLoader dla podanej klasy
+         */
         private static ClassLoader fromClass(Class<?> clazz) {
             if (clazz == null) {
                 throw new IllegalArgumentException("Class is null");

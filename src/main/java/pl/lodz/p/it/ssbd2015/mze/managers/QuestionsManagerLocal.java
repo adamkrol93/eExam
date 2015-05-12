@@ -6,7 +6,8 @@ import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import javax.ejb.Local;
 
 /**
- * Created by Bartosz Ignaczewski on 04.05.15.
+ * Interfejs do tworzenia i edycji pytań w systemie.
+ * @author Bartosz Ignaczewski
  */
 @Local
 public interface QuestionsManagerLocal {

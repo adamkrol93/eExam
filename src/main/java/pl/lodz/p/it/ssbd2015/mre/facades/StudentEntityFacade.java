@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
+ * Implementacja interfejsu {@link StudentEntityFacadeLocal}. Pozwala na operacje bazodanowe na encji {@link StudentEntity}
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mre.facades.StudentEntityFacade")
