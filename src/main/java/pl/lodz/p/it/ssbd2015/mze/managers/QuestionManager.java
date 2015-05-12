@@ -4,7 +4,7 @@ import pl.lodz.p.it.ssbd2015.entities.ExaminerEntity;
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
-import pl.lodz.p.it.ssbd2015.exceptions.mok.PersonNotFoundException;
+import pl.lodz.p.it.ssbd2015.exceptions.mze.ExaminerNotFoundException;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExaminerEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.facades.QuestionEntityFacadeLocal;
 
@@ -36,7 +36,7 @@ public class QuestionManager implements QuestionsManagerLocal {
 	public void createQuestion(QuestionEntity question) throws ApplicationBaseException {
 		String examinerLogin = sessionContext.getCallerPrincipal().getName();
 		ExaminerEntity examinerEntity = examinerEntityFacade.findByLogin(examinerLogin)
-				.orElseThrow(() -> new PersonNotFoundException("Examiner with login: " + examinerLogin + " does not exists"));
+				.orElseThrow(() -> new ExaminerNotFoundException("Examiner with login: " + examinerLogin + " does not exists"));
 		question.setModifier(examinerEntity);
 		question.setCreator(examinerEntity);
 
