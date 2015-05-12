@@ -23,6 +23,7 @@ import java.util.List;
  * Klasa pozwalająca na wyszukiwanie pytań, nauczycieli oraz tworzenie pytań.
  * Klasa nie posiada dodatkowych pól
  * @author Bartosz Ignaczewski
+ * @author Piotr Jurewicz
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mze.services.ExamsService")
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
@@ -51,7 +52,7 @@ public class ExamsService implements ExamsServiceRemote {
     @Override
 	@RolesAllowed("CREATE_QUESTION_MZE")
     public void create(QuestionEntity questionEntity) throws ApplicationBaseException {
-        throw new UnsupportedOperationException();
+        questionsManager.createQuestion(questionEntity);
     }
 
     @Override

@@ -23,7 +23,8 @@ public class ExamsServiceTest extends BaseArquillianTest {
     private ExamsServiceRemote examsService;
 
     @Test
-    @ShouldMatchDataSet(value = "mze/expected-ExamsServiceTest#shouldCreateQuestion.yml",excludeColumns = {"question.question_date_add","question.question_date_modification"})
+    @ShouldMatchDataSet(value = "mze/expected-ExamsServiceTest#shouldCreateQuestion.yml",
+            excludeColumns = {"question.question_id", "question.question_date_add", "question.question_date_modification"})
     public void shouldCreateQuestion() throws Exception {
         QuestionEntity questionEntity = new QuestionEntity();
         questionEntity.setContent("Bla bla bla");
