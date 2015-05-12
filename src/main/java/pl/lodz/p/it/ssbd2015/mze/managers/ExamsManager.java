@@ -3,6 +3,7 @@ package pl.lodz.p.it.ssbd2015.mze.managers;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
+import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExamEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExaminerEntityFacadeLocal;
@@ -12,13 +13,15 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.interceptor.Interceptors;
 import java.util.List;
 
 /**
- * Created by Bartosz Ignaczewski on 04.05.15.
+ * @author Bartosz Ignaczewski
  */
-@Stateless
+@Stateless(name = "pl.lodz.p.it.ssbd2015.mze.managers.ExamsManager")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
+@Interceptors(LoggingInterceptor.class)
 public class ExamsManager implements ExamsManagerLocal {
 
 	@EJB

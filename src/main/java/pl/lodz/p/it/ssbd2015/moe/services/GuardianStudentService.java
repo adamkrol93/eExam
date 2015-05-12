@@ -2,6 +2,8 @@ package pl.lodz.p.it.ssbd2015.moe.services;
 
 import pl.lodz.p.it.ssbd2015.entities.GuardianEntity;
 import pl.lodz.p.it.ssbd2015.entities.StudentEntity;
+import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
+import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.moe.facades.GuardianEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.moe.facades.StudentEntityFacadeLocal;
@@ -12,14 +14,16 @@ import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.interceptor.Interceptors;
 import java.util.List;
 
 /**
- * Created by Bartosz Ignaczewski on 04.05.15.
+ * @author Bartosz Ignaczewski
  */
-@Stateful
+@Stateful(name = "pl.lodz.p.it.ssbd2015.moe.services.GuardianStudentService")
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-public class GuardianStudentService implements GuardianStudentServiceRemote {
+@Interceptors(LoggingInterceptor.class)
+public class GuardianStudentService extends BaseStatefulService implements GuardianStudentServiceRemote {
 
 	@EJB
 	private ApproachesManagerLocal approachesManager;

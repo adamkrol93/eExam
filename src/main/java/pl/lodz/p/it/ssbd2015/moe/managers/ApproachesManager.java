@@ -1,6 +1,7 @@
 package pl.lodz.p.it.ssbd2015.moe.managers;
 
 import pl.lodz.p.it.ssbd2015.entities.*;
+import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.moe.facades.ApproachEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.moe.facades.ExamEntityFacade;
@@ -12,13 +13,15 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.interceptor.Interceptors;
 import java.util.List;
 
 /**
  * Created by Bartosz Ignaczewski on 04.05.15.
  */
-@Stateless
+@Stateless(name = "pl.lodz.p.it.ssbd2015.moe.managers.ApproachesManager")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
+@Interceptors(LoggingInterceptor.class)
 public class ApproachesManager implements ApproachesManagerLocal {
 
 	@EJB

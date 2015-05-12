@@ -3,6 +3,8 @@ package pl.lodz.p.it.ssbd2015.mze.services;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
+import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
+import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mze.facades.QuestionEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.facades.TeacherEntityFacadeLocal;
@@ -13,14 +15,16 @@ import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.interceptor.Interceptors;
 import java.util.List;
 
 /**
- * Created by Bartosz Ignaczewski on 04.05.15.
+ * @author Bartosz Ignaczewski
  */
-@Stateful
+@Stateful(name = "pl.lodz.p.it.ssbd2015.mze.services.ExamCreationService")
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-public class ExamCreationService implements ExamCreationServiceRemote {
+@Interceptors(LoggingInterceptor.class)
+public class ExamCreationService extends BaseStatefulService implements ExamCreationServiceRemote {
 
 	@EJB
 	private QuestionEntityFacadeLocal questionEntityFacade;

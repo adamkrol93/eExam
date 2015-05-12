@@ -3,6 +3,7 @@ package pl.lodz.p.it.ssbd2015.mre.managers;
 import pl.lodz.p.it.ssbd2015.entities.AnswerEntity;
 import pl.lodz.p.it.ssbd2015.entities.ApproachEntity;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
+import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mre.facades.ApproachEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mre.facades.ExamEntityFacadeLocal;
@@ -13,13 +14,15 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.interceptor.Interceptors;
 import java.util.List;
 
 /**
- * Created by Bartosz Ignaczewski on 04.05.15.
+ * @author Bartosz Ignaczewski
  */
-@Stateless
+@Stateless(name = "pl.lodz.p.it.ssbd2015.mre.managers.AnswersManager")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
+@Interceptors(LoggingInterceptor.class)
 public class AnswersManager implements AnswersManagerLocal {
 
 	@EJB

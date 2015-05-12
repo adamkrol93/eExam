@@ -2,6 +2,8 @@ package pl.lodz.p.it.ssbd2015.mre.services;
 
 import pl.lodz.p.it.ssbd2015.entities.ApproachEntity;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
+import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
+import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.moe.facades.GuardianEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mre.facades.ApproachEntityFacadeLocal;
@@ -13,14 +15,16 @@ import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.interceptor.Interceptors;
 import java.util.List;
 
 /**
- * Created by Bartosz Ignaczewski on 04.05.15.
+ * @author Bartosz Ignaczewski
  */
-@Stateful
+@Stateful(name = "pl.lodz.p.it.ssbd2015.mre.services.ApproachesService")
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-public class ApproachesService implements ApproachesServiceRemote {
+@Interceptors(LoggingInterceptor.class)
+public class ApproachesService extends BaseStatefulService implements ApproachesServiceRemote {
 
 	@EJB
 	private AnswersManagerLocal answersManager;
