@@ -4,9 +4,9 @@ import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.mze.facades.QuestionEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.facades.TeacherEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.managers.ExamsManagerLocal;
-import pl.lodz.p.it.ssbd2015.mze.managers.QuestionsManagerLocal;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
@@ -23,7 +23,7 @@ import java.util.List;
 public class ExamCreationService implements ExamCreationServiceRemote {
 
 	@EJB
-	private QuestionsManagerLocal questionsManager;
+	private QuestionEntityFacadeLocal questionEntityFacade;
 
 	@EJB
 	private TeacherEntityFacadeLocal teacherEntityFacade;
