@@ -46,10 +46,9 @@ public class ApproachEntityFacade implements ApproachEntityFacadeLocal {
     }
 
     @Override
-    @RolesAllowed({"ANSWER_QUESTION_MRE", "END_APPROACH_MRE"})
+    @RolesAllowed({"ANSWER_QUESTION_MRE", "SHOW_APPROACH_MOE"})
     public void edit(ApproachEntity entity) throws ApplicationBaseException {
         ApproachEntityFacadeLocal.super.edit(entity);
-
     }
 
     @Override

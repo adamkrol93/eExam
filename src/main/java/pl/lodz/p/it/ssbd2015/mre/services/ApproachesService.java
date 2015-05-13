@@ -41,13 +41,13 @@ public class ApproachesService extends BaseStatefulService implements Approaches
 
 	@Override
 	@RolesAllowed("LIST_APPROACHES_MRE")
-	public List<ApproachEntity> findAllForStudent() throws ApplicationBaseException {
+	public List<ApproachEntity> listAllForStudent() throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	@RolesAllowed("LIST_APPROACHES_MRE")
-	public List<ApproachEntity> findAllForGuardian() throws ApplicationBaseException {
+	public List<ApproachEntity> listAllForGuardian() throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
 

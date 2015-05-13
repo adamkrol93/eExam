@@ -14,9 +14,9 @@ import java.util.List;
 @Remote
 public interface ApproachesServiceRemote {
 
-	List<ApproachEntity> findAllForStudent() throws ApplicationBaseException;
+	List<ApproachEntity> listAllForStudent() throws ApplicationBaseException;
 
-	List<ApproachEntity> findAllForGuardian() throws ApplicationBaseException;
+	List<ApproachEntity> listAllForGuardian() throws ApplicationBaseException;
 
 	ApproachEntity findById(long id) throws ApplicationBaseException;
 

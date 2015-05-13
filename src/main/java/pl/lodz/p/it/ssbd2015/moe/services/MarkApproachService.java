@@ -34,7 +34,7 @@ public class MarkApproachService extends BaseStatefulService implements MarkAppr
 	private ApproachEntity approach;
 
 	@Override
-	@RolesAllowed({"MARK_APPROACH_MOE", "DISQUALIFY_APPROACH_MOE"})
+	@RolesAllowed("MARK_APPROACH_MOE")
 	public ApproachEntity findById(long id) throws ApplicationBaseException {
 		throw new UnsupportedOperationException();
 	}
