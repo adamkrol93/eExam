@@ -1,5 +1,8 @@
 package pl.lodz.p.it.ssbd2015.entities;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -16,7 +19,9 @@ import java.util.Calendar;
         valueColumnName = "id_range",
         pkColumnValue = "PreviousPasswordEntity",
         allocationSize = 1)
-public class PreviousPasswordEntity implements Serializable {
+public class PreviousPasswordEntity extends TimeBaseEntity implements Serializable {
+
+    static private Logger logger = LoggerFactory.getLogger(PreviousPasswordEntity.class);
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "previous_password_id_generator")
@@ -112,5 +117,20 @@ public class PreviousPasswordEntity implements Serializable {
                 "id=" + id +
                 ", version=" + version +
                 '}';
+    }
+
+    @Override
+    public void setCreationDate(Calendar date) {
+        if (this.getDateAdd() == null) {
+            this.setDateAdd(date);
+        }
+        else {
+            logger.warn("{} already has registration date set. Skipping.", this);
+        }
+    }
+
+    @Override
+    public void setModificationDate(Calendar date) {
+        setDateModification(date);
     }
 }

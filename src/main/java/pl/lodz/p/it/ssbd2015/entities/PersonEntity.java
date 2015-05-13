@@ -261,11 +261,10 @@ public class PersonEntity extends TimeBaseEntity implements Serializable {
 
     @Override
     public void setCreationDate(Calendar date) {
-
-        if(this.getDateAdd()==null){
+        if (this.getDateAdd() == null) {
             this.setDateAdd(date);
         }
-        else{
+        else {
             logger.warn("{} already has registration date set. Skipping.", this);
         }
     }

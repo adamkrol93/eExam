@@ -1,0 +1,38 @@
+exam:
+  - exam_id: 1
+    exam_title: "Pewien egzamin 1"
+    exam_count_take_exam: 3
+    exam_date_start: "2015-03-31 22:59:07.393572"
+    exam_date_end: "2015-04-04 22:59:07.393572"
+    exam_duration: 60
+    exam_count_question: 4
+    exam_count_finish_exam: "[NULL]"
+    exam_avg_results: "[NULL]"
+    exam_creator_id: 4
+    exam_modifier_id: "[NULL]"
+    exam_date_add: "2015-03-30 22:59:07.393572"
+    exam_version: 1
+  - exam_id: 2
+    exam_title: "Nowiuteńki egżam"
+    exam_count_take_exam: 4
+    exam_date_start: "2015-10-07 21:30:05.0"
+    exam_date_end: "2015-10-07 23:15:05.0"
+    exam_duration: 35
+    exam_count_question: 13
+    exam_count_finish_exam: "[NULL]"
+    exam_avg_results: "[NULL]"
+    exam_creator_id: 4
+    exam_modifier_id: "[NULL]"
+    exam_version: 1
+
+exam_question:
+  - exam_id: 1
+    question_id: 1
+  - exam_id: 2
+    question_id: 2
+  - exam_id: 2
+    question_id: 4
+
+exam_groups:
+  - exam_id: 2
+    groups_id: 6

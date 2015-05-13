@@ -16,7 +16,10 @@ import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Klasa do zarządzania tworzeniem egzaminów.
@@ -44,18 +47,36 @@ public class ExamCreationService extends BaseStatefulService implements ExamCrea
 	@Override
 	@RolesAllowed("CREATE_EXAM_MZE")
 	public List<QuestionEntity> findAllQuestions() {
-		throw new UnsupportedOperationException();
+		questions = questionEntityFacade.findAll();
+		return questions;
 	}
 
 	@Override
 	@RolesAllowed("CREATE_EXAM_MZE")
 	public List<TeacherEntity> findAllTeachers() {
-		throw new UnsupportedOperationException();
+		teachers = teacherEntityFacade.findAll();
+		return teachers;
 	}
 
 	@Override
 	@RolesAllowed("CREATE_EXAM_MZE")
-	public void create(ExamEntity exam, List<Long> questions, List<Long> teachers) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
+	public void create(ExamEntity exam, List<Long> questionIds, List<Long> teacherIds) throws ApplicationBaseException {
+		ExamEntity newExam = new ExamEntity();
+		newExam.setTitle(exam.getTitle());
+		newExam.setCountTakeExam(exam.getCountTakeExam());
+		newExam.setCountQuestion(exam.getCountQuestion());
+		newExam.setDateEnd(exam.getDateEnd());
+		newExam.setDateStart(exam.getDateAdd());
+		newExam.setDuration(exam.getDuration());
+
+		Set<Long> questionIdSet = new HashSet<>(questionIds);
+		Set<Long> teacherIdSet = new HashSet<>(teacherIds);
+
+		List<QuestionEntity> chosenQuestions = new ArrayList<>(questions);
+		List<TeacherEntity> chosenTeachers = new ArrayList<>(teachers);
+		chosenQuestions.removeIf(question -> !questionIdSet.contains(question.getId()));
+		chosenTeachers.removeIf(teacher -> !teacherIdSet.contains(teacher.getId()));
+
+		examsManager.createExam(exam, chosenQuestions, chosenTeachers);
 	}
 }

@@ -4,8 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.text.SimpleDateFormat;
@@ -49,20 +48,25 @@ public class ExamEntity extends TimeBaseEntity implements Serializable {
     @Column(name = "exam_title", nullable = false, length = 100, unique = true)
     private String title;
 
+    @Min(value = 1, message = "{exam.count_take_exam.positive}")
     @Column(name = "exam_count_take_exam", nullable = false)
     private int countTakeExam;
 
+    @NotNull(message = "{exam.date_start.not_null}")
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "exam_date_start", nullable = false)
     private Calendar dateStart;
 
+    @NotNull(message = "{exam.date_end.not_null}")
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "exam_date_end", nullable = false)
     private Calendar dateEnd;
 
+    @Min(value = 1, message = "{exam.duration.positive}")
     @Column(name = "exam_duration", nullable = false)
     private int duration;
 
+    @Min(value = 1, message = "{exam.count_question.positive}")
     @Column(name = "exam_count_question", nullable = false)
     private int countQuestion;
 
@@ -317,11 +321,10 @@ public class ExamEntity extends TimeBaseEntity implements Serializable {
 
     @Override
     public void setCreationDate(Calendar date) {
-
-        if(this.getDateAdd()==null){
+        if (this.getDateAdd() == null){
             this.setDateAdd(date);
         }
-        else{
+        else {
             logger.warn("{} already has creation date set. Skipping.", this);
         }
     }

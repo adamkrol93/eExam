@@ -1,20 +1,22 @@
 package pl.lodz.p.it.ssbd2015.mze.managers;
 
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
+import pl.lodz.p.it.ssbd2015.entities.ExaminerEntity;
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.mze.ExaminerNotFoundException;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExamEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExaminerEntityFacadeLocal;
 
+import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
+import javax.ejb.*;
 import javax.interceptor.Interceptors;
 import java.util.List;
+
+import static pl.lodz.p.it.ssbd2015.utils.ExceptionUtils.elvis;
 
 /**
  * Implementacja interfejsu {@link ExamsManagerLocal}, pozwala na zarządzanie Egzaminami
@@ -31,10 +33,27 @@ public class ExamsManager implements ExamsManagerLocal {
 	@EJB
 	private ExaminerEntityFacadeLocal examinerEntityFacade;
 
+	@Resource
+	private SessionContext sessionContext;
+
 	@Override
 	@RolesAllowed("CREATE_EXAM_MZE")
 	public void createExam(ExamEntity exam, List<QuestionEntity> questions, List<TeacherEntity> teachers) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
+		String name = elvis(() -> sessionContext.getCallerPrincipal().getName());
+		ExaminerEntity examiner = examinerEntityFacade.findByLogin(name)
+				.orElseThrow(() -> new ExaminerNotFoundException("Could not find ExaminerEntity for logged user " + name));
+		exam.setCreator(examiner);
+
+		questions.forEach(question -> {
+			exam.getQuestions().add(question);
+			question.getExams().add(exam);
+		});
+		teachers.forEach(teacher -> {
+			exam.getTeachers().add(teacher);
+			teacher.getExams().add(exam);
+		});
+
+		examEntityFacade.create(exam);
 	}
 
 	@Override

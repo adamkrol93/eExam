@@ -1,11 +1,11 @@
 package pl.lodz.p.it.ssbd2015.mok.managers;
 
 import pl.lodz.p.it.ssbd2015.entities.*;
-import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.mok.PasswordTooShortException;
 import pl.lodz.p.it.ssbd2015.exceptions.mok.PersonNotFoundException;
 import pl.lodz.p.it.ssbd2015.exceptions.mok.PersonPasswordNotUniqueException;
+import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mok.facades.GroupsStubEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.facades.PersonEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mok.localization.Text;
@@ -17,7 +17,6 @@ import javax.annotation.security.RolesAllowed;
 import javax.ejb.*;
 import javax.interceptor.Interceptors;
 import java.util.Arrays;
-import java.util.Calendar;
 
 /**
  * Klasa obsługująca zarządzanie obiektami typu {@link PersonEntity}
@@ -60,7 +59,6 @@ public class PersonManager implements PersonManagerLocal {
                 PreviousPasswordEntity previous = new PreviousPasswordEntity();
                 previous.setPerson(oldOne);
                 previous.setPassword(oldOne.getPassword());
-                previous.setDateAdd(Calendar.getInstance()); //TODO: Przenieść do listenera
                 for (PreviousPasswordEntity previousPassword : oldOne.getPreviousPasswords()) {
                     if (previousPassword.getPassword().equals(newHash)) {
                         throw new PersonPasswordNotUniqueException(
@@ -78,9 +76,8 @@ public class PersonManager implements PersonManagerLocal {
     @Override
     @PermitAll
     public PersonEntity getPerson(String login) throws ApplicationBaseException {
-        PersonEntity personEntity = personEntityFacade.findByLogin(login)
+        return personEntityFacade.findByLogin(login)
                 .orElseThrow(() -> new PersonNotFoundException("Person with login: "+login+ " does not exists"));
-        return personEntity;
     }
 
     @Override

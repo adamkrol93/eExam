@@ -191,11 +191,10 @@ public class QuestionEntity extends TimeBaseEntity implements Serializable {
 
     @Override
     public void setCreationDate(Calendar date) {
-
-        if(this.getDateAdd()==null){
+        if (this.getDateAdd() == null) {
             this.setDateAdd(date);
         }
-        else{
+        else {
             logger.warn("{} already has creation date set. Skipping.", this);
         }
     }
