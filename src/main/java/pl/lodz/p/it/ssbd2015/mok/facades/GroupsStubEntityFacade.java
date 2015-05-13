@@ -3,6 +3,7 @@ package pl.lodz.p.it.ssbd2015.mok.facades;
 import pl.lodz.p.it.ssbd2015.entities.GroupsStubEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.*;
+import pl.lodz.p.it.ssbd2015.exceptions.mok.*;
 
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.RolesAllowed;

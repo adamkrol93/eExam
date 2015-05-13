@@ -3,6 +3,7 @@ package pl.lodz.p.it.ssbd2015.mok.facades;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.*;
+import pl.lodz.p.it.ssbd2015.exceptions.mok.*;
 
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
@@ -80,7 +81,7 @@ public class PersonEntityFacade implements PersonEntityFacadeLocal {
             } else if (ex.getMessage().contains("groups_person_id_fkey")) {
                 throw new GroupsPersonForeignKeyException("PersonEntity id is incorrect for entity" + entity, ex);
             }else {
-                throw new PersonUnknownException("Persisting " + entity + " violated a database constraint.", ex);
+                throw new PersonManagementException("Persisting " + entity + " violated a database constraint.", ex);
             }
         }
     }
@@ -105,7 +106,7 @@ public class PersonEntityFacade implements PersonEntityFacadeLocal {
             } else if (ex.getMessage().contains("groups_person_id_fkey")) {
                 throw new GroupsPersonForeignKeyException("PersonEntity id is incorrect for entity" + entity, ex);
             }else {
-                throw new PersonUnknownException("Persisting " + entity + " violated a database constraint.", ex);
+                throw new PersonManagementException("Persisting " + entity + " violated a database constraint.", ex);
             }
         }
     }

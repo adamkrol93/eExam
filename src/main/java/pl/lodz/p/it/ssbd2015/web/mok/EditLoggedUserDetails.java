@@ -1,8 +1,8 @@
 package pl.lodz.p.it.ssbd2015.web.mok;
 
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
-import pl.lodz.p.it.ssbd2015.exceptions.PasswordTooShortException;
-import pl.lodz.p.it.ssbd2015.exceptions.PersonPasswordNotUniqueException;
+import pl.lodz.p.it.ssbd2015.exceptions.mok.PasswordTooShortException;
+import pl.lodz.p.it.ssbd2015.exceptions.mok.PersonPasswordNotUniqueException;
 import pl.lodz.p.it.ssbd2015.mok.services.EditPersonServiceRemote;
 import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
 import pl.lodz.p.it.ssbd2015.web.localization.MessageUtils;
