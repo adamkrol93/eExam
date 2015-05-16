@@ -30,28 +30,28 @@ import java.util.Date;
 @Interceptors(LoggingInterceptor.class)
 public class EmailManager implements EmailManagerLocal {
 
-	@Resource(lookup = "java:app/email")
-	private Session smtpSession;
+    @Resource(lookup = "java:app/email")
+    private Session smtpSession;
 
-	@PermitAll
-	public void sendEmail(String to, String subject, String body) throws ApplicationBaseException {
-		try {
-			MimeMessage message = new MimeMessage(smtpSession);
-			message.setFrom(new InternetAddress(smtpSession.getProperty("mail.from")));
-			InternetAddress[] address = {new InternetAddress(to)};
-			message.setRecipients(Message.RecipientType.TO, address);
-			message.setSubject(subject);
-			message.setSentDate(new Date());
-			message.setText(body, "utf-8", "html");
-			message.setSender(new InternetAddress(smtpSession.getProperty("mail.from")));
+    @PermitAll
+    public void sendEmail(String to, String subject, String body) throws ApplicationBaseException {
+    	try {
+    		MimeMessage message = new MimeMessage(smtpSession);
+    		message.setFrom(new InternetAddress(smtpSession.getProperty("mail.from")));
+    		InternetAddress[] address = {new InternetAddress(to)};
+    		message.setRecipients(Message.RecipientType.TO, address);
+    		message.setSubject(subject);
+    		message.setSentDate(new Date());
+    		message.setText(body, "utf-8", "html");
+    		message.setSender(new InternetAddress(smtpSession.getProperty("mail.from")));
 
-			Transport.send(message);
-		}
-		catch (AddressException ex) {
-			throw new MailAddressException("The address is wrong. Check configuration",ex);
-		}
-		catch (MessagingException ex) {
-			throw new MailCommunicationException("Could not send message", ex);
-		}
-	}
+    		Transport.send(message);
+    	}
+    	catch (AddressException ex) {
+    		throw new MailAddressException("The address is wrong. Check configuration",ex);
+    	}
+    	catch (MessagingException ex) {
+    		throw new MailCommunicationException("Could not send message", ex);
+    	}
+    }
 }

@@ -25,39 +25,39 @@ import java.util.List;
 @Interceptors(LoggingInterceptor.class)
 public class ApproachesManager implements ApproachesManagerLocal {
 
-	@EJB
-	private ApproachEntityFacadeLocal approachEntityFacade;
+    @EJB
+    private ApproachEntityFacadeLocal approachEntityFacade;
 
-	@EJB
-	private ExamEntityFacade examEntityFacade;
+    @EJB
+    private ExamEntityFacade examEntityFacade;
 
-	@EJB
-	private TeacherEntityFacadeLocal teacherEntityFacade;
+    @EJB
+    private TeacherEntityFacadeLocal teacherEntityFacade;
 
-	@EJB
-	private StudentEntityFacadeLocal studentEntityFacade;
+    @EJB
+    private StudentEntityFacadeLocal studentEntityFacade;
 
-	@Override
-	@RolesAllowed("MARK_APPROACH_MOE")
-	public void mark(ApproachEntity approach, List<AnswerEntity> answers) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("MARK_APPROACH_MOE")
+    public void mark(ApproachEntity approach, List<AnswerEntity> answers) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed("DISQUALIFY_APPROACH_MOE")
-	public void disqualify(ApproachEntity approach) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("DISQUALIFY_APPROACH_MOE")
+    public void disqualify(ApproachEntity approach) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed("LIST_APPROACHES_MOE")
-	public List<ExamEntity> findAllByLoggedTeacher() throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("LIST_APPROACHES_MOE")
+    public List<ExamEntity> findAllByLoggedTeacher() throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed("ADD_STUDENTS_GUARDIAN_MOE")
-	public void connect(GuardianEntity guardian, StudentEntity student) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("ADD_STUDENTS_GUARDIAN_MOE")
+    public void connect(GuardianEntity guardian, StudentEntity student) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 }

@@ -27,68 +27,68 @@ import static pl.lodz.p.it.ssbd2015.utils.ExceptionUtils.elvis;
 @Interceptors(LoggingInterceptor.class)
 public class ExamsManager implements ExamsManagerLocal {
 
-	@EJB
-	private ExamEntityFacadeLocal examEntityFacade;
+    @EJB
+    private ExamEntityFacadeLocal examEntityFacade;
 
-	@EJB
-	private ExaminerEntityFacadeLocal examinerEntityFacade;
+    @EJB
+    private ExaminerEntityFacadeLocal examinerEntityFacade;
 
-	@Resource
-	private SessionContext sessionContext;
+    @Resource
+    private SessionContext sessionContext;
 
-	@Override
-	@RolesAllowed("CREATE_EXAM_MZE")
-	public void createExam(ExamEntity exam, List<QuestionEntity> questions, List<TeacherEntity> teachers) throws ApplicationBaseException {
-		String name = elvis(() -> sessionContext.getCallerPrincipal().getName());
-		ExaminerEntity examiner = examinerEntityFacade.findByLogin(name)
-				.orElseThrow(() -> new ExaminerNotFoundException("Could not find ExaminerEntity for logged user " + name));
-		exam.setCreator(examiner);
+    @Override
+    @RolesAllowed("CREATE_EXAM_MZE")
+    public void createExam(ExamEntity exam, List<QuestionEntity> questions, List<TeacherEntity> teachers) throws ApplicationBaseException {
+    	String name = elvis(() -> sessionContext.getCallerPrincipal().getName());
+    	ExaminerEntity examiner = examinerEntityFacade.findByLogin(name)
+    			.orElseThrow(() -> new ExaminerNotFoundException("Could not find ExaminerEntity for logged user " + name));
+    	exam.setCreator(examiner);
 
-		questions.forEach(question -> {
-			exam.getQuestions().add(question);
-			question.getExams().add(exam);
-		});
-		teachers.forEach(teacher -> {
-			exam.getTeachers().add(teacher);
-			teacher.getExams().add(exam);
-		});
+    	questions.forEach(question -> {
+    		exam.getQuestions().add(question);
+    		question.getExams().add(exam);
+    	});
+    	teachers.forEach(teacher -> {
+    		exam.getTeachers().add(teacher);
+    		teacher.getExams().add(exam);
+    	});
 
-		examEntityFacade.create(exam);
-	}
+    	examEntityFacade.create(exam);
+    }
 
-	@Override
-	@RolesAllowed("CLONE_EXAM_MZE")
-	public void cloneExam(ExamEntity exam) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("CLONE_EXAM_MZE")
+    public void cloneExam(ExamEntity exam) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed("ADD_TEACHER_TO_EXAM_MZE")
-	public List<TeacherEntity> findAllNotInExam(ExamEntity exam) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("ADD_TEACHER_TO_EXAM_MZE")
+    public List<TeacherEntity> findAllNotInExam(ExamEntity exam) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed("EDIT_EXAM_MZE")
-	public void editExam(ExamEntity exam, ExamEntity newExam) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("EDIT_EXAM_MZE")
+    public void editExam(ExamEntity exam, ExamEntity newExam) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed("ADD_TEACHER_TO_EXAM_MZE")
-	public void addTeacher(ExamEntity exam, TeacherEntity teacher) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("ADD_TEACHER_TO_EXAM_MZE")
+    public void addTeacher(ExamEntity exam, TeacherEntity teacher) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed("REMOVE_QUESTION_FROM_EXAM_MZE")
-	public void removeQuestion(ExamEntity exam, long questionId) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("REMOVE_QUESTION_FROM_EXAM_MZE")
+    public void removeQuestion(ExamEntity exam, long questionId) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed("REMOVE_TEACHER_FROM_EXAM_MZE")
-	public void removeTeacher(ExamEntity exam, long teacherId) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("REMOVE_TEACHER_FROM_EXAM_MZE")
+    public void removeTeacher(ExamEntity exam, long teacherId) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 }

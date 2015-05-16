@@ -11,13 +11,13 @@ import javax.ejb.Local;
 @Local
 public interface EmailManagerLocal {
 
-	/**
-	 * Metoda do wysyłania wiadomości email poprzez zasób serwera.
-	 * @param to Adres e-mail na który wiadomość ma dotrzeć
-	 * @param subject Temat wiadomości (klucz internacjonalizacji)
-	 * @param body Zawartość wiadomośc (klucz internacjonalizacji)
-	 * @throws ApplicationBaseException
-	 */
-	void sendEmail(String to, String subject, String body) throws ApplicationBaseException;
+    /**
+     * Metoda do wysyłania wiadomości email poprzez zasób serwera.
+     * @param to Adres e-mail na który wiadomość ma dotrzeć
+     * @param subject Temat wiadomości (klucz internacjonalizacji)
+     * @param body Zawartość wiadomośc (klucz internacjonalizacji)
+     * @throws ApplicationBaseException
+     */
+    void sendEmail(String to, String subject, String body) throws ApplicationBaseException;
 
 }

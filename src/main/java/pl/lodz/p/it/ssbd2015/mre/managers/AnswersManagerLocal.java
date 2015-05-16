@@ -15,34 +15,34 @@ import java.util.List;
 @Local
 public interface AnswersManagerLocal {
 
-	/**
-	 * Tworzy nowe podejście do egzaminu
-	 * @param title tytuł egzaminu, którego podejście chcemy utworzyć
-	 * @return identyfikator nowo utworzonego podejścia
-	 * @throws ApplicationBaseException
-	 */
-	Long createApproach(String title) throws ApplicationBaseException;
+    /**
+     * Tworzy nowe podejście do egzaminu
+     * @param title tytuł egzaminu, którego podejście chcemy utworzyć
+     * @return identyfikator nowo utworzonego podejścia
+     * @throws ApplicationBaseException
+     */
+    Long createApproach(String title) throws ApplicationBaseException;
 
-	/**
-	 * Metoda edytuje podejści. Dodaje odpowiedzi ucznia.
-	 * @param approach Podejście które poddajemy edycji
-	 * @param answers opdowiedzi, których udzielił student
-	 * @throws ApplicationBaseException
-	 */
-	void editApproach(ApproachEntity approach, List<AnswerEntity> answers) throws ApplicationBaseException;
+    /**
+     * Metoda edytuje podejści. Dodaje odpowiedzi ucznia.
+     * @param approach Podejście które poddajemy edycji
+     * @param answers opdowiedzi, których udzielił student
+     * @throws ApplicationBaseException
+     */
+    void editApproach(ApproachEntity approach, List<AnswerEntity> answers) throws ApplicationBaseException;
 
-	/**
-	 * Kończy rozpoczęte podejście.
-	 * @param approach Podejście które wymaga zakończenia
-	 * @throws ApplicationBaseException
-	 */
-	void endApproach(ApproachEntity approach) throws ApplicationBaseException;
+    /**
+     * Kończy rozpoczęte podejście.
+     * @param approach Podejście które wymaga zakończenia
+     * @throws ApplicationBaseException
+     */
+    void endApproach(ApproachEntity approach) throws ApplicationBaseException;
 
 
-	/**
-	 * Wyświetla wszystkie egzaminy do których użytkownik może podejść.
-	 * @return
-	 */
-	List<ExamEntity> findAvailableExams();
+    /**
+     * Wyświetla wszystkie egzaminy do których użytkownik może podejść.
+     * @return
+     */
+    List<ExamEntity> findAvailableExams();
 
 }

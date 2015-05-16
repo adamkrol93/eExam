@@ -14,11 +14,11 @@ import java.util.List;
 @Remote
 public interface AnswerServiceRemote {
 
-	Long createApproach(String title) throws ApplicationBaseException;
+    Long createApproach(String title) throws ApplicationBaseException;
 
-	ApproachEntity findById(long approachId) throws ApplicationBaseException;
+    ApproachEntity findById(long approachId) throws ApplicationBaseException;
 
-	void editApproach(List<AnswerEntity> answers) throws ApplicationBaseException;
+    void editApproach(List<AnswerEntity> answers) throws ApplicationBaseException;
 
-	void endApproach() throws ApplicationBaseException;
+    void endApproach() throws ApplicationBaseException;
 }

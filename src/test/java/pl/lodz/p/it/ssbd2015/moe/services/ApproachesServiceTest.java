@@ -16,17 +16,17 @@ import static org.junit.Assert.assertNotNull;
 @UsingDataSet({"ValidUser.yml", "moe/ApproachesServiceTest.yml"})
 public class ApproachesServiceTest extends BaseArquillianTest {
 
-	@EJB
-	private ApproachesServiceRemote approachesService;
+    @EJB
+    private ApproachesServiceRemote approachesService;
 
-	@Test
-	public void shouldFindApproach() throws Exception {
-		ApproachEntity approachEntity = approachesService.findById(1L);
-		assertNotNull(approachEntity);
-	}
+    @Test
+    public void shouldFindApproach() throws Exception {
+    	ApproachEntity approachEntity = approachesService.findById(1L);
+    	assertNotNull(approachEntity);
+    }
 
-	@Test(expected = ApproachNotFoundException.class)
-	public void shouldNotFindApproach() throws Exception {
-		approachesService.findById(2L);
-	}
+    @Test(expected = ApproachNotFoundException.class)
+    public void shouldNotFindApproach() throws Exception {
+    	approachesService.findById(2L);
+    }
 }

@@ -25,23 +25,23 @@ import java.util.List;
 @Interceptors(LoggingInterceptor.class)
 public class ExamListService extends BaseStatefulService implements ExamListServiceRemote {
 
-	@EJB
-	private ExamEntityFacadeLocal examEntityFacade;
+    @EJB
+    private ExamEntityFacadeLocal examEntityFacade;
 
-	@EJB
-	private ExamsManagerLocal examsManager;
+    @EJB
+    private ExamsManagerLocal examsManager;
 
-	private List<ExamEntity> exams;
+    private List<ExamEntity> exams;
 
-	@Override
-	@RolesAllowed("LIST_EXAMS_MZE")
-	public List<ExamEntity> findAll() {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("LIST_EXAMS_MZE")
+    public List<ExamEntity> findAll() {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed("CLONE_EXAM_MZE")
-	public void cloneExam(long examId) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("CLONE_EXAM_MZE")
+    public void cloneExam(long examId) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 }

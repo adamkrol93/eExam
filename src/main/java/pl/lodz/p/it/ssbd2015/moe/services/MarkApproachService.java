@@ -25,29 +25,29 @@ import java.util.List;
 @Interceptors(LoggingInterceptor.class)
 public class MarkApproachService extends BaseStatefulService implements MarkApproachServiceRemote {
 
-	@EJB
-	private ApproachesManagerLocal approachesManager;
+    @EJB
+    private ApproachesManagerLocal approachesManager;
 
-	@EJB
-	private ApproachEntityFacadeLocal approachEntityFacade;
+    @EJB
+    private ApproachEntityFacadeLocal approachEntityFacade;
 
-	private ApproachEntity approach;
+    private ApproachEntity approach;
 
-	@Override
-	@RolesAllowed("MARK_APPROACH_MOE")
-	public ApproachEntity findById(long id) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("MARK_APPROACH_MOE")
+    public ApproachEntity findById(long id) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed("MARK_APPROACH_MOE")
-	public void mark(List<AnswerEntity> gradedAnswers) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("MARK_APPROACH_MOE")
+    public void mark(List<AnswerEntity> gradedAnswers) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed("DISQUALIFY_APPROACH_MOE")
-	public void disqualify() throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("DISQUALIFY_APPROACH_MOE")
+    public void disqualify() throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 }

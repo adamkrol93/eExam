@@ -12,7 +12,7 @@ import javax.ejb.Local;
 @Local
 public interface QuestionsManagerLocal {
 
-	void createQuestion(QuestionEntity question) throws ApplicationBaseException;
+    void createQuestion(QuestionEntity question) throws ApplicationBaseException;
 
-	void editQuestion(QuestionEntity question, QuestionEntity newQuestion) throws ApplicationBaseException;
+    void editQuestion(QuestionEntity question, QuestionEntity newQuestion) throws ApplicationBaseException;
 }

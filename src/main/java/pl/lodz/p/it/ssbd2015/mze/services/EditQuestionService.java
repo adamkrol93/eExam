@@ -24,23 +24,23 @@ import javax.interceptor.Interceptors;
 @Interceptors(LoggingInterceptor.class)
 public class EditQuestionService extends BaseStatefulService implements EditQuestionServiceRemote {
 
-	@EJB
-	private QuestionEntityFacadeLocal questionEntityFacade;
+    @EJB
+    private QuestionEntityFacadeLocal questionEntityFacade;
 
-	@EJB
-	private QuestionsManagerLocal questionsManager;
+    @EJB
+    private QuestionsManagerLocal questionsManager;
 
-	private QuestionEntity question;
+    private QuestionEntity question;
 
-	@Override
-	@RolesAllowed("EDIT_QUESTION_MZE")
-	public QuestionEntity findById(long id) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("EDIT_QUESTION_MZE")
+    public QuestionEntity findById(long id) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed("EDIT_QUESTION_MZE")
-	public void editQuestion(QuestionEntity question) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("EDIT_QUESTION_MZE")
+    public void editQuestion(QuestionEntity question) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 }

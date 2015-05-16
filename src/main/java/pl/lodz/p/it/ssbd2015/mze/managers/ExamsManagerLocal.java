@@ -15,17 +15,17 @@ import java.util.List;
 @Local
 public interface ExamsManagerLocal {
 
-	void createExam(ExamEntity exam, List<QuestionEntity> questions, List<TeacherEntity> teachers) throws ApplicationBaseException;
+    void createExam(ExamEntity exam, List<QuestionEntity> questions, List<TeacherEntity> teachers) throws ApplicationBaseException;
 
-	void cloneExam(ExamEntity exam) throws ApplicationBaseException;
+    void cloneExam(ExamEntity exam) throws ApplicationBaseException;
 
-	List<TeacherEntity> findAllNotInExam(ExamEntity exam) throws ApplicationBaseException;
+    List<TeacherEntity> findAllNotInExam(ExamEntity exam) throws ApplicationBaseException;
 
-	void editExam(ExamEntity exam, ExamEntity newExam) throws ApplicationBaseException;
+    void editExam(ExamEntity exam, ExamEntity newExam) throws ApplicationBaseException;
 
-	void addTeacher(ExamEntity exam, TeacherEntity teacher) throws ApplicationBaseException;
+    void addTeacher(ExamEntity exam, TeacherEntity teacher) throws ApplicationBaseException;
 
-	void removeQuestion(ExamEntity exam, long questionId) throws ApplicationBaseException;
+    void removeQuestion(ExamEntity exam, long questionId) throws ApplicationBaseException;
 
-	void removeTeacher(ExamEntity exam, long teacherId) throws ApplicationBaseException;
+    void removeTeacher(ExamEntity exam, long teacherId) throws ApplicationBaseException;
 }

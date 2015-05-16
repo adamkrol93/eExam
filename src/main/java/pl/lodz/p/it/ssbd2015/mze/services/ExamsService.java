@@ -21,7 +21,6 @@ import javax.interceptor.Interceptors;
 import java.util.List;
 
 /**
-<<<<<<< HEAD
  * Klasa pozwalająca na wyszukiwanie pytań, nauczycieli oraz tworzenie pytań.
  * Klasa nie posiada dodatkowych pól
  * @author Bartosz Ignaczewski
@@ -37,14 +36,14 @@ public class ExamsService extends BaseStatefulService implements ExamsServiceRem
     @EJB
     private ExamEntityFacadeLocal examEntityFacade;
 
-	@EJB
+    @EJB
     private TeacherEntityFacadeLocal teacherEntityFacade;
 
-	@EJB
+    @EJB
     private QuestionEntityFacadeLocal questionEntityFacade;
 
-	@EJB
-	private QuestionsManagerLocal questionsManager;
+    @EJB
+    private QuestionsManagerLocal questionsManager;
 
     @Override
     @RolesAllowed({"SHOW_EXAM_MZE", "SHOW_EXAM_STATS_MZE"})
@@ -54,19 +53,19 @@ public class ExamsService extends BaseStatefulService implements ExamsServiceRem
     }
 
     @Override
-	@RolesAllowed("CREATE_QUESTION_MZE")
+    @RolesAllowed("CREATE_QUESTION_MZE")
     public void create(QuestionEntity questionEntity) throws ApplicationBaseException {
         questionsManager.createQuestion(questionEntity);
     }
 
-	@Override
+    @Override
     @RolesAllowed("LIST_QUESTIONS_MZE")
-	public List<QuestionEntity> findAllQuestions() {
+    public List<QuestionEntity> findAllQuestions() {
         return questionEntityFacade.findAll();
     }
 
     @Override
-	@RolesAllowed("SHOW_TEACHER_LIST_MZE")
+    @RolesAllowed("SHOW_TEACHER_LIST_MZE")
     public List<TeacherEntity> findAllTeachers() {
         throw new UnsupportedOperationException();
     }

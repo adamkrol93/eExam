@@ -14,12 +14,12 @@ import javax.ejb.EJB;
 @UsingDataSet({"ValidUser.yml"})
 public class EmailServiceTest extends BaseArquillianTest {
 
-	@EJB
-	private EmailManagerLocal emailService;
+    @EJB
+    private EmailManagerLocal emailService;
 
-	@Test
-	public void sendEmail() throws ApplicationBaseException {
-		emailService.sendEmail("foo@foo.bar", "test", "test - body");
-	}
+    @Test
+    public void sendEmail() throws ApplicationBaseException {
+    	emailService.sendEmail("foo@foo.bar", "test", "test - body");
+    }
 
 }

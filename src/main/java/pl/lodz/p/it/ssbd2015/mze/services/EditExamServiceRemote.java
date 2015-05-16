@@ -14,16 +14,16 @@ import java.util.List;
 @Remote
 public interface EditExamServiceRemote {
 
-	ExamEntity findById(long examId) throws ApplicationBaseException;
+    ExamEntity findById(long examId) throws ApplicationBaseException;
 
-	List<TeacherEntity> findAllNotInExam();
+    List<TeacherEntity> findAllNotInExam();
 
-	void editExam(ExamEntity exam) throws ApplicationBaseException;
+    void editExam(ExamEntity exam) throws ApplicationBaseException;
 
-	void addTeacher(long teacherId) throws ApplicationBaseException;
+    void addTeacher(long teacherId) throws ApplicationBaseException;
 
-	void removeQuestion(long questionId) throws ApplicationBaseException;
+    void removeQuestion(long questionId) throws ApplicationBaseException;
 
-	void removeTeacher(long teacherId) throws ApplicationBaseException;
+    void removeTeacher(long teacherId) throws ApplicationBaseException;
 
 }

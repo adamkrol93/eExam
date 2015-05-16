@@ -13,8 +13,8 @@ import java.util.List;
 @Remote
 public interface ExamListServiceRemote {
 
-	List<ExamEntity> findAll();
+    List<ExamEntity> findAll();
 
-	void cloneExam(long examId) throws ApplicationBaseException;
+    void cloneExam(long examId) throws ApplicationBaseException;
 
 }

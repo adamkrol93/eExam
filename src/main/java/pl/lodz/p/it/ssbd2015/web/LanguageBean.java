@@ -16,47 +16,47 @@ import java.util.stream.Collectors;
 @SessionScoped
 public class LanguageBean implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private String localeCode = FacesContext.getCurrentInstance().getViewRoot().getLocale().getLanguage();
+    private String localeCode = FacesContext.getCurrentInstance().getViewRoot().getLocale().getLanguage();
 
-	private Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
+    private Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
 
-	private static List<Map.Entry<String, Object>> countries;
+    private static List<Map.Entry<String, Object>> countries;
 
-	static {
-		Map<String, Object> countriesMap = new LinkedHashMap<>();
-		countriesMap.put("Polski", new Locale("pl"));
-		countriesMap.put("English", new Locale("en"));
-		countries = countriesMap.entrySet()
-								.stream()
-								.sorted(Comparator.comparing(Map.Entry::getKey))
-								.collect(Collectors.toList());
-	}
+    static {
+    	Map<String, Object> countriesMap = new LinkedHashMap<>();
+    	countriesMap.put("Polski", new Locale("pl"));
+    	countriesMap.put("English", new Locale("en"));
+    	countries = countriesMap.entrySet()
+    							.stream()
+    							.sorted(Comparator.comparing(Map.Entry::getKey))
+    							.collect(Collectors.toList());
+    }
 
-	public Locale getLocale() {
-		return locale;
-	}
+    public Locale getLocale() {
+    	return locale;
+    }
 
-	public List<Map.Entry<String, Object>> getCountriesInMap() {
-		return countries;
-	}
+    public List<Map.Entry<String, Object>> getCountriesInMap() {
+    	return countries;
+    }
 
-	public String getLocaleCode() {
-		return localeCode;
-	}
+    public String getLocaleCode() {
+    	return localeCode;
+    }
 
-	public void setLocaleCode(String localeCode) {
-		this.localeCode = localeCode;
-	}
+    public void setLocaleCode(String localeCode) {
+    	this.localeCode = localeCode;
+    }
 
 
-	/**
-	 * Pozwala zmienić język strony dla uzytkownika, utrzymywany w sesji.
-	 * @param newLocale Nowa wartość języka do ustawienia
-	 */
-	public void changeLocale(Locale newLocale) {
-		locale = newLocale;
-		FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
-	}
+    /**
+     * Pozwala zmienić język strony dla uzytkownika, utrzymywany w sesji.
+     * @param newLocale Nowa wartość języka do ustawienia
+     */
+    public void changeLocale(Locale newLocale) {
+    	locale = newLocale;
+    	FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+    }
 }

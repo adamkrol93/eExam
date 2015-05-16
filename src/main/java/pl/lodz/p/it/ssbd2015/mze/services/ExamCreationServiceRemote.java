@@ -15,10 +15,10 @@ import java.util.List;
 @Remote
 public interface ExamCreationServiceRemote {
 
-	List<QuestionEntity> findAllQuestions();
+    List<QuestionEntity> findAllQuestions();
 
-	List<TeacherEntity> findAllTeachers();
+    List<TeacherEntity> findAllTeachers();
 
-	void create(ExamEntity exam, List<Long> questions, List<Long> teachers) throws ApplicationBaseException;
+    void create(ExamEntity exam, List<Long> questions, List<Long> teachers) throws ApplicationBaseException;
 
 }

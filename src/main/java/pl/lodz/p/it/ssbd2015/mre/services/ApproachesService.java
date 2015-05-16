@@ -27,39 +27,39 @@ import java.util.List;
 @Interceptors(LoggingInterceptor.class)
 public class ApproachesService extends BaseStatefulService implements ApproachesServiceRemote {
 
-	@EJB
-	private AnswersManagerLocal answersManager;
+    @EJB
+    private AnswersManagerLocal answersManager;
 
-	@EJB
-	private ApproachEntityFacadeLocal approachEntityFacade;
+    @EJB
+    private ApproachEntityFacadeLocal approachEntityFacade;
 
-	@EJB
-	private StudentEntityFacadeLocal studentEntityFacade;
+    @EJB
+    private StudentEntityFacadeLocal studentEntityFacade;
 
-	@EJB
-	private GuardianEntityFacadeLocal guardianEntityFacade;
+    @EJB
+    private GuardianEntityFacadeLocal guardianEntityFacade;
 
-	@Override
-	@RolesAllowed("LIST_APPROACHES_MRE")
-	public List<ApproachEntity> listAllForStudent() throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("LIST_APPROACHES_MRE")
+    public List<ApproachEntity> listAllForStudent() throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed("LIST_APPROACHES_MRE")
-	public List<ApproachEntity> listAllForGuardian() throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("LIST_APPROACHES_MRE")
+    public List<ApproachEntity> listAllForGuardian() throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed("SHOW_APPROACHES_MRE")
-	public ApproachEntity findById(long id) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("SHOW_APPROACHES_MRE")
+    public ApproachEntity findById(long id) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed("LIST_AVAILABLE_EXAMS")
-	public List<ExamEntity> findAvailableExams() throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("LIST_AVAILABLE_EXAMS")
+    public List<ExamEntity> findAvailableExams() throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 }

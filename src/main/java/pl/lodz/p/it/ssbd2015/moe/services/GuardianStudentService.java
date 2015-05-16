@@ -27,34 +27,34 @@ import java.util.List;
 @Interceptors(LoggingInterceptor.class)
 public class GuardianStudentService extends BaseStatefulService implements GuardianStudentServiceRemote {
 
-	@EJB
-	private ApproachesManagerLocal approachesManager;
+    @EJB
+    private ApproachesManagerLocal approachesManager;
 
-	@EJB
-	private GuardianEntityFacadeLocal guardianEntityFacade;
+    @EJB
+    private GuardianEntityFacadeLocal guardianEntityFacade;
 
-	@EJB
-	private StudentEntityFacadeLocal studentEntityFacade;
+    @EJB
+    private StudentEntityFacadeLocal studentEntityFacade;
 
-	private List<GuardianEntity> guardians;
+    private List<GuardianEntity> guardians;
 
-	private List<StudentEntity> students;
+    private List<StudentEntity> students;
 
-	@Override
-	@RolesAllowed("ADD_STUDENTS_GUARDIAN_MOE")
-	public List<GuardianEntity> findAllGuardians() {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("ADD_STUDENTS_GUARDIAN_MOE")
+    public List<GuardianEntity> findAllGuardians() {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed("ADD_STUDENTS_GUARDIAN_MOE")
-	public List<StudentEntity> findAllStudents() {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("ADD_STUDENTS_GUARDIAN_MOE")
+    public List<StudentEntity> findAllStudents() {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed("ADD_STUDENTS_GUARDIAN_MOE")
-	public void connect(long guardianId, long studentId) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("ADD_STUDENTS_GUARDIAN_MOE")
+    public void connect(long guardianId, long studentId) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 }

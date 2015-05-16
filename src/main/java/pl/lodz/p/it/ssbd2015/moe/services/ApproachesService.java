@@ -27,23 +27,23 @@ import java.util.List;
 @Interceptors(LoggingInterceptor.class)
 public class ApproachesService extends BaseStatefulService implements ApproachesServiceRemote {
 
-	@EJB
-	private ApproachesManagerLocal approachesManager;
+    @EJB
+    private ApproachesManagerLocal approachesManager;
 
-	@EJB
-	private ApproachEntityFacadeLocal approachEntityFacade;
+    @EJB
+    private ApproachEntityFacadeLocal approachEntityFacade;
 
-	@Override
-	@RolesAllowed("SHOW_APPROACH_MOE")
-	public ApproachEntity findById(long id) throws ApplicationBaseException {
-		ApproachEntity approachEntity = approachEntityFacade.findById(id)
-				.orElseThrow(() -> new ApproachNotFoundException("Approach with id: " + id + " does not exists"));
-		return approachEntity;
-	}
+    @Override
+    @RolesAllowed("SHOW_APPROACH_MOE")
+    public ApproachEntity findById(long id) throws ApplicationBaseException {
+    	ApproachEntity approachEntity = approachEntityFacade.findById(id)
+    			.orElseThrow(() -> new ApproachNotFoundException("Approach with id: " + id + " does not exists"));
+    	return approachEntity;
+    }
 
-	@Override
-	@RolesAllowed("LIST_APPROACHES_MOE")
-	public List<ExamEntity> findAllByLoggedTeacher() throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("LIST_APPROACHES_MOE")
+    public List<ExamEntity> findAllByLoggedTeacher() throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 }

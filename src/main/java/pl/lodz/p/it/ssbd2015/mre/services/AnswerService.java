@@ -25,32 +25,32 @@ import java.util.List;
 @Interceptors(LoggingInterceptor.class)
 public class AnswerService extends BaseStatefulService implements AnswerServiceRemote {
 
-	@EJB
-	private AnswersManagerLocal answersManager;
+    @EJB
+    private AnswersManagerLocal answersManager;
 
-	private ApproachEntity approach;
+    private ApproachEntity approach;
 
-	@Override
-	@RolesAllowed("START_SOLVING_EXAM_MRE")
-	public Long createApproach(String title) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("START_SOLVING_EXAM_MRE")
+    public Long createApproach(String title) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed({"ANSWER_QUESTION_MRE", "END_APPROACH_MRE"})
-	public ApproachEntity findById(long approachId) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed({"ANSWER_QUESTION_MRE", "END_APPROACH_MRE"})
+    public ApproachEntity findById(long approachId) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed("ANSWER_QUESTION_MRE")
-	public void editApproach(List<AnswerEntity> answers) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("ANSWER_QUESTION_MRE")
+    public void editApproach(List<AnswerEntity> answers) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed("END_APPROACH_MRE")
-	public void endApproach() throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("END_APPROACH_MRE")
+    public void endApproach() throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 }

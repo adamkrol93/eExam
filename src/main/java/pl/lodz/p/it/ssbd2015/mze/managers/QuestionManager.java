@@ -22,30 +22,30 @@ import javax.interceptor.Interceptors;
 @Interceptors(LoggingInterceptor.class)
 public class QuestionManager implements QuestionsManagerLocal {
 
-	@EJB
-	private QuestionEntityFacadeLocal questionEntityFacade;
+    @EJB
+    private QuestionEntityFacadeLocal questionEntityFacade;
 
-	@EJB
-	private ExaminerEntityFacadeLocal examinerEntityFacade;
+    @EJB
+    private ExaminerEntityFacadeLocal examinerEntityFacade;
 
-	@Resource
-	private SessionContext sessionContext;
+    @Resource
+    private SessionContext sessionContext;
 
-	@Override
-	@RolesAllowed("CREATE_QUESTION_MZE")
-	public void createQuestion(QuestionEntity question) throws ApplicationBaseException {
-		String examinerLogin = sessionContext.getCallerPrincipal().getName();
-		ExaminerEntity examinerEntity = examinerEntityFacade.findByLogin(examinerLogin)
-				.orElseThrow(() -> new ExaminerNotFoundException("Examiner with login: " + examinerLogin + " does not exists"));
-		question.setModifier(examinerEntity);
-		question.setCreator(examinerEntity);
+    @Override
+    @RolesAllowed("CREATE_QUESTION_MZE")
+    public void createQuestion(QuestionEntity question) throws ApplicationBaseException {
+    	String examinerLogin = sessionContext.getCallerPrincipal().getName();
+    	ExaminerEntity examinerEntity = examinerEntityFacade.findByLogin(examinerLogin)
+    			.orElseThrow(() -> new ExaminerNotFoundException("Examiner with login: " + examinerLogin + " does not exists"));
+    	question.setModifier(examinerEntity);
+    	question.setCreator(examinerEntity);
 
-		questionEntityFacade.create(question);
-	}
+    	questionEntityFacade.create(question);
+    }
 
-	@Override
-	@RolesAllowed("EDIT_QUESTION_MZE")
-	public void editQuestion(QuestionEntity question, QuestionEntity newQuestion) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("EDIT_QUESTION_MZE")
+    public void editQuestion(QuestionEntity question, QuestionEntity newQuestion) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 }

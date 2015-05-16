@@ -12,8 +12,8 @@ import javax.ejb.Remote;
 @Remote
 public interface EditQuestionServiceRemote {
 
-	QuestionEntity findById(long id) throws ApplicationBaseException;
+    QuestionEntity findById(long id) throws ApplicationBaseException;
 
-	void editQuestion(QuestionEntity question) throws ApplicationBaseException;
+    void editQuestion(QuestionEntity question) throws ApplicationBaseException;
 
 }

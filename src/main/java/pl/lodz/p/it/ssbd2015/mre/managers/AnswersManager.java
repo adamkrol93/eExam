@@ -27,36 +27,36 @@ import java.util.List;
 @Interceptors(LoggingInterceptor.class)
 public class AnswersManager implements AnswersManagerLocal {
 
-	@EJB
-	private ApproachEntityFacadeLocal approachEntityFacade;
+    @EJB
+    private ApproachEntityFacadeLocal approachEntityFacade;
 
-	@EJB
-	private ExamEntityFacadeLocal examEntityFacade;
+    @EJB
+    private ExamEntityFacadeLocal examEntityFacade;
 
-	@EJB
-	private StudentEntityFacadeLocal studentEntityFacade;
+    @EJB
+    private StudentEntityFacadeLocal studentEntityFacade;
 
-	@Override
-	@RolesAllowed("START_SOLVING_EXAM_MRE")
-	public Long createApproach(String title) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("START_SOLVING_EXAM_MRE")
+    public Long createApproach(String title) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed("ANSWER_QUESTION_MRE")
-	public void editApproach(ApproachEntity approach, List<AnswerEntity> answers) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("ANSWER_QUESTION_MRE")
+    public void editApproach(ApproachEntity approach, List<AnswerEntity> answers) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed("END_APPROACH_MRE")
-	public void endApproach(ApproachEntity approach) throws ApplicationBaseException {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("END_APPROACH_MRE")
+    public void endApproach(ApproachEntity approach) throws ApplicationBaseException {
+    	throw new UnsupportedOperationException();
+    }
 
-	@Override
-	@RolesAllowed("LIST_AVAILABLE_EXAMS")
-	public List<ExamEntity> findAvailableExams() {
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    @RolesAllowed("LIST_AVAILABLE_EXAMS")
+    public List<ExamEntity> findAvailableExams() {
+    	throw new UnsupportedOperationException();
+    }
 }

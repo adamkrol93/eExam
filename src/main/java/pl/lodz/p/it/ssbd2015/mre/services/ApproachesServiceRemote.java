@@ -14,12 +14,11 @@ import java.util.List;
 @Remote
 public interface ApproachesServiceRemote {
 
-	List<ApproachEntity> listAllForStudent() throws ApplicationBaseException;
+    List<ApproachEntity> listAllForStudent() throws ApplicationBaseException;
 
-	List<ApproachEntity> listAllForGuardian() throws ApplicationBaseException;
+    List<ApproachEntity> listAllForGuardian() throws ApplicationBaseException;
 
-	ApproachEntity findById(long id) throws ApplicationBaseException;
+    ApproachEntity findById(long id) throws ApplicationBaseException;
 
-	List<ExamEntity> findAvailableExams() throws ApplicationBaseException;
-
+    List<ExamEntity> findAvailableExams() throws ApplicationBaseException;
 }

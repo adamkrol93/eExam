@@ -31,52 +31,52 @@ import java.util.Set;
 @Interceptors(LoggingInterceptor.class)
 public class ExamCreationService extends BaseStatefulService implements ExamCreationServiceRemote {
 
-	@EJB
-	private QuestionEntityFacadeLocal questionEntityFacade;
+    @EJB
+    private QuestionEntityFacadeLocal questionEntityFacade;
 
-	@EJB
-	private TeacherEntityFacadeLocal teacherEntityFacade;
+    @EJB
+    private TeacherEntityFacadeLocal teacherEntityFacade;
 
-	@EJB
-	private ExamsManagerLocal examsManager;
+    @EJB
+    private ExamsManagerLocal examsManager;
 
-	private List<QuestionEntity> questions;
+    private List<QuestionEntity> questions;
 
-	private List<TeacherEntity> teachers;
+    private List<TeacherEntity> teachers;
 
-	@Override
-	@RolesAllowed("CREATE_EXAM_MZE")
-	public List<QuestionEntity> findAllQuestions() {
-		questions = questionEntityFacade.findAll();
-		return questions;
-	}
+    @Override
+    @RolesAllowed("CREATE_EXAM_MZE")
+    public List<QuestionEntity> findAllQuestions() {
+    	questions = questionEntityFacade.findAll();
+    	return questions;
+    }
 
-	@Override
-	@RolesAllowed("CREATE_EXAM_MZE")
-	public List<TeacherEntity> findAllTeachers() {
-		teachers = teacherEntityFacade.findAll();
-		return teachers;
-	}
+    @Override
+    @RolesAllowed("CREATE_EXAM_MZE")
+    public List<TeacherEntity> findAllTeachers() {
+    	teachers = teacherEntityFacade.findAll();
+    	return teachers;
+    }
 
-	@Override
-	@RolesAllowed("CREATE_EXAM_MZE")
-	public void create(ExamEntity exam, List<Long> questionIds, List<Long> teacherIds) throws ApplicationBaseException {
-		ExamEntity newExam = new ExamEntity();
-		newExam.setTitle(exam.getTitle());
-		newExam.setCountTakeExam(exam.getCountTakeExam());
-		newExam.setCountQuestion(exam.getCountQuestion());
-		newExam.setDateEnd(exam.getDateEnd());
-		newExam.setDateStart(exam.getDateAdd());
-		newExam.setDuration(exam.getDuration());
+    @Override
+    @RolesAllowed("CREATE_EXAM_MZE")
+    public void create(ExamEntity exam, List<Long> questionIds, List<Long> teacherIds) throws ApplicationBaseException {
+    	ExamEntity newExam = new ExamEntity();
+    	newExam.setTitle(exam.getTitle());
+    	newExam.setCountTakeExam(exam.getCountTakeExam());
+    	newExam.setCountQuestion(exam.getCountQuestion());
+    	newExam.setDateEnd(exam.getDateEnd());
+    	newExam.setDateStart(exam.getDateAdd());
+    	newExam.setDuration(exam.getDuration());
 
-		Set<Long> questionIdSet = new HashSet<>(questionIds);
-		Set<Long> teacherIdSet = new HashSet<>(teacherIds);
+    	Set<Long> questionIdSet = new HashSet<>(questionIds);
+    	Set<Long> teacherIdSet = new HashSet<>(teacherIds);
 
-		List<QuestionEntity> chosenQuestions = new ArrayList<>(questions);
-		List<TeacherEntity> chosenTeachers = new ArrayList<>(teachers);
-		chosenQuestions.removeIf(question -> !questionIdSet.contains(question.getId()));
-		chosenTeachers.removeIf(teacher -> !teacherIdSet.contains(teacher.getId()));
+    	List<QuestionEntity> chosenQuestions = new ArrayList<>(questions);
+    	List<TeacherEntity> chosenTeachers = new ArrayList<>(teachers);
+    	chosenQuestions.removeIf(question -> !questionIdSet.contains(question.getId()));
+    	chosenTeachers.removeIf(teacher -> !teacherIdSet.contains(teacher.getId()));
 
-		examsManager.createExam(exam, chosenQuestions, chosenTeachers);
-	}
+    	examsManager.createExam(exam, chosenQuestions, chosenTeachers);
+    }
 }
