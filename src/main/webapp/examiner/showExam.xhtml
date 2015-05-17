@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="../template/commonLayout.xhtml">
+        <f:metadata>
+            <f:viewParam name="uuid" value="#{showExamDetailsMZE.uuid}" converter="uuidConverter"/>
+            <f:viewAction action="#{showExamDetailsMZE.checkContext}"/>
+        </f:metadata>
+        <ui:define name="head">
+            <title><h:outputText value="#{i18n['mze.show_exam.title']}"/></title>
+        </ui:define>
+        <ui:define name="breadcrumps">
+            <ol class="breadcrumb">
+                <li><h:link outcome="/index" value="#{i18n['home.page']}"/></li>
+                <li><h:link outcome="/examiner/listExams" value="#{i18n['home.page']}"/></li>
+                <!-- TODO: Jak będzie gotowa lista, ustawić odpowiednie atrybuty w powyższym linku -->
+                <li class="active"><h:outputText value="#{i18n['mze.show_exam.title']}"/></li>
+            </ol>
+        </ui:define>
+
+        <ui:define name="content">
+            <div class="page-header text-center">
+                <h1><h:outputText value="#{i18n['mze.show_exam.title']}"/></h1>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3><h:outputText value="#{showExamDetailsMZE.exam.title}"/></h3></div>
+                <div class="panel-body">
+                    <p>
+                        <h:outputText value=" #{i18n['mze.show_exam.created']} "/>
+                        <h:outputText value="#{showExamDetailsMZE.exam.dateAdd.time}">
+                            <f:convertDateTime type="both" dateStyle="long"/>
+                        </h:outputText>
+                        <h:outputText
+                            value=" #{i18n['mze.show_exam.creator']} #{showExamDetailsMZE.exam.creator.personName} #{showExamDetailsMZE.exam.creator.lastName}"/>
+                    </p>
+                    <p>
+                        <h:outputText value=" #{i18n['mze.show_exam.modified']} "/>
+                        <h:outputText value="#{showExamDetailsMZE.exam.dateModification.time}">
+                            <f:convertDateTime type="both" dateStyle="long"/>
+                        </h:outputText>
+                        <h:outputText
+                            value=" #{i18n['mze.show_exam.modifier']} #{showExamDetailsMZE.exam.modifier.personName} #{showExamDetailsMZE.exam.modifier.lastName}"/>
+                    </p>
+                    <p>
+                        <h:outputText
+                            value="#{i18n['mze.show_exam.duration']}: #{showExamDetailsMZE.exam.duration} #{i18n['mze.show_exam.duration_unit']}"/>
+                    </p>
+                    <p>
+                        <h:outputText
+                            value="#{i18n['mze.show_exam.question_count']}: #{showExamDetailsMZE.exam.countQuestion}"/>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <h2>
+                        <h:outputText value="#{i18n['mze.show_exam.teachers']}"/>
+                    </h2>
+                    <div class="list-group">
+                        <ui:repeat value="#{showExamDetailsMZE.exam.teachers}" var="teacher">
+                            <div class="list-group-item">
+                                <h4 class="list-group-item-heading">
+                                    <h:outputText value="#{teacher.personName} #{teacher.lastName}"/>
+                                </h4>
+                            </div>
+                        </ui:repeat>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <h2>
+                        <h:outputText value="#{i18n['mze.show_exam.questions']}"/>
+                    </h2>
+                    <div class="list-group">
+                        <ui:repeat value="#{showExamDetailsMZE.exam.questions}" var="question">
+                            <div class="list-group-item">
+                                <h4 class="list-group-item-heading">
+                                    <h:outputText value="#{question.content}"/>
+                                </h4>
+                                <p>
+                                    <h:outputText value="#{question.sampleAnswer}"/>
+                                </p>
+                            </div>
+                        </ui:repeat>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
