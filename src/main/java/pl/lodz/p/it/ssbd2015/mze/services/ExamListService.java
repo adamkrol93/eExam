@@ -19,6 +19,7 @@ import java.util.List;
  * Klasa pozwalająca na wyświetlanie i klonowanie egzaminów.
  * Klasa posiada pole exams typu listy encji {@link ExamEntity}
  * @author Bartosz Ignaczewski
+ * @author Adam Król
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mze.services.ExamListService")
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
@@ -36,7 +37,8 @@ public class ExamListService extends BaseStatefulService implements ExamListServ
     @Override
     @RolesAllowed("LIST_EXAMS_MZE")
     public List<ExamEntity> findAll() {
-    	throw new UnsupportedOperationException();
+        this.exams = examEntityFacade.findAll();
+    	return this.exams;
     }
 
     @Override

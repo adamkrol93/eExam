@@ -13,6 +13,11 @@ import java.util.List;
 @Remote
 public interface ExamListServiceRemote {
 
+
+    /**
+     * Metoda pozwala na wyszukanie wszystkich egzaminów w systemie.
+     * @return Lista ({@link List}) z egzaminami w systemie
+     */
     List<ExamEntity> findAll();
 
     void cloneExam(long examId) throws ApplicationBaseException;
