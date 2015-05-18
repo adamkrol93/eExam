@@ -3,16 +3,15 @@ package pl.lodz.p.it.ssbd2015.moe.managers;
 import pl.lodz.p.it.ssbd2015.entities.*;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.moe.TeacherNotFoundException;
 import pl.lodz.p.it.ssbd2015.moe.facades.ApproachEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.moe.facades.ExamEntityFacade;
 import pl.lodz.p.it.ssbd2015.moe.facades.StudentEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.moe.facades.TeacherEntityFacadeLocal;
 
+import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
+import javax.ejb.*;
 import javax.interceptor.Interceptors;
 import java.util.List;
 
@@ -37,6 +36,9 @@ public class ApproachesManager implements ApproachesManagerLocal {
     @EJB
     private StudentEntityFacadeLocal studentEntityFacade;
 
+    @Resource
+    private SessionContext sessionContext;
+
     @Override
     @RolesAllowed("MARK_APPROACH_MOE")
     public void mark(ApproachEntity approach, List<AnswerEntity> answers) throws ApplicationBaseException {
@@ -52,7 +54,10 @@ public class ApproachesManager implements ApproachesManagerLocal {
     @Override
     @RolesAllowed("LIST_APPROACHES_MOE")
     public List<ExamEntity> findAllByLoggedTeacher() throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+        String login = sessionContext.getCallerPrincipal().getName();
+        TeacherEntity teacherEntity = teacherEntityFacade.findByLogin(login).orElseThrow(() -> new TeacherNotFoundException("Teacher with login: " + login + " does not exists"));
+        teacherEntity.getExams().isEmpty();
+        return teacherEntity.getExams();
     }
 
     @Override

@@ -44,6 +44,6 @@ public class ApproachesService extends BaseStatefulService implements Approaches
     @Override
     @RolesAllowed("LIST_APPROACHES_MOE")
     public List<ExamEntity> findAllByLoggedTeacher() throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+        return approachesManager.findAllByLoggedTeacher();
     }
 }

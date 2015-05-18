@@ -4,11 +4,16 @@ import org.jboss.arquillian.persistence.UsingDataSet;
 import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.entities.ApproachEntity;
+import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.exceptions.moe.ApproachNotFoundException;
 
 import javax.ejb.EJB;
+import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertNotNull;
+
 
 /**
  * Created by Bartosz Ignaczewski on 12.05.15.
@@ -28,5 +33,10 @@ public class ApproachesServiceTest extends BaseArquillianTest {
     @Test(expected = ApproachNotFoundException.class)
     public void shouldNotFindApproach() throws Exception {
     	approachesService.findById(2L);
+    }
+    @Test
+    public void shouldGetAllExams() throws Exception {
+        List<ExamEntity> exams = approachesService.findAllByLoggedTeacher();
+        assertThat("There is a exams list", exams, hasSize(5));
     }
 }
