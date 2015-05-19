@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="../template/commonLayout.xhtml">
+    <f:metadata>
+        <f:viewParam name="id" value="#{showExamDetailsMZE.id}"/>
+        <!-- TODO: Koniecznie zmienić na uuid, żeby nie przekazywać id -->
+        <f:viewAction action="#{showExamDetailsMZE.checkContext}"/>
+    </f:metadata>
+    <ui:define name="head">
+        <title><h:outputText value="#{i18n['mze.show_exam_report.title']}"/></title>
+    </ui:define>
+    <ui:define name="breadcrumps">
+        <ol class="breadcrumb">
+            <li><h:link outcome="/index" value="#{i18n['home.page']}"/></li>
+            <li><h:link outcome="/examiner/listExams" value="#{i18n['examiner.exam_list.simple_title']}"/></li>
+            <li class="active"><h:outputText value="#{i18n['mze.show_exam_report.title']}"/></li>
+        </ol>
+    </ui:define>
+    <ui:define name="content">
+        <div class="page-header text-center">
+            <h1><h:outputText value="#{i18n['mze.show_exam_report.title']}"/></h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
+                            <h:outputText value=" #{i18n['mze.show_exam_report.count_take']}"/>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <h1>
+                            <h:outputText
+                                    value="#{showExamDetailsMZE.exam.countTakeExam}"/>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+                            <h:outputText value=" #{i18n['mze.show_exam_report.count_finish']}"/>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <h1>
+                            <h:outputText
+                                    value="#{showExamDetailsMZE.exam.countFinishExam}"/>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-scale" aria-hidden="true"></span>
+                            <h:outputText value=" #{i18n['mze.show_exam_report.avg_result']}"/>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <h1>
+                            <h:outputText
+                                    value="#{showExamDetailsMZE.exam.avgResults}"/>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

@@ -7,8 +7,8 @@ import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamNotFoundException;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
-import pl.lodz.p.it.ssbd2015.moe.facades.TeacherEntityFacadeLocal;
-import pl.lodz.p.it.ssbd2015.mre.facades.ExamEntityFacadeLocal;
+import pl.lodz.p.it.ssbd2015.mze.facades.TeacherEntityFacadeLocal;
+import pl.lodz.p.it.ssbd2015.mze.facades.ExamEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.facades.QuestionEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.managers.QuestionsManagerLocal;
 
@@ -23,6 +23,7 @@ import java.util.List;
 /**
  * Klasa pozwalająca na wyszukiwanie pytań, nauczycieli oraz tworzenie pytań.
  * Klasa nie posiada dodatkowych pól
+ *
  * @author Bartosz Ignaczewski
  * @author Piotr Jurewicz
  * @author Andrzej Kurczewski
@@ -48,8 +49,10 @@ public class ExamsService extends BaseStatefulService implements ExamsServiceRem
     @Override
     @RolesAllowed({"SHOW_EXAM_MZE", "SHOW_EXAM_STATS_MZE"})
     public ExamEntity findById(long id) throws ApplicationBaseException {
-        return examEntityFacade.findById(id)
-                .orElseThrow(() -> new ExamNotFoundException("Exam with id: " + id + " does not exists"));
+        ExamEntity exam = examEntityFacade.findById(id).orElseThrow(() -> new ExamNotFoundException("Exam with id: " + id + " does not exists"));
+        exam.getTeachers().size();
+        exam.getQuestions().size();
+        return exam;
     }
 
     @Override
