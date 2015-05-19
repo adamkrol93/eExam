@@ -8,21 +8,21 @@
 
 <ui:composition template="../template/commonLayout.xhtml">
     <ui:define name="head">
-        <title><h:outputText value="#{i18n['mze.list.questions']}"/></title>
+        <title><h:outputText value="#{i18n['mze.questions.list.title']}"/></title>
     </ui:define>
     <ui:define name="breadcrumps">
         <ol class="breadcrumb">
             <li><h:link outcome="/index" value="#{i18n['home.page']}"/></li>
             <li><h:link outcome="/examiner/index.xhtml"
                     value="#{i18n['examiner.page.simple_title']}"/> </li>
-            <li class="active"><h:outputText value="#{i18n['mze.list.questions']}"/></li>
+            <li class="active"><h:outputText value="#{i18n['mze.questions.list.title']}"/></li>
         </ol>
     </ui:define>
 
     <ui:define name="content">
         <div class="row">
             <div class="page-header text-center">
-                <h1><h:outputText value="#{i18n['mze.list.questions']}"/></h1>
+                <h1><h:outputText value="#{i18n['mze.questions.list.title']}"/></h1>
             </div>
         </div>
         <div class="row">

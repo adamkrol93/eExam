@@ -9,7 +9,7 @@
 <ui:composition template="../template/commonLayout.xhtml">
     <ui:define name="head">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title><h:outputText value="#{i18n['examiner.exam_list.title']}"/></title>
+        <title><h:outputText value="#{i18n['mze.exam_list.title']}"/></title>
     </ui:define>
     <ui:define name="breadcrumps">
         <ol class="breadcrumb">
@@ -17,13 +17,13 @@
             <li><h:link outcome="/examiner/index"
                     value="#{i18n['examiner.page.simple_title']}"/></li>
             <li class="active"><h:outputText
-                    value="#{i18n['examiner.exam_list.simple_title']}"/></li>
+                    value="#{i18n['mze.exam_list.simple_title']}"/></li>
         </ol>
     </ui:define>
 
     <ui:define name="content">
         <div class="page-header text-center">
-            <h1><h:outputText value="#{i18n['examiner.exam_list.header']}"/></h1>
+            <h1><h:outputText value="#{i18n['mze.exam_list.header']}"/></h1>
         </div>
         <div class="row">
             <div class="col-lg-12">
@@ -32,13 +32,13 @@
                         <h:dataTable var="exam" value="#{listExamsMZE.examEntities}" styleClass="table table-striped">
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="#{i18n['mze.exam_list.title']}"/>
+                                    <h:outputText value="#{i18n['mze.exam_list.list.title']}"/>
                                 </f:facet>
                                 <h:outputText value="#{exam.title}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="#{i18n['mze.exam_list.start_date']}"/>
+                                    <h:outputText value="#{i18n['mze.exam_list.list.start_date']}"/>
                                 </f:facet>
                                 <h:outputText value="#{exam.dateStart.getTime()}">
                                     <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
@@ -46,7 +46,7 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="#{i18n['mze.exam_list.end_date']}"/>
+                                    <h:outputText value="#{i18n['mze.exam_list.list.end_date']}"/>
                                 </f:facet>
                                 <h:outputText value="#{exam.dateEnd.getTime()}">
                                     <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
@@ -54,7 +54,7 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="#{i18n['mze.exam_list.duration']}"/>
+                                    <h:outputText value="#{i18n['mze.exam_list.list.duration']}"/>
                                 </f:facet>
                                 <h:outputText value="#{exam.duration}"/>
                             </h:column>
