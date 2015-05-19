@@ -34,7 +34,9 @@ public class ApproachesServiceTest extends BaseArquillianTest {
     public void shouldNotFindApproach() throws Exception {
     	approachesService.findById(2L);
     }
+
     @Test
+    @UsingDataSet({"ValidUser.yml", "moe/ApproachesServiceTest#shouldGetAllExams.yml"})
     public void shouldGetAllExams() throws Exception {
         List<ExamEntity> exams = approachesService.findAllByLoggedTeacher();
         assertThat("There is a exams list", exams, hasSize(5));

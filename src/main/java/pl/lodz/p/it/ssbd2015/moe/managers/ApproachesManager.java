@@ -4,10 +4,7 @@ import pl.lodz.p.it.ssbd2015.entities.*;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.exceptions.moe.TeacherNotFoundException;
-import pl.lodz.p.it.ssbd2015.moe.facades.ApproachEntityFacadeLocal;
-import pl.lodz.p.it.ssbd2015.moe.facades.ExamEntityFacade;
-import pl.lodz.p.it.ssbd2015.moe.facades.StudentEntityFacadeLocal;
-import pl.lodz.p.it.ssbd2015.moe.facades.TeacherEntityFacadeLocal;
+import pl.lodz.p.it.ssbd2015.moe.facades.*;
 
 import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
@@ -28,7 +25,7 @@ public class ApproachesManager implements ApproachesManagerLocal {
     private ApproachEntityFacadeLocal approachEntityFacade;
 
     @EJB
-    private ExamEntityFacade examEntityFacade;
+    private ExamEntityFacadeLocal examEntityFacade;
 
     @EJB
     private TeacherEntityFacadeLocal teacherEntityFacade;
