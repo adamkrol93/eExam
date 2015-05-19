@@ -6,8 +6,6 @@ person:
     person_password: "9743a66f914cc249efca164485a19c5c"
     person_email: "test@test.pl"
     person_last_time_login: "[NULL]"
-    person_last_time_login_fail: "[NULL]"
-    person_count_login_fail: "[NULL]"
     person_last_ip_login: "[NULL]"
     person_active: true
     person_confirm: true
@@ -20,8 +18,6 @@ person:
     person_password: "53f1fce859c22ffdeff1adfcc31f670f"
     person_email: "nie2@ma.pl"
     person_last_time_login: "[NULL]"
-    person_last_time_login_fail: "[NULL]"
-    person_count_login_fail: "[NULL]"
     person_last_ip_login: "[NULL]"
     person_active: true
     person_confirm: false
