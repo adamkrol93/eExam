@@ -6,6 +6,7 @@ import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
+import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
 import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamNotFoundException;
 
 import javax.ejb.EJB;
@@ -18,6 +19,7 @@ import static org.hamcrest.Matchers.*;
  * @author Andrzej Kurczewski
  * @author Adam Król
  * @author Piotr Jurewicz
+ * @author Michał Sośnicki
  */
 @UsingDataSet({"ValidUser.yml", "mze/ExamsServiceTest.yml"})
 public class ExamsServiceTest extends BaseArquillianTest {
@@ -60,10 +62,18 @@ public class ExamsServiceTest extends BaseArquillianTest {
 
     @Test
     @UsingDataSet({"ValidUser.yml", "mze/QuestionEntityFacadeTest.yml"})
-    public void shouldFindAllQuestions()throws Exception{
-        List<QuestionEntity> questionEntity =examsService.findAllQuestions();
+    public void shouldFindAllQuestions() throws Exception {
+        List<QuestionEntity> questionEntity = examsService.findAllQuestions();
 
         assertThat(questionEntity, hasSize(1));
+    }
+
+    @Test
+    @UsingDataSet({"ValidUser.yml", "mze/TeacherEntityFacadeTest.yml"})
+    public void shouldFindAllTeachers() throws Exception {
+        List<TeacherEntity> teachers = examsService.findAllTeachers();
+
+        assertThat(teachers, hasSize(3));
     }
 
 }

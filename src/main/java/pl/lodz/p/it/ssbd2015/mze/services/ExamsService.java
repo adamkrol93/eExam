@@ -28,6 +28,7 @@ import java.util.List;
  * @author Piotr Jurewicz
  * @author Andrzej Kurczewski
  * @author Tobiasz Kowalski
+ * @author Michał Sośnicki
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mze.services.ExamsService")
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
@@ -50,8 +51,8 @@ public class ExamsService extends BaseStatefulService implements ExamsServiceRem
     @RolesAllowed({"SHOW_EXAM_MZE", "SHOW_EXAM_STATS_MZE"})
     public ExamEntity findById(long id) throws ApplicationBaseException {
         ExamEntity exam = examEntityFacade.findById(id).orElseThrow(() -> new ExamNotFoundException("Exam with id: " + id + " does not exists"));
-        exam.getTeachers().size();
-        exam.getQuestions().size();
+        exam.getTeachers().isEmpty();
+        exam.getQuestions().isEmpty();
         return exam;
     }
 
@@ -70,6 +71,6 @@ public class ExamsService extends BaseStatefulService implements ExamsServiceRem
     @Override
     @RolesAllowed("SHOW_TEACHER_LIST_MZE")
     public List<TeacherEntity> findAllTeachers() {
-        throw new UnsupportedOperationException();
+        return teacherEntityFacade.findAll();
     }
 }
