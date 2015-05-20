@@ -60,7 +60,10 @@ public class ExamsService extends BaseStatefulService implements ExamsServiceRem
     @Override
     @RolesAllowed("CREATE_QUESTION_MZE")
     public void create(QuestionEntity questionEntity) throws ApplicationBaseException {
-        questionsManager.createQuestion(questionEntity);
+        QuestionEntity questionEntityToSave = new QuestionEntity();
+        questionEntityToSave.setSampleAnswer(questionEntity.getSampleAnswer());
+        questionEntityToSave.setContent(questionEntity.getContent());
+        questionsManager.createQuestion(questionEntityToSave);
     }
 
     @Override
