@@ -19,6 +19,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Klasa pozwalająca na wyszukiwanie pytań, nauczycieli oraz tworzenie pytań.
@@ -71,6 +72,8 @@ public class ExamsService extends BaseStatefulService implements ExamsServiceRem
     @Override
     @RolesAllowed("SHOW_TEACHER_LIST_MZE")
     public List<TeacherEntity> findAllTeachers() {
-        return teacherEntityFacade.findAll();
+        return teacherEntityFacade.findAll().stream()
+                .filter(teacher -> teacher.isActive() && teacher.isConfirm() && teacher.isGroupActive())
+                .collect(Collectors.toList());
     }
 }
