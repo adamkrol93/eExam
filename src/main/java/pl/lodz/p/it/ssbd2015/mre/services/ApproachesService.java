@@ -7,8 +7,8 @@ import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.exceptions.moe.TeacherNotFoundException;
+import pl.lodz.p.it.ssbd2015.exceptions.mre.ApproachNotFoundException;
 import pl.lodz.p.it.ssbd2015.moe.facades.GuardianEntityFacadeLocal;
-import pl.lodz.p.it.ssbd2015.mok.managers.PersonManager;
 import pl.lodz.p.it.ssbd2015.mre.facades.ApproachEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mre.facades.StudentEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mre.managers.AnswersManagerLocal;
@@ -17,9 +17,11 @@ import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.*;
 import javax.interceptor.Interceptors;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Klasa do zarządzania podejściami juz rozwiązanymi oraz dostępnymi egzaminami. Klasa nie posiada żadnego pola encyjnego.
@@ -61,7 +63,9 @@ public class ApproachesService extends BaseStatefulService implements Approaches
     @Override
     @RolesAllowed("SHOW_APPROACHES_MRE")
     public ApproachEntity findById(long id) throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+        return approachEntityFacade.findById(id)
+                                       .orElseThrow(() -> new ApproachNotFoundException(
+                                           "Approach with id = " + id + " does not exists"));
     }
 
     @Override
