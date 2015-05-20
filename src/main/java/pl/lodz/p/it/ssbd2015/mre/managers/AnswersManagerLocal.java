@@ -40,7 +40,7 @@ public interface AnswersManagerLocal {
 
 
     /**
-     * Wyświetla wszystkie egzaminy do których użytkownik może podejść.
+     * Pobiera wszystkie egzaminy do których użytkownik może podejść.
      * @return
      */
     List<ExamEntity> findAvailableExams();

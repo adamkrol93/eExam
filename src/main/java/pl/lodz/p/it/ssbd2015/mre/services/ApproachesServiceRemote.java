@@ -20,5 +20,9 @@ public interface ApproachesServiceRemote {
 
     ApproachEntity findById(long id) throws ApplicationBaseException;
 
+    /**
+     * @return Metoda zwraca listę egzaminów do których może przystąpić student
+     * @throws ApplicationBaseException
+     */
     List<ExamEntity> findAvailableExams() throws ApplicationBaseException;
 }

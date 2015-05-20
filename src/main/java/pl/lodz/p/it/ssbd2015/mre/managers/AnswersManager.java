@@ -15,10 +15,11 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
+import java.util.Calendar;
 import java.util.List;
 
 /**
- * Implementacja interfejsu {@link AnswersManagerLocal} do do zarządzania podejściem.
+ * Implementacja interfejsu {@link AnswersManagerLocal} do do zarządzania podejściem oraz dostarcza listę podejść do egzaminu.
  * Pozwala na operacje rozpoczęcia, edycji oraz zakończenia podejścia.
  * @author Bartosz Ignaczewski
  */
@@ -57,6 +58,7 @@ public class AnswersManager implements AnswersManagerLocal {
     @Override
     @RolesAllowed("LIST_AVAILABLE_EXAMS")
     public List<ExamEntity> findAvailableExams() {
-    	throw new UnsupportedOperationException();
+
+        return examEntityFacade.findByDate(Calendar.getInstance());
     }
 }
