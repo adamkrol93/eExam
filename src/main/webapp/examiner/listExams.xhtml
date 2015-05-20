@@ -41,7 +41,7 @@
                                     <h:outputText value="#{i18n['mze.exam_list.list.start_date']}"/>
                                 </f:facet>
                                 <h:outputText value="#{exam.dateStart.getTime()}">
-                                    <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                    <f:convertDateTime type="date" pattern="dd-MM-yyyy HH:mm"/>
                                 </h:outputText>
                             </h:column>
                             <h:column>
@@ -49,7 +49,7 @@
                                     <h:outputText value="#{i18n['mze.exam_list.list.end_date']}"/>
                                 </f:facet>
                                 <h:outputText value="#{exam.dateEnd.getTime()}">
-                                    <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                    <f:convertDateTime type="date" pattern="dd-MM-yyyy HH:mm"/>
                                 </h:outputText>
                             </h:column>
                             <h:column>
