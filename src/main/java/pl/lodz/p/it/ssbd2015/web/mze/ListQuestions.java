@@ -10,7 +10,7 @@ import javax.faces.bean.RequestScoped;
 import java.util.List;
 
 /**
- * Backing bean do strony z listą wszystkich użytkowników.
+ * Backing bean do strony z listą wszystkich pytań.
  * @author Created by Tobiasz Kowalski on 17.05.15.
  */
 @ManagedBean(name = "listQuestionsMZE")

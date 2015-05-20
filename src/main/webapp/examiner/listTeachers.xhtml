@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="../template/commonLayout.xhtml">
+    <ui:define name="head">
+        <title><h:outputText value="#{i18n['mze.teacher_list.title']}"/></title>
+    </ui:define>
+    <ui:define name="breadcrumps">
+        <ol class="breadcrumb">
+            <li><h:link outcome="/index" value="#{i18n['home.page']}"/></li>
+            <li><h:link outcome="/examiner/index.xhtml"
+                    value="#{i18n['examiner.page.simple_title']}"/> </li>
+            <li class="active"><h:outputText value="#{i18n['mze.teacher_list.title']}"/></li>
+        </ol>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="row">
+            <div class="page-header text-center">
+                <h1><h:outputText value="#{i18n['mze.teacher_list.title']}"/></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <h:form>
+                        <h:dataTable var="teacher" value="#{listTeachersMZE.teachers}" styleClass="table table-striped">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{i18n['mze.teacher_list.login']}"/>
+                                </f:facet>
+                                <h:outputText value="#{teacher.login}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{i18n['mze.teacher_list.name']}"/>
+                                </f:facet>
+                                <h:outputText value="#{teacher.personName}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{i18n['mze.teacher_list.lastName']}"/>
+                                </f:facet>
+                                <h:outputText value="#{teacher.lastName}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{i18n['mze.teacher_list.email']}"/>
+                                </f:facet>
+                                <h:outputText value="#{teacher.email}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{i18n['mze.teacher_list.lastTimeLogin']}"/>
+                                </f:facet>
+                                <h:outputText value="#{teacher.lastTimeLogin.getTime()}">
+                                    <f:convertDateTime pattern="HH:mm dd-MM-yyyy"/>
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{i18n['mze.teacher_list.dateAdd']}"/>
+                                </f:facet>
+                                <h:outputText value="#{teacher.personDateAdd.getTime()}">
+                                    <f:convertDateTime pattern="dd-MM-yyyy"/>
+                                </h:outputText>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+
+</html>
