@@ -19,6 +19,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * @author Created by Tobiasz Kowalski on 20.05.15.
  * @author Andrzej Kurczewski
+ * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  */
 @UsingDataSet({"ValidUser.yml", "mre/ApproachesServiceTest.yml"})
 public class ApproachesServiceTest extends BaseArquillianTest {
@@ -47,4 +48,19 @@ public class ApproachesServiceTest extends BaseArquillianTest {
         assertNotNull(approachesService);
         approachesService.findById(74l);
     }
+
+    @Test
+    @UsingDataSet({"ValidUser.yml", "mre/ApproachesServiceTest#shouldFindAllStudentApproaches.yml"})
+    public void shouldFindAllStudentApproaches() throws Exception {
+        List<ApproachEntity> approaches = approachesService.listAllForStudent();
+        assertThat("Logged student with id = 3 has 2 approaches", approaches, hasSize(2));
+    }
+
+    @Test
+    @UsingDataSet({"ValidUser.yml", "mre/ApproachesServiceTest#shouldFindAllStudentApproaches.yml"})
+    public void shouldFindAllGuardedStudentApproaches() throws Exception {
+        List<ApproachEntity> approaches = approachesService.listAllForGuardian();
+        assertThat("Students of the logged guardian have 5 approaches", approaches, hasSize(5));
+    }
 }
+

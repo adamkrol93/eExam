@@ -6,6 +6,7 @@ import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.entities.ApproachEntity;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.exceptions.moe.ApproachNotFoundException;
+import pl.lodz.p.it.ssbd2015.exceptions.moe.ExamCreatorForeignKeyException;
 
 import javax.ejb.EJB;
 import java.util.List;
