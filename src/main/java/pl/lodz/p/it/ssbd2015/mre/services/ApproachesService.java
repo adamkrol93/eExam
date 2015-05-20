@@ -68,7 +68,7 @@ public class ApproachesService extends BaseStatefulService implements Approaches
     @RolesAllowed("LIST_AVAILABLE_EXAMS")
     public List<ExamEntity> findAvailableExams() throws ApplicationBaseException {
 
-        List<ExamEntity> exams = findAvailableExams();
+        List<ExamEntity> exams = answersManager.findAvailableExams();
         String login = sessionContext.getCallerPrincipal().getName();
         StudentEntity student= studentEntityFacade.findByLogin(login).orElseThrow(() -> new TeacherNotFoundException("Teacher with login: " + login + " does not exists"));;
 
