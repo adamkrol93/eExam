@@ -21,11 +21,11 @@
     <ui:define name="content">
         <div class="row">
             <div class="col-lg-4 center-block">
-                <form class="form-signin" action="j_security_check" method="POST">
-                    <h:outputText value="#{i18n['mok.register.login']}"/><input class="form-control" type="text"
-                                                                                name="j_username"/><br/>
-                    <h:outputText value="#{i18n['mok.register.password']}"/><input class="form-control" type="password"
-                                                                                   name="j_password"/><br/>
+                <form id="signing-form" class="form-signin" action="j_security_check" method="POST">
+                    <h:outputLabel value="#{i18n['mok.register.login']}" for="signin-form-login"/>
+                    <input id="signin-form-login" class="form-control" type="text" name="j_username"/><br/>
+                    <h:outputLabel value="#{i18n['mok.register.password']}" for="signin-form-password"/>
+                    <input id="signin-form-password" class="form-control" type="password" name="j_password"/><br/>
                     <input class="btn btn-lg btn-primary btn-block" type="submit" value="#{i18n['mok.login.button']}"/>
                 </form>
             </div>
