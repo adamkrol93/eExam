@@ -4,9 +4,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="../template/commonLayout.xhtml">
+    <f:metadata>
+        <f:viewParam name="uuid" value="#{listExamsMZE.uuid}" converter="uuidConverter"/>
+        <f:viewAction action="#{listExamsMZE.checkContext}" />
+    </f:metadata>
     <ui:define name="head">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title><h:outputText value="#{i18n['mze.exam_list.title']}"/></title>
@@ -29,7 +33,7 @@
             <div class="col-lg-12">
                 <div class="table-responsive">
                     <h:form>
-                        <h:dataTable var="exam" value="#{listExamsMZE.examEntities}" styleClass="table table-striped">
+                        <h:dataTable var="exam" value="#{listExamsMZE.exams}" styleClass="table table-striped">
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="#{i18n['mze.exam_list.list.title']}"/>
@@ -58,9 +62,15 @@
                                 </f:facet>
                                 <h:outputText value="#{exam.duration}"/>
                             </h:column>
-                            <!--
-                            TODO:Przygotować akcje dodania i usunięcia
-                            -->
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{i18n['mze.exam_list.list.actions']}"/>
+                                </f:facet>
+                                <h:commandButton value="#{i18n['mze.exam_list.list.action.details']}"
+                                    action="#{listExamsMZE.gotoDetails}"/>
+                                <h:commandButton value="#{i18n['mze.exam_list.list.action.report']}"
+                                                 action="#{listExamsMZE.gotoReport}"/>
+                            </h:column>
                         </h:dataTable>
                     </h:form>
                 </div>

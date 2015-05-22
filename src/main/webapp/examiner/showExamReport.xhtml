@@ -7,8 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="../template/commonLayout.xhtml">
     <f:metadata>
-        <f:viewParam name="id" value="#{showExamDetailsMZE.id}"/>
-        <!-- TODO: Koniecznie zmienić na uuid, żeby nie przekazywać id -->
+        <f:viewParam name="uuid" value="#{showExamDetailsMZE.uuid}" converter="uuidConverter"/>
         <f:viewAction action="#{showExamDetailsMZE.checkContext}"/>
     </f:metadata>
     <ui:define name="head">
