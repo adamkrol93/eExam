@@ -94,7 +94,8 @@ public class ApproachesService extends BaseStatefulService implements Approaches
 
         List<ExamEntity> exams = answersManager.findAvailableExams();
         String login = sessionContext.getCallerPrincipal().getName();
-        StudentEntity student= studentEntityFacade.findByLogin(login).orElseThrow(() -> new TeacherNotFoundException("Teacher with login: " + login + " does not exists"));;
+        StudentEntity student= studentEntityFacade.findByLogin(login)
+                .orElseThrow(() -> new StudentNotFoundException("Student with login: " + login + " does not exists"));
 
         List<ApproachEntity> studentApproaches=student.getEntered();
         List<ExamEntity> allExams = studentApproaches.stream().map(ApproachEntity::getExam).collect(Collectors.toList());
