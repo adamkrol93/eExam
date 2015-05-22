@@ -28,50 +28,48 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="table-responsive">
-                    <h:form>
-                        <h:dataTable var="teacher" value="#{listTeachersMZE.teachers}" styleClass="table table-striped">
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{i18n['mze.teacher_list.login']}"/>
-                                </f:facet>
-                                <h:outputText value="#{teacher.login}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{i18n['mze.teacher_list.name']}"/>
-                                </f:facet>
-                                <h:outputText value="#{teacher.personName}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{i18n['mze.teacher_list.lastName']}"/>
-                                </f:facet>
-                                <h:outputText value="#{teacher.lastName}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{i18n['mze.teacher_list.email']}"/>
-                                </f:facet>
-                                <h:outputText value="#{teacher.email}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{i18n['mze.teacher_list.lastTimeLogin']}"/>
-                                </f:facet>
-                                <h:outputText value="#{teacher.lastTimeLogin.getTime()}">
-                                    <f:convertDateTime pattern="HH:mm dd-MM-yyyy"/>
-                                </h:outputText>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{i18n['mze.teacher_list.dateAdd']}"/>
-                                </f:facet>
-                                <h:outputText value="#{teacher.personDateAdd.getTime()}">
-                                    <f:convertDateTime pattern="dd-MM-yyyy"/>
-                                </h:outputText>
-                            </h:column>
-                        </h:dataTable>
-                    </h:form>
+                    <h:dataTable var="teacher" value="#{listTeachersMZE.teachers}" styleClass="table table-striped">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{i18n['mze.teacher_list.login']}"/>
+                            </f:facet>
+                            <h:outputText value="#{teacher.login}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{i18n['mze.teacher_list.name']}"/>
+                            </f:facet>
+                            <h:outputText value="#{teacher.personName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{i18n['mze.teacher_list.lastName']}"/>
+                            </f:facet>
+                            <h:outputText value="#{teacher.lastName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{i18n['mze.teacher_list.email']}"/>
+                            </f:facet>
+                            <h:outputText value="#{teacher.email}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{i18n['mze.teacher_list.lastTimeLogin']}"/>
+                            </f:facet>
+                            <h:outputText value="#{teacher.lastTimeLogin.getTime()}">
+                                <f:convertDateTime pattern="HH:mm dd-MM-yyyy"/>
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{i18n['mze.teacher_list.dateAdd']}"/>
+                            </f:facet>
+                            <h:outputText value="#{teacher.personDateAdd.getTime()}">
+                                <f:convertDateTime pattern="dd-MM-yyyy"/>
+                            </h:outputText>
+                        </h:column>
+                    </h:dataTable>
                 </div>
             </div>
         </div>

@@ -28,6 +28,12 @@ public interface ApproachesServiceRemote {
      */
     List<ApproachEntity> listAllForGuardian() throws ApplicationBaseException;
 
+    /**
+     * Wyszukuje podejście o wskazanym id.
+     * @param id Klucz główny w bazie szukanego podejścia.
+     * @return Podejście o szukanym id.
+     * @throws ApplicationBaseException Rzucany jak podejście o takim id nie istnieje.
+     */
     ApproachEntity findById(long id) throws ApplicationBaseException;
 
     /**

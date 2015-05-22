@@ -1,7 +1,5 @@
 package pl.lodz.p.it.ssbd2015.web.mok;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.mok.services.PersonServiceRemote;
 import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
@@ -21,8 +19,6 @@ import java.io.Serializable;
 public class ShowLoggedUserDetails extends BaseContextBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    protected static final Logger logger = LoggerFactory.getLogger(ShowLoggedUserDetails.class);
 
     @EJB
     private PersonServiceRemote personService;

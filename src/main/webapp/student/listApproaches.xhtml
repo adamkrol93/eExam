@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="../template/commonLayout.xhtml">
+    <ui:define name="head">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title><h:outputText value="#{i18n['mre.approach_list.title']}"/></title>
+    </ui:define>
+    <ui:define name="breadcrumps">
+        <ol class="breadcrumb">
+            <li><h:link outcome="/index" value="#{i18n['home.page']}"/></li>
+            <li><h:link outcome="/student/index"
+                        value="#{i18n['student.page.simple_title']}"/></li>
+            <li class="active"><h:outputText
+                    value="#{i18n['mre.approach_list.title']}"/></li>
+        </ol>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="page-header text-center">
+            <h1><h:outputText value="#{i18n['mre.approach_list.title']}"/></h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <h:form>
+                        <h:dataTable var="approach" value="#{listApproachesStudentMRE.approaches}"
+                                     styleClass="table table-striped">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{i18n['mre.approach_list.exam_title']}"/>
+                                </f:facet>
+                                <h:outputText value="#{approach.exam.title}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{i18n['mre.approach_list.date_start']}"/>
+                                </f:facet>
+                                <h:outputText value="#{approach.dateStart.time}">
+                                    <f:convertDateTime pattern="HH:mm dd-MM-yyyy"/>
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{i18n['mre.approach_list.date_end']}"/>
+                                </f:facet>
+                                <h:outputText value="#{approach.dateEnd.time}">
+                                    <f:convertDateTime pattern="HH:mm dd-MM-yyyy"/>
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{i18n['mre.approach_list.action']}"/>
+                                </f:facet>
+                                <h:link value="#{i18n['mre.approach_list.show_details_button']} "
+                                        outcome="approachDetails.xhtml"/>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>
