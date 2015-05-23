@@ -5,6 +5,7 @@ import pl.lodz.p.it.ssbd2015.entities.ApproachEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.moe.ApproachNotFoundException;
 import pl.lodz.p.it.ssbd2015.moe.facades.ApproachEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.moe.managers.ApproachesManagerLocal;
 
@@ -19,6 +20,7 @@ import java.util.List;
 /**
  * Klasa pozwalająca dokonywać ocen i dyskwalifikacji podejść.
  * @author Bartosz Ignaczewski
+ * @author Piotr Jurewicz
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.moe.services.MarkApproachService")
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
@@ -36,13 +38,14 @@ public class MarkApproachService extends BaseStatefulService implements MarkAppr
     @Override
     @RolesAllowed("MARK_APPROACH_MOE")
     public ApproachEntity findById(long id) throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+    	approach = approachEntityFacade.findById(id).orElseThrow(() -> new ApproachNotFoundException("Approach with id: " + id + " does not exists"));
+        return approach;
     }
 
     @Override
     @RolesAllowed("MARK_APPROACH_MOE")
     public void mark(List<AnswerEntity> gradedAnswers) throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+    	approachesManager.mark(approach, gradedAnswers);
     }
 
     @Override
