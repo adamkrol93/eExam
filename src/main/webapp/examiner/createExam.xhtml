@@ -1,0 +1,259 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="../template/commonLayout.xhtml">
+    <f:metadata>
+        <f:viewParam name="uuid" value="#{createExamMRE.uuid}" converter="uuidConverter"/>
+        <f:viewAction action="#{createExamMRE.checkContext}"/>
+    </f:metadata>
+    <ui:define name="head">
+        <title><h:outputText value="#{i18n['mze.create_exam.title']}"/></title>
+    </ui:define>
+    <ui:define name="breadcrumps">
+        <ol class="breadcrumb">
+            <li><h:link outcome="/index" value="#{i18n['home.page']}"/></li>
+            <li><h:link outcome="/examiner/index"
+                    value="#{i18n['examiner.page.simple_title']}"/></li>
+            <li class="active"><h:outputText
+                    value="#{i18n['mze.create_exam.title']}"/></li>
+        </ol>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="row">
+            <div class="page-header text-center">
+                <h1><h:outputText value="#{i18n['mze.create_exam.title']}"/></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h3><h:outputText value="#{i18n[createExamMRE.message]}" styleClass="text-success"/></h3>
+            </div>
+        </div>
+        <div class="row">
+            <h:form id="register-form" styleClass="form-horizontal">
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <h:outputLabel for="title" styleClass="control-label"
+                                       value="#{i18n['mze.create_exam.exam_title']}*"/>
+                    </div>
+                    <div class="col-sm-6">
+                        <h:inputText id="title" value="#{createExamMRE.exam.title}" required="true"
+                                     requiredMessage="#{i18n['mre.create_exam.exam_title_required']}"
+                                     styleClass="form-control">
+                        </h:inputText>
+                    </div>
+                    <div class="col-sm-4">
+                        <h:outputLabel for="title" styleClass="control-label">
+                            <h:message for="title" styleClass="text-danger"/>
+                        </h:outputLabel>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <h:outputLabel for="count_take_exam" styleClass="control-label"
+                                       value="#{i18n['mze.create_exam.count_take_exam']}*"/>
+                    </div>
+                    <div class="col-sm-6">
+                        <h:inputText id="count_take_exam" p:type="number" p:min="1" value="#{createExamMRE.exam.countTakeExam}"
+                                     required="true" requiredMessage="#{i18n['mze.create_exam.count_take_exam_required']}"
+                                     converter="javax.faces.Integer" converterMessage="#{i18n['mze.create_exam.count_take_exam_number']}"
+                                     styleClass="form-control" />
+                    </div>
+                    <div class="col-sm-4">
+                        <h:outputLabel for="count_take_exam" styleClass="control-label">
+                            <h:message for="count_take_exam" styleClass="text-danger"/>
+                        </h:outputLabel>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <h:outputLabel for="count_question" styleClass="control-label"
+                                       value="#{i18n['mze.create_exam.count_question']}*"/>
+                    </div>
+                    <div class="col-sm-6">
+                        <h:inputText id="count_question" p:type="number" p:min="1" value="#{createExamMRE.exam.countQuestion}"
+                                     required="true" requiredMessage="#{i18n['mze.create_exam.count_question_required']}"
+                                     converter="javax.faces.Integer" converterMessage="#{i18n['mze.create_exam.count_question_number']}"
+                                     styleClass="form-control" />
+                    </div>
+                    <div class="col-sm-4">
+                        <h:outputLabel for="count_question" styleClass="control-label">
+                            <h:message for="count_question" styleClass="text-danger"/>
+                        </h:outputLabel>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <h:outputLabel for="duration" styleClass="control-label"
+                                       value="#{i18n['mze.create_exam.duration']}*"/>
+                    </div>
+                    <div class="col-sm-6">
+                        <h:inputText id="duration" p:type="number" p:min="1" value="#{createExamMRE.exam.duration}"
+                                     required="true" requiredMessage="#{i18n['mze.create_exam.duration_required']}"
+                                     converter="javax.faces.Integer" converterMessage="#{i18n['mze.create_exam.duration_number']}"
+                                     styleClass="form-control" />
+                    </div>
+                    <div class="col-sm-4">
+                        <h:outputLabel for="duration" styleClass="control-label">
+                            <h:message for="duration" styleClass="text-danger"/>
+                        </h:outputLabel>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <h:outputLabel for="date_start" styleClass="control-label"
+                                       value="#{i18n['mze.create_exam.date_start']}*"/>
+                    </div>
+                    <div class="col-sm-6">
+                        <h:inputText id="date_start" p:type="datetime-local" value="#{createExamMRE.exam.dateStart}"
+                                     required="true" requiredMessage="#{i18n['mze.create_exam.date_start_required']}"
+                                     converter="calendarConverter" converterMessage="#{i18n['mze.create_exam.date_start_datetime']}"
+                                     styleClass="form-control" />
+                    </div>
+                    <div class="col-sm-4">
+                        <h:outputLabel for="date_start" styleClass="control-label">
+                            <h:message for="date_start" styleClass="text-danger"/>
+                        </h:outputLabel>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <h:outputLabel for="date_end" styleClass="control-label"
+                                       value="#{i18n['mze.create_exam.date_end']}*"/>
+                    </div>
+                    <div class="col-sm-6">
+                        <h:inputText id="date_end" p:type="datetime-local" value="#{createExamMRE.exam.dateEnd}"
+                                     required="true" requiredMessage="#{i18n['mze.create_exam.date_end_required']}"
+                                     converter="calendarConverter" converterMessage="#{i18n['mze.create_exam.date_end_datetime']}"
+                                     styleClass="form-control" />
+                    </div>
+                    <div class="col-sm-4">
+                        <h:outputLabel for="date_end" styleClass="control-label">
+                            <h:message for="date_end" styleClass="text-danger"/>
+                        </h:outputLabel>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="table-responsive">
+                            <h:dataTable var="teacher" value="#{createExamMRE.teachers}" styleClass="table table-striped table-condensed">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{i18n['mre.create_exam.selection']}"/>
+                                    </f:facet>
+                                    <h:selectBooleanCheckbox value="#{teacher.selected}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{i18n['mze.teacher_list.login']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{teacher.item.login}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{i18n['mze.teacher_list.name']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{teacher.item.personName}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{i18n['mze.teacher_list.lastName']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{teacher.item.lastName}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{i18n['mze.teacher_list.email']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{teacher.item.email}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{i18n['mze.teacher_list.lastTimeLogin']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{teacher.item.lastTimeLogin.getTime()}">
+                                        <f:convertDateTime pattern="HH:mm dd-MM-yyyy"/>
+                                    </h:outputText>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{i18n['mze.teacher_list.dateAdd']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{teacher.item.personDateAdd.getTime()}">
+                                        <f:convertDateTime pattern="dd-MM-yyyy"/>
+                                    </h:outputText>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="table-responsive">
+                            <h:dataTable var="question" value="#{createExamMRE.questions}" styleClass="table table-striped table-condensed">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{i18n['mre.create_exam.selection']}"/>
+                                    </f:facet>
+                                    <h:selectBooleanCheckbox value="#{question.selected}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{i18n['mze.questions.list.creator']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{question.item.creator.login}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{i18n['mze.questions.list.dateAdd']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{question.item.dateAdd.getTime()}">
+                                        <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                    </h:outputText>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{i18n['mze.questions.list.content']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{question.item.content}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{i18n['mze.questions.list.modifier']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{question.item.modifier.login}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{i18n['mze.questions.list.dateModification']}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{question.item.dateModification.getTime()}">
+                                        <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                    </h:outputText>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="btn-toolbar">
+                            <h:commandButton id="submit-button" type="submit" value="#{i18n['mze.create_exam.submit']}"
+                                             styleClass="btn btn-default" action="#{createExamMRE.createExam}"/>
+                            <h:commandButton id="reset-button" type="reset" value="#{i18n['mze.create_exam.reset']}"
+                                             styleClass="btn btn-default"/>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

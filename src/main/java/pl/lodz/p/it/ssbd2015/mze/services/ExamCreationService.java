@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Klasa do zarządzania tworzeniem egzaminów.
@@ -54,7 +55,9 @@ public class ExamCreationService extends BaseStatefulService implements ExamCrea
     @Override
     @RolesAllowed("CREATE_EXAM_MZE")
     public List<TeacherEntity> findAllTeachers() {
-    	teachers = teacherEntityFacade.findAll();
+        teachers = teacherEntityFacade.findAll().stream()
+                .filter(teacher -> teacher.isActive() && teacher.isConfirm() && teacher.isGroupActive())
+                .collect(Collectors.toList());
     	return teachers;
     }
 
@@ -66,7 +69,7 @@ public class ExamCreationService extends BaseStatefulService implements ExamCrea
     	newExam.setCountTakeExam(exam.getCountTakeExam());
     	newExam.setCountQuestion(exam.getCountQuestion());
     	newExam.setDateEnd(exam.getDateEnd());
-    	newExam.setDateStart(exam.getDateAdd());
+    	newExam.setDateStart(exam.getDateStart());
     	newExam.setDuration(exam.getDuration());
 
     	Set<Long> questionIdSet = new HashSet<>(questionIds);

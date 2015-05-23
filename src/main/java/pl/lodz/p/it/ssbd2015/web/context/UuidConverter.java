@@ -15,11 +15,11 @@ public class UuidConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        return UUID.fromString(value);
+        return value != null ? UUID.fromString(value) : null;
     }
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-        return value.toString();
+        return value != null ? value.toString() : null;
     }
 }
