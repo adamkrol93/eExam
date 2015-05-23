@@ -16,7 +16,9 @@
     <ui:define name="breadcrumps">
         <ol class="breadcrumb">
             <li><h:link outcome="/index" value="#{i18n['home.page']}"/></li>
-            <li><h:link outcome="/examiner/listExams" value="#{i18n['examiner.exam_list.simple_title']}"/></li>
+            <li><h:link outcome="/examiner/index"
+                        value="#{i18n['examiner.page.simple_title']}"/></li>
+            <li><h:link outcome="/examiner/listExams" value="#{i18n['mze.exam_list.simple_title']}"/></li>
             <li class="active"><h:outputText value="#{i18n['mze.show_exam_report.title']}"/></li>
         </ol>
     </ui:define>
