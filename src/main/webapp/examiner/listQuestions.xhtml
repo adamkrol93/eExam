@@ -32,6 +32,18 @@
                         <h:dataTable var="question" value="#{listQuestionsMZE.questionEntities}" styleClass="table table-striped">
                             <h:column>
                                 <f:facet name="header">
+                                    <h:outputText value="#{i18n['mze.questions.list.content']}"/>
+                                </f:facet>
+                                <h:outputText value="#{listQuestionsMZE.cut(question.content)}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{i18n['mze.questions.list.sampleAnswer']}"/>
+                                </f:facet>
+                                <h:outputText value="#{listQuestionsMZE.cut(question.sampleAnswer)}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
                                     <h:outputText value="#{i18n['mze.questions.list.creator']}"/>
                                 </f:facet>
                                 <h:outputText value="#{question.creator.login}"/>
@@ -41,14 +53,8 @@
                                     <h:outputText value="#{i18n['mze.questions.list.dateAdd']}"/>
                                 </f:facet>
                                 <h:outputText value="#{question.dateAdd.getTime()}">
-                                    <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                    <f:convertDateTime pattern="dd-MM-yyyy"/>
                                 </h:outputText>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{i18n['mze.questions.list.content']}"/>
-                                </f:facet>
-                                <h:outputText value="#{question.content}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
@@ -61,7 +67,7 @@
                                     <h:outputText value="#{i18n['mze.questions.list.dateModification']}"/>
                                 </f:facet>
                                 <h:outputText value="#{question.dateModification.getTime()}">
-                                    <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                    <f:convertDateTime pattern="dd-MM-yyyy HH:mm"/>
                                 </h:outputText>
                             </h:column>
                             <h:column>

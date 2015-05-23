@@ -30,4 +30,13 @@ public class ListQuestions {
     public List<QuestionEntity> getQuestionEntities(){
         return questionEntities;
     }
+
+    public static String cut(String message){
+
+        if(message!=null && message.length()>70){
+            return message.substring(0,70).concat("...");
+        }
+
+        return message;
+    }
 }
