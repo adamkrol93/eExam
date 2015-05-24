@@ -7,8 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="../template/commonLayout.xhtml">
     <f:metadata>
-        <!--<f:viewParam name="uuid" value="#{showApproachDetailsMOE.uuid}" converter="uuidConverter"/>-->
-        <f:viewParam name="id" value="#{showApproachDetailsMOE.id}"/>
+        <f:viewParam name="uuid" value="#{showApproachDetailsMOE.uuid}" converter="uuidConverter"/>
         <f:viewAction action="#{showApproachDetailsMOE.checkContext}"/>
     </f:metadata>
     <ui:define name="head">
@@ -17,8 +16,9 @@
     <ui:define name="breadcrumps">
         <ol class="breadcrumb">
             <li><h:link outcome="/index" value="#{i18n['home.page']}"/></li>
-            <li><h:link outcome="/teacher/showApproachDetails"
-                        value="#{i18n['teacher.show_approach_details.simple_title']}"/></li>
+            <li><h:link outcome="/teacher/index"
+                        value="#{i18n['teacher.page.simple_title']}"/></li>
+            <li><h:link outcome="/teacher/listApproaches" value="#{i18n['moe.list.approaches']}"/></li>
             <li class="active"><h:outputText value="#{i18n['moe.show_approach_details.title']}"/></li>
         </ol>
     </ui:define>
