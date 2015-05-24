@@ -15,6 +15,10 @@ import java.util.Date;
 @FacesConverter("calendarConverter")
 public class CalendarConverter extends DateTimeConverter {
 
+    public CalendarConverter() {
+        super.setPattern("yyyy-MM-dd HH:mm");
+    }
+
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         Date date = (Date) super.getAsObject(context, component, value);

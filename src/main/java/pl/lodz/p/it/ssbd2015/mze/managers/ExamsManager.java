@@ -73,6 +73,7 @@ public class ExamsManager implements ExamsManagerLocal {
     @RolesAllowed("EDIT_EXAM_MZE")
     public void editExam(ExamEntity exam, ExamEntity newExam) throws ApplicationBaseException {
     	exam.setCountQuestion(newExam.getCountQuestion());
+        exam.setCountTakeExam(newExam.getCountTakeExam());
         exam.setDateStart(newExam.getDateStart());
         exam.setDateEnd(newExam.getDateEnd());
         exam.setDuration(newExam.getDuration());
@@ -81,7 +82,6 @@ public class ExamsManager implements ExamsManagerLocal {
         String login = sessionContext.getCallerPrincipal().getName();
         ExaminerEntity modifier = examinerEntityFacade.findByLogin(login).orElseThrow(() -> new ExaminerNotFoundException("Examiner with login " + login + "does not exist"));
         exam.setModifier(modifier);
-        modifier.getModifiedExams().add(exam);
 
         examEntityFacade.edit(exam);
     }

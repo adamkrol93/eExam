@@ -15,6 +15,7 @@ import java.util.List;
 /**
  * Bean do wyświetlania listy wszystkich egzaminów
  * @author Adam Król
+ * @author Andrzej Kurczewski
  */
 @ManagedBean(name = "listExamsMZE")
 @ViewScoped
@@ -35,8 +36,7 @@ public class ListExams extends BaseContextBean {
      * odpowiednie identyfikator do przejścia do szczegółów egzaminu
      * @return strona na którą przekierowywuje po skończonej operacji
      */
-    public String gotoDetails()
-    {
+    public String gotoDetails() {
         long examId = exams.getRowData().getId();
         setContext(ShowExamDetails.class, bean -> bean.setId(examId));
         return String.format("showExam?uuid=%s&faces-redirect=true", getUuid());
@@ -47,11 +47,21 @@ public class ListExams extends BaseContextBean {
      * odpowiednie identyfikator do przejścia do raportu dotyczącego egzaminu
      * @return strona na którą przekierowywuje po skończonej operacji
      */
-    public String gotoReport()
-    {
+    public String gotoReport() {
         long examId = exams.getRowData().getId();
         setContext(ShowExamDetails.class, bean -> bean.setId(examId));
         return String.format("showExamReport?uuid=%s&faces-redirect=true", getUuid());
+    }
+
+    /**
+     * Metoda korzysta z dobrodziejstw contextMapy i ustawia
+     * odpowiednie identyfikator do przejścia do strony edycji egzaminu
+     * @return strona na którą przekierowywuje po skończonej operacji
+     */
+    public String gotoEdit() {
+        long examId = exams.getRowData().getId();
+        setContext(EditExam.class, bean -> bean.setId(examId));
+        return String.format("editExam?uuid=%s&faces-redirect=true", getUuid());
     }
 
     /**

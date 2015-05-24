@@ -112,10 +112,10 @@
                                        value="#{i18n['mze.create_exam.date_start']}*"/>
                     </div>
                     <div class="col-sm-6">
-                        <h:inputText id="date_start" p:type="datetime-local" value="#{createExamMZE.exam.dateStart}"
+                        <h:inputText id="date_start" value="#{createExamMZE.exam.dateStart}"
                                      required="true" requiredMessage="#{i18n['mze.create_exam.date_start_required']}"
                                      converter="calendarConverter" converterMessage="#{i18n['mze.create_exam.date_start_datetime']}"
-                                     styleClass="form-control" />
+                                     styleClass="form-control" p:placeholder="yyyy-MM-dd HH:mm"/>
                     </div>
                     <div class="col-sm-4">
                         <h:outputLabel for="date_start" styleClass="control-label">
@@ -129,10 +129,10 @@
                                        value="#{i18n['mze.create_exam.date_end']}*"/>
                     </div>
                     <div class="col-sm-6">
-                        <h:inputText id="date_end" p:type="datetime-local" value="#{createExamMZE.exam.dateEnd}"
+                        <h:inputText id="date_end" value="#{createExamMZE.exam.dateEnd}"
                                      required="true" requiredMessage="#{i18n['mze.create_exam.date_end_required']}"
                                      converter="calendarConverter" converterMessage="#{i18n['mze.create_exam.date_end_datetime']}"
-                                     styleClass="form-control" />
+                                     styleClass="form-control" p:placeholder="yyyy-MM-dd HH:mm"/>
                     </div>
                     <div class="col-sm-4">
                         <h:outputLabel for="date_end" styleClass="control-label">

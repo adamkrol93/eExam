@@ -29,7 +29,6 @@ public class ShowExamDetails extends BaseContextBean {
     protected void doInContext() {
         expectApplicationException(() -> {
             exam = examsService.findById(id);
-            resetContext();
         });
     }
 
