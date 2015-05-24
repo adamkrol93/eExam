@@ -5,6 +5,7 @@ import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamNotFoundException;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExamEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.facades.TeacherEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.managers.ExamsManagerLocal;
@@ -21,6 +22,7 @@ import java.util.List;
  * Implementacje Endpointu zgodnie z interfejsem {@link EditExamServiceRemote}.
  * Klasa przechowuje pole exam oraz teachesNotInExam.
  * @author Bartosz Ignaczewski on 04.05.15.
+ * @author Andrzej Kurczewski
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mze.services.EditExamService")
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
@@ -43,7 +45,8 @@ public class EditExamService extends BaseStatefulService implements EditExamServ
     @Override
     @RolesAllowed("EDIT_EXAM_MZE")
     public ExamEntity findById(long examId) throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+        exam = examEntityFacade.findById(examId).orElseThrow(() -> new ExamNotFoundException("Exam with id = " + examId + " does not exist"));
+        return exam;
     }
 
     @Override
@@ -55,7 +58,7 @@ public class EditExamService extends BaseStatefulService implements EditExamServ
     @Override
     @RolesAllowed("EDIT_EXAM_MZE")
     public void editExam(ExamEntity exam) throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+    	examsManager.editExam(this.exam, exam);
     }
 
     @Override

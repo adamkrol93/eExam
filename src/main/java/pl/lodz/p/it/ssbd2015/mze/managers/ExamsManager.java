@@ -20,6 +20,7 @@ import static pl.lodz.p.it.ssbd2015.utils.ExceptionUtils.elvis;
 
 /**
  * Implementacja interfejsu {@link ExamsManagerLocal}, pozwala na zarządzanie Egzaminami
+ * @author Andrzej Kurczewski
  * @author Bartosz Ignaczewski
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mze.managers.ExamsManager")
@@ -71,7 +72,18 @@ public class ExamsManager implements ExamsManagerLocal {
     @Override
     @RolesAllowed("EDIT_EXAM_MZE")
     public void editExam(ExamEntity exam, ExamEntity newExam) throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+    	exam.setCountQuestion(newExam.getCountQuestion());
+        exam.setDateStart(newExam.getDateStart());
+        exam.setDateEnd(newExam.getDateEnd());
+        exam.setDuration(newExam.getDuration());
+        exam.setTitle(newExam.getTitle());
+
+        String login = sessionContext.getCallerPrincipal().getName();
+        ExaminerEntity modifier = examinerEntityFacade.findByLogin(login).orElseThrow(() -> new ExaminerNotFoundException("Examiner with login " + login + "does not exist"));
+        exam.setModifier(modifier);
+        modifier.getModifiedExams().add(exam);
+
+        examEntityFacade.edit(exam);
     }
 
     @Override
