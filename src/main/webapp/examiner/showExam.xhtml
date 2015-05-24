@@ -37,17 +37,37 @@
                         <h:outputText
                             value=" #{i18n['mze.show_exam.creator']} #{showExamDetailsMZE.exam.creator.personName} #{showExamDetailsMZE.exam.creator.lastName}"/>
                     </p>
-                    <p>
-                        <h:outputText value=" #{i18n['mze.show_exam.modified']} "/>
-                        <h:outputText value="#{showExamDetailsMZE.exam.dateModification.time}">
-                            <f:convertDateTime type="both" dateStyle="long"/>
-                        </h:outputText>
-                        <h:outputText
-                            value=" #{i18n['mze.show_exam.modifier']} #{showExamDetailsMZE.exam.modifier.personName} #{showExamDetailsMZE.exam.modifier.lastName}"/>
-                    </p>
+                    <ui:fragment rendered="#{showExamDetailsMZE.exam.modifier != null}" >
+                        <p>
+                            <h:outputText value=" #{i18n['mze.show_exam.modified']} "/>
+                            <h:outputText value="#{showExamDetailsMZE.exam.dateModification.time}">
+                                <f:convertDateTime type="both" dateStyle="long"/>
+                            </h:outputText>
+                            <h:outputText
+                                value=" #{i18n['mze.show_exam.modifier']} #{showExamDetailsMZE.exam.modifier.personName} #{showExamDetailsMZE.exam.modifier.lastName}"/>
+                        </p>
+                    </ui:fragment>
                     <p>
                         <h:outputText
                             value="#{i18n['mze.show_exam.duration']}: #{showExamDetailsMZE.exam.duration} #{i18n['mze.show_exam.duration_unit']}"/>
+                    </p>
+                    <p>
+                        <h:outputText
+                            value="#{i18n['mze.show_exam.start_time']}: "/>
+                        <h:outputText value="#{showExamDetailsMZE.exam.dateStart.time}">
+                            <f:convertDateTime type="both" dateStyle="long"/>
+                        </h:outputText>
+                    </p>
+                    <p>
+                        <h:outputText
+                            value="#{i18n['mze.show_exam.end_time']}: "/>
+                        <h:outputText value="#{showExamDetailsMZE.exam.dateEnd.time}">
+                            <f:convertDateTime type="both" dateStyle="long"/>
+                        </h:outputText>
+                    </p>
+                    <p>
+                        <h:outputText
+                            value="#{i18n['mze.show_exam.approaches_count']}: #{showExamDetailsMZE.exam.countTakeExam}"/>
                     </p>
                     <p>
                         <h:outputText
