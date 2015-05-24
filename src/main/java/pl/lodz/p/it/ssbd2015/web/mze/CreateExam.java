@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  * Backing bean dla formularza tworzenia nowego egzaminu.
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  */
-@ManagedBean(name = "createExamMRE")
+@ManagedBean(name = "createExamMZE")
 @ViewScoped
 public class CreateExam extends BaseContextBean {
 

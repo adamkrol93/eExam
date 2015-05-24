@@ -9,8 +9,8 @@
 
 <ui:composition template="../template/commonLayout.xhtml">
     <f:metadata>
-        <f:viewParam name="uuid" value="#{createExamMRE.uuid}" converter="uuidConverter"/>
-        <f:viewAction action="#{createExamMRE.checkContext}"/>
+        <f:viewParam name="uuid" value="#{createExamMZE.uuid}" converter="uuidConverter"/>
+        <f:viewAction action="#{createExamMZE.checkContext}"/>
     </f:metadata>
     <ui:define name="head">
         <title><h:outputText value="#{i18n['mze.create_exam.title']}"/></title>
@@ -33,7 +33,7 @@
         </div>
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h3><h:outputText value="#{i18n[createExamMRE.message]}" styleClass="text-success"/></h3>
+                <h3><h:outputText value="#{i18n[createExamMZE.message]}" styleClass="text-success"/></h3>
             </div>
         </div>
         <div class="row">
@@ -44,7 +44,7 @@
                                        value="#{i18n['mze.create_exam.exam_title']}*"/>
                     </div>
                     <div class="col-sm-6">
-                        <h:inputText id="title" value="#{createExamMRE.exam.title}" required="true"
+                        <h:inputText id="title" value="#{createExamMZE.exam.title}" required="true"
                                      requiredMessage="#{i18n['mre.create_exam.exam_title_required']}"
                                      styleClass="form-control">
                         </h:inputText>
@@ -61,7 +61,7 @@
                                        value="#{i18n['mze.create_exam.count_take_exam']}*"/>
                     </div>
                     <div class="col-sm-6">
-                        <h:inputText id="count_take_exam" p:type="number" p:min="1" value="#{createExamMRE.exam.countTakeExam}"
+                        <h:inputText id="count_take_exam" p:type="number" p:min="1" value="#{createExamMZE.exam.countTakeExam}"
                                      required="true" requiredMessage="#{i18n['mze.create_exam.count_take_exam_required']}"
                                      converter="javax.faces.Integer" converterMessage="#{i18n['mze.create_exam.count_take_exam_number']}"
                                      styleClass="form-control" />
@@ -78,7 +78,7 @@
                                        value="#{i18n['mze.create_exam.count_question']}*"/>
                     </div>
                     <div class="col-sm-6">
-                        <h:inputText id="count_question" p:type="number" p:min="1" value="#{createExamMRE.exam.countQuestion}"
+                        <h:inputText id="count_question" p:type="number" p:min="1" value="#{createExamMZE.exam.countQuestion}"
                                      required="true" requiredMessage="#{i18n['mze.create_exam.count_question_required']}"
                                      converter="javax.faces.Integer" converterMessage="#{i18n['mze.create_exam.count_question_number']}"
                                      styleClass="form-control" />
@@ -95,7 +95,7 @@
                                        value="#{i18n['mze.create_exam.duration']}*"/>
                     </div>
                     <div class="col-sm-6">
-                        <h:inputText id="duration" p:type="number" p:min="1" value="#{createExamMRE.exam.duration}"
+                        <h:inputText id="duration" p:type="number" p:min="1" value="#{createExamMZE.exam.duration}"
                                      required="true" requiredMessage="#{i18n['mze.create_exam.duration_required']}"
                                      converter="javax.faces.Integer" converterMessage="#{i18n['mze.create_exam.duration_number']}"
                                      styleClass="form-control" />
@@ -112,7 +112,7 @@
                                        value="#{i18n['mze.create_exam.date_start']}*"/>
                     </div>
                     <div class="col-sm-6">
-                        <h:inputText id="date_start" p:type="datetime-local" value="#{createExamMRE.exam.dateStart}"
+                        <h:inputText id="date_start" p:type="datetime-local" value="#{createExamMZE.exam.dateStart}"
                                      required="true" requiredMessage="#{i18n['mze.create_exam.date_start_required']}"
                                      converter="calendarConverter" converterMessage="#{i18n['mze.create_exam.date_start_datetime']}"
                                      styleClass="form-control" />
@@ -129,7 +129,7 @@
                                        value="#{i18n['mze.create_exam.date_end']}*"/>
                     </div>
                     <div class="col-sm-6">
-                        <h:inputText id="date_end" p:type="datetime-local" value="#{createExamMRE.exam.dateEnd}"
+                        <h:inputText id="date_end" p:type="datetime-local" value="#{createExamMZE.exam.dateEnd}"
                                      required="true" requiredMessage="#{i18n['mze.create_exam.date_end_required']}"
                                      converter="calendarConverter" converterMessage="#{i18n['mze.create_exam.date_end_datetime']}"
                                      styleClass="form-control" />
@@ -143,7 +143,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="table-responsive">
-                            <h:dataTable var="teacher" value="#{createExamMRE.teachers}" styleClass="table table-striped table-condensed">
+                            <h:dataTable var="teacher" value="#{createExamMZE.teachers}" styleClass="table table-striped table-condensed">
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="#{i18n['mre.create_exam.selection']}"/>
@@ -197,7 +197,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="table-responsive">
-                            <h:dataTable var="question" value="#{createExamMRE.questions}" styleClass="table table-striped table-condensed">
+                            <h:dataTable var="question" value="#{createExamMZE.questions}" styleClass="table table-striped table-condensed">
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="#{i18n['mre.create_exam.selection']}"/>
@@ -246,7 +246,7 @@
                     <div class="col-sm-offset-2 col-sm-10">
                         <div class="btn-toolbar">
                             <h:commandButton id="submit-button" type="submit" value="#{i18n['mze.create_exam.submit']}"
-                                             styleClass="btn btn-default" action="#{createExamMRE.createExam}"/>
+                                             styleClass="btn btn-default" action="#{createExamMZE.createExam}"/>
                             <h:commandButton id="reset-button" type="reset" value="#{i18n['mze.create_exam.reset']}"
                                              styleClass="btn btn-default"/>
                         </div>
