@@ -12,7 +12,6 @@ import javax.annotation.security.RolesAllowed;
 import javax.ejb.*;
 import javax.interceptor.Interceptors;
 import java.math.BigInteger;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -87,6 +86,7 @@ public class ApproachesManager implements ApproachesManagerLocal {
     @Override
     @RolesAllowed("ADD_STUDENTS_GUARDIAN_MOE")
     public void connect(GuardianEntity guardian, StudentEntity student) throws ApplicationBaseException {
-        throw new UnsupportedOperationException();
+    	student.setGuardian(guardian);
+        this.studentEntityFacade.edit(student);
     }
 }

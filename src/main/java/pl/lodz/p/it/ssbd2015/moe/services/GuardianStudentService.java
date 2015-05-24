@@ -43,18 +43,28 @@ public class GuardianStudentService extends BaseStatefulService implements Guard
     @Override
     @RolesAllowed("ADD_STUDENTS_GUARDIAN_MOE")
     public List<GuardianEntity> findAllGuardians() {
-    	throw new UnsupportedOperationException();
+        this.guardians = guardianEntityFacade.findAll();
+        return this.guardians;
     }
 
     @Override
     @RolesAllowed("ADD_STUDENTS_GUARDIAN_MOE")
     public List<StudentEntity> findAllStudents() {
-    	throw new UnsupportedOperationException();
+        this.students = studentEntityFacade.findAll();
+        return this.students;
     }
 
     @Override
     @RolesAllowed("ADD_STUDENTS_GUARDIAN_MOE")
     public void connect(long guardianId, long studentId) throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+        StudentEntity studentEntity = this.students.stream()
+                .filter(studentEntity1 -> studentEntity1.getId() == studentId)
+                .findFirst()
+                .get();
+        GuardianEntity guardianEntity = this.guardians.stream()
+                .filter(guardianEntity1 -> guardianEntity1.getId() == guardianId)
+                .findFirst()
+                .get();
+        approachesManager.connect(guardianEntity,studentEntity);
     }
 }
