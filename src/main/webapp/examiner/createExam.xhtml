@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-sm-6">
                         <h:inputText id="title" value="#{createExamMZE.exam.title}" required="true"
-                                     requiredMessage="#{i18n['mre.create_exam.exam_title_required']}"
+                                     requiredMessage="#{i18n['mze.create_exam.exam_title_required']}"
                                      styleClass="form-control">
                         </h:inputText>
                     </div>
@@ -146,7 +146,7 @@
                             <h:dataTable var="teacher" value="#{createExamMZE.teachers}" styleClass="table table-striped table-condensed">
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="#{i18n['mre.create_exam.selection']}"/>
+                                        <h:outputText value="#{i18n['mze.create_exam.selection']}"/>
                                     </f:facet>
                                     <h:selectBooleanCheckbox value="#{teacher.selected}" />
                                 </h:column>
@@ -200,7 +200,7 @@
                             <h:dataTable var="question" value="#{createExamMZE.questions}" styleClass="table table-striped table-condensed">
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="#{i18n['mre.create_exam.selection']}"/>
+                                        <h:outputText value="#{i18n['mze.create_exam.selection']}"/>
                                     </f:facet>
                                     <h:selectBooleanCheckbox value="#{question.selected}" />
                                 </h:column>
