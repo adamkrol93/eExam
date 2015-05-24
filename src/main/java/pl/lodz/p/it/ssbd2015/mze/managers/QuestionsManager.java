@@ -20,7 +20,7 @@ import javax.interceptor.Interceptors;
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mze.QuestionManager")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 @Interceptors(LoggingInterceptor.class)
-public class QuestionManager implements QuestionsManagerLocal {
+public class QuestionsManager implements QuestionsManagerLocal {
 
     @EJB
     private QuestionEntityFacadeLocal questionEntityFacade;
@@ -37,7 +37,6 @@ public class QuestionManager implements QuestionsManagerLocal {
     	String examinerLogin = sessionContext.getCallerPrincipal().getName();
     	ExaminerEntity examinerEntity = examinerEntityFacade.findByLogin(examinerLogin)
     			.orElseThrow(() -> new ExaminerNotFoundException("Examiner with login: " + examinerLogin + " does not exists"));
-    	question.setModifier(examinerEntity);
     	question.setCreator(examinerEntity);
 
     	questionEntityFacade.create(question);

@@ -4,8 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="../template/commonLayout.xhtml">
         <f:metadata>
@@ -44,7 +43,7 @@
                                            value="#{i18n['mze.create_question.question_content']}*"/>
                         </div>
                         <div class="col-sm-6">
-                            <h:inputText id="content" value="#{createQuestionMZE.questionEntity.content}" required="true"
+                            <h:inputText id="content" value="#{createQuestionMZE.question.content}" required="true"
                                          requiredMessage="#{i18n['mze.create_question.question_content_required']}"
                                          styleClass="form-control">
                             </h:inputText>
@@ -61,7 +60,7 @@
                                            value="#{i18n['mze.create_question.question_sample_answer']}*"/>
                         </div>
                         <div class="col-sm-6">
-                            <h:inputText id="sample_answer" value="#{createQuestionMZE.questionEntity.sampleAnswer}" required="true"
+                            <h:inputText id="sample_answer" value="#{createQuestionMZE.question.sampleAnswer}" required="true"
                                          requiredMessage="#{i18n['mze.create_question.question_sample_answer_required']}"
                                          styleClass="form-control">
                             </h:inputText>

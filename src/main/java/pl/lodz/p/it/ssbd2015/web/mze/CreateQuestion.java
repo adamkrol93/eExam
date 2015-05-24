@@ -22,20 +22,20 @@ public class CreateQuestion extends BaseContextBean{
     @EJB
     private ExamsServiceRemote examsService;
 
-    private QuestionEntity questionEntity;
+    private QuestionEntity question;
 
     private String message;
 
     @PostConstruct
     private void init()
     {
-        this.questionEntity = new QuestionEntity();
+        this.question = new QuestionEntity();
     }
 
     public String createQuestion()
     {
         return expectApplicationException(() ->{
-            this.examsService.create(questionEntity);
+            this.examsService.create(question);
             setContext(CreateQuestion.class, bean -> bean.message = "mze.create_question.created_message");
             return "createQuestion?faces-redirect=true&includeViewParams=true";
         });
@@ -49,19 +49,11 @@ public class CreateQuestion extends BaseContextBean{
         this.message = message;
     }
 
-    public ExamsServiceRemote getExamsService() {
-        return examsService;
+    public QuestionEntity getQuestion() {
+        return question;
     }
 
-    public void setExamsService(ExamsServiceRemote examsService) {
-        this.examsService = examsService;
-    }
-
-    public QuestionEntity getQuestionEntity() {
-        return questionEntity;
-    }
-
-    public void setQuestionEntity(QuestionEntity questionEntity) {
-        this.questionEntity = questionEntity;
+    public void setQuestion(QuestionEntity question) {
+        this.question = question;
     }
 }
