@@ -3,9 +3,11 @@ package pl.lodz.p.it.ssbd2015.web.mze;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
+import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamTitleNotUnique;
 import pl.lodz.p.it.ssbd2015.mze.services.ExamCreationServiceRemote;
 import pl.lodz.p.it.ssbd2015.web.SelectableItem;
 import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
+import pl.lodz.p.it.ssbd2015.web.localization.MessageUtils;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -74,7 +76,12 @@ public class CreateExam extends BaseContextBean {
             List<Long> teacherIds = teachers.stream().filter(SelectableItem::isSelected)
                     .map(selected -> selected.getItem().getId()).collect(Collectors.toList());
 
-            examCreationService.create(exam, questionIds, teacherIds);
+            try {
+                examCreationService.create(exam, questionIds, teacherIds);
+            } catch (ExamTitleNotUnique ex) {
+                MessageUtils.addLocalizedMessage(ex.getCode(), "create-exam-form:title");
+                return null;
+            }
 
             setContext(CreateExam.class, bean -> bean.message = "mze.create_exam.created_message");
             return "createExam?faces-redirect=true&includeViewParams=true";
