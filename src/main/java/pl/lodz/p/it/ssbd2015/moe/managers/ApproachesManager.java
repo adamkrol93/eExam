@@ -69,7 +69,6 @@ public class ApproachesManager implements ApproachesManagerLocal {
     public List<ExamEntity> findAllByLoggedTeacher() throws ApplicationBaseException {
         String login = sessionContext.getCallerPrincipal().getName();
         TeacherEntity teacherEntity = teacherEntityFacade.findByLogin(login).orElseThrow(() -> new TeacherNotFoundException("Teacher with login: " + login + " does not exists"));
-        teacherEntity.getExams().isEmpty();
         for (ExamEntity examEntity : teacherEntity.getExams())
         {
             examEntity.getApproaches().isEmpty();

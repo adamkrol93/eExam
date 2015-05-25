@@ -8,7 +8,7 @@
 
 <ui:composition template="../template/commonLayout.xhtml">
     <ui:define name="head">
-        <title><h:outputText value="#{i18n['moe.list.approaches']}"/></title>
+        <title><h:outputText value="#{i18n['moe.approach_list.approaches']}"/></title>
     </ui:define>
     <ui:define name="breadcrumps">
         <ol class="breadcrumb">
@@ -16,14 +16,14 @@
             <li><h:link outcome="/teacher/index.xhtml"
                         value="#{i18n['teacher.page.simple_title']}"/></li>
             <li class="active"><h:outputText
-                    value="#{i18n['moe.list.approaches']}"/></li>
+                    value="#{i18n['moe.approach_list.approaches']}"/></li>
         </ol>
     </ui:define>
 
     <ui:define name="content">
         <div class="row">
             <div class="page-header text-center">
-                <h1><h:outputText value="#{i18n['moe.list.approaches']}"/></h1>
+                <h1><h:outputText value="#{i18n['moe.approach_list.approaches']}"/></h1>
             </div>
         </div>
         <div class="row">
@@ -35,29 +35,29 @@
                             <h:dataTable var="approach" value="#{exam.approaches}" styleClass="table table-striped">
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="#{i18n['moe.list.approaches.to_evaluate']}"/>
+                                        <h:outputText value="#{i18n['moe.approach_list.approaches.to_evaluate']}"/>
                                     </f:facet>
-                                    <h:outputText value="#{i18n[listApproachesMOE.checkApproachIsToEvaluate(approach.id, exam.id)]}"/>
+                                    <h:outputText value="#{i18n[listApproachesMOE.checkApproachIsToEvaluate(approach)]}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="#{i18n['moe.list.approaches.dateEnd']}"/>
+                                        <h:outputText value="#{i18n['moe.approach_list.approaches.dateEnd']}"/>
                                     </f:facet>
-                                    <h:outputText value="#{approach.dateEnd}">
+                                    <h:outputText value="#{approach.dateEnd.time}">
                                         <f:convertDateTime pattern="dd-MM-yyyy HH:mm" />
                                     </h:outputText>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="#{i18n['moe.list.approaches.entrant_login']}"/>
+                                        <h:outputText value="#{i18n['moe.approach_list.approaches.entrant_login']}"/>
                                     </f:facet>
                                     <h:outputText value="#{approach.entrant.login}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="#{i18n['moe.list.actions']}"/>
+                                        <h:outputText value="#{i18n['moe.approach_list.actions']}"/>
                                     </f:facet>
-                                    <h:link value="#{i18n['moe.list.actions.show']}" outcome="index.xhtml">
+                                    <h:link value="#{i18n['moe.approach_list.actions.show']}" outcome="index.xhtml">
                                         <!-- TODO: przkierowania do strony szczegółów podejścia-->
                                     </h:link>
                                 </h:column>
