@@ -6,11 +6,13 @@ import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.RolesAllowed;
+import javax.ejb.Lock;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
+import javax.persistence.LockModeType;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +20,7 @@ import java.util.Optional;
 /**
  * Implementacja interfejsu {@link ApproachEntityFacadeLocal}. Pozwala na operacje bazodanowe na encji {@link ApproachEntity}
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Piotr Jurewicz
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mre.facades.ApproachEntityFacade")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
@@ -42,6 +45,7 @@ public class ApproachEntityFacade implements ApproachEntityFacadeLocal {
     @Override
     @RolesAllowed("START_SOLVING_EXAM_MRE")
     public void create(ApproachEntity entity) throws ApplicationBaseException {
+        entityManager.lock(entity, LockModeType.OPTIMISTIC_FORCE_INCREMENT);
         ApproachEntityFacadeLocal.super.create(entity);
     }
 

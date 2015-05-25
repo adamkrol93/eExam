@@ -6,7 +6,7 @@ import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.exceptions.mre.ApproachNotFoundException;
-import pl.lodz.p.it.ssbd2015.moe.facades.ApproachEntityFacadeLocal;
+import pl.lodz.p.it.ssbd2015.mre.facades.ApproachEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mre.managers.AnswersManagerLocal;
 
 import javax.annotation.security.RolesAllowed;
@@ -21,6 +21,7 @@ import java.util.List;
  * Implementacja Endpointu, pozwala na obsługę podejścia (rozpoczęcie, zakończenie edycja).
  * Klasa posiada pole typu {@link ApproachEntity}
  * @author Bartosz Ignaczewski
+ * @author Piotr Jurewicz
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mre.services.AnswerService")
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
@@ -38,7 +39,7 @@ public class AnswerService extends BaseStatefulService implements AnswerServiceR
     @Override
     @RolesAllowed("START_SOLVING_EXAM_MRE")
     public Long createApproach(String title) throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+        return answersManager.createApproach(title);
     }
 
     @Override
