@@ -11,10 +11,7 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
-import javax.persistence.EntityExistsException;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceException;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,7 +64,21 @@ public class QuestionEntityFacade implements QuestionEntityFacadeLocal {
     @Override
     @RolesAllowed("EDIT_QUESTION_MZE")
     public void edit(QuestionEntity entity) throws ApplicationBaseException {
-        QuestionEntityFacadeLocal.super.edit(entity);
+        try {
+            QuestionEntityFacadeLocal.super.create(entity);
+        } catch (IllegalArgumentException ex) {
+            throw new QuestionIllegalArgumentException(entity + " is an illegal argument to Merge.edit(e)", ex);
+        } catch (OptimisticLockException ex) {
+            throw new QuestionOptimisticLockException(entity + " is being edit by someone else", ex);
+        } catch (PersistenceException ex) {
+            if (ex.getMessage().contains("question_question_creator_id_fkey")) {
+                throw new QuestionCreatorForeignKeyException("Creator id is incorrect for entity:", ex);
+            } else if (ex.getMessage().contains("question_question_modifier_id_fkey")) {
+                throw new QuestionModifierForeignKeyException("Modifier id is incorrect for entity:" + entity, ex);
+            } else {
+                throw new QuestionManagementException("Persisting " + entity + " violated a database constraint.", ex);
+            }
+        }
     }
 
     @Override

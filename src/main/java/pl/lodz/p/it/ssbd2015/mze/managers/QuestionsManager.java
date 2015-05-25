@@ -45,6 +45,26 @@ public class QuestionsManager implements QuestionsManagerLocal {
     @Override
     @RolesAllowed("EDIT_QUESTION_MZE")
     public void editQuestion(QuestionEntity question, QuestionEntity newQuestion) throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+
+        String examinerLogin = sessionContext.getCallerPrincipal().getName();
+        ExaminerEntity examinerEntity = examinerEntityFacade.findByLogin(examinerLogin)
+                .orElseThrow(() -> new ExaminerNotFoundException("Examiner with login: " + examinerLogin + " does not exists"));
+
+        if (!question.getAnswers().isEmpty()) {
+            question = new QuestionEntity();
+        }
+
+        question.setContent(newQuestion.getContent());
+        question.setSampleAnswer(newQuestion.getSampleAnswer());
+
+        if (!question.getAnswers().isEmpty()) {
+            question.setCreator(examinerEntity);
+            questionEntityFacade.create(question);
+        } else {
+            question.setModifier(examinerEntity);
+            question.setAnswers(newQuestion.getAnswers());
+            question.setExams(newQuestion.getExams());
+            questionEntityFacade.edit(question);
+        }
     }
 }

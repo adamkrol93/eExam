@@ -4,6 +4,7 @@ import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.mze.QuestionNotFoundException;
 import pl.lodz.p.it.ssbd2015.mze.facades.QuestionEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.managers.QuestionsManagerLocal;
 
@@ -35,12 +36,13 @@ public class EditQuestionService extends BaseStatefulService implements EditQues
     @Override
     @RolesAllowed("EDIT_QUESTION_MZE")
     public QuestionEntity findById(long id) throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+        question = questionEntityFacade.findById(id).orElseThrow(() -> new QuestionNotFoundException("Question with id = " + id + " does not exist"));
+        return question;
     }
 
     @Override
     @RolesAllowed("EDIT_QUESTION_MZE")
     public void editQuestion(QuestionEntity question) throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+        questionsManager.editQuestion(this.question, question);
     }
 }
