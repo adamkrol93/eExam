@@ -55,11 +55,11 @@ public class EditExamServiceTest extends BaseArquillianTest {
     public void shouldRefuseConcurrentRemovalOnTheSameExam() throws Exception {
         ExamEntity exam1 = editExamService.findById(3l);
 
-        ExamEntity exam2 = editExamService.findById(3l);
+        ExamEntity exam2 = editExamService2.findById(3l);
 
         editExamService.removeQuestion(2l);
 
-        editExamService.removeQuestion(4l);
+        editExamService2.removeQuestion(4l);
     }
 
     @Test
