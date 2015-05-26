@@ -8,13 +8,20 @@ import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
+import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
 import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamOptimisticLockException;
 
 import javax.ejb.EJB;
+import java.util.List;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasSize;
 
 /**
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * Created by Tobiasz Kowalski on 26.05.15.
  */
+@UsingDataSet({"ValidUser.yml", "mze/EditExamServiceTest.yml"})
 public class EditExamServiceTest extends BaseArquillianTest {
 
     @EJB
@@ -76,4 +83,21 @@ public class EditExamServiceTest extends BaseArquillianTest {
         editExamService2.removeQuestion(4l);
     }
 
+    @Test
+    @Transactional(TransactionMode.DISABLED)
+    public void shouldFindTeachersNotInExam() throws Exception {
+        editExamService.findById(1);
+
+        List<TeacherEntity> teachers = editExamService.findAllNotInExam();
+
+        assertThat(teachers, hasSize(1));
+    }
+
+    @Test
+    @Transactional(TransactionMode.DISABLED)
+    public void shouldAddTeacherToExam() throws Exception{
+        editExamService.findById(2);
+
+        editExamService.addTeacher(7l);
+    }
 }

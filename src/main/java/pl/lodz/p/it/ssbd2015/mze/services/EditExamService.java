@@ -5,6 +5,7 @@ import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.moe.TeacherNotFoundException;
 import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamNotFoundException;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExamEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.facades.TeacherEntityFacadeLocal;
@@ -54,8 +55,10 @@ public class EditExamService extends BaseStatefulService implements EditExamServ
 
     @Override
     @RolesAllowed("ADD_TEACHER_TO_EXAM_MZE")
-    public List<TeacherEntity> findAllNotInExam() {
-    	throw new UnsupportedOperationException();
+    public List<TeacherEntity> findAllNotInExam() throws ApplicationBaseException {
+
+    	teachersNotInExam= examsManager.findAllNotInExam(this.exam);
+        return teachersNotInExam;
     }
 
     @Override
@@ -67,7 +70,10 @@ public class EditExamService extends BaseStatefulService implements EditExamServ
     @Override
     @RolesAllowed("ADD_TEACHER_TO_EXAM_MZE")
     public void addTeacher(long teacherId) throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+        TeacherEntity teacher = teacherEntityFacade.findById(teacherId)
+                .orElseThrow(()->new TeacherNotFoundException("Teacher with id = " + teacherId + " does not exist"));
+
+        examsManager.addTeacher(this.exam,teacher);
     }
 
     @Override

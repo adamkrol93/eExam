@@ -9,6 +9,7 @@ import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.exceptions.mze.ExaminerNotFoundException;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExamEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExaminerEntityFacadeLocal;
+import pl.lodz.p.it.ssbd2015.mze.facades.TeacherEntityFacadeLocal;
 
 import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
@@ -34,6 +35,9 @@ public class ExamsManager implements ExamsManagerLocal {
 
     @EJB
     private ExaminerEntityFacadeLocal examinerEntityFacade;
+
+    @EJB
+    private TeacherEntityFacadeLocal teacherEntityFacade;
 
     @Resource
     private SessionContext sessionContext;
@@ -67,7 +71,7 @@ public class ExamsManager implements ExamsManagerLocal {
     @Override
     @RolesAllowed("ADD_TEACHER_TO_EXAM_MZE")
     public List<TeacherEntity> findAllNotInExam(ExamEntity exam) throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+    	return teacherEntityFacade.findAllNotInExam(exam);
     }
 
     @Override
@@ -90,7 +94,9 @@ public class ExamsManager implements ExamsManagerLocal {
     @Override
     @RolesAllowed("ADD_TEACHER_TO_EXAM_MZE")
     public void addTeacher(ExamEntity exam, TeacherEntity teacher) throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+        exam.getTeachers().add(teacher);
+
+        examEntityFacade.edit(exam);
     }
 
     @Override

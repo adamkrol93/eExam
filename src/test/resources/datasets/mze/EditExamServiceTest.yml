@@ -1,0 +1,70 @@
+generator:
+  - class_name: "PersonEntity"
+    id_range: 3
+  - class_name: "GroupsEntity"
+    id_range: 7
+  - class_name: "PreviousPasswordEntity"
+    id_range: 0
+  - class_name: "ExamEntity"
+    id_range: 2
+  - class_name: "ApproachEntity"
+    id_range: 0
+  - class_name: "QuestionEntity"
+    id_range: 0
+  - class_name: "AnswerEntity"
+    id_range: 0
+
+person:
+  - person_id: 3
+    person_login: "osoba3"
+    person_last_name: "Sośnicki3"
+    person_name: "Michał3"
+    person_password: "53f1fce859c22ffdeff1adfcc31f670f"
+    person_email: "nie3@ma.pl"
+    person_last_time_login: "[NULL]"
+    person_last_ip_login: "[NULL]"
+    person_active: true
+    person_confirm: true
+    person_date_add: "2015-03-30 22:59:07.393572"
+    person_version: 1
+
+groups:
+  - groups_id: 7
+    person_id: 3
+    groups_name: "teacher"
+    groups_guardian: "[NULL]"
+    groups_active: true
+    groups_version: 1
+
+exam:
+  - exam_id: 1
+    exam_title: "Pewien egzamin 1"
+    exam_count_take_exam: 3
+    exam_date_start: "2015-03-31 22:59:07.393572"
+    exam_date_end: "2015-04-04 22:59:07.393572"
+    exam_duration: 60
+    exam_count_question: 10
+    exam_count_finish_exam: "[NULL]"
+    exam_avg_results: "[NULL]"
+    exam_creator_id: 1
+    exam_modifier_id: "[NULL]"
+    exam_date_add: "2015-03-30 22:59:07.393572"
+    exam_version: 1
+  - exam_id: 2
+    exam_title: "Pewien egzamin 2"
+    exam_count_take_exam: 5
+    exam_date_start: "2015-03-31 22:59:07.393572"
+    exam_date_end: "2015-04-04 22:59:07.393572"
+    exam_duration: 30
+    exam_count_question: 5
+    exam_count_finish_exam: "[NULL]"
+    exam_avg_results: "[NULL]"
+    exam_creator_id: 1
+    exam_modifier_id: "[NULL]"
+    exam_date_add: "2015-03-30 22:59:07.393572"
+    exam_version: 1
+
+exam_groups:
+  - exam_id: 1
+    groups_id: 7
+

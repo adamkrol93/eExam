@@ -16,7 +16,7 @@ public interface EditExamServiceRemote {
 
     ExamEntity findById(long examId) throws ApplicationBaseException;
 
-    List<TeacherEntity> findAllNotInExam();
+    List<TeacherEntity> findAllNotInExam() throws ApplicationBaseException;
 
     void editExam(ExamEntity exam) throws ApplicationBaseException;
 
