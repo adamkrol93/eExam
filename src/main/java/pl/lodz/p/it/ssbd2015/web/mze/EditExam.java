@@ -43,7 +43,6 @@ public class EditExam extends BaseContextBean implements Serializable {
             oldTitle = exam.getTitle();
             questions = new ListDataModel<>(exam.getQuestions());
             teachers = new ListDataModel<>(exam.getTeachers());
-            resetContext();
             setContext(EditExam.class, bean -> bean.id = id);
         });
     }
@@ -70,7 +69,15 @@ public class EditExam extends BaseContextBean implements Serializable {
     }
 
     public String removeQuestion() {
-        throw new UnsupportedOperationException("Removing questions is not supported" + " " + questions.getRowData());
+        return expectApplicationException(() -> {
+            editExamService.removeQuestion(questions.getRowData().getId());
+
+            setContext(EditExam.class, (bean -> {
+                bean.id = id;
+                bean.message = "mze.edit_exam.question_removed_message";
+            }));
+            return "editExam?faces-redirect=true&includeViewParams=true";
+        });
     }
 
     public String addTeacher() {

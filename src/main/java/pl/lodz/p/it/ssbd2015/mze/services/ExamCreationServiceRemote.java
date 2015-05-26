@@ -28,7 +28,9 @@ public interface ExamCreationServiceRemote {
     List<TeacherEntity> findAllTeachers();
 
     /**
-     * Tworzy nowy egzamin na podstawie przekazanego obiektu, wziążąc z nim pytania i nauczycieli o przekazanych idkach.
+     * Tworzy nowy egzamin, wziążąc z nim od razu wskazane pytania i nauczycieli.
+     * Przekazywane są tylko klucze główne pytań i nauczycieli, więcej nie potrzeba, a byłoby to kosztowne przy
+     * przesyłaniu zdalnym.
      * @param exam Obiekt, z którego część pól zostanie naniesiona na tworzony egzamin.
      * @param questions Idki pytań, z którymi ma być na początku związany egzamin.
      * @param teachers Idki nauczycieli, z którymi ma być na początku związany egzamin.

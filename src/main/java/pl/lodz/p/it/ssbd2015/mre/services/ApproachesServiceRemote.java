@@ -15,14 +15,15 @@ import java.util.List;
 public interface ApproachesServiceRemote {
 
     /**
-     * Zwraca listę podejść dla obecnie zalogowanego uczenia.
+     * Zwraca listę podejść ucznia zalogowanemu uczniowi.
      * @return Lista podejść obecnie zalogowanego ucznia.
      * @throws ApplicationBaseException Jeżeli np. osoba wywołująca nie jest studentem.
      */
     List<ApproachEntity> listAllForStudent() throws ApplicationBaseException;
 
     /**
-     * Zwraca listę będącą złączeniem list podejść wszystkich podopiecznych obecnie zalogowanego opiekuna.
+     * Zwraca listę podejść ucznia jego opiekunowi.
+     * Zwrócona lista zawiera jest złączeniem list podejść dla wszystkich podopiecznych obecnie zalogowanego opiekuna.
      * @return Lista podejść wszystkich uczniów obecnie zalogowanego opiekuna.
      * @throws ApplicationBaseException Jeżeli np. nie uda się odnaleźć encji obecnie zalogowanego opiekuna.
      */

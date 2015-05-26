@@ -46,8 +46,9 @@ public class EditExamService extends BaseStatefulService implements EditExamServ
     @RolesAllowed("EDIT_EXAM_MZE")
     public ExamEntity findById(long examId) throws ApplicationBaseException {
         exam = examEntityFacade.findById(examId).orElseThrow(() -> new ExamNotFoundException("Exam with id = " + examId + " does not exist"));
-        exam.getQuestions().size();
-        exam.getTeachers().size();
+
+        exam.getQuestions().isEmpty();
+        exam.getTeachers().isEmpty();
         return exam;
     }
 
@@ -72,7 +73,7 @@ public class EditExamService extends BaseStatefulService implements EditExamServ
     @Override
     @RolesAllowed("REMOVE_QUESTION_FROM_EXAM_MZE")
     public void removeQuestion(long questionId) throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+        examsManager.removeQuestion(exam, questionId);
     }
 
     @Override

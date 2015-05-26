@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.*;
 import javax.interceptor.Interceptors;
+import java.util.Iterator;
 import java.util.List;
 
 import static pl.lodz.p.it.ssbd2015.utils.ExceptionUtils.elvis;
@@ -95,7 +96,28 @@ public class ExamsManager implements ExamsManagerLocal {
     @Override
     @RolesAllowed("REMOVE_QUESTION_FROM_EXAM_MZE")
     public void removeQuestion(ExamEntity exam, long questionId) throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+        boolean found = false;
+
+        for (Iterator<QuestionEntity> it = exam.getQuestions().iterator(); it.hasNext();) {
+            QuestionEntity question = it.next();
+            if (question.getId() == questionId) {
+                it.remove();
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            throw new IllegalArgumentException("Attempt to remove Question with id = " + questionId
+                    + " from exam " + exam + " failed because it didn't have this question.");
+        }
+
+        String login = sessionContext.getCallerPrincipal().getName();
+        ExaminerEntity modifier = examinerEntityFacade.findByLogin(login)
+                .orElseThrow(() -> new ExaminerNotFoundException("Examiner with login " + login + "does not exist"));
+        exam.setModifier(modifier);
+
+        examEntityFacade.edit(exam);
     }
 
     @Override

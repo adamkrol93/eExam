@@ -22,6 +22,12 @@ public interface EditExamServiceRemote {
 
     void addTeacher(long teacherId) throws ApplicationBaseException;
 
+    /**
+     * Usuwa pytanie z egzaminu, jeżeli nie istnieją jeszcze podejścia do niego.
+     * Pytanie jest usuwane z obecnie edytowanego egzaminu.
+     * @param questionId Klucz główny pytania, które zostanie usunięte.
+     * @throws ApplicationBaseException Rzucany, gdy nie zostanie znaleziony obecnie zalogowany egzaminator.
+     */
     void removeQuestion(long questionId) throws ApplicationBaseException;
 
     void removeTeacher(long teacherId) throws ApplicationBaseException;
