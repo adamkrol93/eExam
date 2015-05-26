@@ -52,7 +52,7 @@ public class ExamEntityFacade implements ExamEntityFacadeLocal {
             throw new ExamExistsException(entity + " has been already persisted.", ex);
         } catch (PersistenceException ex) {
             if (ex.getMessage().contains("exam_title_key")) {
-                throw new ExamTitleNotUnique("Title " + entity.getTitle() + " is not unique.", ex);
+                throw new ExamTitleNotUniqueException("Title " + entity.getTitle() + " is not unique.", ex);
             } else if (ex.getMessage().contains("exam_exam_creator_id_fkey")) {
                 throw new ExamCreatorForeignKeyException("Creator id is incorrect in entity: " + entity, ex);
             } else if (ex.getMessage().contains("exam_exam_modifier_id_fkey")) {
@@ -78,7 +78,7 @@ public class ExamEntityFacade implements ExamEntityFacadeLocal {
             throw new ExamOptimisticLockException(entity + " is being edit by someone else", ex);
         } catch (PersistenceException ex) {
             if (ex.getMessage().contains("exam_title_key")) {
-                throw new ExamTitleNotUnique("Title " + entity.getTitle() + " is not unique.", ex);
+                throw new ExamTitleNotUniqueException("Title " + entity.getTitle() + " is not unique.", ex);
             } else if (ex.getMessage().contains("exam_exam_creator_id_fkey")) {
                 throw new ExamCreatorForeignKeyException("Creator id is incorrect in entity: " + entity, ex);
             } else if (ex.getMessage().contains("exam_exam_modifier_id_fkey")) {

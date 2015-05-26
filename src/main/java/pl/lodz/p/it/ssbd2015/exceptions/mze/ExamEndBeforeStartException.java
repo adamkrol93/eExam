@@ -4,12 +4,12 @@ package pl.lodz.p.it.ssbd2015.exceptions.mze;
  * Wyjątek sygnalizujący, że data końca egzaminu została ustalona na datę przed datą rozpoczęcia.
  * @author Michał Sośnicki
  */
-public class ExamEndBeforeStart extends ExamManagementException {
-    public ExamEndBeforeStart(String message) {
+public class ExamEndBeforeStartException extends ExamManagementException {
+    public ExamEndBeforeStartException(String message) {
         super(message);
     }
 
-    public ExamEndBeforeStart(String message, Throwable cause) {
+    public ExamEndBeforeStartException(String message, Throwable cause) {
         super(message, cause);
     }
 

@@ -3,7 +3,7 @@ package pl.lodz.p.it.ssbd2015.web.mze;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
-import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamTitleNotUnique;
+import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamTitleNotUniqueException;
 import pl.lodz.p.it.ssbd2015.mze.services.EditExamServiceRemote;
 import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
 import pl.lodz.p.it.ssbd2015.web.localization.MessageUtils;
@@ -51,7 +51,7 @@ public class EditExam extends BaseContextBean implements Serializable {
         return expectApplicationException(() -> {
             try {
                 editExamService.editExam(exam);
-            } catch (ExamTitleNotUnique ex) {
+            } catch (ExamTitleNotUniqueException ex) {
                 message = null;
                 MessageUtils.addLocalizedMessage(ex.getCode(), "edit-exam-form:title");
                 return null;
