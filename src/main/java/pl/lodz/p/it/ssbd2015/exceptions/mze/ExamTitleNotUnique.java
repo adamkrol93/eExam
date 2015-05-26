@@ -1,7 +1,7 @@
 package pl.lodz.p.it.ssbd2015.exceptions.mze;
 
 /**
- * Wyjątek sygnalizujący, że próbę naruszenia unikalności nazwy egzaminu
+ * Wyjątek sygnalizujący próbę naruszenia unikalności nazwy egzaminu
  * @author Michał Sośnicki
  */
 public class ExamTitleNotUnique extends ExamManagementException {

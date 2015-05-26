@@ -33,7 +33,10 @@
         </div>
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h3><h:outputText value="#{i18n[createExamMZE.message]}" styleClass="text-success"/></h3>
+                <h3>
+                    <h:outputText value="#{i18n[createExamMZE.message]}" rendered="#{not facesContext.validationFailed}"
+                                  styleClass="text-success"/>
+                </h3>
             </div>
         </div>
         <div class="row">

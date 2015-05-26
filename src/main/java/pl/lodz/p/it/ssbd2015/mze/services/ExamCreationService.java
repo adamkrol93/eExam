@@ -6,6 +6,7 @@ import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamEndBeforeStart;
 import pl.lodz.p.it.ssbd2015.mze.facades.QuestionEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.facades.TeacherEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.managers.ExamsManagerLocal;
@@ -64,7 +65,11 @@ public class ExamCreationService extends BaseStatefulService implements ExamCrea
     @Override
     @RolesAllowed("CREATE_EXAM_MZE")
     public void create(ExamEntity exam, List<Long> questionIds, List<Long> teacherIds) throws ApplicationBaseException {
-    	ExamEntity newExam = new ExamEntity();
+        if (exam.getDateStart() != null && exam.getDateEnd() != null && !exam.getDateEnd().after(exam.getDateStart())) {
+            throw new ExamEndBeforeStart("End date to " + exam.getDateEnd() + " which is before start date " + exam.getDateStart());
+        }
+
+        ExamEntity newExam = new ExamEntity();
     	newExam.setTitle(exam.getTitle());
     	newExam.setCountTakeExam(exam.getCountTakeExam());
     	newExam.setCountQuestion(exam.getCountQuestion());
