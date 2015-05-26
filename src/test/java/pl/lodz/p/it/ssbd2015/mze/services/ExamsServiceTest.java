@@ -65,7 +65,7 @@ public class ExamsServiceTest extends BaseArquillianTest {
     public void shouldFindAllQuestions() throws Exception {
         List<QuestionEntity> questionEntity = examsService.findAllQuestions();
 
-        assertThat(questionEntity, hasSize(1));
+        assertThat(questionEntity, hasSize(2));
     }
 
     @Test

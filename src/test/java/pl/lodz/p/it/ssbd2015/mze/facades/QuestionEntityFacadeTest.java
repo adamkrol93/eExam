@@ -6,7 +6,6 @@ import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
 import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
-import pl.lodz.p.it.ssbd2015.TestUtils;
 import pl.lodz.p.it.ssbd2015.entities.ExaminerEntity;
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
@@ -24,6 +23,7 @@ import static pl.lodz.p.it.ssbd2015.Present.present;
 
 /**
  * @author Andrzej Kurczewski
+ * @author Bartosz Ignaczewski
  */
 @UsingDataSet({"ValidUser.yml", "mze/QuestionEntityFacadeTest.yml"})
 public class QuestionEntityFacadeTest extends BaseArquillianTest {
@@ -89,7 +89,8 @@ public class QuestionEntityFacadeTest extends BaseArquillianTest {
 
     @Test
     @Transactional(TransactionMode.DISABLED)
-    @ShouldMatchDataSet(value = "mze/expected-QuestionEntityFacadeTest#shouldSaveQuestionInDatabase.yml")
+    @ShouldMatchDataSet(value = "mze/expected-QuestionEntityFacadeTest#shouldSaveQuestionInDatabase.yml",
+            excludeColumns = {"question_date_add"})
     public void shouldSaveQuestionInDatabase() {
         ExaminerEntity examiner = mandatoryWrapper.withExaminerEntityFacadeLocal(e -> e.findById(4l).get());
 
@@ -97,7 +98,6 @@ public class QuestionEntityFacadeTest extends BaseArquillianTest {
         question.setContent("Jak?");
         question.setSampleAnswer("Tak");
         question.setCreator(examiner);
-        question.setDateAdd(TestUtils.makeCalendar(2015, 4, 8, 22, 0, 1));
 
         mandatoryWrapper.getQuestionEntityFacadeLocal(q -> {
             try {
@@ -117,7 +117,6 @@ public class QuestionEntityFacadeTest extends BaseArquillianTest {
 
         question.setSampleAnswer("Nowa przykładowa odpowiedź");
         question.setModifier(examiner);
-        question.setDateModification(TestUtils.makeCalendar(2015, 4, 8, 23, 0, 1));
 
         mandatoryWrapper.getQuestionEntityFacadeLocal(q -> {
             try {

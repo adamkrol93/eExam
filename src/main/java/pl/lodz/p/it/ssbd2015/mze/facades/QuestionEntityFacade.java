@@ -65,7 +65,7 @@ public class QuestionEntityFacade implements QuestionEntityFacadeLocal {
     @RolesAllowed("EDIT_QUESTION_MZE")
     public void edit(QuestionEntity entity) throws ApplicationBaseException {
         try {
-            QuestionEntityFacadeLocal.super.create(entity);
+            QuestionEntityFacadeLocal.super.edit(entity);
         } catch (IllegalArgumentException ex) {
             throw new QuestionIllegalArgumentException(entity + " is an illegal argument to Merge.edit(e)", ex);
         } catch (OptimisticLockException ex) {
