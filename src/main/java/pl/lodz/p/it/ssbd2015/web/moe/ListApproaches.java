@@ -10,6 +10,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 import java.io.Serializable;
 import java.util.List;
 
@@ -26,6 +28,8 @@ public class ListApproaches extends BaseContextBean implements Serializable {
     private ApproachesServiceRemote approachesService;
 
     private List<ExamEntity> examEntityList;
+
+    private transient DataModel<ApproachEntity> approaches;
 
     @PostConstruct
     private void initializeModel() {
@@ -46,6 +50,26 @@ public class ListApproaches extends BaseContextBean implements Serializable {
             }
         }
         return "moe.approach_list.approaches.to_evaluate.no";
+    }
+
+    /**
+     * Metoda korzysta z dobrodziejstw contextMapy i ustawia
+     * odpowiednie identyfikator do przejścia do szczegółów podejścia
+     * @return strona na którą przekierowywuje po skończonej operacji
+     */
+    public String gotoDetails() {
+        long approachId = approaches.getRowData().getId();
+        setContext(ShowApproachDetails.class, bean -> bean.setId(approachId));
+        return String.format("showApproachDetails?uuid=%s&faces-redirect=true", getUuid());
+    }
+
+    public DataModel<ApproachEntity> getApproaches(ExamEntity exam) {
+        for (ExamEntity examEntity : examEntityList) {
+            if (examEntity.getId() == exam.getId()) {
+                this.approaches = new ListDataModel<>(examEntity.getApproaches());
+            }
+        }
+        return approaches;
     }
 
     public List<ExamEntity> getExamEntityList()

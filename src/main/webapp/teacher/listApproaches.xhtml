@@ -4,9 +4,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="../template/commonLayout.xhtml">
+    <f:metadata>
+        <f:viewParam name="uuid" value="#{listApproachesMOE.uuid}" converter="uuidConverter"/>
+        <f:viewAction action="#{listApproachesMOE.checkContext}" />
+    </f:metadata>
     <ui:define name="head">
         <title><h:outputText value="#{i18n['moe.approach_list.approaches']}"/></title>
     </ui:define>
@@ -19,7 +23,6 @@
                     value="#{i18n['moe.approach_list.approaches']}"/></li>
         </ol>
     </ui:define>
-
     <ui:define name="content">
         <div class="row">
             <div class="page-header text-center">
@@ -32,7 +35,7 @@
                     <ui:repeat value="#{listApproachesMOE.examEntityList}" var="exam">
                         <h3><h:outputText value="#{exam.title}"/></h3>
                         <h:form>
-                            <h:dataTable var="approach" value="#{exam.approaches}" styleClass="table table-striped">
+                            <h:dataTable var="approach" value="#{listApproachesMOE.getApproaches(exam)}" styleClass="table table-striped">
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="#{i18n['moe.approach_list.approaches.to_evaluate']}"/>
@@ -57,9 +60,8 @@
                                     <f:facet name="header">
                                         <h:outputText value="#{i18n['moe.approach_list.actions']}"/>
                                     </f:facet>
-                                    <h:link value="#{i18n['moe.approach_list.actions.show']}" outcome="index.xhtml">
-                                        <!-- TODO: przkierowania do strony szczegółów podejścia-->
-                                    </h:link>
+                                    <h:commandButton value="#{i18n['moe.approach_list.actions.show']}"
+                                                     action="#{listApproachesMOE.gotoDetails}"/>
                                 </h:column>
                             </h:dataTable>
                         </h:form>
@@ -67,7 +69,6 @@
                 </div>
             </div>
         </div>
-
     </ui:define>
 </ui:composition>
 </html>
