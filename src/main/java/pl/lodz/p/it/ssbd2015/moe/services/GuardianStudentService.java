@@ -16,6 +16,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Metoda implementująca {@link GuardianStudentServiceRemote} pozwala na wykonanie metod związanych z łączeniem opiekunów i studentów.
@@ -43,14 +44,20 @@ public class GuardianStudentService extends BaseStatefulService implements Guard
     @Override
     @RolesAllowed("ADD_STUDENTS_GUARDIAN_MOE")
     public List<GuardianEntity> findAllGuardians() {
-        this.guardians = guardianEntityFacade.findAll();
+        this.guardians = guardianEntityFacade.findAll()
+                            .stream()
+                            .filter((guardian) -> guardian.isActive() && guardian.isConfirm() && guardian.isGroupActive())
+                            .collect(Collectors.toList());
         return this.guardians;
     }
 
     @Override
     @RolesAllowed("ADD_STUDENTS_GUARDIAN_MOE")
     public List<StudentEntity> findAllStudents() {
-        this.students = studentEntityFacade.findAll();
+        this.students = studentEntityFacade.findAll()
+                            .stream()
+                            .filter((student) -> student.isActive() && student.isConfirm() && student.isGroupActive())
+                .collect(Collectors.toList());
         return this.students;
     }
 
