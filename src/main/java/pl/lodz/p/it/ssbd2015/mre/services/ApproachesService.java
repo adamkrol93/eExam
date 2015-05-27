@@ -92,19 +92,13 @@ public class ApproachesService extends BaseStatefulService implements Approaches
     @RolesAllowed("LIST_AVAILABLE_EXAMS")
     public List<ExamEntity> findAvailableExams() throws ApplicationBaseException {
 
-        List<ExamEntity> exams = answersManager.findAvailableExams();
         String login = sessionContext.getCallerPrincipal().getName();
-        StudentEntity student= studentEntityFacade.findByLogin(login)
+        StudentEntity student = studentEntityFacade.findByLogin(login)
                 .orElseThrow(() -> new StudentNotFoundException("Student with login: " + login + " does not exists"));
 
-        List<ApproachEntity> studentApproaches=student.getEntered();
-        List<ExamEntity> allExams = studentApproaches.stream().map(ApproachEntity::getExam).collect(Collectors.toList());
-        Set<ExamEntity> uniqueExams = new HashSet<>(allExams);
+        List<ExamEntity> exams = answersManager.findAvailableExams();
+        List<ExamEntity> studentExams = new ArrayList<>(student.getEntered()).stream().map(ApproachEntity::getExam).collect(Collectors.toList());
 
-        for(ExamEntity exam : uniqueExams)
-            if(exams.contains(exam) && Collections.frequency(allExams,exam)>=exam.getCountTakeExam())
-                    exams.remove(exam);
-
-        return exams;
+        return exams.stream().filter(e -> Collections.frequency(studentExams, e) < e.getCountTakeExam()).collect(Collectors.toList());
     }
 }

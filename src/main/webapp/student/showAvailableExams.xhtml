@@ -39,6 +39,12 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
+                                    <h:outputText value="#{i18n['mre.exam.list.countApproaches']}"/>
+                                </f:facet>
+                                <h:outputText value="#{showAvailableExamsMRE.getApprochesCount(exam)}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
                                     <h:outputText value="#{i18n['mre.exam.list.maxApproaches']}"/>
                                 </f:facet>
                                 <h:outputText value="#{exam.countTakeExam}"/>
