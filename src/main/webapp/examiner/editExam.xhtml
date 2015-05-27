@@ -174,12 +174,6 @@
                                     </span>
                                 </div>
                             </ui:repeat>
-                            <h:commandLink styleClass="list-group-item list-group-item-success" action="#{editExamMZE.addTeacher}">
-                                <h4 class="list-group-item-heading">
-                                    <span class="glyphicon glyphicon-plus"/>
-                                    <h:outputText value="#{i18n['mze.edit_exam.add_teacher']}"/>
-                                </h4>
-                            </h:commandLink>
                         </h:form>
                     </div>
                 </div>
@@ -202,6 +196,31 @@
                                     <span class="pull-right">
                                         <h:commandLink styleClass="btn btn-danger" action="#{editExamMZE.removeQuestion}">
                                             <span class="glyphicon glyphicon-trash"/>
+                                        </h:commandLink>
+                                    </span>
+                                </div>
+                            </ui:repeat>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>
+                        <h:outputText value="#{i18n['mze.edit_exam.add_teacher']}" rendered="#{editExamMZE.teachersNotInExam.isRowAvailable()}"/>
+                    </h2>
+                    <div class="list-group">
+                        <h:form id="edit-exam-newTeachers-form">
+                            <ui:repeat value="#{editExamMZE.teachersNotInExam}" var="teacher">
+                                <div class="list-group-item clearfix">
+                                    <div class="pull-left">
+                                        <h4 class="list-group-item-heading">
+                                            <h:outputText value="#{teacher.personName} #{teacher.lastName}"/>
+                                        </h4>
+                                    </div>
+                                    <span class="pull-right">
+                                        <h:commandLink styleClass="btn btn-info" action="#{editExamMZE.addTeacher}">
+                                            <span class="glyphicon glyphicon-plus"/>
                                         </h:commandLink>
                                     </span>
                                 </div>

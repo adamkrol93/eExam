@@ -17,7 +17,9 @@ import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Implementacje Endpointu zgodnie z interfejsem {@link EditExamServiceRemote}.
@@ -57,7 +59,9 @@ public class EditExamService extends BaseStatefulService implements EditExamServ
     @RolesAllowed("ADD_TEACHER_TO_EXAM_MZE")
     public List<TeacherEntity> findAllNotInExam() throws ApplicationBaseException {
 
-    	teachersNotInExam= examsManager.findAllNotInExam(this.exam);
+    	teachersNotInExam= examsManager.findAllNotInExam(this.exam).stream()
+        .filter(t -> t.isActive() && t.isConfirm() && t.isGroupActive()).collect(Collectors.toList());
+
         return teachersNotInExam;
     }
 
@@ -70,8 +74,10 @@ public class EditExamService extends BaseStatefulService implements EditExamServ
     @Override
     @RolesAllowed("ADD_TEACHER_TO_EXAM_MZE")
     public void addTeacher(long teacherId) throws ApplicationBaseException {
-        TeacherEntity teacher = teacherEntityFacade.findById(teacherId)
-                .orElseThrow(()->new TeacherNotFoundException("Teacher with id = " + teacherId + " does not exist"));
+        TeacherEntity teacher = teachersNotInExam.stream()
+                .filter(t -> t.getId()==teacherId)
+                .findFirst()
+                .get();
 
         examsManager.addTeacher(this.exam,teacher);
     }

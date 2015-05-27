@@ -3,6 +3,7 @@ package pl.lodz.p.it.ssbd2015.web.mze;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
+import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamTitleNotUniqueException;
 import pl.lodz.p.it.ssbd2015.mze.services.EditExamServiceRemote;
 import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
@@ -14,6 +15,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Backing bean dla formularza edycji egzaminu.
@@ -33,6 +35,7 @@ public class EditExam extends BaseContextBean implements Serializable {
     private String oldTitle;
     private transient DataModel<QuestionEntity> questions;
     private transient DataModel<TeacherEntity> teachers;
+    private DataModel<TeacherEntity> teachersNotInExam;
 
     private String message;
 
@@ -43,6 +46,7 @@ public class EditExam extends BaseContextBean implements Serializable {
             oldTitle = exam.getTitle();
             questions = new ListDataModel<>(exam.getQuestions());
             teachers = new ListDataModel<>(exam.getTeachers());
+            teachersNotInExam = new ListDataModel<>( editExamService.findAllNotInExam());
             setContext(EditExam.class, bean -> bean.id = id);
         });
     }
@@ -81,7 +85,16 @@ public class EditExam extends BaseContextBean implements Serializable {
     }
 
     public String addTeacher() {
-        throw new UnsupportedOperationException("Adding teachers is not supported");
+        return expectApplicationException(()->{
+            editExamService.addTeacher(teachersNotInExam.getRowData().getId());
+
+            setContext(EditExam.class, (bean ->{
+                bean.id = id;
+                bean.message = "mze.edit_exam.teacher_add_message";
+            }));
+            return "editExam?faces-redirect=true&includeViewParams=true";
+        });
+
     }
 
     public ExamEntity getExam() {
@@ -106,6 +119,8 @@ public class EditExam extends BaseContextBean implements Serializable {
     public DataModel<TeacherEntity> getTeachers() {
         return teachers;
     }
+
+    public DataModel<TeacherEntity> getTeachersNotInExam() {return teachersNotInExam;}
 
     public String getMessage() {
         return message;
