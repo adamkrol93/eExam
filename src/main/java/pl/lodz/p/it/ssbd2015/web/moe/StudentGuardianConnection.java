@@ -31,13 +31,13 @@ public class StudentGuardianConnection extends BaseContextBean {
 
     private List<StudentEntity> studentEntityList;
 
-    private transient int guardian;
+    private int guardian;
 
-    private transient int student = 0;
+    private int student = 0;
 
-    private transient List<SelectItem> guardians;
+    private List<SelectItem> guardians;
 
-    private transient List<SelectItem> students;
+    private List<SelectItem> students;
 
     private String message;
 
