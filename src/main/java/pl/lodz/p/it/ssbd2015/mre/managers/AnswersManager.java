@@ -46,7 +46,19 @@ public class AnswersManager implements AnswersManagerLocal {
     @Override
     @RolesAllowed("ANSWER_QUESTION_MRE")
     public void editApproach(ApproachEntity approach, List<AnswerEntity> answers) throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+
+        for(AnswerEntity editedAnswer : answers)
+        {
+            for(AnswerEntity answerEntity : approach.getAnswers())
+            {
+                if(editedAnswer.getId() == answerEntity.getId())
+                {
+                    answerEntity.setContent(editedAnswer.getContent());
+                    answerEntity.setDateModification(Calendar.getInstance());
+                }
+            }
+        }
+        approachEntityFacade.edit(approach);
     }
 
     @Override
@@ -58,7 +70,6 @@ public class AnswersManager implements AnswersManagerLocal {
     @Override
     @RolesAllowed("LIST_AVAILABLE_EXAMS")
     public List<ExamEntity> findAvailableExams() {
-
         return examEntityFacade.findByDate(Calendar.getInstance());
     }
 }
