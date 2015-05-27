@@ -9,10 +9,13 @@ import pl.lodz.p.it.ssbd2015.mre.services.ApproachesServiceRemote;
 import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.ejb.EJB;
+import javax.ejb.SessionContext;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,13 +33,11 @@ public class ShowAvailableExams extends BaseContextBean{
 
     private List<ExamEntity> examEntities;
 
-    private List<ApproachEntity> approachEntities;
 
     @PostConstruct
     private void initializeModel() {
         try {
             examEntities= approachesService.findAvailableExams();
-            approachEntities= approachesService.listAllForStudent();
         } catch (ApplicationBaseException e) {
             e.printStackTrace();
         }
@@ -46,6 +47,15 @@ public class ShowAvailableExams extends BaseContextBean{
 
 
     public long getApprochesCount(ExamEntity exam){
-        return new ArrayList<>(approachEntities).stream().filter(a -> a.getExam().equals(exam)).count();
+
+        //String login = sessionContext.getCallerPrincipal().getName();
+
+
+
+        String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+
+        return new ArrayList<>(exam.getApproaches()).stream().filter(a -> a.getEntrant().getLogin().equals(login)).count();
+
+        //return new ArrayList<>(approachEntities).stream().filter(a -> a.getExam().equals(exam)).count();
     }
 }
