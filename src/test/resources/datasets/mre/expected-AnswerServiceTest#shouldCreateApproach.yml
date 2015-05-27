@@ -6,3 +6,24 @@ approach:
     approach_exam_id: 1
     approach_entrant_id: 3
     approach_version: 1
+answer:
+  - answer_id: 1
+    answer_approach_id: 1
+    answer_grade: 0
+    answer_content: ""
+  - answer_id: 2
+    answer_approach_id: 1
+    answer_grade: 0
+    answer_content: ""
+  - answer_id: 3
+    answer_approach_id: 1
+    answer_grade: 0
+    answer_content: ""
+  - answer_id: 4
+    answer_approach_id: 1
+    answer_grade: 0
+    answer_content: ""
+  - answer_id: 5
+    answer_approach_id: 1
+    answer_grade: 0
+    answer_content: ""
