@@ -1,6 +1,9 @@
 package pl.lodz.p.it.ssbd2015.mze.services;
 
+import org.jboss.arquillian.persistence.ShouldMatchDataSet;
 import org.jboss.arquillian.persistence.UsingDataSet;
+import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
+import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
@@ -13,6 +16,7 @@ import static org.hamcrest.Matchers.hasSize;
 
 /**
  * @author Adam Król
+ * @author Bartosz Ignaczewski
  */
 @UsingDataSet({"ValidUser.yml", "mze/ExamListServiceTest.yml"})
 public class ExamListServiceTest extends BaseArquillianTest{
@@ -25,5 +29,14 @@ public class ExamListServiceTest extends BaseArquillianTest{
         List<ExamEntity> exams = examListService.findAll();
 
         assertThat(exams,hasSize(4));
+    }
+
+    @Test
+    @Transactional(TransactionMode.DISABLED)
+    @ShouldMatchDataSet(value = "mze/expected-ExamListServiceTest#shouldCloneExam.yml",
+            excludeColumns = "exam_date_add")
+    public void shouldCloneExam() throws Exception {
+        examListService.findAll();
+        examListService.cloneExam(4l);
     }
 }

@@ -65,7 +65,21 @@ public class ExamsManager implements ExamsManagerLocal {
     @Override
     @RolesAllowed("CLONE_EXAM_MZE")
     public void cloneExam(ExamEntity exam) throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+        String login = sessionContext.getCallerPrincipal().getName();
+        ExaminerEntity examiner = examinerEntityFacade.findByLogin(login).orElseThrow(() -> new ExaminerNotFoundException("Examiner with login " + login + "does not exist"));
+
+        ExamEntity newExam = new ExamEntity();
+        newExam.setCreator(examiner);
+        newExam.setCountTakeExam(exam.getCountTakeExam());
+        newExam.setCountQuestion(exam.getCountQuestion());
+        newExam.setDuration(exam.getDuration());
+        newExam.setDateStart(exam.getDateStart());
+        newExam.setDateEnd(exam.getDateEnd());
+        newExam.setQuestions(exam.getQuestions());
+        newExam.setTeachers(exam.getTeachers());
+        newExam.setTitle(exam.getTitle() + " kopia");
+
+        examEntityFacade.create(newExam);
     }
 
     @Override
