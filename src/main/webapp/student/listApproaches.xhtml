@@ -3,10 +3,14 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="../template/commonLayout.xhtml">
+    <f:metadata>
+        <f:viewParam name="uuid" value="#{listApproachesStudentMRE.uuid}" converter="uuidConverter"/>
+        <f:viewAction action="#{listApproachesStudentMRE.checkContext}" />
+    </f:metadata>
     <ui:define name="head">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title><h:outputText value="#{i18n['mre.approach_list.title']}"/></title>
@@ -57,8 +61,8 @@
                                 <f:facet name="header">
                                     <h:outputText value="#{i18n['mre.approach_list.action']}"/>
                                 </f:facet>
-                                <h:link value="#{i18n['mre.approach_list.show_details_button']} "
-                                        outcome="approachDetails.xhtml"/>
+                                <h:commandLink value="#{i18n['mre.approach_list.show_details_button']} "
+                                                 action="#{listApproachesStudentMRE.showDetails}"/>
                             </h:column>
                         </h:dataTable>
                     </h:form>

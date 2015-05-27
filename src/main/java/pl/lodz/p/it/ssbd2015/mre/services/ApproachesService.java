@@ -7,7 +7,6 @@ import pl.lodz.p.it.ssbd2015.entities.StudentEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
-import pl.lodz.p.it.ssbd2015.exceptions.moe.TeacherNotFoundException;
 import pl.lodz.p.it.ssbd2015.exceptions.mre.ApproachNotFoundException;
 import pl.lodz.p.it.ssbd2015.exceptions.mre.GuardianNotFoundException;
 import pl.lodz.p.it.ssbd2015.exceptions.mre.StudentNotFoundException;
@@ -83,9 +82,11 @@ public class ApproachesService extends BaseStatefulService implements Approaches
     @Override
     @RolesAllowed("SHOW_APPROACHES_MRE")
     public ApproachEntity findById(long id) throws ApplicationBaseException {
-        return approachEntityFacade.findById(id)
-                                       .orElseThrow(() -> new ApproachNotFoundException(
-                                           "Approach with id = " + id + " does not exists"));
+        ApproachEntity approach = approachEntityFacade.findById(id)
+                                                      .orElseThrow(() -> new ApproachNotFoundException(
+                                                          "Approach with id = " + id + " does not exists"));
+        approach.getAnswers().size();
+        return approach;
     }
 
     @Override

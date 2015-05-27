@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="../template/commonLayout.xhtml">
+    <f:metadata>
+        <f:viewParam name="uuid" value="#{showApproachDetailsMRE.uuid}" converter="uuidConverter"/>
+        <f:viewAction action="#{showApproachDetailsMRE.checkContext}"/>
+    </f:metadata>
+    <ui:define name="head">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title><h:outputText value="#{i18n['mre.show_approach.guardian.title']}"/></title>
+    </ui:define>
+    <ui:define name="breadcrumps">
+        <ol class="breadcrumb">
+            <li><h:link outcome="/index" value="#{i18n['home.page']}"/></li>
+            <li><h:link outcome="/guardian/index"
+                        value="#{i18n['guardian.page.simple_title']}"/></li>
+            <li class="active"><h:outputText
+                    value="#{i18n['mre.show_approach.guardian.title']}"/></li>
+        </ol>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="page-header text-center">
+            <h1><h:outputText value="#{i18n['mre.show_approach.guardian.title']}"/></h1>
+        </div>
+        <div class="page-header text-center">
+            <h2><h:outputText value="#{i18n['mre.show_approach.guardian.exam_title']} #{showApproachDetailsMRE.approach.exam.title}"/></h2>
+            <p>
+                <h:outputText value="#{i18n['mre.show_approach.guardian.start']} "/>
+                <h:outputText value="#{showApproachDetailsMRE.approach.dateStart.time}">
+                    <f:convertDateTime pattern="HH:mm, dd.MM.yyyy"/>
+                </h:outputText>
+                <h:outputText value=", #{i18n['mre.show_approach.guardian.end']} "/>
+                <h:outputText value="#{showApproachDetailsMRE.approach.dateEnd.time}">
+                    <f:convertDateTime pattern="HH:mm, dd.MM.yyyy"/>
+                </h:outputText>
+            </p>
+        </div>
+        <ui:fragment rendered="#{showApproachDetailsMRE.approach.disqualification}">
+            <div class="alert alert-danger">
+                <h3>
+                    <h:outputText value="#{i18n['mre.show_approach.guardian.disqualified']}"/>
+                </h3>
+            </div>
+        </ui:fragment>
+        <ui:fragment rendered="#{not showApproachDetailsMRE.approach.disqualification}">
+            <div class="alert alert-#{showApproachDetailsMRE.resultStyle}">
+                <h3>
+                    <h:outputText value="#{i18n['mre.show_approach.guardian.result']} #{showApproachDetailsMRE.points}/#{showApproachDetailsMRE.maxPoints}"/>
+                </h3>
+            </div>
+            <ui:repeat value="#{showApproachDetailsMRE.approach.answers}" var="answer" >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><h:outputText value="#{answer.question.content}"/>
+                        <span class="pull-right">
+                            <ui:fragment rendered="#{answer.teacher != null}">
+                                <h:outputText value="#{answer.teacher.personName} #{answer.teacher.lastName} #{i18n['mre.show_approach.guardian.grade']}"/>
+                                <ui:repeat value="#{showApproachDetailsMRE.repeat(answer.grade)}" var="i">
+                                    <span class="glyphicon glyphicon-star"/>
+                                </ui:repeat>
+                                <ui:repeat value="#{showApproachDetailsMRE.repeat(2 - answer.grade)}" var="i">
+                                    <span class="glyphicon glyphicon-star-empty"/>
+                                </ui:repeat>
+                            </ui:fragment>
+                            <ui:fragment rendered="#{answer.teacher == null}">
+                                <h:outputText value="#{i18n['mre.show_approach.guardian.no_grade']}"/>
+                            </ui:fragment>
+                        </span>
+                        </h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            <h:outputText value=" #{answer.content}"/>
+                        </p>
+                    </div>
+                </div>
+            </ui:repeat>
+        </ui:fragment>
+    </ui:define>
+</ui:composition>
+</html>

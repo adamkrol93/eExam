@@ -8,7 +8,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import java.util.List;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 
 /**
  * Backing bean do strony z listą podejść studenta.
@@ -23,16 +24,22 @@ public class ListApproachesStudent extends BaseContextBean {
     @EJB
     private ApproachesServiceRemote approachesService;
 
-    private List<ApproachEntity> approaches;
+    private transient DataModel<ApproachEntity> approaches;
 
     @PostConstruct
     private void initializeModel() {
         expectApplicationException(() -> {
-            approaches = approachesService.listAllForStudent();
+            approaches = new ListDataModel<>(approachesService.listAllForStudent());
         });
     }
 
-    public List<ApproachEntity> getApproaches() {
+    public DataModel<ApproachEntity> getApproaches() {
         return approaches;
+    }
+
+    public String showDetails() {
+        long approachId = approaches.getRowData().getId();
+        setContext(ShowApproachDetails.class, bean -> bean.setId(approachId));
+        return String.format("showApproach?uuid=%s&faces-redirect=true", getUuid());
     }
 }
