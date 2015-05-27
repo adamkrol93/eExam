@@ -6,6 +6,7 @@ import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamEndBeforeStartException;
 import pl.lodz.p.it.ssbd2015.exceptions.mze.ExaminerNotFoundException;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExamEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExaminerEntityFacadeLocal;
@@ -91,7 +92,11 @@ public class ExamsManager implements ExamsManagerLocal {
     @Override
     @RolesAllowed("EDIT_EXAM_MZE")
     public void editExam(ExamEntity exam, ExamEntity newExam) throws ApplicationBaseException {
-    	exam.setCountQuestion(newExam.getCountQuestion());
+        if (newExam.getDateStart() != null && newExam.getDateEnd() != null && !newExam.getDateEnd().after(newExam.getDateStart())) {
+            throw new ExamEndBeforeStartException("End date to " + newExam.getDateEnd() + " which is before start date " + newExam.getDateStart());
+        }
+
+        exam.setCountQuestion(newExam.getCountQuestion());
         exam.setCountTakeExam(newExam.getCountTakeExam());
         exam.setDateStart(newExam.getDateStart());
         exam.setDateEnd(newExam.getDateEnd());
