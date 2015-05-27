@@ -54,6 +54,11 @@ public class AnswersManager implements AnswersManagerLocal {
         ApproachEntity approachEntity = new ApproachEntity();
         approachEntity.setEntrant(studentEntity);
         approachEntity.setExam(examEntity);
+        approachEntity.setDateStart(Calendar.getInstance());
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.MINUTE, examEntity.getDuration());
+        approachEntity.setDateEnd(cal);
+        approachEntity.setDisqualification(false);
         approachEntityFacade.create(approachEntity);
 
         return approachEntity.getId();

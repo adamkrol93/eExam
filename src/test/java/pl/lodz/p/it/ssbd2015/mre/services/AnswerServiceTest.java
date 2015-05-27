@@ -17,9 +17,11 @@ import static org.junit.Assert.assertNotNull;
 
 /**
  * @author Marcin Kabza
+ * Created by Piotr on 2015-05-25.
  */
 @UsingDataSet({"ValidUser.yml", "mre/AnswerServiceTest.yml"})
 public class AnswerServiceTest extends BaseArquillianTest {
+
     @EJB
     private AnswerServiceRemote answerService;
 
@@ -28,6 +30,7 @@ public class AnswerServiceTest extends BaseArquillianTest {
         ApproachEntity approachEntity = answerService.findById(1l);
         assertNotNull(approachEntity);
     }
+
     @Test(expected = ApproachNotFoundException.class)
     public void shouldNotFindApproach() throws Exception {
         answerService.findById(2l);
@@ -41,8 +44,7 @@ public class AnswerServiceTest extends BaseArquillianTest {
         String answerContent = "Przykładowa odpowiedź na pytanie w podejściu 1";
 
         ApproachEntity approachEntity = answerService.findById(1l);
-        for (AnswerEntity answerEntity : approachEntity.getAnswers())
-        {
+        for (AnswerEntity answerEntity : approachEntity.getAnswers()) {
             answerEntity.setContent(answerContent);
         }
         answerService.editApproach(approachEntity.getAnswers());
@@ -56,13 +58,19 @@ public class AnswerServiceTest extends BaseArquillianTest {
         String answerContent = "Przykładowa odpowiedź na pytanie w podejściu 1";
 
         ApproachEntity approachEntity = answerService.findById(1l);
-        for (AnswerEntity answerEntity : approachEntity.getAnswers())
-        {
-            if(answerEntity.getId() == 1)
-            {
+        for (AnswerEntity answerEntity : approachEntity.getAnswers()) {
+            if(answerEntity.getId() == 1) {
                 answerEntity.setContent(answerContent);
             }
         }
         answerService.editApproach(approachEntity.getAnswers());
     }
+
+    @UsingDataSet({"ValidUser.yml", "mre/AnswerServiceTest#shouldCreateApproach.yml"})
+    @ShouldMatchDataSet(value = "mre/expected-AnswerServiceTest#shouldCreateApproach.yml",
+            excludeColumns = {"approach.approach_date_start", "approach.approach_date_end", "approach.approach_version"})
+    public void shouldCreateApproach() throws Exception{
+        answerService.createApproach("Pewien egzamin 1");
+    }
+
 }

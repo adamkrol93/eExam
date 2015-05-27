@@ -45,8 +45,8 @@ public class ApproachEntityFacade implements ApproachEntityFacadeLocal {
     @Override
     @RolesAllowed("START_SOLVING_EXAM_MRE")
     public void create(ApproachEntity entity) throws ApplicationBaseException {
-        entityManager.lock(entity, LockModeType.OPTIMISTIC_FORCE_INCREMENT);
         ApproachEntityFacadeLocal.super.create(entity);
+        entityManager.lock(entity, LockModeType.OPTIMISTIC_FORCE_INCREMENT);
     }
 
     @Override
