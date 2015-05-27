@@ -4,10 +4,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="../template/commonLayout.xhtml">
+    <f:metadata>
+        <f:viewParam name="uuid" value="#{listQuestionsMZE.uuid}" converter="uuidConverter"/>
+        <f:viewAction action="#{listQuestionsMZE.checkContext}" />
+    </f:metadata>
     <ui:define name="head">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title><h:outputText value="#{i18n['mze.questions.list.title']}"/></title>
     </ui:define>
     <ui:define name="breadcrumps">
@@ -29,7 +34,7 @@
             <div class="col-lg-12">
                 <div class="table-responsive">
                     <h:form>
-                        <h:dataTable var="question" value="#{listQuestionsMZE.questionEntities}" styleClass="table table-striped">
+                        <h:dataTable var="question" value="#{listQuestionsMZE.questions}" styleClass="table table-striped">
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="#{i18n['mze.questions.list.content']}"/>
@@ -74,7 +79,8 @@
                                 <f:facet name="header">
                                     <h:outputText value="#{i18n['mze.questions.list.action']}"/>
                                 </f:facet>
-                                <h:link value="#{i18n['mze.questions.list.edit']} " outcome="editQuestion.xhtml"/>
+                                <h:commandButton value="#{i18n['mze.questions.list.edit']}"
+                                                 action="#{listQuestionsMZE.gotoEdit}"/>
                             </h:column>
                         </h:dataTable>
                     </h:form>
