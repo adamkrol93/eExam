@@ -1,0 +1,172 @@
+generator:
+  - class_name: "QuestionEntity"
+    id_range: 10
+  - class_name: "ExamEntity"
+    id_range: 3
+
+exam:
+  - exam_id: 1
+    exam_title: "Pewien egzamin 1"
+    exam_count_take_exam: 3
+    exam_date_start: "2015-03-31 22:59:07.393572"
+    exam_date_end: "2015-04-04 22:59:07.393572"
+    exam_duration: 40
+    exam_count_question: 10
+    exam_count_finish_exam: "[NULL]"
+    exam_avg_results: "[NULL]"
+    exam_creator_id: 1
+    exam_modifier_id: 4
+    exam_date_add: "2015-03-30 22:59:07.393572"
+    exam_version: 2
+  - exam_id: 2
+    exam_title: "Pewien egzamin 2"
+    exam_count_take_exam: 3
+    exam_date_start: "2015-03-31 22:59:07.393572"
+    exam_date_end: "2015-04-04 22:59:07.393572"
+    exam_duration: 40
+    exam_count_question: 10
+    exam_count_finish_exam: "[NULL]"
+    exam_avg_results: "[NULL]"
+    exam_creator_id: 1
+    exam_modifier_id: 4
+    exam_date_add: "2015-03-30 22:59:07.393572"
+    exam_version: 2
+  - exam_id: 3
+    exam_title: "Pewien egzamin 3"
+    exam_count_take_exam: 3
+    exam_date_start: "2015-03-31 22:59:07.393572"
+    exam_date_end: "2015-04-04 22:59:07.393572"
+    exam_duration: 40
+    exam_count_question: 10
+    exam_count_finish_exam: "[NULL]"
+    exam_avg_results: "[NULL]"
+    exam_creator_id: 1
+    exam_modifier_id: 4
+    exam_date_add: "2015-03-30 22:59:07.393572"
+    exam_version: 2
+
+question:
+  - question_id: 1
+    question_content: "'Przykładowe pytanie 1"
+    question_sample_answer: "Przykładowa odpowiedz 1"
+    question_creator_id: 4
+    question_modifier_id: "[NULL]"
+    question_date_add: "2015-03-30 22:59:07.393572"
+    question_version: 1
+  - question_id: 2
+    question_content: "'Przykładowe pytanie 2"
+    question_sample_answer: "Przykładowa odpowiedz 2"
+    question_creator_id: 4
+    question_modifier_id: "[NULL]"
+    question_date_add: "2015-03-30 22:59:07.393572"
+    question_version: 1
+  - question_id: 3
+    question_content: "'Przykładowe pytanie 3"
+    question_sample_answer: "Przykładowa odpowiedz 3"
+    question_creator_id: 4
+    question_modifier_id: "[NULL]"
+    question_date_add: "2015-03-30 22:59:07.393572"
+    question_version: 1
+  - question_id: 4
+    question_content: "'Przykładowe pytanie 4"
+    question_sample_answer: "Przykładowa odpowiedz 4"
+    question_creator_id: 4
+    question_modifier_id: "[NULL]"
+    question_date_add: "2015-03-30 22:59:07.393572"
+    question_version: 1
+  - question_id: 5
+    question_content: "'Przykładowe pytanie 5"
+    question_sample_answer: "Przykładowa odpowiedz 5"
+    question_creator_id: 4
+    question_modifier_id: "[NULL]"
+    question_date_add: "2015-03-30 22:59:07.393572"
+    question_version: 1
+  - question_id: 6
+    question_content: "'Przykładowe pytanie 5"
+    question_sample_answer: "Przykładowa odpowiedz 5"
+    question_creator_id: 4
+    question_modifier_id: "[NULL]"
+    question_date_add: "2015-03-30 22:59:07.393572"
+    question_version: 1
+  - question_id: 7
+    question_content: "'Przykładowe pytanie 5"
+    question_sample_answer: "Przykładowa odpowiedz 5"
+    question_creator_id: 4
+    question_modifier_id: "[NULL]"
+    question_date_add: "2015-03-30 22:59:07.393572"
+    question_version: 1
+  - question_id: 8
+    question_content: "'Przykładowe pytanie 5"
+    question_sample_answer: "Przykładowa odpowiedz 5"
+    question_creator_id: 4
+    question_modifier_id: "[NULL]"
+    question_date_add: "2015-03-30 22:59:07.393572"
+    question_version: 1
+  - question_id: 9
+    question_content: "'Przykładowe pytanie 5"
+    question_sample_answer: "Przykładowa odpowiedz 5"
+    question_creator_id: 4
+    question_modifier_id: "[NULL]"
+    question_date_add: "2015-03-30 22:59:07.393572"
+    question_version: 1
+  - question_id: 10
+    question_content: "'Przykładowe pytanie 5"
+    question_sample_answer: "Przykładowa odpowiedz 5"
+    question_creator_id: 4
+    question_modifier_id: "[NULL]"
+    question_date_add: "2015-03-30 22:59:07.393572"
+    question_version: 1
+
+exam_question:
+  - exam_id: 1
+    question_id: 1
+  - exam_id: 1
+    question_id: 2
+  - exam_id: 1
+    question_id: 3
+  - exam_id: 1
+    question_id: 4
+  - exam_id: 1
+    question_id: 5
+  - exam_id: 2
+    question_id: 4
+  - exam_id: 3
+    question_id: 2
+  - exam_id: 3
+    question_id: 4
+  - exam_id: 3
+    question_id: 8
+
+approach:
+  - approach_id: 3
+    approach_date_start: "2015-04-04 22:59:07.39357"
+    approach_date_end: "2015-04-04 23:18:07.393572"
+    approach_disqualification: false
+    approach_exam_id: 1
+    approach_entrant_id: 3
+    approach_date_add: "2015-03-30 22:59:07.393572"
+    approach_version: 1
+  - approach_id: 4
+    approach_date_start: "2015-04-04 22:59:07.39357"
+    approach_date_end: "2015-04-04 23:18:07.393572"
+    approach_disqualification: false
+    approach_exam_id: 1
+    approach_entrant_id: 3
+    approach_date_add: "2015-03-30 22:59:07.393572"
+    approach_version: 1
+  - approach_id: 5
+    approach_date_start: "2015-04-04 22:59:07.39357"
+    approach_date_end: "2015-04-04 23:18:07.393572"
+    approach_disqualification: false
+    approach_exam_id: 1
+    approach_entrant_id: 3
+    approach_date_add: "2015-03-30 22:59:07.393572"
+    approach_version: 1
+  - approach_id: 6
+    approach_date_start: "2015-04-04 22:59:07.39357"
+    approach_date_end: "2015-04-04 23:18:07.393572"
+    approach_disqualification: false
+    approach_exam_id: 2
+    approach_entrant_id: 3
+    approach_date_add: "2015-03-30 22:59:07.393572"
+    approach_version: 1

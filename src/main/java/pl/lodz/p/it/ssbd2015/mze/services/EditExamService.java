@@ -50,6 +50,7 @@ public class EditExamService extends BaseStatefulService implements EditExamServ
 
         exam.getQuestions().isEmpty();
         exam.getTeachers().isEmpty();
+        exam.getApproaches().isEmpty();
         return exam;
     }
 

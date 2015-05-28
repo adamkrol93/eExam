@@ -7,6 +7,8 @@ import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamEndBeforeStartException;
+import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamApproachesExistException;
+import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamIllegalArgumentException;
 import pl.lodz.p.it.ssbd2015.exceptions.mze.ExaminerNotFoundException;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExamEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExaminerEntityFacadeLocal;
@@ -121,6 +123,11 @@ public class ExamsManager implements ExamsManagerLocal {
     @Override
     @RolesAllowed("REMOVE_QUESTION_FROM_EXAM_MZE")
     public void removeQuestion(ExamEntity exam, long questionId) throws ApplicationBaseException {
+        if (!exam.getApproaches().isEmpty()) {
+            throw new ExamApproachesExistException("Could not remove Question with id = " + questionId
+                    + " from exam " + exam + " because there are approaches to the exam.");
+        }
+
         boolean found = false;
 
         for (Iterator<QuestionEntity> it = exam.getQuestions().iterator(); it.hasNext();) {
@@ -133,7 +140,7 @@ public class ExamsManager implements ExamsManagerLocal {
         }
 
         if (!found) {
-            throw new IllegalArgumentException("Attempt to remove Question with id = " + questionId
+            throw new ExamIllegalArgumentException("Attempt to remove Question with id = " + questionId
                     + " from exam " + exam + " failed because it didn't have this question.");
         }
 

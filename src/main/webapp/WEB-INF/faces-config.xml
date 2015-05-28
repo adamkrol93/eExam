@@ -7,8 +7,8 @@
         version="2.1">
     <application>
         <locale-config>
-            <default-locale>pl</default-locale>
-            <supported-locale>en</supported-locale>
+            <default-locale>en</default-locale>
+            <supported-locale>pl</supported-locale>
         </locale-config>
         <resource-bundle>
             <base-name>pl.lodz.p.it.ssbd2015.web.localization.Text</base-name>

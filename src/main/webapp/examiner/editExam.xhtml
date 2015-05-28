@@ -194,7 +194,8 @@
                                         </p>
                                     </div>
                                     <span class="pull-right">
-                                        <h:commandLink styleClass="btn btn-danger" action="#{editExamMZE.removeQuestion}">
+                                        <h:commandLink styleClass="btn btn-danger" action="#{editExamMZE.removeQuestion}"
+                                                       rendered="#{empty editExamMZE.exam.approaches}">
                                             <span class="glyphicon glyphicon-trash"/>
                                         </h:commandLink>
                                     </span>

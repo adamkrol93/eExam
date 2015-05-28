@@ -9,6 +9,7 @@ import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
+import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamApproachesExistException;
 import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamOptimisticLockException;
 
 import javax.ejb.EJB;
@@ -81,6 +82,15 @@ public class EditExamServiceTest extends BaseArquillianTest {
         editExamService.removeQuestion(4l);
 
         editExamService2.removeQuestion(4l);
+    }
+
+    @Test(expected = ExamApproachesExistException.class)
+    @Transactional(TransactionMode.DISABLED)
+    @UsingDataSet({"ValidUser.yml", "mze/EditExamServiceTest#shouldNotRemoveQuestionWhenApproachesExist.yml"})
+    public void shouldNotRemoveQuestionWhenApproachesExist() throws Exception {
+        ExamEntity exam = editExamService.findById(2l);
+        QuestionEntity theOnlyQuestion = exam.getQuestions().get(0);
+        editExamService.removeQuestion(theOnlyQuestion.getId());
     }
 
     @Test
