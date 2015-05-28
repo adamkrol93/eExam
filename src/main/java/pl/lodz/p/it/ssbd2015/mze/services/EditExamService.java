@@ -5,7 +5,6 @@ import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
-import pl.lodz.p.it.ssbd2015.exceptions.moe.TeacherNotFoundException;
 import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamNotFoundException;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExamEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.facades.TeacherEntityFacadeLocal;
@@ -17,7 +16,6 @@ import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -75,11 +73,11 @@ public class EditExamService extends BaseStatefulService implements EditExamServ
     @RolesAllowed("ADD_TEACHER_TO_EXAM_MZE")
     public void addTeacher(long teacherId) throws ApplicationBaseException {
         TeacherEntity teacher = teachersNotInExam.stream()
-                .filter(t -> t.getId()==teacherId)
+                .filter(t -> t.getId() == teacherId)
                 .findFirst()
                 .get();
 
-        examsManager.addTeacher(this.exam,teacher);
+        examsManager.addTeacher(this.exam, teacher);
     }
 
     @Override

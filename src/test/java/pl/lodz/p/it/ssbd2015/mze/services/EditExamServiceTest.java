@@ -98,6 +98,8 @@ public class EditExamServiceTest extends BaseArquillianTest {
     public void shouldAddTeacherToExam() throws Exception{
         editExamService.findById(2);
 
+        List<TeacherEntity> teachers = editExamService.findAllNotInExam();
+
         editExamService.addTeacher(7l);
     }
 }
