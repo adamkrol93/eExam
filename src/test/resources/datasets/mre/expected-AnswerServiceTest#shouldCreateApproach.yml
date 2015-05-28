@@ -27,3 +27,17 @@ answer:
     answer_approach_id: 1
     answer_grade: 0
     answer_content: ""
+exam:
+  - exam_id: 1
+    exam_title: "Pewien egzamin 1"
+    exam_count_take_exam: 3
+    exam_date_start: "2015-03-31 22:59:07.393572"
+    exam_date_end: "2015-07-04 22:59:07.393572"
+    exam_duration: 60
+    exam_count_question: 5
+    exam_count_finish_exam: "[NULL]"
+    exam_avg_results: "[NULL]"
+    exam_creator_id: 1
+    exam_modifier_id: "[NULL]"
+    exam_date_add: "2015-03-30 22:59:07.393572"
+    exam_version: 2

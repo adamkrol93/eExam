@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.*;
 import javax.interceptor.Interceptors;
+import javax.persistence.LockModeType;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -44,50 +45,59 @@ public class AnswersManager implements AnswersManagerLocal {
     @Override
     @RolesAllowed("START_SOLVING_EXAM_MRE")
     public Long createApproach(String title) throws ApplicationBaseException {
-        ExamEntity examEntity = examEntityFacade.findByTitle(title).orElseThrow(() -> new ExamNotFoundException("Approach titled: \"" + title + "\" does not exists"));
+        ExamEntity exam = examEntityFacade.findByTitle(title)
+                .orElseThrow(() -> new ExamNotFoundException("Approach titled: \"" + title + "\" does not exists"));
 
         String login = sessionContext.getCallerPrincipal().getName();
-        StudentEntity studentEntity = studentEntityFacade.findByLogin(login).orElseThrow(() -> new StudentNotFoundException("Student with login: " + login + " does not exists"));
+        StudentEntity studentEntity = studentEntityFacade.findByLogin(login)
+                .orElseThrow(() -> new StudentNotFoundException("Student with login: " + login + " does not exists"));
 
-        if(examEntity.getCountTakeExam() <= examEntity.getApproaches().stream().filter(s -> s.getEntrant() == studentEntity).collect(Collectors.toList()).size()){
-            throw new UnavailableExamException("Exceeded the allowed amount of approaches for student with login: "+login);
-        }
-        if(examEntity.getDateStart().after(Calendar.getInstance())){
+        Calendar currentTime = Calendar.getInstance();
+        if (exam.getDateStart().after(currentTime)) {
             throw new UnavailableExamException("This exam has not yet started");
         }
-        if(examEntity.getDateEnd().before(Calendar.getInstance())){
+        if (exam.getDateEnd().before(currentTime)) {
             throw new UnavailableExamException("This exam has already finished");
+        }
+
+        long takeCount = exam.getApproaches().stream()
+                .filter(s -> s.getEntrant().getId() == studentEntity.getId())
+                .collect(Collectors.counting());
+        if (exam.getCountTakeExam() <= takeCount) {
+            throw new UnavailableExamException("Exceeded the allowed amount of approaches for student with login: "+login);
         }
 
         ApproachEntity approachEntity = new ApproachEntity();
         approachEntity.setEntrant(studentEntity);
-        approachEntity.setExam(examEntity);
-        approachEntity.setDateStart(Calendar.getInstance());
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.MINUTE, examEntity.getDuration());
-        approachEntity.setDateEnd(cal);
+        approachEntity.setExam(exam);
+        approachEntity.setDateStart(currentTime);
+
+        Calendar endTime = (Calendar) currentTime.clone();
+        endTime.add(Calendar.MINUTE, exam.getDuration());
+        approachEntity.setDateEnd(endTime);
+
         approachEntity.setDisqualification(false);
-        List <QuestionEntity> shuffledQuestions = new ArrayList(examEntity.getQuestions());
+        List<QuestionEntity> shuffledQuestions = new ArrayList<>(exam.getQuestions());
         List<AnswerEntity> answers = new ArrayList<>();
-        int i=0;
-        do{
-            long seed = System.nanoTime();
-            Collections.shuffle(shuffledQuestions, new Random(seed));
-            int j = 0;
-            while(i < examEntity.getCountQuestion() && j<shuffledQuestions.size()){
-                QuestionEntity question = shuffledQuestions.get(j);
-                AnswerEntity answer = new AnswerEntity();
-                answer.setQuestion(question);
-                answer.setApproach(approachEntity);
-                answer.setGrade(0);
-                answer.setContent("");
-                answers.add(answer);
-                i++;
-                j++;
-            }
-        }while(i<examEntity.getCountQuestion());
+
+        int toTake = exam.getCountQuestion();
+        while (toTake > 0) {
+            Collections.shuffle(shuffledQuestions, new Random());
+            List<AnswerEntity> moreAnswers = shuffledQuestions.stream().limit(toTake)
+                .map(question -> {
+                    AnswerEntity answer = new AnswerEntity();
+                    answer.setQuestion(question);
+                    answer.setApproach(approachEntity);
+                    answer.setContent("");
+                    return answer;
+                }).collect(Collectors.toList());
+            answers.addAll(moreAnswers);
+            toTake -= moreAnswers.size();
+        }
         approachEntity.setAnswers(answers);
+
         approachEntityFacade.create(approachEntity);
+        approachEntityFacade.getEntityManager().lock(exam, LockModeType.OPTIMISTIC_FORCE_INCREMENT);
 
         return approachEntity.getId();
     }

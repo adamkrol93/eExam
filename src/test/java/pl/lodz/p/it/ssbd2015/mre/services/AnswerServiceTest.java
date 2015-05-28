@@ -66,10 +66,12 @@ public class AnswerServiceTest extends BaseArquillianTest {
         answerService.editApproach(approachEntity.getAnswers());
     }
 
+    @Test
+    @Transactional(TransactionMode.DISABLED)
     @UsingDataSet({"ValidUser.yml", "mre/AnswerServiceTest#shouldCreateApproach.yml"})
     @ShouldMatchDataSet(value = "mre/expected-AnswerServiceTest#shouldCreateApproach.yml",
             excludeColumns = {"approach.approach_date_start", "approach.approach_date_end", "approach.approach_version"})
-    public void shouldCreateApproach() throws Exception{
+    public void shouldCreateApproach() throws Exception {
         answerService.createApproach("Pewien egzamin 1");
     }
 
