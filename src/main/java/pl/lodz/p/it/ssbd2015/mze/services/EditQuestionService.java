@@ -37,6 +37,7 @@ public class EditQuestionService extends BaseStatefulService implements EditQues
     @RolesAllowed("EDIT_QUESTION_MZE")
     public QuestionEntity findById(long id) throws ApplicationBaseException {
         question = questionEntityFacade.findById(id).orElseThrow(() -> new QuestionNotFoundException("Question with id = " + id + " does not exist"));
+        question.getAnswers().isEmpty();
         return question;
     }
 

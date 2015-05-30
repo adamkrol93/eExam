@@ -11,6 +11,7 @@ import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
 import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamApproachesExistException;
 import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamOptimisticLockException;
+import pl.lodz.p.it.ssbd2015.mre.services.AnswerServiceRemote;
 
 import javax.ejb.EJB;
 import java.util.List;
@@ -30,6 +31,9 @@ public class EditExamServiceTest extends BaseArquillianTest {
 
     @EJB
     private EditExamServiceRemote editExamService2;
+
+    @EJB
+    private AnswerServiceRemote answerService;
 
     @Test
     @Transactional(TransactionMode.DISABLED)
@@ -90,6 +94,18 @@ public class EditExamServiceTest extends BaseArquillianTest {
     public void shouldNotRemoveQuestionWhenApproachesExist() throws Exception {
         ExamEntity exam = editExamService.findById(2l);
         QuestionEntity theOnlyQuestion = exam.getQuestions().get(0);
+        editExamService.removeQuestion(theOnlyQuestion.getId());
+    }
+
+    @Test(expected = ExamOptimisticLockException.class)
+    @Transactional(TransactionMode.DISABLED)
+    @UsingDataSet({"ValidUser.yml", "mze/EditExamServiceTest#shouldNotRemoveQuestionWhenApproachStarts.yml"})
+    public void shouldNotRemoveQuestionWhenApproachStarts() throws Exception {
+        ExamEntity exam = editExamService.findById(1l);
+        QuestionEntity theOnlyQuestion = exam.getQuestions().get(0);
+
+        answerService.createApproach(exam.getTitle());
+
         editExamService.removeQuestion(theOnlyQuestion.getId());
     }
 

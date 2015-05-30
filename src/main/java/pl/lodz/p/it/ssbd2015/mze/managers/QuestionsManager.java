@@ -45,7 +45,6 @@ public class QuestionsManager implements QuestionsManagerLocal {
     @Override
     @RolesAllowed("EDIT_QUESTION_MZE")
     public void editQuestion(QuestionEntity question, QuestionEntity newQuestion) throws ApplicationBaseException {
-
         boolean isNew = false;
 
         String examinerLogin = sessionContext.getCallerPrincipal().getName();

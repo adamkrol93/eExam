@@ -1,0 +1,15 @@
+question:
+  - question_id: 1
+    question_content: "'Przykładowe pytanie 1"
+    question_sample_answer: "Nowa przykładowa odpowiedź"
+    question_creator_id: 4
+    question_modifier_id: 4
+    question_date_add: "2015-03-30 22:59:07.393572"
+    question_version: 2
+  - question_id: 2
+    question_content: "'Przykładowe pytanie 2"
+    question_sample_answer: "Przykładowa odpowiedz 2"
+    question_creator_id: 4
+    question_modifier_id: "[NULL]"
+    question_date_add: "2015-03-30 22:59:07.393572"
+    question_version: 1

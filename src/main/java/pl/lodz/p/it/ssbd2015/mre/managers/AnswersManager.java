@@ -87,6 +87,7 @@ public class AnswersManager implements AnswersManagerLocal {
             Collections.shuffle(shuffledQuestions, new Random());
             List<AnswerEntity> moreAnswers = shuffledQuestions.stream().limit(toTake)
                 .map(question -> {
+                    approachEntityFacade.getEntityManager().lock(question, LockModeType.OPTIMISTIC_FORCE_INCREMENT);
                     AnswerEntity answer = new AnswerEntity();
                     answer.setQuestion(question);
                     answer.setApproach(approachEntity);
