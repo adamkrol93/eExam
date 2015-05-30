@@ -22,6 +22,7 @@ import java.util.List;
  * Klasa posiada pole typu {@link ApproachEntity}
  * @author Bartosz Ignaczewski
  * @author Piotr Jurewicz
+ * @author Andrzej Kurczewski
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mre.services.AnswerService")
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
@@ -61,6 +62,6 @@ public class AnswerService extends BaseStatefulService implements AnswerServiceR
     @Override
     @RolesAllowed("END_APPROACH_MRE")
     public void endApproach() throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+        answersManager.endApproach(approach);
     }
 }

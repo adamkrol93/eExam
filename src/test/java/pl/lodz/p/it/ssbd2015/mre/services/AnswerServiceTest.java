@@ -8,6 +8,7 @@ import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.entities.AnswerEntity;
 import pl.lodz.p.it.ssbd2015.entities.ApproachEntity;
+import pl.lodz.p.it.ssbd2015.exceptions.mre.ApproachEndedException;
 import pl.lodz.p.it.ssbd2015.exceptions.mre.ApproachNotFoundException;
 
 import javax.ejb.EJB;
@@ -18,12 +19,16 @@ import static org.junit.Assert.assertNotNull;
 /**
  * @author Marcin Kabza
  * Created by Piotr on 2015-05-25.
+ * @author Andrzej Kurczewski
  */
 @UsingDataSet({"ValidUser.yml", "mre/AnswerServiceTest.yml"})
 public class AnswerServiceTest extends BaseArquillianTest {
 
     @EJB
     private AnswerServiceRemote answerService;
+
+    @EJB
+    private ApproachesServiceRemote approachesService;
 
     @Test
     public void shouldReturnApproach() throws Exception {
@@ -33,7 +38,7 @@ public class AnswerServiceTest extends BaseArquillianTest {
 
     @Test(expected = ApproachNotFoundException.class)
     public void shouldNotFindApproach() throws Exception {
-        answerService.findById(2l);
+        answerService.findById(37l);
     }
 
     @Test
@@ -75,4 +80,18 @@ public class AnswerServiceTest extends BaseArquillianTest {
         answerService.createApproach("Pewien egzamin 1");
     }
 
+    @Test(expected = ApproachEndedException.class)
+    @Transactional(TransactionMode.DISABLED)
+    public void shouldFailEndingApproachEndedBefore() throws Exception {
+        answerService.findById(2);
+        answerService.endApproach();
+    }
+
+    @Test
+    @Transactional(TransactionMode.DISABLED)
+    @ShouldMatchDataSet(value = "mre/expected-AnswerServiceTest#shouldEndApproach.yml", excludeColumns = {"exam.exam_version"})
+    public void shouldEndApproach() throws Exception {
+        answerService.findById(3);
+        answerService.endApproach();
+    }
 }

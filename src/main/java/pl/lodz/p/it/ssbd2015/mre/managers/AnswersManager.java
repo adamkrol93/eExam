@@ -3,6 +3,7 @@ package pl.lodz.p.it.ssbd2015.mre.managers;
 import pl.lodz.p.it.ssbd2015.entities.*;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.mre.ApproachEndedException;
 import pl.lodz.p.it.ssbd2015.exceptions.mre.ExamNotFoundException;
 import pl.lodz.p.it.ssbd2015.exceptions.mre.StudentNotFoundException;
 import pl.lodz.p.it.ssbd2015.exceptions.mre.UnavailableExamException;
@@ -24,6 +25,7 @@ import java.util.stream.Collectors;
  *
  * @author Bartosz Ignaczewski
  * @author Piotr Jurewicz
+ * @author Andrzej Kurczewski
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mre.managers.AnswersManager")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
@@ -122,7 +124,20 @@ public class AnswersManager implements AnswersManagerLocal {
     @Override
     @RolesAllowed("END_APPROACH_MRE")
     public void endApproach(ApproachEntity approach) throws ApplicationBaseException {
-        throw new UnsupportedOperationException();
+        Calendar now = GregorianCalendar.getInstance();
+        if (now.after(approach.getDateEnd())) {
+            throw new ApproachEndedException(
+                "Trying to end approach with id = " + approach.getId() + " that has been ended");
+        }
+
+        approach.setDateEnd(now);
+        approachEntityFacade.edit(approach);
+
+        ExamEntity exam = examEntityFacade.findById(approach.getExam().getId())
+                                          .orElseThrow(() -> new ExamNotFoundException(
+                                              "Exam with id = " + approach.getId() + " does not exists"));
+        exam.setCountFinishExam(exam.getCountFinishExam() + 1);
+        examEntityFacade.edit(exam);
     }
 
     @Override
