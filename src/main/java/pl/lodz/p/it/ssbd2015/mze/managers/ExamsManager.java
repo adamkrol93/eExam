@@ -115,7 +115,12 @@ public class ExamsManager implements ExamsManagerLocal {
     @Override
     @RolesAllowed("ADD_TEACHER_TO_EXAM_MZE")
     public void addTeacher(ExamEntity exam, TeacherEntity teacher) throws ApplicationBaseException {
+        String login = sessionContext.getCallerPrincipal().getName();
+        ExaminerEntity examiner = examinerEntityFacade.findByLogin(login)
+                .orElseThrow(() -> new ExaminerNotFoundException("Examiner with login " + login + "does not exist"));
+
         exam.getTeachers().add(teacher);
+        exam.setModifier(examiner);
 
         examEntityFacade.edit(exam);
     }
