@@ -22,3 +22,67 @@ approach:
     approach_entrant_id: 3
     approach_date_add: "2015-03-30 22:59:07.393572"
     approach_version: 1
+  - approach_id: 2
+    approach_date_start: "2015-04-04 22:59:07.39357"
+    approach_date_end: "2015-04-04 23:18:07.393572"
+    approach_disqualification: false
+    approach_exam_id: 1
+    approach_entrant_id: 3
+    approach_date_add: "2015-03-30 22:59:07.393572"
+    approach_version: 1
+
+question:
+  - question_id: 1
+    question_content: "'Przykładowe pytanie 1"
+    question_sample_answer: "Przykładowa odpowiedz 1"
+    question_creator_id: 4
+    question_modifier_id: "[NULL]"
+    question_date_add: "2015-03-30 22:59:07.393572"
+    question_version: 1
+  - question_id: 2
+    question_content: "'Przykładowe pytanie 2"
+    question_sample_answer: "Przykładowa odpowiedz 2"
+    question_creator_id: 4
+    question_modifier_id: "[NULL]"
+    question_date_add: "2015-03-30 22:59:07.393572"
+    question_version: 1
+
+exam_question:
+  - exam_id: 1
+    question_id: 1
+  - exam_id: 1
+    question_id: 2
+
+answer:
+  - answer_id: 1
+    answer_approach_id: 1
+    answer_question_id: 1
+    answer_teacher_id: 1
+    answer_content: "Przykładowa odpowiedź na pytanie 1 w podejściu 1"
+    answer_grade: 0
+    answer_date_add: "2015-03-30 22:59:07.393572"
+    answer_version: 1
+  - answer_id: 2
+    answer_approach_id: 1
+    answer_question_id: 2
+    answer_teacher_id: 1
+    answer_content: "Przykładowa odpowiedź na pytanie 2 w podejściu 1"
+    answer_grade: 2
+    answer_date_add: "2015-03-30 22:59:07.393572"
+    answer_version: 1
+  - answer_id: 3
+    answer_approach_id: 2
+    answer_question_id: 1
+    answer_teacher_id: 1
+    answer_content: "Przykładowa odpowiedź na pytanie 3 w podejściu 1"
+    answer_grade: 1
+    answer_date_add: "2015-03-30 22:59:07.393572"
+    answer_version: 1
+  - answer_id: 4
+    answer_approach_id: 2
+    answer_question_id: 2
+    answer_teacher_id: 1
+    answer_content: "Przykładowa odpowiedź na pytanie 4 w podejściu 1"
+    answer_grade: 1
+    answer_date_add: "2015-03-30 22:59:07.393572"
+    answer_version: 1

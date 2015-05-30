@@ -53,15 +53,54 @@ public class ApproachesManager implements ApproachesManagerLocal {
         approachEntityFacade.edit(approach);
 
         ExamEntity examEntity = examEntityFacade.findById(approach.getExam().getId()).orElseThrow(() -> new ExamNotFoundException("Exam with id: " + approach.getExam().getId() + " does not exists"));
-        examEntity.setCountFinishExam(examEntity.getCountFinishExam() + 1);
-        examEntity.setAvgResults(examEntity.getAvgResults().multiply(BigInteger.valueOf(examEntity.getCountFinishExam().intValue())).add(examEntity.getAvgResults()).divide(BigInteger.valueOf(examEntity.getCountFinishExam().intValue() + 1)));
+        examEntity.setCountFinishExam(examEntity.getCountFinishExam()==null ? 1 : examEntity.getCountTakeExam()+1);
+
+        long sumOfGrades=0;
+        long sumFromApproaches=0;
+
+        for(ApproachEntity actualApproach : examEntity.getApproaches()){
+            if(!actualApproach.isDisqualification()){
+                for(AnswerEntity actualAnswer : actualApproach.getAnswers()){
+                    sumOfGrades += actualAnswer.getGrade();
+                }
+                sumFromApproaches+=sumOfGrades;
+            }
+        }
+
+        examEntity.setAvgResults(BigInteger.valueOf(sumFromApproaches)
+                .divide(BigInteger.valueOf(examEntity.getCountFinishExam())));
+
         examEntityFacade.edit(examEntity);
     }
 
     @Override
     @RolesAllowed("DISQUALIFY_APPROACH_MOE")
     public void disqualify(ApproachEntity approach) throws ApplicationBaseException {
-        throw new UnsupportedOperationException();
+        approach.setDisqualification(true);
+
+        approachEntityFacade.edit(approach);
+
+        ExamEntity exam = examEntityFacade.findById(approach.getExam().getId())
+                .orElseThrow(() -> new ExamNotFoundException("Exam with id: " + approach.getExam().getId() + " does not exists"));
+
+        exam.setCountFinishExam(exam.getCountFinishExam()==null ? 1 : exam.getCountTakeExam()+1);
+
+        long sumOfGrades=0;
+        long sumFromApproaches=0;
+
+        for(ApproachEntity actualApproach : exam.getApproaches()){
+            if(!actualApproach.isDisqualification()){
+                for(AnswerEntity answer : actualApproach.getAnswers()){
+                    sumOfGrades += answer.getGrade();
+                }
+                sumFromApproaches+=sumOfGrades;
+            }
+        }
+
+        exam.setAvgResults(BigInteger.valueOf(sumFromApproaches)
+                .divide(BigInteger.valueOf(exam.getCountFinishExam())));
+
+        examEntityFacade.edit(exam);
     }
 
     @Override

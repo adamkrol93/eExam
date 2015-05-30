@@ -51,6 +51,6 @@ public class MarkApproachService extends BaseStatefulService implements MarkAppr
     @Override
     @RolesAllowed("DISQUALIFY_APPROACH_MOE")
     public void disqualify() throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+    	approachesManager.disqualify(this.approach);
     }
 }
