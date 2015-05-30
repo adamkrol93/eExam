@@ -31,6 +31,11 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
+                <h3><h:outputText value="#{i18n[listExamsMZE.message]}" styleClass="text-success"/></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
                 <div class="table-responsive">
                     <h:form>
                         <h:dataTable var="exam" value="#{listExamsMZE.exams}" styleClass="table table-striped">
@@ -72,6 +77,8 @@
                                                  action="#{listExamsMZE.gotoReport}"/>
                                 <h:commandButton value="#{i18n['mze.exam_list.list.action.edit']}"
                                                  action="#{listExamsMZE.gotoEdit}"/>
+                                <h:commandButton id="submit-button" type="submit" value="#{i18n['mze.exam_list.list.action.clone']}"
+                                                 action="#{listExamsMZE.cloneExam}"/>
                             </h:column>
                         </h:dataTable>
                     </h:form>

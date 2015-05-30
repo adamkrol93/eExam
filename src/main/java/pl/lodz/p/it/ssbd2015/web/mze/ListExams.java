@@ -10,16 +10,18 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Bean do wyświetlania listy wszystkich egzaminów
  * @author Adam Król
  * @author Andrzej Kurczewski
+ * @author Bartosz Ignaczewski
  */
 @ManagedBean(name = "listExamsMZE")
 @ViewScoped
-public class ListExams extends BaseContextBean {
+public class ListExams extends BaseContextBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -30,6 +32,7 @@ public class ListExams extends BaseContextBean {
 
     private transient DataModel<ExamEntity> exams;
 
+    private String message;
 
     /**
      * Metoda korzysta z dobrodziejstw contextMapy i ustawia
@@ -65,6 +68,21 @@ public class ListExams extends BaseContextBean {
     }
 
     /**
+     * Metoda odpowiada za sklonowanie egzaminu wraz z odswiezeniem strony z odpowiednia wiadomoscia
+     * @return strona na którą przekierowywuje po skończonej operacji
+     */
+    public String cloneExam() {
+        return expectApplicationException(() -> {
+            examListServiceRemote.cloneExam(exams.getRowData().getId());
+
+            setContext(ListExams.class, (bean -> {
+                bean.message = "mze.clone_exam.exam_cloned_message";
+            }));
+            return "listExams?faces-redirect=true&includeViewParams=true";
+        });
+    }
+
+    /**
      * Metoda pobiera z endpointu ({@link ExamListServiceRemote} wszystkie egzaminy w systemie.
      */
     @PostConstruct
@@ -86,4 +104,13 @@ public class ListExams extends BaseContextBean {
         }
         return exams;
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
 }
