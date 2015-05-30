@@ -27,9 +27,6 @@ public class AnswerServiceTest extends BaseArquillianTest {
     @EJB
     private AnswerServiceRemote answerService;
 
-    @EJB
-    private ApproachesServiceRemote approachesService;
-
     @Test
     public void shouldReturnApproach() throws Exception {
         ApproachEntity approachEntity = answerService.findById(1l);

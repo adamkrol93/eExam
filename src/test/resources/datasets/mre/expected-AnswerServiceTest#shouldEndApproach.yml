@@ -3,7 +3,7 @@ exam:
     exam_title: "Pewien egzamin 1"
     exam_count_take_exam: 3
     exam_date_start: "1915-03-31 22:59:07.393572"
-    exam_date_end: "1915-04-04 22:59:07.393572"
+    exam_date_end: "3015-04-04 22:59:07.393572"
     exam_duration: 60
     exam_count_question: 4
     exam_count_finish_exam: 3
