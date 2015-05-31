@@ -25,6 +25,8 @@ public class AnswerTheQuestions extends BaseContextBean {
 
     private ApproachEntity approach;
 
+    private String message;
+
     @Override
     protected void doInContext() {
         expectApplicationException(() -> {
@@ -36,9 +38,19 @@ public class AnswerTheQuestions extends BaseContextBean {
         expectApplicationException(() -> {
             answerService.editApproach(approach.getAnswers());
         });
-        //TODO: Należy dorobić przekazanie odpowiedniego parametru do strony endApproach
-        //setContext(EndApproach.class, bean -> bean = );
-        return "endApproach?faces-redirect=true";
+        setContext(AnswerTheQuestions.class, bean -> {
+            bean.id = id;
+            bean.message = "mre.answer_the_questions.edit_success";
+        });
+        return "answerTheQuestions?faces-redirect=true";
+    }
+
+    public String endApproach(){
+        return expectApplicationException(() -> {
+            answerService.endApproach();
+            setContext(ListApproachesStudent.class, bean -> bean.setMessage("mre.answer_the_questions.end_success"));
+            return String.format("listApproaches?uuid=%s&faces-redirect=true", getUuid());
+        });
     }
 
     public long getId() {
@@ -55,5 +67,13 @@ public class AnswerTheQuestions extends BaseContextBean {
 
     public void setApproach(ApproachEntity approach) {
         this.approach = approach;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

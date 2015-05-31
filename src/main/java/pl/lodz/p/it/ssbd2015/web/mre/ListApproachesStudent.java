@@ -26,11 +26,18 @@ public class ListApproachesStudent extends BaseContextBean {
 
     private transient DataModel<ApproachEntity> approaches;
 
+    private String message;
+
     @PostConstruct
     private void initializeModel() {
         expectApplicationException(() -> {
             approaches = new ListDataModel<>(approachesService.listAllForStudent());
         });
+    }
+
+    @Override
+    protected void doInContext() {
+        resetContext();
     }
 
     public DataModel<ApproachEntity> getApproaches() {
@@ -41,5 +48,13 @@ public class ListApproachesStudent extends BaseContextBean {
         long approachId = approaches.getRowData().getId();
         setContext(ShowApproachDetails.class, bean -> bean.setId(approachId));
         return String.format("showApproach?uuid=%s&faces-redirect=true", getUuid());
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

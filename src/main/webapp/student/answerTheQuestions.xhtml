@@ -36,6 +36,12 @@
             </h1>
         </div>
         <div class="row">
+            <div class="col-lg-12">
+                <h3><h:outputText value="#{i18n[answerTheQuestionsMRE.message]}" styleClass="text-success"/></h3>
+                <h3><h:outputText value="#{answerTheQuestionsMRE.message}" styleClass="text-success"/></h3>
+            </div>
+        </div>
+        <div class="row">
             <h:form id="asnswer-form" styleClass="form-horizontal">
                 <ui:repeat value="#{answerTheQuestionsMRE.approach.answers}" var="answer">
                     <div class="row">
@@ -62,8 +68,11 @@
                 <div class="row">
                     <div class="col-sm-10">
                         <div class="btn-toolbar">
-                            <h:commandButton id="submit-button" type="submit" value="#{i18n['mre.answer_the_questions.submit']}"
+                            <h:commandButton id="edit-button" type="submit" value="#{i18n['mre.answer_the_questions.edit']}"
                                              styleClass="btn btn-primary" action="#{answerTheQuestionsMRE.editApproach()}"/>
+                            <h:commandButton id="save-button" type="submit" value="#{i18n['mre.answer_the_questions.end']}"
+                                             styleClass="btn btn-primary" action="#{answerTheQuestionsMRE.endApproach()}"
+                                             onclick="if (!confirm(#{i18n['mre.answer_the_questions.end_confirmation']})) return false"/>
                             <h:commandButton id="reset-button" type="reset" value="#{i18n['mre.answer_the_questions.reset']}"
                                              styleClass="btn btn-default"/>
                         </div>

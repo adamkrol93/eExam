@@ -137,7 +137,8 @@ public class AnswersManager implements AnswersManagerLocal {
         ExamEntity exam = examEntityFacade.findById(approach.getExam().getId())
                                           .orElseThrow(() -> new ExamNotFoundException(
                                               "Exam with id = " + approach.getId() + " does not exists"));
-        exam.setCountFinishExam(exam.getCountFinishExam() + 1);
+        Integer finished = exam.getCountFinishExam() != null ? exam.getCountFinishExam() : 0;
+        exam.setCountFinishExam(finished + 1);
         examEntityFacade.edit(exam);
     }
 
