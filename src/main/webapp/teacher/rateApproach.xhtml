@@ -12,7 +12,7 @@
     </f:metadata>
     <ui:define name="head">
         <h:outputScript name="rating_stars.js" library="js"/>
-        <title><h:outputText value="#{i18n['moe.show_approach_details.title']}"/></title>
+        <title><h:outputText value="#{i18n['moe.rate_approach.title']}"/></title>
     </ui:define>
     <ui:define name="breadcrumps">
         <ol class="breadcrumb">
@@ -20,18 +20,18 @@
             <li><h:link outcome="/teacher/index"
                         value="#{i18n['teacher.page.simple_title']}"/></li>
             <li><h:link outcome="/teacher/listApproaches" value="#{i18n['moe.approach_list.approaches']}"/></li>
-            <li class="active"><h:outputText value="#{i18n['moe.show_approach_details.title']}"/></li>
+            <li class="active"><h:outputText value="#{i18n['moe.rate_approach.title']}"/></li>
         </ol>
     </ui:define>
     <ui:define name="content">
         <div class="page-header text-center">
-            <h1><h:outputText value="#{i18n['moe.show_approach_details.title']}"/></h1>
+            <h1><h:outputText value="#{i18n['moe.rate_approach.title']}"/></h1>
         </div>
-        <h:form id="asnswer-form" styleClass="form-horizontal">
+        <h:form styleClass="form-horizontal">
             <ui:repeat value="#{rateApproachMOE.approach.answers}" var="answer">
                 <div class="row">
                     <div class="col-sm-1">
-                        <h4><h:outputText value="#{i18n['mre.answer_the_questions.question_content']}"/></h4>
+                        <h4><h:outputText value="#{i18n['moe.rate_approach.question_content']}"/></h4>
                     </div>
                     <div class="col-sm-11">
                         <h4><h:outputText value="#{answer.question.content}"/></h4>
@@ -39,7 +39,16 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-1">
-                        <h:outputText value="#{i18n['mre.answer_the_questions.answer_content']}"/>
+                        <b><h:outputText value="#{i18n['moe.rate_approach.sample_answer_content']}"/></b>
+                    </div>
+                    <div class="col-sm-11">
+                        <h:outputText value="#{answer.question.sampleAnswer}"/>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <b><h:outputText value="#{i18n['moe.rate_approach.answer_content']}"/></b>
                     </div>
                     <div class="col-sm-10">
                         <h:outputText value="#{answer.content}"/>
@@ -58,11 +67,8 @@
             </ui:repeat>
 
             <div class="btn-toolbar">
-                <h:commandButton id="submit-button" type="submit" value="#{i18n['mre.answer_the_questions.submit']}"
+                <h:commandButton id="submit-button" type="submit" value="#{i18n['moe.rate_approach.rate']}"
                                  styleClass="btn btn-primary" action="#{rateApproachMOE.editApproach}"/>
-                <h:commandButton id="reset-button" type="reset" value="#{i18n['mre.answer_the_questions.reset']}"
-                                 styleClass="btn btn-default"/>
-
             </div>
         </h:form>
     </ui:define>

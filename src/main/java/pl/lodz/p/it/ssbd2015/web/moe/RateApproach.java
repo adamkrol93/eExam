@@ -14,7 +14,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
- * Created by Piotr on 2015-05-31.
+ * Backing bean dla strony nauczyciela, z poziomu któej, może on oceniać odpowiedzi ucznia w danym podejściu
+ *
+ * @author Piotr Jurewicz
  */
 @ManagedBean(name = "rateApproachMOE")
 @ViewScoped
@@ -50,7 +52,11 @@ public class RateApproach extends BaseContextBean implements Serializable {
         });
     }
 
-    public String editApproach(){
+    /**
+     * Metoda utrwala w bazie przypisane odpowiedziom oceny.
+     * @return stronę z przekierowaniem po udanej transkacji.
+     */
+    public String editApproach() {
         expectApplicationException(() -> {
             markApproachService.mark(approach.getAnswers());
         });
