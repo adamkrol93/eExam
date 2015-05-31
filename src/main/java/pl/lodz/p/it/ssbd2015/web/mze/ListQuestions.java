@@ -32,7 +32,7 @@ public class ListQuestions extends BaseContextBean{
 
     public String gotoEdit() {
         long examId = questions.getRowData().getId();
-        setContext(EditExam.class, bean -> bean.setId(examId));
+        setContext(EditQuestion.class, bean -> bean.setId(examId));
         return String.format("editQuestion?uuid=%s&faces-redirect=true", getUuid());
     }
 
