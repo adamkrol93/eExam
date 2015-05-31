@@ -15,3 +15,8 @@
 .container-margin{
     margin-bottom: 70px;
 }
+
+.rating-star{
+    color: #F39C12;
+    cursor: pointer;
+}

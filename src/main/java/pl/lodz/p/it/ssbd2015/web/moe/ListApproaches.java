@@ -63,6 +63,12 @@ public class ListApproaches extends BaseContextBean implements Serializable {
         return String.format("showApproachDetails?uuid=%s&faces-redirect=true", getUuid());
     }
 
+    public String rateApproach() {
+        long approachId = approaches.getRowData().getId();
+        setContext(RateApproach.class, bean -> bean.setId(approachId));
+        return String.format("rateApproach?uuid=%s&faces-redirect=true", getUuid());
+    }
+
     public DataModel<ApproachEntity> getApproaches(ExamEntity exam) {
         for (ExamEntity examEntity : examEntityList) {
             if (examEntity.getId() == exam.getId()) {
