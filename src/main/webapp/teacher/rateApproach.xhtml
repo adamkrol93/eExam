@@ -27,6 +27,13 @@
         <div class="page-header text-center">
             <h1><h:outputText value="#{i18n['moe.rate_approach.title']}"/></h1>
         </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h3>
+                    <h:outputText value="#{i18n[rateApproachMOE.message]}" styleClass="text-info"/>
+                </h3>
+            </div>
+        </div>
         <h:form styleClass="form-horizontal">
             <ui:repeat value="#{rateApproachMOE.approach.answers}" var="answer">
                 <div class="row">
@@ -69,6 +76,8 @@
             <div class="btn-toolbar">
                 <h:commandButton id="submit-button" type="submit" value="#{i18n['moe.rate_approach.rate']}"
                                  styleClass="btn btn-primary" action="#{rateApproachMOE.editApproach}"/>
+                <h:commandButton id="disqualify-button" type="submit" value="#{i18n['moe.rate_approach.disqualify']}"
+                                 styleClass="btn btn-danger" action="#{rateApproachMOE.disqualifyApproach}"/>
             </div>
         </h:form>
     </ui:define>

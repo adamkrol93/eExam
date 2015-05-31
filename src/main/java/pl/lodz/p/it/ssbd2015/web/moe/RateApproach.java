@@ -14,9 +14,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
- * Backing bean dla strony nauczyciela, z poziomu któej, może on oceniać odpowiedzi ucznia w danym podejściu
+ * Backing bean dla strony nauczyciela, z poziomu któej, może on oceniać odpowiedzi ucznia w danym podejściu, oraz dyskwalifikować podejście
  *
  * @author Piotr Jurewicz
+ * @author Tobiasz Kowalski
  */
 @ManagedBean(name = "rateApproachMOE")
 @ViewScoped
@@ -59,6 +60,17 @@ public class RateApproach extends BaseContextBean implements Serializable {
     public String editApproach() {
         expectApplicationException(() -> {
             markApproachService.mark(approach.getAnswers());
+        });
+        return "listApproaches?faces-redirect=true";
+    }
+
+    /**
+     * Metoda utrwala w bazie dyskwalifikacje podejścia
+     * @return zwraca stronę z przekierowanie po udanej transakcji.
+     */
+    public String disqualifyApproach() {
+        expectApplicationException(() ->{
+            markApproachService.disqualify();
         });
         return "listApproaches?faces-redirect=true";
     }
