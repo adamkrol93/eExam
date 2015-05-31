@@ -1,9 +1,6 @@
 package pl.lodz.p.it.ssbd2015.mze.managers;
 
-import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
-import pl.lodz.p.it.ssbd2015.entities.ExaminerEntity;
-import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
-import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
+import pl.lodz.p.it.ssbd2015.entities.*;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamEndBeforeStartException;
@@ -160,6 +157,27 @@ public class ExamsManager implements ExamsManagerLocal {
     @Override
     @RolesAllowed("REMOVE_TEACHER_FROM_EXAM_MZE")
     public void removeTeacher(ExamEntity exam, long teacherId) throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+        boolean found = false;
+
+        for (Iterator<TeacherEntity> it = exam.getTeachers().iterator(); it.hasNext();) {
+            TeacherEntity teacherEntity = it.next();
+            if (teacherEntity.getId() == teacherId) {
+                it.remove();
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            throw new ExamIllegalArgumentException("Attempt to remove  teacher with id = " +  teacherId
+                    + " from exam " + exam + " failed because it didn't have this teacher.");
+        }
+
+        String login = sessionContext.getCallerPrincipal().getName();
+        ExaminerEntity modifier = examinerEntityFacade.findByLogin(login)
+                .orElseThrow(() -> new ExaminerNotFoundException("Examiner with login " + login + "does not exist"));
+        exam.setModifier(modifier);
+
+        examEntityFacade.edit(exam);
     }
 }

@@ -29,7 +29,12 @@ public interface EditExamServiceRemote {
      * @throws ApplicationBaseException Rzucany, gdy nie zostanie znaleziony obecnie zalogowany egzaminator.
      */
     void removeQuestion(long questionId) throws ApplicationBaseException;
-
+    /**
+     * Usuwa nauczyciela z egzaminu.
+     * Egzaminator usuwa nauczyciela z egzaminu.
+     * @param teacherId Klucz główny nauczyciela, który zostanie usunięty.
+     * @throws ApplicationBaseException Rzucany, gdy nie zostanie znaleziony obecnie zalogowany egzaminator.
+     */
     void removeTeacher(long teacherId) throws ApplicationBaseException;
 
 }

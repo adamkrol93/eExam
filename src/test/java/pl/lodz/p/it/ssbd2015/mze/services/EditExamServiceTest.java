@@ -53,6 +53,21 @@ public class EditExamServiceTest extends BaseArquillianTest {
 
     @Test
     @Transactional(TransactionMode.DISABLED)
+    @UsingDataSet({"ValidUser.yml", "mze/EditExamServiceTest#shouldRemoveATeacher.yml"})
+    @ShouldMatchDataSet(value = "mze/expected-EditExamServiceTest#shouldRemoveATeacher.yml")
+    public void shouldRemoveATeacher() throws Exception {
+        ExamEntity exam = editExamService.findById(1l);
+
+        for (TeacherEntity teacherEntity  : exam.getTeachers()) {
+            if (teacherEntity.getId() == 6) {
+                editExamService.removeTeacher(teacherEntity.getId());
+                break;
+            }
+        }
+    }
+
+    @Test
+    @Transactional(TransactionMode.DISABLED)
     @UsingDataSet({"ValidUser.yml", "mze/EditExamServiceTest#shouldRemoveAQuestion.yml"})
     @ShouldMatchDataSet(value = "mze/expected-EditExamServiceTest#shouldRemoveTheOnlyQuestion.yml")
     public void shouldRemoveTheOnly() throws Exception {
@@ -72,6 +87,19 @@ public class EditExamServiceTest extends BaseArquillianTest {
         editExamService.removeQuestion(2l);
 
         editExamService2.removeQuestion(4l);
+    }
+
+    @Test(expected = ExamOptimisticLockException.class)
+    @Transactional(TransactionMode.DISABLED)
+    @UsingDataSet({"ValidUser.yml", "mze/EditExamServiceTest#shouldRemoveATeacher.yml"})
+    public void shouldRefuseConcurrentRemovalTeacherOnTheSameExam() throws Exception {
+        ExamEntity exam1 = editExamService.findById(1l);
+
+        ExamEntity exam2 = editExamService2.findById(1l);
+
+        editExamService.removeTeacher(7l);
+
+        editExamService2.removeTeacher(6l);
     }
 
     @Test
@@ -128,4 +156,6 @@ public class EditExamServiceTest extends BaseArquillianTest {
 
         editExamService.addTeacher(7l);
     }
+
+
 }

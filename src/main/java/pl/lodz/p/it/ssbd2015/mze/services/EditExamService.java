@@ -90,6 +90,6 @@ public class EditExamService extends BaseStatefulService implements EditExamServ
     @Override
     @RolesAllowed("REMOVE_TEACHER_FROM_EXAM_MZE")
     public void removeTeacher(long teacherId) throws ApplicationBaseException {
-    	throw new UnsupportedOperationException();
+    	examsManager.removeTeacher(exam, teacherId);
     }
 }
