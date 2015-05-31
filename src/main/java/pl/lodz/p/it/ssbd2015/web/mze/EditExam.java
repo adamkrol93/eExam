@@ -3,7 +3,6 @@ package pl.lodz.p.it.ssbd2015.web.mze;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
-import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamTitleNotUniqueException;
 import pl.lodz.p.it.ssbd2015.mze.services.EditExamServiceRemote;
 import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
@@ -15,7 +14,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Backing bean dla formularza edycji egzaminu.
@@ -69,7 +67,14 @@ public class EditExam extends BaseContextBean implements Serializable {
     }
 
     public String removeTeacher() {
-        throw new UnsupportedOperationException("Removing teacher is not supported" + " " + teachers.getRowData());
+        return expectApplicationException(() -> {
+            editExamService.removeTeacher(teachers.getRowData().getId());
+            setContext(EditExam.class, (bean -> {
+                bean.id = id;
+                bean.message = "mze.edit_exam.teacher_removed_message";
+            }));
+            return "editExam?faces-redirect=true&includeViewParams=true";
+        });
     }
 
     public String removeQuestion() {
