@@ -59,9 +59,12 @@
                                 <f:facet name="header">
                                     <h:outputText value="#{i18n['mre.approach_list.date_end']}"/>
                                 </f:facet>
-                                <h:outputText value="#{approach.dateEnd.time}">
+                                <h:outputText value="#{approach.dateEnd.time}"
+                                              rendered="#{listApproachesGuardianMRE.currentTime.after(approach.dateEnd)}">
                                     <f:convertDateTime pattern="HH:mm dd-MM-yyyy"/>
                                 </h:outputText>
+                                <h:outputText value="#{i18n['mre.approach_list.ongoing']}"
+                                              rendered="#{not listApproachesGuardianMRE.currentTime.after(approach.dateEnd)}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">

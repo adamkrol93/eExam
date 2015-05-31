@@ -1,15 +1,11 @@
 package pl.lodz.p.it.ssbd2015.web.mre;
 
 import pl.lodz.p.it.ssbd2015.entities.ApproachEntity;
-import pl.lodz.p.it.ssbd2015.mre.services.ApproachesServiceRemote;
-import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
+import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
+import java.util.List;
 
 /**
  * Backing bean do strony z listą podejść studenta.
@@ -17,38 +13,11 @@ import javax.faces.model.ListDataModel;
  */
 @ManagedBean(name = "listApproachesStudentMRE")
 @ViewScoped
-public class ListApproachesStudent extends BaseContextBean {
+public class ListApproachesStudent extends ListApproaches {
 
     private static final long serialVersionUID = 1L;
 
-    @EJB
-    private ApproachesServiceRemote approachesService;
-
-    private transient DataModel<ApproachEntity> approaches;
-
     private String message;
-
-    @PostConstruct
-    private void initializeModel() {
-        expectApplicationException(() -> {
-            approaches = new ListDataModel<>(approachesService.listAllForStudent());
-        });
-    }
-
-    @Override
-    protected void doInContext() {
-        resetContext();
-    }
-
-    public DataModel<ApproachEntity> getApproaches() {
-        return approaches;
-    }
-
-    public String showDetails() {
-        long approachId = approaches.getRowData().getId();
-        setContext(ShowApproachDetails.class, bean -> bean.setId(approachId));
-        return String.format("showApproach?uuid=%s&faces-redirect=true", getUuid());
-    }
 
     public String getMessage() {
         return message;
@@ -56,5 +25,9 @@ public class ListApproachesStudent extends BaseContextBean {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    protected List<ApproachEntity> listAll() throws ApplicationBaseException {
+        return approachesService.listAllForStudent();
     }
 }
