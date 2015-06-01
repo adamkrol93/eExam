@@ -106,18 +106,27 @@ public class AnswersManager implements AnswersManagerLocal {
     @Override
     @RolesAllowed("ANSWER_QUESTION_MRE")
     public void editApproach(ApproachEntity approach, List<AnswerEntity> answers) throws ApplicationBaseException {
-        for(AnswerEntity editedAnswer : answers)
+        Calendar cal = approach.getDateStart();
+        cal.add(Calendar.MINUTE, approach.getExam().getDuration());
+        if(cal.getTime().after(Calendar.getInstance().getTime()))
         {
-            for(AnswerEntity answerEntity : approach.getAnswers())
+            for(AnswerEntity editedAnswer : answers)
             {
-                if(editedAnswer.getId() == answerEntity.getId())
+                for(AnswerEntity answerEntity : approach.getAnswers())
                 {
-                    answerEntity.setContent(editedAnswer.getContent());
-                    answerEntity.setDateModification(Calendar.getInstance());
+                    if(editedAnswer.getId() == answerEntity.getId())
+                    {
+                        answerEntity.setContent(editedAnswer.getContent());
+                        answerEntity.setDateModification(Calendar.getInstance());
+                    }
                 }
             }
+            approachEntityFacade.edit(approach);
         }
-        approachEntityFacade.edit(approach);
+        else {
+            throw new ApproachEndedException("End of time to take exam in approach id: "+approach.getId());
+        }
+
     }
 
     @Override

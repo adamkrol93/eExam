@@ -3,33 +3,33 @@ approach:
     approach_date_start: "2015-04-04 22:59:07.39357"
     approach_date_end: "2015-04-04 23:18:07.393572"
     approach_disqualification: false
-    approach_exam_id: 1
+    approach_exam_id: 2
     approach_entrant_id: 3
     approach_version: 1
 answer:
-  - answer_id: 6
+  - answer_id: 1
     answer_approach_id: 1
     answer_grade: 0
-    answer_content: ""
-  - answer_id: 7
+    answer_content: "Przykładowa odpowiedź"
+  - answer_id: 2
     answer_approach_id: 1
     answer_grade: 0
-    answer_content: ""
-  - answer_id: 8
+    answer_content: "Przykładowa odpowiedź na pytanie w podejściu 1"
+  - answer_id: 3
     answer_approach_id: 1
     answer_grade: 0
-    answer_content: ""
-  - answer_id: 9
+    answer_content: "Przykładowa odpowiedź na pytanie w podejściu 1"
+  - answer_id: 4
     answer_approach_id: 1
     answer_grade: 0
-    answer_content: ""
-  - answer_id: 10
+    answer_content: "Przykładowa odpowiedź na pytanie w podejściu 1"
+  - answer_id: 5
     answer_approach_id: 1
     answer_grade: 0
-    answer_content: ""
+    answer_content: "Przykładowa odpowiedź na pytanie w podejściu 1"
 exam:
-  - exam_id: 1
-    exam_title: "Pewien egzamin 1"
+  - exam_id: 2
+    exam_title: "Pewien egzamin 2"
     exam_count_take_exam: 3
     exam_date_start: "2015-03-31 22:59:07.393572"
     exam_date_end: "2015-07-04 22:59:07.393572"

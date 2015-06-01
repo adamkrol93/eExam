@@ -37,37 +37,6 @@ public class AnswerServiceTest extends BaseArquillianTest {
     public void shouldNotFindApproach() throws Exception {
         answerService.findById(37l);
     }
-
-    @Test
-    @Transactional(TransactionMode.DISABLED)
-    @ShouldMatchDataSet(value = "mre/expected-AnswerServiceTest#shouldChangeAnswersInFirstApproach.yml")
-    public void shouldChangeAnswerInFirstApproach() throws Exception {
-
-        String answerContent = "Przykładowa odpowiedź na pytanie w podejściu 1";
-
-        ApproachEntity approachEntity = answerService.findById(1l);
-        for (AnswerEntity answerEntity : approachEntity.getAnswers()) {
-            answerEntity.setContent(answerContent);
-        }
-        answerService.editApproach(approachEntity.getAnswers());
-    }
-
-    @Test
-    @Transactional(TransactionMode.DISABLED)
-    @ShouldMatchDataSet(value = "mre/expected-AnswerServiceTest#shouldChangeAnswerInFirstApproachOnlyOneAnswer.yml")
-    public void shouldChangeAnswerInFirstApproachOnlyOneAnswer() throws Exception {
-
-        String answerContent = "Przykładowa odpowiedź na pytanie w podejściu 1";
-
-        ApproachEntity approachEntity = answerService.findById(1l);
-        for (AnswerEntity answerEntity : approachEntity.getAnswers()) {
-            if(answerEntity.getId() == 1) {
-                answerEntity.setContent(answerContent);
-            }
-        }
-        answerService.editApproach(approachEntity.getAnswers());
-    }
-
     @Test
     @Transactional(TransactionMode.DISABLED)
     @UsingDataSet({"ValidUser.yml", "mre/AnswerServiceTest#shouldCreateApproach.yml"})
@@ -76,6 +45,43 @@ public class AnswerServiceTest extends BaseArquillianTest {
     public void shouldCreateApproach() throws Exception {
         answerService.createApproach("Pewien egzamin 1");
     }
+    @Test
+    @Transactional(TransactionMode.DISABLED)
+    @UsingDataSet({"ValidUser.yml", "mre/AnswerServiceTest#shouldEditAnswerInApproach.yml"})
+    @ShouldMatchDataSet(value = "mre/expected-AnswerServiceTest#shouldEditAnswerInApproach.yml",
+            excludeColumns = {"approach.approach_date_start", "approach.approach_date_end", "approach.approach_version"})
+    public void shouldEditAnswerInApproach() throws Exception {
+
+        String answerContent = "Przykładowa odpowiedź na pytanie w podejściu 1";
+        answerService.createApproach("Pewien egzamin 2");
+        ApproachEntity approachEntity = answerService.findById(1l);
+
+        for (AnswerEntity answerEntity : approachEntity.getAnswers()) {
+            if(answerEntity.getId() == 1) {
+                answerEntity.setContent("Przykładowa odpowiedź");
+            }
+            else {
+                answerEntity.setContent(answerContent);
+            }
+        }
+        answerService.editApproach(approachEntity.getAnswers());
+    }
+
+    @Test(expected = ApproachEndedException.class)
+    @UsingDataSet({"ValidUser.yml", "mre/AnswerServiceTest#shouldEndApproachBecauseEndOfTime.yml"})
+    public void shouldEndApproachBecauseEndOfTime() throws Exception {
+
+        String answerContent = "Przykładowa odpowiedź na pytanie w podejściu 1";
+
+        ApproachEntity approachEntity = answerService.findById(1l);
+
+        for (AnswerEntity answerEntity : approachEntity.getAnswers()) {
+            answerEntity.setContent(answerContent);
+        }
+        answerService.editApproach(approachEntity.getAnswers());
+    }
+
+
 
     @Test(expected = ApproachEndedException.class)
     @Transactional(TransactionMode.DISABLED)
