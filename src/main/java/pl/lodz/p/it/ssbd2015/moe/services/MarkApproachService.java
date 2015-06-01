@@ -21,6 +21,7 @@ import java.util.List;
  * Klasa pozwalająca dokonywać ocen i dyskwalifikacji podejść.
  * @author Bartosz Ignaczewski
  * @author Piotr Jurewicz
+ * @author Tobiasz Kowalski
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.moe.services.MarkApproachService")
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
