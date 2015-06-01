@@ -13,15 +13,16 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
-import java.io.Serializable;
+import java.util.List;
 
 /**
  * Backing bean dla formularza edycji egzaminu.
  * @author Andrzej Kurczewski
+ * @author Tobiasz Kowalski
  */
 @ManagedBean(name = "editExamMZE")
 @ViewScoped
-public class EditExam extends BaseContextBean implements Serializable {
+public class EditExam extends BaseContextBean {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,9 +32,14 @@ public class EditExam extends BaseContextBean implements Serializable {
     private long id;
     private ExamEntity exam;
     private String oldTitle;
+
+    private List<QuestionEntity> questionList;
+    private List<TeacherEntity> teacherList;
+    private List<TeacherEntity> teachersNotInExamList;
+
     private transient DataModel<QuestionEntity> questions;
     private transient DataModel<TeacherEntity> teachers;
-    private DataModel<TeacherEntity> teachersNotInExam;
+    private transient DataModel<TeacherEntity> teachersNotInExam;
 
     private String message;
 
@@ -42,9 +48,9 @@ public class EditExam extends BaseContextBean implements Serializable {
         expectApplicationException(() -> {
             exam = editExamService.findById(id);
             oldTitle = exam.getTitle();
-            questions = new ListDataModel<>(exam.getQuestions());
-            teachers = new ListDataModel<>(exam.getTeachers());
-            teachersNotInExam = new ListDataModel<>( editExamService.findAllNotInExam());
+            questionList = exam.getQuestions();
+            teacherList = exam.getTeachers();
+            teachersNotInExamList = editExamService.findAllNotInExam();
             setContext(EditExam.class, bean -> bean.id = id);
         });
     }
@@ -113,19 +119,31 @@ public class EditExam extends BaseContextBean implements Serializable {
     public long getId() {
         return id;
     }
+
     public void setId(long id) {
         this.id = id;
     }
 
     public DataModel<QuestionEntity> getQuestions() {
+        if (questions == null) {
+            questions = new ListDataModel<>(questionList);
+        }
         return questions;
     }
 
     public DataModel<TeacherEntity> getTeachers() {
+        if (teachers == null) {
+            teachers = new ListDataModel<>(teacherList);
+        }
         return teachers;
     }
 
-    public DataModel<TeacherEntity> getTeachersNotInExam() {return teachersNotInExam;}
+    public DataModel<TeacherEntity> getTeachersNotInExam() {
+        if (teachersNotInExam == null) {
+            teachersNotInExam = new ListDataModel<>(teachersNotInExamList);
+        }
+        return teachersNotInExam;
+    }
 
     public String getMessage() {
         return message;

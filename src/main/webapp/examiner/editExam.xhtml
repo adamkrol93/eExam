@@ -208,7 +208,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h2>
-                        <h:outputText value="#{i18n['mze.edit_exam.add_teacher']}" rendered="#{editExamMZE.teachersNotInExam.isRowAvailable()}"/>
+                        <h:outputText value="#{i18n['mze.edit_exam.add_teacher']}" rendered="#{editExamMZE.teachersNotInExam.rowCount ne 0}"/>
                     </h2>
                     <div class="list-group">
                         <h:form id="edit-exam-newTeachers-form">
@@ -220,7 +220,7 @@
                                         </h4>
                                     </div>
                                     <span class="pull-right">
-                                        <h:commandLink styleClass="btn btn-info" action="#{editExamMZE.addTeacher}">
+                                        <h:commandLink styleClass="btn btn-success" action="#{editExamMZE.addTeacher}">
                                             <span class="glyphicon glyphicon-plus"/>
                                         </h:commandLink>
                                     </span>
