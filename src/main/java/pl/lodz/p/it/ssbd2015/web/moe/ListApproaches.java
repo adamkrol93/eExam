@@ -44,12 +44,17 @@ public class ListApproaches extends BaseContextBean implements Serializable {
      * @return Zwraca kod wiadomości do wyświetlenia. Jeżeli podejście było już sprawdzone to: moe.list.approaches.to_evaluate.no jeżeli nie to: moe.list.approaches.to_evaluate.no
      */
     public String checkApproachIsToEvaluate(ApproachEntity approach) {
+        if(approaches.getRowData().isDisqualification()){
+            return "moe.approach_list.approaches.to_evaluate.disqualified";
+        }
+
         for (AnswerEntity answerEntity : approach.getAnswers()) {
             if (answerEntity.getTeacher() == null) {
                 return "moe.approach_list.approaches.to_evaluate.yes";
             }
         }
         return "moe.approach_list.approaches.to_evaluate.no";
+
     }
 
     /**

@@ -27,13 +27,6 @@
         <div class="page-header text-center">
             <h1><h:outputText value="#{i18n['moe.rate_approach.title']}"/></h1>
         </div>
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h3>
-                    <h:outputText value="#{i18n[rateApproachMOE.message]}" styleClass="text-info"/>
-                </h3>
-            </div>
-        </div>
         <h:form styleClass="form-horizontal">
             <ui:repeat value="#{rateApproachMOE.approach.answers}" var="answer">
                 <div class="row">

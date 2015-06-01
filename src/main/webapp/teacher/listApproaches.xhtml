@@ -34,14 +34,11 @@
                 <div class="table-responsive">
                     <ui:repeat value="#{listApproachesMOE.examEntityList}" var="exam">
                         <h3><h:outputText value="#{exam.title}"/></h3>
-                        <h:form>
+                        <ui:fragment rendered="#{exam.approaches.isEmpty()}">
+                            <div class="well well-sm "><h:outputText value="#{i18n['moe.approach_list.empty']}"/></div>
+                        </ui:fragment>
+                        <h:form rendered="#{!exam.approaches.isEmpty()}">
                             <h:dataTable var="approach" value="#{listApproachesMOE.getApproaches(exam)}" styleClass="table table-striped">
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="#{i18n['moe.approach_list.approaches.to_evaluate']}"/>
-                                    </f:facet>
-                                    <h:outputText value="#{i18n[listApproachesMOE.checkApproachIsToEvaluate(approach)]}"/>
-                                </h:column>
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="#{i18n['moe.approach_list.approaches.dateEnd']}"/>
@@ -58,12 +55,19 @@
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
+                                        <h:outputText  value="#{i18n['moe.approach_list.approaches.status']}"/>
+                                    </f:facet>
+                                    <h:outputText  value="#{i18n[listApproachesMOE.checkApproachIsToEvaluate(approach)]}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
                                         <h:outputText value="#{i18n['moe.approach_list.actions']}"/>
                                     </f:facet>
                                     <h:commandButton value="#{i18n['moe.approach_list.actions.show']}"
-                                                     action="#{listApproachesMOE.gotoDetails}"/>
+                                                     styleClass="btn-primary" action="#{listApproachesMOE.gotoDetails}"/>
                                     <h:commandButton value="#{i18n['moe.approach_list.actions.rate']}"
-                                                     action="#{listApproachesMOE.rateApproach}"/>
+                                                     styleClass="btn-primary" action="#{listApproachesMOE.rateApproach}"
+                                                     rendered="#{!approach.disqualification}"/>
                                 </h:column>
                             </h:dataTable>
                         </h:form>
