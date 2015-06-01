@@ -15,7 +15,6 @@ import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.*;
 import javax.interceptor.Interceptors;
-import javax.persistence.LockModeType;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -87,7 +86,8 @@ public class AnswersManager implements AnswersManagerLocal {
             Collections.shuffle(shuffledQuestions, new Random());
             List<AnswerEntity> moreAnswers = shuffledQuestions.stream().limit(toTake)
                 .map(question -> {
-                    approachEntityFacade.getEntityManager().lock(question, LockModeType.OPTIMISTIC_FORCE_INCREMENT);
+                    //approachEntityFacade.getEntityManager().lock(question, LockModeType.OPTIMISTIC_FORCE_INCREMENT);
+                    approachEntityFacade.lockWrite(question);
                     AnswerEntity answer = new AnswerEntity();
                     answer.setQuestion(question);
                     answer.setApproach(approachEntity);
@@ -100,8 +100,8 @@ public class AnswersManager implements AnswersManagerLocal {
         approachEntity.setAnswers(answers);
 
         approachEntityFacade.create(approachEntity);
-        approachEntityFacade.getEntityManager().lock(exam, LockModeType.OPTIMISTIC_FORCE_INCREMENT);
-
+//        approachEntityFacade.getEntityManager().lock(exam, LockModeType.OPTIMISTIC_FORCE_INCREMENT);
+        approachEntityFacade.lockWrite(exam);
         return approachEntity.getId();
     }
 

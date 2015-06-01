@@ -1,6 +1,8 @@
 package pl.lodz.p.it.ssbd2015.mre.facades;
 
 import pl.lodz.p.it.ssbd2015.entities.ApproachEntity;
+import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
+import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 
@@ -11,6 +13,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
+import javax.persistence.LockModeType;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
@@ -35,7 +38,7 @@ public class ApproachEntityFacade implements ApproachEntityFacadeLocal {
     }
 
     @Override
-    @RolesAllowed("START_SOLVING_EXAM_MRE")
+    @DenyAll
     public EntityManager getEntityManager() {
         return entityManager;
     }
@@ -62,5 +65,17 @@ public class ApproachEntityFacade implements ApproachEntityFacadeLocal {
     @RolesAllowed({"ANSWER_QUESTION_MRE", "SHOW_APPROACHES_MRE"})
     public List<ApproachEntity> findAll() {
         return ApproachEntityFacadeLocal.super.findAll();
+    }
+
+    @Override
+    @RolesAllowed({"START_SOLVING_EXAM_MRE"})
+    public void lockWrite(ExamEntity examEntity) {
+        getEntityManager().lock(examEntity, LockModeType.OPTIMISTIC_FORCE_INCREMENT);
+    }
+
+    @Override
+    @RolesAllowed({"START_SOLVING_EXAM_MRE"})
+    public void lockWrite(QuestionEntity questionEntity) {
+        getEntityManager().lock(questionEntity,LockModeType.OPTIMISTIC_FORCE_INCREMENT);
     }
 }
