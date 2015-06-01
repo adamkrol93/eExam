@@ -19,6 +19,7 @@ import java.util.List;
  *
  * @author Bartosz Ignaczewski
  * @author Piotr Jurewicz
+ * @author Tobiasz Kowalski
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.moe.managers.ApproachesManager")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
@@ -93,6 +94,14 @@ public class ApproachesManager implements ApproachesManagerLocal {
 
         ExamEntity exam = examEntityFacade.findById(approach.getExam().getId())
                 .orElseThrow(() -> new ExamNotFoundException("Exam with id: " + approach.getExam().getId() + " does not exists"));
+
+        String login = sessionContext.getCallerPrincipal().getName();
+
+        Boolean exist = exam.getTeachers().stream().anyMatch(t->t.getLogin()==login);
+
+        if(!exist){
+            throw new TeacherNotFoundException("Teacher with login: " + login + " does not exists.");
+        }
 
         exam.setCountFinishExam(exam.getCountFinishExam() == null ? 1 : exam.getCountTakeExam() + 1);
 
