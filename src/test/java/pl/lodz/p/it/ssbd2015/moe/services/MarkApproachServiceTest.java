@@ -2,18 +2,14 @@ package pl.lodz.p.it.ssbd2015.moe.services;
 
 import org.jboss.arquillian.persistence.ShouldMatchDataSet;
 import org.jboss.arquillian.persistence.UsingDataSet;
-import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
+import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
-import pl.lodz.p.it.ssbd2015.entities.AnswerEntity;
 import pl.lodz.p.it.ssbd2015.entities.ApproachEntity;
-import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.exceptions.moe.ApproachNotFoundException;
 
 import javax.ejb.EJB;
-
-import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -39,7 +35,7 @@ public class MarkApproachServiceTest extends BaseArquillianTest {
 
     @Test
     @Transactional(TransactionMode.DISABLED)
-    @ShouldMatchDataSet(value = "moe/MarkApproachServiceTest#shouldDisqualifyApproach.yml")
+    @ShouldMatchDataSet(value = "moe/expected-MarkApproachServiceTest#shouldDisqualifyApproach.yml")
     public void shouldDisqualifyApproach() throws Exception {
         ApproachEntity approach = markApproachService.findById(2L);
 

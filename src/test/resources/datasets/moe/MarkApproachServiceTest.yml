@@ -53,6 +53,10 @@ exam_question:
   - exam_id: 1
     question_id: 2
 
+exam_groups:
+  - exam_id: 1
+    groups_id: 1
+
 answer:
   - answer_id: 1
     answer_approach_id: 1
