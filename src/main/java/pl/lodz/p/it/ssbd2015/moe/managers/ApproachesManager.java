@@ -48,8 +48,13 @@ public class ApproachesManager implements ApproachesManagerLocal {
 
         ExamEntity examEntity = examEntityFacade.findById(approach.getExam().getId()).orElseThrow(() -> new ExamNotFoundException("Exam with id: " + approach.getExam().getId() + " does not exists"));
 
-        Boolean isAllowed = examEntity.getTeachers().stream().anyMatch(t->t.getLogin()==login);
-        if(!isAllowed){
+        boolean isAllowed = false;
+        for (TeacherEntity teacher : examEntity.getTeachers()) {
+            if (teacher.getLogin().equals(login)) {
+                isAllowed = true;
+            }
+        }
+        if (!isAllowed) {
             throw new TeacherNotFoundException("Teacher with login: " + login + " does not exist among authorized to check this exam.");
         }
 
@@ -59,17 +64,17 @@ public class ApproachesManager implements ApproachesManagerLocal {
         approach.setAnswers(answers);
         approachEntityFacade.edit(approach);
 
-        examEntity.setCountFinishExam(examEntity.getCountFinishExam()==null ? 1 : examEntity.getCountTakeExam()+1);
+        examEntity.setCountFinishExam(examEntity.getCountFinishExam() == null ? 1 : examEntity.getCountTakeExam() + 1);
 
-        long sumOfGrades=0;
-        long sumFromApproaches=0;
+        long sumOfGrades = 0;
+        long sumFromApproaches = 0;
 
-        for(ApproachEntity actualApproach : examEntity.getApproaches()){
-            if(!actualApproach.isDisqualification()){
-                for(AnswerEntity actualAnswer : actualApproach.getAnswers()){
+        for (ApproachEntity actualApproach : examEntity.getApproaches()) {
+            if (!actualApproach.isDisqualification()) {
+                for (AnswerEntity actualAnswer : actualApproach.getAnswers()) {
                     sumOfGrades += actualAnswer.getGrade();
                 }
-                sumFromApproaches+=sumOfGrades;
+                sumFromApproaches += sumOfGrades;
             }
         }
 
@@ -89,17 +94,17 @@ public class ApproachesManager implements ApproachesManagerLocal {
         ExamEntity exam = examEntityFacade.findById(approach.getExam().getId())
                 .orElseThrow(() -> new ExamNotFoundException("Exam with id: " + approach.getExam().getId() + " does not exists"));
 
-        exam.setCountFinishExam(exam.getCountFinishExam()==null ? 1 : exam.getCountTakeExam()+1);
+        exam.setCountFinishExam(exam.getCountFinishExam() == null ? 1 : exam.getCountTakeExam() + 1);
 
-        long sumOfGrades=0;
-        long sumFromApproaches=0;
+        long sumOfGrades = 0;
+        long sumFromApproaches = 0;
 
-        for(ApproachEntity actualApproach : exam.getApproaches()){
-            if(!actualApproach.isDisqualification()){
-                for(AnswerEntity answer : actualApproach.getAnswers()){
+        for (ApproachEntity actualApproach : exam.getApproaches()) {
+            if (!actualApproach.isDisqualification()) {
+                for (AnswerEntity answer : actualApproach.getAnswers()) {
                     sumOfGrades += answer.getGrade();
                 }
-                sumFromApproaches+=sumOfGrades;
+                sumFromApproaches += sumOfGrades;
             }
         }
 
@@ -114,11 +119,9 @@ public class ApproachesManager implements ApproachesManagerLocal {
     public List<ExamEntity> findAllByLoggedTeacher() throws ApplicationBaseException {
         String login = sessionContext.getCallerPrincipal().getName();
         TeacherEntity teacherEntity = teacherEntityFacade.findByLogin(login).orElseThrow(() -> new TeacherNotFoundException("Teacher with login: " + login + " does not exists"));
-        for (ExamEntity examEntity : teacherEntity.getExams())
-        {
+        for (ExamEntity examEntity : teacherEntity.getExams()) {
             examEntity.getApproaches().isEmpty();
-            for (ApproachEntity approachEntity : examEntity.getApproaches())
-            {
+            for (ApproachEntity approachEntity : examEntity.getApproaches()) {
                 approachEntity.getAnswers().isEmpty();
             }
             examEntity.getTeachers().isEmpty();
@@ -130,7 +133,7 @@ public class ApproachesManager implements ApproachesManagerLocal {
     @Override
     @RolesAllowed("ADD_STUDENTS_GUARDIAN_MOE")
     public void connect(GuardianEntity guardian, StudentEntity student) throws ApplicationBaseException {
-    	student.setGuardian(guardian);
+        student.setGuardian(guardian);
         this.studentEntityFacade.edit(student);
     }
 }

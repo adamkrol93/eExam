@@ -10,6 +10,7 @@ import javax.faces.bean.ViewScoped;
 
 /**
  * Backing bean dla strony na której uczeń poznaje treść pytań i udziela odpowiedzi.
+ *
  * @author Marcin Kabza
  */
 @ManagedBean(name = "answerTheQuestionsMRE")
@@ -34,18 +35,18 @@ public class AnswerTheQuestions extends BaseContextBean {
         });
     }
 
-    public String editApproach(){
-        expectApplicationException(() -> {
+    public String editApproach() {
+        return expectApplicationException(() -> {
             answerService.editApproach(approach.getAnswers());
+            setContext(AnswerTheQuestions.class, bean -> {
+                bean.id = id;
+                bean.message = "mre.answer_the_questions.edit_success";
+            });
+            return "answerTheQuestions?faces-redirect=true";
         });
-        setContext(AnswerTheQuestions.class, bean -> {
-            bean.id = id;
-            bean.message = "mre.answer_the_questions.edit_success";
-        });
-        return "answerTheQuestions?faces-redirect=true";
     }
 
-    public String endApproach(){
+    public String endApproach() {
         return expectApplicationException(() -> {
             answerService.endApproach();
             setContext(ListApproachesStudent.class, bean -> bean.setMessage("mre.answer_the_questions.end_success"));

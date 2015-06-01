@@ -58,10 +58,10 @@ public class RateApproach extends BaseContextBean implements Serializable {
      * @return stronę z przekierowaniem po udanej transkacji.
      */
     public String editApproach() {
-        expectApplicationException(() -> {
+        return expectApplicationException(() -> {
             markApproachService.mark(approach.getAnswers());
+            return "listApproaches?faces-redirect=true";
         });
-        return "listApproaches?faces-redirect=true";
     }
 
     /**
@@ -69,10 +69,10 @@ public class RateApproach extends BaseContextBean implements Serializable {
      * @return zwraca stronę z przekierowanie po udanej transakcji.
      */
     public String disqualifyApproach() {
-        expectApplicationException(() ->{
+        return expectApplicationException(() -> {
             markApproachService.disqualify();
+            return "listApproaches?faces-redirect=true";
         });
-        return "listApproaches?faces-redirect=true";
     }
 
     public List<Integer> repeat(int times) {
