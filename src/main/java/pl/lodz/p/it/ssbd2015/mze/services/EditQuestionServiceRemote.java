@@ -14,6 +14,6 @@ public interface EditQuestionServiceRemote {
 
     QuestionEntity findById(long id) throws ApplicationBaseException;
 
-    void editQuestion(QuestionEntity question) throws ApplicationBaseException;
+    long editQuestion(QuestionEntity question) throws ApplicationBaseException;
 
 }

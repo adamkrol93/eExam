@@ -14,5 +14,5 @@ public interface QuestionsManagerLocal {
 
     void createQuestion(QuestionEntity question) throws ApplicationBaseException;
 
-    void editQuestion(QuestionEntity question, QuestionEntity newQuestion) throws ApplicationBaseException;
+    long editQuestion(QuestionEntity question, QuestionEntity newQuestion) throws ApplicationBaseException;
 }

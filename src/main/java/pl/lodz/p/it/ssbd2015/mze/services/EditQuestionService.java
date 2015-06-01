@@ -16,7 +16,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 
 /**
- * Klasa wykorzsytywana do edycji pytania.
+ * Klasa wykorzystywana do edycji pytania.
  * Klasa zawiera pole typue {@link QuestionEntity}
  * @author Bartosz Ignaczewski
  */
@@ -43,7 +43,7 @@ public class EditQuestionService extends BaseStatefulService implements EditQues
 
     @Override
     @RolesAllowed("EDIT_QUESTION_MZE")
-    public void editQuestion(QuestionEntity question) throws ApplicationBaseException {
-        questionsManager.editQuestion(this.question, question);
+    public long editQuestion(QuestionEntity question) throws ApplicationBaseException {
+        return questionsManager.editQuestion(this.question, question);
     }
 }

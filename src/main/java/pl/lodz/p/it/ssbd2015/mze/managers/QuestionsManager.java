@@ -44,7 +44,7 @@ public class QuestionsManager implements QuestionsManagerLocal {
 
     @Override
     @RolesAllowed("EDIT_QUESTION_MZE")
-    public void editQuestion(QuestionEntity question, QuestionEntity newQuestion) throws ApplicationBaseException {
+    public long editQuestion(QuestionEntity question, QuestionEntity newQuestion) throws ApplicationBaseException {
         boolean isNew = false;
 
         String examinerLogin = sessionContext.getCallerPrincipal().getName();
@@ -66,5 +66,7 @@ public class QuestionsManager implements QuestionsManagerLocal {
             question.setModifier(examinerEntity);
             questionEntityFacade.edit(question);
         }
+
+        return question.getId();
     }
 }

@@ -23,9 +23,8 @@ public class EditQuestion extends BaseContextBean implements Serializable {
     private EditQuestionServiceRemote editQuestionService;
 
     private long id;
+
     private QuestionEntity question;
-    private String content;
-    private String sampleAnswer;
 
     private String message;
 
@@ -33,19 +32,17 @@ public class EditQuestion extends BaseContextBean implements Serializable {
     protected void doInContext() {
         expectApplicationException(() -> {
             question = editQuestionService.findById(id);
-            content = question.getContent();
-            sampleAnswer = question.getSampleAnswer();
             setContext(EditQuestion.class, bean -> bean.id = id);
         });
     }
 
     public String saveQuestion() {
         return expectApplicationException(() -> {
-            editQuestionService.editQuestion(question);
-            setContext(EditQuestion.class, (bean -> {
-                bean.id = id;
+            long newId = editQuestionService.editQuestion(question);
+            setContext(EditQuestion.class, bean -> {
+                bean.id = newId;
                 bean.message = "mze.edit_question.edited_message";
-            }));
+            });
             return "editQuestion?faces-redirect=true&includeViewParams=true";
         });
     }
@@ -64,14 +61,6 @@ public class EditQuestion extends BaseContextBean implements Serializable {
 
     public void setQuestion(QuestionEntity question) {
         this.question = question;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public String getSampleAnswer() {
-        return sampleAnswer;
     }
 
     public String getMessage() {
