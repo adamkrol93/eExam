@@ -46,13 +46,19 @@ public class ApproachesManager implements ApproachesManagerLocal {
         String login = sessionContext.getCallerPrincipal().getName();
         TeacherEntity teacherEntity = teacherEntityFacade.findByLogin(login).orElseThrow(() -> new TeacherNotFoundException("Teacher with login: " + login + " does not exists"));
 
+        ExamEntity examEntity = examEntityFacade.findById(approach.getExam().getId()).orElseThrow(() -> new ExamNotFoundException("Exam with id: " + approach.getExam().getId() + " does not exists"));
+
+        Boolean isAllowed = examEntity.getTeachers().stream().anyMatch(t->t.getLogin()==login);
+        if(!isAllowed){
+            throw new TeacherNotFoundException("Teacher with login: " + login + " does not exist among authorized to check this exam.");
+        }
+
         for (AnswerEntity answer : answers) {
             answer.setTeacher(teacherEntity);
         }
         approach.setAnswers(answers);
         approachEntityFacade.edit(approach);
 
-        ExamEntity examEntity = examEntityFacade.findById(approach.getExam().getId()).orElseThrow(() -> new ExamNotFoundException("Exam with id: " + approach.getExam().getId() + " does not exists"));
         examEntity.setCountFinishExam(examEntity.getCountFinishExam()==null ? 1 : examEntity.getCountTakeExam()+1);
 
         long sumOfGrades=0;

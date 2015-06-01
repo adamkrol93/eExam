@@ -39,7 +39,7 @@ public class MarkApproachService extends BaseStatefulService implements MarkAppr
     @RolesAllowed("MARK_APPROACH_MOE")
     public ApproachEntity findById(long id) throws ApplicationBaseException {
     	approach = approachEntityFacade.findById(id).orElseThrow(() -> new ApproachNotFoundException("Approach with id: " + id + " does not exists"));
-        approach.getAnswers().size();
+        approach.getAnswers().isEmpty();
         return approach;
     }
 
