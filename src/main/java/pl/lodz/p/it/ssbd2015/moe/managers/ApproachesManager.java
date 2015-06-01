@@ -97,7 +97,13 @@ public class ApproachesManager implements ApproachesManagerLocal {
 
         String login = sessionContext.getCallerPrincipal().getName();
 
-        Boolean exist = exam.getTeachers().stream().anyMatch(t->t.getLogin()==login);
+        Boolean exist =false;
+
+        for(TeacherEntity teacher : exam.getTeachers()){
+            if(teacher.getLogin().equals(login)){
+                exist=true;
+            }
+        }
 
         if(!exist){
             throw new TeacherNotFoundException("Teacher with login: " + login + " does not exists.");
