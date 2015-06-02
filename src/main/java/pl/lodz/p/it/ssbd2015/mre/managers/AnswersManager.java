@@ -61,11 +61,11 @@ public class AnswersManager implements AnswersManagerLocal {
             throw new UnavailableExamException("This exam has already finished");
         }
 
-        long takeCount = exam.getApproaches().stream()
-                .filter(s -> s.getEntrant().getId() == studentEntity.getId())
-                .collect(Collectors.counting());
+        long takeCount = new ArrayList<>(exam.getApproaches()).stream()
+                .filter(a -> a.getEntrant().getId() == studentEntity.getId())
+                .count();
         if (exam.getCountTakeExam() <= takeCount) {
-            throw new UnavailableExamException("Exceeded the allowed amount of approaches for student with login: "+login);
+            throw new UnavailableExamException("Exceeded the allowed amount of approaches for student with login: " + login);
         }
 
         ApproachEntity approachEntity = new ApproachEntity();
@@ -85,14 +85,14 @@ public class AnswersManager implements AnswersManagerLocal {
         while (toTake > 0) {
             Collections.shuffle(shuffledQuestions, new Random());
             List<AnswerEntity> moreAnswers = shuffledQuestions.stream().limit(toTake)
-                .map(question -> {
-                    approachEntityFacade.lockWrite(question);
-                    AnswerEntity answer = new AnswerEntity();
-                    answer.setQuestion(question);
-                    answer.setApproach(approachEntity);
-                    answer.setContent("");
-                    return answer;
-                }).collect(Collectors.toList());
+                    .map(question -> {
+                        approachEntityFacade.lockWrite(question);
+                        AnswerEntity answer = new AnswerEntity();
+                        answer.setQuestion(question);
+                        answer.setApproach(approachEntity);
+                        answer.setContent("");
+                        return answer;
+                    }).collect(Collectors.toList());
             answers.addAll(moreAnswers);
             toTake -= moreAnswers.size();
         }
@@ -106,27 +106,20 @@ public class AnswersManager implements AnswersManagerLocal {
     @Override
     @RolesAllowed("ANSWER_QUESTION_MRE")
     public void editApproach(ApproachEntity approach, List<AnswerEntity> answers) throws ApplicationBaseException {
-        Calendar cal = approach.getDateStart();
-        cal.add(Calendar.MINUTE, approach.getExam().getDuration());
-        if(cal.getTime().after(Calendar.getInstance().getTime()))
-        {
-            for(AnswerEntity editedAnswer : answers)
-            {
-                for(AnswerEntity answerEntity : approach.getAnswers())
-                {
-                    if(editedAnswer.getId() == answerEntity.getId())
-                    {
-                        answerEntity.setContent(editedAnswer.getContent());
-                        answerEntity.setDateModification(Calendar.getInstance());
-                    }
+        Calendar now = GregorianCalendar.getInstance();
+        if (now.after(approach.getDateEnd())) {
+            throw new ApproachEndedException("End of time to take exam in approach id: " + approach.getId());
+        }
+
+        for (AnswerEntity editedAnswer : answers) {
+            for (AnswerEntity answerEntity : approach.getAnswers()) {
+                if (editedAnswer.getId() == answerEntity.getId()) {
+                    answerEntity.setContent(editedAnswer.getContent());
+                    answerEntity.setDateModification(Calendar.getInstance());
                 }
             }
             approachEntityFacade.edit(approach);
         }
-        else {
-            throw new ApproachEndedException("End of time to take exam in approach id: "+approach.getId());
-        }
-
     }
 
     @Override
@@ -135,15 +128,15 @@ public class AnswersManager implements AnswersManagerLocal {
         Calendar now = GregorianCalendar.getInstance();
         if (now.after(approach.getDateEnd())) {
             throw new ApproachEndedException(
-                "Trying to end approach with id = " + approach.getId() + " that has been ended");
+                    "Trying to end approach with id = " + approach.getId() + " that has been ended");
         }
 
         approach.setDateEnd(now);
         approachEntityFacade.edit(approach);
 
         ExamEntity exam = examEntityFacade.findById(approach.getExam().getId())
-                                          .orElseThrow(() -> new ExamNotFoundException(
-                                              "Exam with id = " + approach.getId() + " does not exists"));
+                .orElseThrow(() -> new ExamNotFoundException(
+                        "Exam with id = " + approach.getId() + " does not exists"));
         Integer finished = exam.getCountFinishExam() != null ? exam.getCountFinishExam() : 0;
         exam.setCountFinishExam(finished + 1);
         examEntityFacade.edit(exam);

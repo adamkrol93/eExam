@@ -30,7 +30,8 @@
             <div class="col-lg-12">
                 <div class="table-responsive">
                     <h:form>
-                        <h:dataTable var="exam" value="#{showAvailableExamsMRE.examEntities}" styleClass="table table-striped">
+                        <h:dataTable var="exam" value="#{showAvailableExamsMRE.examEntities}"
+                                     styleClass="table table-striped">
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="#{i18n['mre.exam.list.title']}"/>
@@ -73,7 +74,9 @@
                                 <f:facet name="header">
                                     <h:outputText value="#{i18n['mre.exam.list.action']}"/>
                                 </f:facet>
-                                <h:link value="#{i18n['mre.exam.list.start']} " outcome="startApproach.xhtml"/>
+                                <h:link value="#{i18n['mre.exam.list.start']} " outcome="startApproach.xhtml">
+                                    <f:param name="title" value="#{exam.title}"/>
+                                </h:link>
                             </h:column>
                         </h:dataTable>
                     </h:form>

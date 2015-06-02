@@ -5,7 +5,49 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Formularz rozpoczęcia podejścia"/>
-</f:view>
+<ui:composition template="../template/commonLayout.xhtml">
+    <f:metadata>
+        <f:viewParam name="title" value="#{createApproachMRE.title}"/>
+        <f:viewAction action="#{createApproachMRE.checkContext}"/>
+    </f:metadata>
+    <ui:define name="head">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title><h:outputText value="#{i18n['mre.start_approach.start_approach']}"/></title>
+    </ui:define>
+    <ui:define name="breadcrumps">
+        <ol class="breadcrumb">
+            <li><h:link outcome="/index" value="#{i18n['home.page']}"/></li>
+            <li><h:link outcome="/student/index"
+                        value="#{i18n['student.page.simple_title']}"/></li>
+            <li><h:link outcome="/student/showAvailableExams"
+                        value="#{i18n['mre.exam_list.title']}"/></li>
+            <li class="active"><h:outputText
+                    value="#{i18n['mre.start_approach.start_approach']}"/></li>
+        </ol>
+    </ui:define>
+
+    <ui:define name="content">
+        <ui:fragment rendered="#{createApproachMRE.message != null}">
+            <div class="alert alert-danger"><h:outputText
+                    value="#{i18n[createApproachMRE.message]}"/></div>
+        </ui:fragment>
+
+        <div class="page-header text-center">
+            <h1><h:outputText value="#{i18n['mre.start_approach.start_approach']}"/></h1>
+        </div>
+        <div class="jumbotron">
+            <h2><h:outputText value="#{createApproachMRE.title}"/></h2>
+
+            <p><h:outputText value="#{i18n['mre.start_approach.info']}"/></p>
+
+            <p>
+                <h:form id="test">
+                    <h:commandButton action="#{createApproachMRE.createApproach()}"
+                                     value="#{i18n['mre.start_approach.start']}"
+                                     styleClass="btn btn-primary btn-lg"/>
+                </h:form>
+            </p>
+        </div>
+    </ui:define>
+</ui:composition>
 </html>
