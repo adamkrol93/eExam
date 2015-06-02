@@ -11,7 +11,7 @@ import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
 /**
- * Modyfikacja klasy {@link ResourceBundle.Control} pozwalająca obsługiwać pliki properties kodowane w UTF-8
+ * Modyfikacja klasy rozszerzajacej pozwalająca obsługiwać pliki properties kodowane w UTF-8
  */
 public class UTF8Control extends ResourceBundle.Control {
     private String bundleExtension;
