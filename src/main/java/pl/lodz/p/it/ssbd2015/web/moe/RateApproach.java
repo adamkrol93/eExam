@@ -66,7 +66,7 @@ public class RateApproach extends BaseContextBean implements Serializable {
                 bean.setMessage("moe.rate_approach.exam_rated");
             }));
 
-            return "listApproaches?faces-redirect=true";
+            return String.format("listApproaches?uuid=%s&faces-redirect=true", getUuid());
         });
     }
 
@@ -82,7 +82,7 @@ public class RateApproach extends BaseContextBean implements Serializable {
                 bean.setMessage("moe.rate_approach.exam_disqualified");
             }));
 
-            return "listApproaches?faces-redirect=true";
+            return String.format("listApproaches?uuid=%s&faces-redirect=true", getUuid());
         });
     }
 
