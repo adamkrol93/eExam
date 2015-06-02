@@ -69,7 +69,7 @@ public class ApproachesManager implements ApproachesManagerLocal {
         approach.setAnswers(answers);
         approachEntityFacade.edit(approach);
 
-        approachesManager.agragete(examEntity);
+        approachesManager.aggregateStats(examEntity);
 
         examEntityFacade.edit(examEntity);
     }
@@ -100,7 +100,7 @@ public class ApproachesManager implements ApproachesManagerLocal {
             throw new TeacherNotFoundException("Teacher with login: " + login + " does not exists.");
         }
 
-        approachesManager.agragete(exam);
+        approachesManager.aggregateStats(exam);
 
         examEntityFacade.edit(exam);
     }
@@ -130,8 +130,9 @@ public class ApproachesManager implements ApproachesManagerLocal {
 
     @Override
     @RolesAllowed({"MARK_APPROACH_MOE", "DISQUALIFY_APPROACH_MOE"})
-    public void agragete(ExamEntity examEntity) {
-        examEntity.setCountFinishExam((int) examEntityFacade.countExamFinished(examEntity));
-        examEntity.setAvgResults(examEntityFacade.countAverage(examEntity)/examEntity.getCountFinishExam());
+    public void aggregateStats(ExamEntity examEntity) {
+        long counted = examEntityFacade.countExamFinished(examEntity);
+        examEntity.setCountFinishExam(counted > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int)counted);
+        examEntity.setAvgResults(counted != 0 ? (double)examEntityFacade.sumApproachesGrades(examEntity) / examEntity.getCountFinishExam() : null);
     }
 }

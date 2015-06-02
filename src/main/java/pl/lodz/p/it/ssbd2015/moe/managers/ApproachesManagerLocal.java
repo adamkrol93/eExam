@@ -47,5 +47,5 @@ public interface ApproachesManagerLocal {
      * Metoda pozwala no obliczenie i ustawienie w egzaminie agregatów
      * @param examEntity egzamin do policzenia i ustawienia agregat
      */
-    void agragete(ExamEntity examEntity);
+    void aggregateStats(ExamEntity examEntity);
 }

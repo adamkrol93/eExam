@@ -36,11 +36,11 @@ import java.util.List;
         ),
         @NamedQuery(
                 name = "ExamEntity.countFinished",
-                query = "SELECT COUNT(a) FROM ApproachEntity a where a.exam = :exam AND :actualdate >= a.dateEnd AND a.disqualification = false"
+                query = "SELECT COUNT(a) FROM ApproachEntity a where a.exam = :exam AND :currentdate >= a.dateEnd AND a.disqualification = false"
         ),
         @NamedQuery(
-                name = "ExamEntity.examAverage",
-                query = "SELECT SUM(an.grade) FROM ApproachEntity a, AnswerEntity an where an.approach = a and a.exam = :exam AND :actualdate >= a.dateEnd AND a.disqualification = false group by a.exam"
+                name = "ExamEntity.sumApproachesGrades",
+                query = "SELECT SUM(an.grade) FROM ApproachEntity a, AnswerEntity an where an.approach = a and a.exam = :exam AND :currentdate >= a.dateEnd AND a.disqualification = false group by a.exam"
         )
 
 })
@@ -85,7 +85,7 @@ public class ExamEntity extends TimeBaseEntity implements Serializable {
     private Integer countFinishExam;
 
     @Column(name = "exam_avg_results", nullable = true, precision = 4)
-    private double avgResults;
+    private Double avgResults;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "exam_date_add", nullable = false)
@@ -199,11 +199,11 @@ public class ExamEntity extends TimeBaseEntity implements Serializable {
         this.countFinishExam = countFinishExam;
     }
 
-    public double getAvgResults() {
+    public Double getAvgResults() {
         return avgResults;
     }
 
-    public void setAvgResults(double avgResults) {
+    public void setAvgResults(Double avgResults) {
         this.avgResults = avgResults;
     }
 
@@ -289,7 +289,7 @@ public class ExamEntity extends TimeBaseEntity implements Serializable {
         if (countQuestion != that.countQuestion) return false;
         if (countTakeExam != that.countTakeExam) return false;
         if (id != that.id) return false;
-        if (avgResults == that.avgResults)
+        if (avgResults != null ? !avgResults.equals(that.avgResults) : that.avgResults != null)
             return false;
         if (countFinishExam != null ? !countFinishExam.equals(that.countFinishExam) : that.countFinishExam != null)
             return false;
@@ -315,7 +315,7 @@ public class ExamEntity extends TimeBaseEntity implements Serializable {
         result = 31 * result + duration;
         result = 31 * result + countQuestion;
         result = 31 * result + (countFinishExam != null ? countFinishExam.hashCode() : 0);
-        result = (int) (31 * result + (avgResults));
+        result = 31 * result + (avgResults != null ? avgResults.hashCode() : 0);
         result = 31 * result + (dateAdd != null ? dateAdd.hashCode() : 0);
         result = 31 * result + (dateModification != null ? dateModification.hashCode() : 0);
         return result;

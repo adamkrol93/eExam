@@ -26,5 +26,5 @@ public interface ExamEntityFacadeLocal extends Merge<Long,ExamEntity>, Read<Long
      * @param examEntity egzamin którego średnią chcemy policzyć
      * @return średnia wartość ocen podejść w egzaminie
      */
-    double countAverage(ExamEntity examEntity);
+    long sumApproachesGrades(ExamEntity examEntity);
 }
