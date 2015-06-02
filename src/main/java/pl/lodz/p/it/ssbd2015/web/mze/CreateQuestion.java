@@ -32,6 +32,11 @@ public class CreateQuestion extends BaseContextBean{
         this.question = new QuestionEntity();
     }
 
+    @Override
+    protected void doInContext() {
+        resetContext();
+    }
+
     public String createQuestion()
     {
         return expectApplicationException(() ->{
