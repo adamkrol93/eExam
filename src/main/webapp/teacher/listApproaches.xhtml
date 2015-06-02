@@ -9,7 +9,7 @@
 <ui:composition template="../template/commonLayout.xhtml">
     <f:metadata>
         <f:viewParam name="uuid" value="#{listApproachesMOE.uuid}" converter="uuidConverter"/>
-        <f:viewAction action="#{listApproachesMOE.checkContext}" />
+        <f:viewAction action="#{listApproachesMOE.checkContext}"/>
     </f:metadata>
     <ui:define name="head">
         <title><h:outputText value="#{i18n['moe.approach_list.approaches']}"/></title>
@@ -24,6 +24,11 @@
         </ol>
     </ui:define>
     <ui:define name="content">
+        <ui:fragment rendered="#{listApproachesMOE.message != null}">
+            <div class="alert alert-success"><h:outputText
+                    value="#{i18n[listApproachesMOE.message]}"/></div>
+        </ui:fragment>
+
         <div class="row">
             <div class="page-header text-center">
                 <h1><h:outputText value="#{i18n['moe.approach_list.approaches']}"/></h1>
@@ -38,13 +43,14 @@
                             <div class="well well-sm "><h:outputText value="#{i18n['moe.approach_list.empty']}"/></div>
                         </ui:fragment>
                         <h:form rendered="#{!exam.approaches.isEmpty()}">
-                            <h:dataTable var="approach" value="#{listApproachesMOE.getApproaches(exam)}" styleClass="table table-striped">
+                            <h:dataTable var="approach" value="#{listApproachesMOE.getApproaches(exam)}"
+                                         styleClass="table table-striped">
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="#{i18n['moe.approach_list.approaches.dateEnd']}"/>
                                     </f:facet>
                                     <h:outputText value="#{approach.dateEnd.time}">
-                                        <f:convertDateTime pattern="dd-MM-yyyy HH:mm" />
+                                        <f:convertDateTime pattern="dd-MM-yyyy HH:mm"/>
                                     </h:outputText>
                                 </h:column>
                                 <h:column>
@@ -55,16 +61,18 @@
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText  value="#{i18n['moe.approach_list.approaches.status']}"/>
+                                        <h:outputText value="#{i18n['moe.approach_list.approaches.status']}"/>
                                     </f:facet>
-                                    <h:outputText  value="#{i18n[listApproachesMOE.checkApproachIsToEvaluate(approach)]}"/>
+                                    <h:outputText
+                                            value="#{i18n[listApproachesMOE.checkApproachIsToEvaluate(approach)]}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="#{i18n['moe.approach_list.actions']}"/>
                                     </f:facet>
                                     <h:commandButton value="#{i18n['moe.approach_list.actions.show']}"
-                                                     styleClass="btn-primary" action="#{listApproachesMOE.gotoDetails}"/>
+                                                     styleClass="btn-primary"
+                                                     action="#{listApproachesMOE.gotoDetails}"/>
                                     <h:commandButton value="#{i18n['moe.approach_list.actions.rate']}"
                                                      styleClass="btn-primary" action="#{listApproachesMOE.rateApproach}"
                                                      rendered="#{!approach.disqualification}"/>

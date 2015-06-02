@@ -31,11 +31,18 @@ public class ListApproaches extends BaseContextBean implements Serializable {
 
     private transient DataModel<ApproachEntity> approaches;
 
+    private String message;
+
     @PostConstruct
     private void initializeModel() {
         expectApplicationException(() -> {
             this.examEntityList = approachesService.findAllByLoggedTeacher();
         });
+    }
+
+    @Override
+    protected void doInContext() {
+        resetContext();
     }
 
     /**
@@ -54,7 +61,6 @@ public class ListApproaches extends BaseContextBean implements Serializable {
             }
         }
         return "moe.approach_list.approaches.to_evaluate.no";
-
     }
 
     /**
@@ -86,5 +92,13 @@ public class ListApproaches extends BaseContextBean implements Serializable {
     public List<ExamEntity> getExamEntityList()
     {
         return this.examEntityList;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

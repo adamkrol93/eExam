@@ -51,6 +51,7 @@ public class RateApproach extends BaseContextBean implements Serializable {
         expectApplicationException(() -> {
             approach = markApproachService.findById(id);
         });
+        resetContext();
     }
 
     /**
@@ -60,6 +61,11 @@ public class RateApproach extends BaseContextBean implements Serializable {
     public String editApproach() {
         return expectApplicationException(() -> {
             markApproachService.mark(approach.getAnswers());
+
+            setContext(ListApproaches.class, (bean -> {
+                bean.setMessage("moe.rate_approach.exam_rated");
+            }));
+
             return "listApproaches?faces-redirect=true";
         });
     }
@@ -71,6 +77,11 @@ public class RateApproach extends BaseContextBean implements Serializable {
     public String disqualifyApproach() {
         return expectApplicationException(() -> {
             markApproachService.disqualify();
+
+            setContext(ListApproaches.class, (bean -> {
+                bean.setMessage("moe.rate_approach.exam_disqualified");
+            }));
+
             return "listApproaches?faces-redirect=true";
         });
     }
