@@ -118,8 +118,8 @@ public class AnswersManager implements AnswersManagerLocal {
                     answerEntity.setDateModification(Calendar.getInstance());
                 }
             }
-            approachEntityFacade.edit(approach);
         }
+        approachEntityFacade.edit(approach);
     }
 
     @Override
