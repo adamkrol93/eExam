@@ -44,7 +44,6 @@ public class ExamListService extends BaseStatefulService implements ExamListServ
     @Override
     @RolesAllowed("CLONE_EXAM_MZE")
     public void cloneExam(long examId) throws ApplicationBaseException {
-        findAll();
         for (ExamEntity e : exams) {
             if (e.getId() == examId) {
                 examsManager.cloneExam(e);
