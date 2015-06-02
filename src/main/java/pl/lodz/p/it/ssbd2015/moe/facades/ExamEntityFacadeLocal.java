@@ -13,4 +13,18 @@ import javax.ejb.Local;
 @Local
 public interface ExamEntityFacadeLocal extends Merge<Long,ExamEntity>, Read<Long,ExamEntity>{
 
+
+    /**
+     * Funkcja zliczająca zakończone podejścia
+     * @param examEntity egzamin którego podejścia zliczamy
+     * @return liczba zakończonych podejść
+     */
+    long countExamFinished(ExamEntity examEntity);
+
+    /**
+     * Funckaj obliczająca średnią z zakończonych podejść
+     * @param examEntity egzamin którego średnią chcemy policzyć
+     * @return średnia wartość ocen podejść w egzaminie
+     */
+    double countAverage(ExamEntity examEntity);
 }

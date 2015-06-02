@@ -12,6 +12,9 @@ import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TemporalType;
+import javax.persistence.TypedQuery;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,5 +58,23 @@ public class ExamEntityFacade implements ExamEntityFacadeLocal {
     @RolesAllowed({"MARK_APPROACH_MOE", "DISQUALIFY_APPROACH_MOE"})
     public void edit(ExamEntity entity) throws ApplicationBaseException {
         ExamEntityFacadeLocal.super.edit(entity);
+    }
+
+    @Override
+    @RolesAllowed({"MARK_APPROACH_MOE", "DISQUALIFY_APPROACH_MOE"})
+    public long countExamFinished(ExamEntity examEntity) {
+        TypedQuery<Long> examQuery = entityManager.createNamedQuery("ExamEntity.countFinished", Long.class);
+        examQuery.setParameter("exam",examEntity);
+        examQuery.setParameter("actualdate", Calendar.getInstance().getTime(), TemporalType.TIMESTAMP);
+        return examQuery.getSingleResult() == null ? 0 : examQuery.getSingleResult();
+    }
+
+    @Override
+    @RolesAllowed({"MARK_APPROACH_MOE", "DISQUALIFY_APPROACH_MOE"})
+    public double countAverage(ExamEntity examEntity) {
+        TypedQuery<Long> examQuery = entityManager.createNamedQuery("ExamEntity.examAverage", Long.class);
+        examQuery.setParameter("exam",examEntity);
+        examQuery.setParameter("actualdate", Calendar.getInstance().getTime(), TemporalType.TIMESTAMP);
+        return examQuery.getSingleResult() == null ? 0.0 : (double)examQuery.getSingleResult();
     }
 }

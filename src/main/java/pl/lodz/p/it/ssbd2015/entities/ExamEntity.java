@@ -4,9 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,7 +25,7 @@ import java.util.List;
         valueColumnName = "id_range",
         pkColumnValue = "ExamEntity",
         allocationSize = 1)
-@NamedQueries({
+@NamedQueries(value = {
         @NamedQuery(
                 name = "findExamByDate",
                 query = "SELECT e FROM ExamEntity e WHERE :date BETWEEN e.dateStart AND e.dateEnd"
@@ -31,7 +33,16 @@ import java.util.List;
         @NamedQuery(
                 name = "findExamByTitle",
                 query = "SELECT e FROM ExamEntity e WHERE e.title = :title"
+        ),
+        @NamedQuery(
+                name = "ExamEntity.countFinished",
+                query = "SELECT COUNT(a) FROM ApproachEntity a where a.exam = :exam AND :actualdate >= a.dateEnd AND a.disqualification = false"
+        ),
+        @NamedQuery(
+                name = "ExamEntity.examAverage",
+                query = "SELECT SUM(an.grade) FROM ApproachEntity a, AnswerEntity an where an.approach = a and a.exam = :exam AND :actualdate >= a.dateEnd AND a.disqualification = false group by a.exam"
         )
+
 })
 public class ExamEntity extends TimeBaseEntity implements Serializable {
 
@@ -73,8 +84,8 @@ public class ExamEntity extends TimeBaseEntity implements Serializable {
     @Column(name = "exam_count_finish_exam", nullable = true)
     private Integer countFinishExam;
 
-    @Column(name = "exam_avg_results", nullable = true, precision = 0)
-    private BigInteger avgResults;
+    @Column(name = "exam_avg_results", nullable = true, precision = 4)
+    private double avgResults;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "exam_date_add", nullable = false)
@@ -188,11 +199,11 @@ public class ExamEntity extends TimeBaseEntity implements Serializable {
         this.countFinishExam = countFinishExam;
     }
 
-    public BigInteger getAvgResults() {
+    public double getAvgResults() {
         return avgResults;
     }
 
-    public void setAvgResults(BigInteger avgResults) {
+    public void setAvgResults(double avgResults) {
         this.avgResults = avgResults;
     }
 
@@ -278,7 +289,7 @@ public class ExamEntity extends TimeBaseEntity implements Serializable {
         if (countQuestion != that.countQuestion) return false;
         if (countTakeExam != that.countTakeExam) return false;
         if (id != that.id) return false;
-        if (avgResults != null ? !avgResults.equals(that.avgResults) : that.avgResults != null)
+        if (avgResults == that.avgResults)
             return false;
         if (countFinishExam != null ? !countFinishExam.equals(that.countFinishExam) : that.countFinishExam != null)
             return false;
@@ -304,7 +315,7 @@ public class ExamEntity extends TimeBaseEntity implements Serializable {
         result = 31 * result + duration;
         result = 31 * result + countQuestion;
         result = 31 * result + (countFinishExam != null ? countFinishExam.hashCode() : 0);
-        result = 31 * result + (avgResults != null ? avgResults.hashCode() : 0);
+        result = (int) (31 * result + (avgResults));
         result = 31 * result + (dateAdd != null ? dateAdd.hashCode() : 0);
         result = 31 * result + (dateModification != null ? dateModification.hashCode() : 0);
         return result;

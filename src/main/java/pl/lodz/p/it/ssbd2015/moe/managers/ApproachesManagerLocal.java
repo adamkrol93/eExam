@@ -43,4 +43,9 @@ public interface ApproachesManagerLocal {
      */
     void connect(GuardianEntity guardian, StudentEntity student) throws ApplicationBaseException;
 
+    /**
+     * Metoda pozwala no obliczenie i ustawienie w egzaminie agregatów
+     * @param examEntity egzamin do policzenia i ustawienia agregat
+     */
+    void agragete(ExamEntity examEntity);
 }
