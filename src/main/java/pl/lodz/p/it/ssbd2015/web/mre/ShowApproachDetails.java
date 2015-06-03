@@ -9,6 +9,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -66,6 +67,10 @@ public class ShowApproachDetails extends BaseContextBean {
 
     public long getMaxPoints() {
         return approach.getAnswers().size() * 2;
+    }
+
+    public Calendar getCurrentTime() {
+        return Calendar.getInstance();
     }
 
     public List<Integer> repeat(int times) {

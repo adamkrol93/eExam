@@ -36,10 +36,11 @@
                 <h:outputText value="#{showApproachDetailsMRE.approach.dateStart.time}">
                     <f:convertDateTime pattern="HH:mm, dd.MM.yyyy"/>
                 </h:outputText>
-                <h:outputText value=", #{i18n['mre.show_approach.guardian.end']} "/>
-                <h:outputText value="#{showApproachDetailsMRE.approach.dateEnd.time}">
+                <h:outputText value=", #{i18n['mre.show_approach.guardian.end']} " rendered="#{showApproachDetailsMRE.currentTime.after(showApproachDetailsMRE.approach.dateEnd)}"/>
+                <h:outputText value="#{showApproachDetailsMRE.approach.dateEnd.time}" rendered="#{showApproachDetailsMRE.currentTime.after(showApproachDetailsMRE.approach.dateEnd)}">
                     <f:convertDateTime pattern="HH:mm, dd.MM.yyyy"/>
                 </h:outputText>
+                <h:outputText value=", #{i18n['mre.show_approach.guardian.ongoing']}" rendered="#{not showApproachDetailsMRE.currentTime.after(showApproachDetailsMRE.approach.dateEnd)}"/>
             </p>
         </div>
         <ui:fragment rendered="#{showApproachDetailsMRE.approach.disqualification}">
