@@ -69,7 +69,7 @@
                         <div class="btn-toolbar">
                             <h:commandButton id="edit-button" type="submit" value="#{i18n['mre.answer_the_questions.edit']}"
                                              styleClass="btn btn-primary" action="#{answerTheQuestionsMRE.editApproach()}"/>
-                            <h:commandButton id="save-button" type="submit" value="#{i18n['mre.answer_the_questions.end']}"
+                            <h:commandButton id="save-button" value="#{i18n['mre.answer_the_questions.end']}"
                                              styleClass="btn btn-primary" action="#{answerTheQuestionsMRE.endApproach()}"
                                              onclick="if (!confirm(#{i18n['mre.answer_the_questions.end_confirmation']})) return false"/>
                             <h:commandButton id="reset-button" type="reset" value="#{i18n['mre.answer_the_questions.reset']}"
