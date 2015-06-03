@@ -42,7 +42,7 @@ public class AnswerTheQuestions extends BaseContextBean {
                 bean.id = id;
                 bean.message = "mre.answer_the_questions.edit_success";
             });
-            return "answerTheQuestions?faces-redirect=true";
+            return String.format("answerTheQuestions?uuid=%s&faces-redirect=true", getUuid());
         });
     }
 
