@@ -3,6 +3,7 @@ package pl.lodz.p.it.ssbd2015.web.mze;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
 import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
+import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamEndBeforeStartException;
 import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamTitleNotUniqueException;
 import pl.lodz.p.it.ssbd2015.mze.services.EditExamServiceRemote;
 import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
@@ -62,6 +63,10 @@ public class EditExam extends BaseContextBean {
             } catch (ExamTitleNotUniqueException ex) {
                 message = null;
                 MessageUtils.addLocalizedMessage(ex.getCode(), "edit-exam-form:title");
+                return null;
+            } catch (ExamEndBeforeStartException ex) {
+                message = null;
+                MessageUtils.addLocalizedMessage(ex.getCode(), "edit-exam-form:date_end");
                 return null;
             }
             setContext(EditExam.class, (bean -> {
