@@ -17,7 +17,7 @@ import java.io.File;
 import java.net.URL;
 
 /**
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 @RunWith(Arquillian.class)
 public abstract class BaseFunctionalTest {

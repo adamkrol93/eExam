@@ -7,7 +7,7 @@ import java.util.Calendar;
 import java.util.Random;
 
 /**
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 public class TestUtils {
 

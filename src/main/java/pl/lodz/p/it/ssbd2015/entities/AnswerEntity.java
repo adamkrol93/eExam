@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 
 /**
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 @Entity
 @Table(name = "answer")

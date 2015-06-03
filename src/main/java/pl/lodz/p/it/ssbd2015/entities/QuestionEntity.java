@@ -11,7 +11,7 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 @Entity
 @Table(name = "question")

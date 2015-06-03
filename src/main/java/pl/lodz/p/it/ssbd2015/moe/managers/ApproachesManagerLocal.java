@@ -17,21 +17,21 @@ public interface ApproachesManagerLocal {
      * Metoda pozwala dokonać oceny podejścia, przez Nauczyciela
      * @param approach Podejście które jest ocenianie
      * @param answers Odpowiedzi na pytania z ustawioną oceną
-     * @throws ApplicationBaseException
+     * @throws ApplicationBaseException Ruzcany, kiedy nie dokona oceny podejścia
      */
     void mark(ApproachEntity approach, List<AnswerEntity> answers) throws ApplicationBaseException;
 
     /**
      * Metoda pozwala zdyskwalifikować podejście przez Nauczyciela
      * @param approach Podejście które ma zostać zdyskwalifikowane
-     * @throws ApplicationBaseException
+     * @throws ApplicationBaseException Rzucany, kiedy nie zdyskwalifikuje Nauczyciela
      */
     void disqualify(ApproachEntity approach) throws ApplicationBaseException;
 
     /**
      * Metoda pozwala pobrać wszystkie egzaminy do których przypisany jest aktualnie zalogowany nauczyciel.
      * @return lista egzaminów nauczyciela
-     * @throws ApplicationBaseException
+     * @throws ApplicationBaseException Rzucany, kiedy nie pobierze odpowiednich egzaminów
      */
     List<ExamEntity> findAllByLoggedTeacher() throws ApplicationBaseException;
 
@@ -39,7 +39,7 @@ public interface ApproachesManagerLocal {
      * Metoda pozwala ustawić studentowi jego opiekuna
      * @param guardian Nowy opiekun dla studenta
      * @param student Student któremu chcemy ustawić opiekuna
-     * @throws ApplicationBaseException
+     * @throws ApplicationBaseException Rzucany, kiedy nie ustawi studentowi opiekuna
      */
     void connect(GuardianEntity guardian, StudentEntity student) throws ApplicationBaseException;
 

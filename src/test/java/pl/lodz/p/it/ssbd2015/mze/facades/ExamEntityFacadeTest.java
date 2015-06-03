@@ -26,7 +26,7 @@ import static pl.lodz.p.it.ssbd2015.Present.present;
 
 
 /**
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  * @author Andrzej Kurczewski
  */
 @UsingDataSet({"ValidUser.yml", "mze/TeacherEntityFacadeTest.yml"})

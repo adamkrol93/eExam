@@ -2,7 +2,7 @@ package pl.lodz.p.it.ssbd2015.exceptions.mok;
 
 /**
  * Klasa wyjątku sygnalizującego problem z tym iż istnieje w bazie już taki użytkownik
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 public class PersonExistsException extends PersonManagementException {
     public PersonExistsException(String message) {

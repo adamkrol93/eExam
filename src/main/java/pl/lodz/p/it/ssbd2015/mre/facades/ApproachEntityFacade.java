@@ -19,7 +19,7 @@ import java.util.Optional;
 
 /**
  * Implementacja interfejsu {@link ApproachEntityFacadeLocal}. Pozwala na operacje bazodanowe na encji {@link ApproachEntity}
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  * @author Piotr Jurewicz
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mre.facades.ApproachEntityFacade")

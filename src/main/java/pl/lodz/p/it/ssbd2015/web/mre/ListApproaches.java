@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * Backing bean do strony z listą podejść studenta.
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 public abstract class ListApproaches extends BaseContextBean {
 

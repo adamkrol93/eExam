@@ -14,7 +14,7 @@ import static pl.lodz.p.it.ssbd2015.utils.ExceptionUtils.elvis;
 /**
  * Bazowa klasa abstrakcyjna dla beanów Stateful wykorzystywany do tworzenia Endpointów.
  * Główne zadanie tej klasy to logowanie informacji o transkakcjach aplikacyjnych.
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 public abstract class BaseStatefulService {
 

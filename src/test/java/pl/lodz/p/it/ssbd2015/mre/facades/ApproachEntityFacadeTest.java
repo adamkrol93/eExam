@@ -23,7 +23,7 @@ import static org.hamcrest.Matchers.not;
 import static pl.lodz.p.it.ssbd2015.Present.present;
 
 /**
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 @UsingDataSet({"ValidUser.yml", "mre/AnswerEntityFacadeTest.yml"})
 public class ApproachEntityFacadeTest extends BaseArquillianTest {

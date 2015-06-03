@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 
 /**
  * Interfejs bazowy dla Fasad, określa metody, które musza być zaimplementowane aby korzystać z interfejsów Create, Delete, Merge, Read.
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>0
+ * @author Michał Sośnicki0
  */
 public interface FacadeBase<K, E> {
 

@@ -7,7 +7,7 @@ import java.util.Optional;
 /**
  * Interfejs bazowy z defaultową implementacją findById oraz findAll.
  * Rozszerzenie go pozwala na łatwe dodanie możliwości wyszukiwania obiektów w bazie
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 public interface Read<K, E> extends FacadeBase<K, E> {
 

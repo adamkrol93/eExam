@@ -32,7 +32,7 @@ public interface GuardianStudentServiceRemote {
      * Dokonuje przypisania opiekuna do studenta
      * @param guardianId identyfikator opiekuna do przypisania
      * @param studentId identyfikator studenta do przypisania
-     * @throws ApplicationBaseException
+     * @throws ApplicationBaseException Rzucany, kiedy nie dokona przypisania
      */
     void connect(long guardianId, long studentId) throws ApplicationBaseException;
 

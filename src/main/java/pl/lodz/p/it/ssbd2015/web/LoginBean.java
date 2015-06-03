@@ -44,7 +44,7 @@ public class LoginBean implements Serializable {
      * Metoda zapisujaca czas, ip oraz login do bazy zaraz po zalogowaniu się użytkownika
      *
      * @return metoda zwraca wartość true gdy użytkownik zalogował się poprawnie do systemu
-     * @throws ApplicationBaseException
+     * @throws ApplicationBaseException Rzucany, kiedy metoda nie zapisze danych
      */
     public boolean isPersonLogged() throws ApplicationBaseException {
         FacesContext context = FacesContext.getCurrentInstance();

@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mre.facades.GuardianEntityFacade")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)

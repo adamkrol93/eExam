@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * Klasa pomocnicza do widoków jsf, umożliwiajaca stworzenie tabelek, w których można zaznaczyć wiele rzędów.
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 public class SelectableItem<T> implements Serializable {
 

@@ -11,7 +11,7 @@ import javax.ejb.Local;
 
 /**
  * Interfejs do operacji bazodanowych dla encji {@link ApproachEntity}
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  * @author Andrzej Kurczewski
  */
 @Local

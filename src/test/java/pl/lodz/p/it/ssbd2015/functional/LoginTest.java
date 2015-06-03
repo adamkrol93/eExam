@@ -15,7 +15,7 @@ import static pl.lodz.p.it.ssbd2015.TestUtils.getProbablyUniqueString;
 import static pl.lodz.p.it.ssbd2015.TestUtils.getRandomAlphas;
 
 /**
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 public class LoginTest extends BaseFunctionalTest {
 

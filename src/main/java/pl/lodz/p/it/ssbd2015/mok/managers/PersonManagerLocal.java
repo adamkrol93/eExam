@@ -13,10 +13,12 @@ import javax.ejb.Local;
 @Local
 public interface PersonManagerLocal {
 
+
     /**
-     * Metoda edyująca dane użytkownika. Zmienia również hasła i sprawdza czy nie jest unikalne.
+     * Metoda edytująca dane użytkownika. Zmienia również hasła i sprawdza czy nie jest unikalne.
      * @param oldOne Stara wersja, żeby można było sprawdzić hasło
      * @param newOne Nowa wersja, która przyszła z formularza
+     * @throws ApplicationBaseException Rzucany, kiedy metoda nie zedytuje danych użytkownika
      */
     void editPerson(PersonEntity oldOne, PersonEntity newOne) throws ApplicationBaseException;
 
@@ -31,12 +33,14 @@ public interface PersonManagerLocal {
     /**
      * Metoda potwierdza przekazanego użytkownika.
      * @param personEntity Uzytkownik, którego chcemy potwierdzić
+     * @throws ApplicationBaseException Rzucany, kiedy nie potwierdzi użytkownika
      */
     void confirmPerson(PersonEntity personEntity) throws ApplicationBaseException;
 
     /**
      * Metoda zmienia status aktywacji użytkownika
      * @param personEntity Uzytkownik któreo chcemy zmodyfikować
+     * @throws ApplicationBaseException Rzucany, kiedy metoda nie zmieni statusu aktywacji użytkownika
      */
     void togglePersonActivation(PersonEntity personEntity) throws ApplicationBaseException;
 
@@ -44,7 +48,7 @@ public interface PersonManagerLocal {
      * Metoda zmienia stan aktywacji grupy.
      * @param personEntity Użytkownik któremu chcemy zmodyfikować aktualne grupy
      * @param id Identyfikator grupy
-     * @throws ApplicationBaseException
+     * @throws ApplicationBaseException Rzucany, kiedy nie zmieni stanu aktywacji grupy
      */
     void toggleGroupActivation(PersonEntity personEntity, long id) throws ApplicationBaseException;
 

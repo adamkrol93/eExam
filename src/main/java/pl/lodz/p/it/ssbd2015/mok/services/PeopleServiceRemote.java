@@ -4,7 +4,6 @@ import pl.lodz.p.it.ssbd2015.entities.PersonEntity;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 
 import javax.ejb.Remote;
-import javax.mail.MessagingException;
 import java.util.Calendar;
 import java.util.List;
 
@@ -25,7 +24,6 @@ public interface PeopleServiceRemote {
     /**
      * Metoda rejestrująca użytkownika
      * @param person encja reprezentująca dane użytkownika
-     * @throws MessagingException jeżeli nie powiedzie się wysłanie maila
      * @throws ApplicationBaseException Jeżeli nie zostaną przekazane poprawne dane
      */
     void register(PersonEntity person) throws ApplicationBaseException;
@@ -47,6 +45,7 @@ public interface PeopleServiceRemote {
 
     /**
      * Metoda zwraca istę użytkowników w którzych imieniu, nazwisku, mailu lub loginie występuje podana fraza.
+     * @param phrase Szukana fraza
      * @return Listę uzytkowników, tzn. listę z obiektami PersonEntity
      */
     List<PersonEntity> findPeopleByPhrase(String phrase);

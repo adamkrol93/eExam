@@ -2,7 +2,7 @@ package pl.lodz.p.it.ssbd2015.exceptions.mok;
 
 /**
  * Klasa stworzona dla wyjątków związanych z nie unikalności loginu użytkownika
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 public class LoginNotUniqueException extends PersonManagementException {
     public LoginNotUniqueException(String message) {

@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import static org.jboss.arquillian.graphene.Graphene.guardHttp;
 
 /**
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 @Location("login/register.xhtml")
 public class RegisterPage {

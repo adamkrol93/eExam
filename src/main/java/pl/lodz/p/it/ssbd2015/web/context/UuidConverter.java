@@ -8,7 +8,7 @@ import java.util.UUID;
 
 /**
  * Konwerter JSFowy dla typu UUID z biblioteki Javy.
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 @FacesConverter(value = "uuidConverter")
 public class UuidConverter implements Converter {

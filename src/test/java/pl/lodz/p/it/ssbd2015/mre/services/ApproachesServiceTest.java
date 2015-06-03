@@ -19,7 +19,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * @author Created by Tobiasz Kowalski on 20.05.15.
  * @author Andrzej Kurczewski
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 @UsingDataSet({"ValidUser.yml", "mre/ApproachesServiceTest.yml"})
 public class ApproachesServiceTest extends BaseArquillianTest {

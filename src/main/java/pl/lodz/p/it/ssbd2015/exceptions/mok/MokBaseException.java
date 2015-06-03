@@ -4,7 +4,7 @@ import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 
 /**
  * Klasy bazowa dla wyjątków z modułu MOK
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 public abstract class MokBaseException extends ApplicationBaseException {
     public MokBaseException(String message) {

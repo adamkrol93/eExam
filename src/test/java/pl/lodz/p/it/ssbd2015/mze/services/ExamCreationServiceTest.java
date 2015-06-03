@@ -19,7 +19,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static pl.lodz.p.it.ssbd2015.TestUtils.makeCalendar;
 
 /**
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 @UsingDataSet({"ValidUser.yml", "mze/ExamCreationServiceTest.yml"})
 public class ExamCreationServiceTest extends BaseArquillianTest {

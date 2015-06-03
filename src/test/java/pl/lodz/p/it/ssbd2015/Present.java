@@ -8,7 +8,7 @@ import org.hamcrest.TypeSafeMatcher;
 import java.util.Optional;
 
 /**
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 public class Present<T> extends TypeSafeMatcher<Optional<T>> {
 

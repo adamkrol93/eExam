@@ -233,8 +233,7 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>2.10.3</version>
                 <configuration>
-                    <show>private</show>
-                    <additionalparam>-Xdoclint:none</additionalparam>
+                    <show>public</show>
                 </configuration>
             </plugin>
         </plugins>

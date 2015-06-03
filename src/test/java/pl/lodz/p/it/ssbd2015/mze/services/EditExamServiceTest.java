@@ -20,7 +20,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 
 /**
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  * Created by Tobiasz Kowalski on 26.05.15.
  */
 @UsingDataSet({"ValidUser.yml", "mze/EditExamServiceTest.yml"})

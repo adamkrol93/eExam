@@ -16,7 +16,7 @@ import java.util.function.Consumer;
 /**
  * Klasa bazowa dla beanów stanowych, które mają współpracować z ContextMapą. Dodaje do nich pole do przechowywania
  * UUID i kilka metod, które będą korzystać w ContextMapy z kluczem równym UUID temu beana.
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 public class BaseContextBean implements Serializable {
 
@@ -42,10 +42,10 @@ public class BaseContextBean implements Serializable {
     }
 
     /**
-     * Metoda, którą trzeba wywołać w .xhtmlu korzystającym z danego beana w <f:viewAction action="#{bean.checkContext}"/>
+     * Metoda, którą trzeba wywołać w .xhtmlu korzystającym z danego beana w f:viewAction action="#{bean.checkContext}"
      * Dzięki temu zostanie ona wywołana po ustawieniu viewParamów, a koniecznie musi być przed jej wywołaniem ustawiony
      * UUID tego widoku, jeżeli ma on na początku wyszukać swój kontekst.
-     * Ustawienie UUID może wyglądać tak <f:viewParam name="uuid" value="#{bean.uuid}" converter="uuidConverter"/>
+     * Ustawienie UUID może wyglądać tak f:viewParam name="uuid" value="#{bean.uuid}" converter="uuidConverter"
      * Po ustawieniu kontekstu wywołuje metodę szablonową doInContext
      */
     public void checkContext() {

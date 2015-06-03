@@ -5,7 +5,7 @@ import javax.persistence.EntityManager;
 /**
  * Interfejs bazowy z defaultową implementacją remove.
  * Rozszerzenie go pozwala na łatwe dodanie możliwości usunięcia obiektów z bazy.
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 public interface Delete<K, E> extends FacadeBase<K, E> {
 

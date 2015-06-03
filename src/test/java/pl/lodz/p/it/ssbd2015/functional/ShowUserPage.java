@@ -9,7 +9,7 @@ import java.util.List;
 import static org.jboss.arquillian.graphene.Graphene.guardHttp;
 
 /**
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 @Location("administrator/showUser.xhtml")
 public class ShowUserPage {

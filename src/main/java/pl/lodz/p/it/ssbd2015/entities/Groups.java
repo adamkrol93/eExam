@@ -1,7 +1,7 @@
 package pl.lodz.p.it.ssbd2015.entities;
 
 /**
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 public class Groups {
     public static final String ADMIN = "administrator";

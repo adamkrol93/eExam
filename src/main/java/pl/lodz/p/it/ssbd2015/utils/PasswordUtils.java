@@ -10,7 +10,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * Klasa zawierająca metody pomocnicze do operacji na haśle
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 public class PasswordUtils {
 

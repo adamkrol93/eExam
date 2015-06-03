@@ -12,7 +12,7 @@ import java.util.Optional;
 
 /**
  * Interfejs do operacji bazodanowych dla encji {@link AnswerEntity}
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  * @author Andrzej Kurczewski
  */
 @Local

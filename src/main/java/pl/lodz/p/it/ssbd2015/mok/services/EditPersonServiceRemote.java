@@ -16,6 +16,7 @@ public interface EditPersonServiceRemote {
      * Funkcja ustawia również stanowa zmienna personEntity
      * @param login login użytkownika po którym będzie wyszukany
      * @return PersonEntity zwrócony zostaje użytkownik wyszukany w bazie danych. Nie może być nullem.
+     * @throws ApplicationBaseException Rzucany, kiedy funkcja nie zwróci informacji lub ustawi zmiennej
      */
     PersonEntity findPersonForEdit(String login) throws ApplicationBaseException;
 
@@ -23,13 +24,14 @@ public interface EditPersonServiceRemote {
      * Funkcja zwracająca informacje o Użytkowniku aktualnie zalogowanym.
      * Funkcja ustawia również stanową zmienną @personEntity
      * @return Dane odnalezionego użytkownika
-     * @throws ApplicationBaseException
+     * @throws ApplicationBaseException Rzucany, kiedy funkcja nie zwróci informacji lub ustawi zmiennej
      */
     PersonEntity findLoggedPersonForEdit() throws ApplicationBaseException;
 
     /**
-     * Funkcja edycji użytkownika. Edytuje dane uzytkownika.
+     * Funkcja edycji użytkownika. Edytuje dane użytkownika.
      * @param person dane osobe użytkownika
+     * @throws ApplicationBaseException Rzucany, kiedy nie zedytuje danych użytkownika
      */
     void editPerson(PersonEntity person) throws ApplicationBaseException;
 }

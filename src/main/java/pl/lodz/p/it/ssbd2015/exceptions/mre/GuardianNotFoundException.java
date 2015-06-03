@@ -2,7 +2,7 @@ package pl.lodz.p.it.ssbd2015.exceptions.mre;
 
 /**
  * Wyjątek rzucany, gdy nie uda się znaleźć żądanego opiekuna.
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 public class GuardianNotFoundException extends GuardianManagementException {
 

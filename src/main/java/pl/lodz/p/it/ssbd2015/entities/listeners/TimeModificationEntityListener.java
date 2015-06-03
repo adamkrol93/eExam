@@ -19,6 +19,7 @@ public class TimeModificationEntityListener {
     /**
      * Metoda wywoływana przed wykonaniem operacji persist przez entity managera.
      * Służy do zapisywania czasu tworzenia encji.
+     * @param timeModificationEntity Czas zmodyfikowania encji
      */
     @PrePersist
     public void setRegistrationDate(Object timeModificationEntity) {
@@ -28,6 +29,7 @@ public class TimeModificationEntityListener {
     /**
      * Metoda wywoływana przed wykonaniem operacji update na bazie.
      * Służy do zapisywania czasu modyfikacji encji.
+     * @param timeModificationEntity Czas zmodyfikowania encji
      */
     @PreUpdate
     public void setModificationDate(Object timeModificationEntity)

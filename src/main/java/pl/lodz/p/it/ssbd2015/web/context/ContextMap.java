@@ -14,7 +14,7 @@ import java.util.UUID;
  * Mapa UUID na PartialConsumerów, z mocno ograniczonym interfejsem, by możliwe było tylko dodawanie, usuwanie
  * wpisów i zaaplikowanie PartialConsumera do BaseContextBeana na podstawie tego, co ten bean zwraca w getUuid.
  * Przy okazji jest to bean sesyjny.
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 @ManagedBean(name = "contextMap")
 @SessionScoped
@@ -28,7 +28,7 @@ public class ContextMap {
      * Odczytuje UUID i typ BaseContextBeana i na tej podstawie stara się odnaleźć dla niego Consumera, który
      * ustawi mu stan. Jeżeli BaseContextBean nie ma ustawionego UUID, to oczywiście poszukiwania nie mają sensu,
      * ale zostanie dla niego wygenerowany nowy UUID, by mógł dodać konteksty dla swoich podwidoków.
-     * @param contextBean
+     * @param contextBean Bean contekstu
      */
     public void applyContext(BaseContextBean contextBean) {
         logger.info("ViewContexts {} contain {} entries.", viewContexts, viewContexts.size());

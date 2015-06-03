@@ -19,8 +19,7 @@ import java.util.Optional;
 
 /**
  * Implementacja interfejsu {@link ExamEntityFacadeLocal}. Pozwala na operacje bazodanowe na encji {@link ExamEntity}
- *
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mre.facades.ExamEntityFacade")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)

@@ -15,7 +15,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 /**
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 @UsingDataSet({"ValidUser.yml", "mok/EditPersonServiceTest.yml"})
 public class EditPersonServiceTest extends BaseArquillianTest {

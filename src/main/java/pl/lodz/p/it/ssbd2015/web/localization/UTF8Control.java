@@ -28,9 +28,9 @@ public class UTF8Control extends ResourceBundle.Control {
      * @param loader classLoader w którym szukać ma plików properties
      * @param reload zmienna sygnalizująca czy mamy przeładować całą konfigurację
      * @return Bundle do wykonywania operacji internacjonalizowania
-     * @throws IllegalAccessException
-     * @throws InstantiationException
-     * @throws IOException
+     * @throws IllegalAccessException Rzucany, kiedy jest problem z dostępem
+     * @throws InstantiationException Rzucany, kiedy jest problem z tworzeniem
+     * @throws IOException Rzucany, kiedy jest problem z wejściem/wyjściem
      */
     public ResourceBundle newBundle
         (String baseName, Locale locale, String format, ClassLoader loader, boolean reload)

@@ -9,6 +9,7 @@ import javax.ejb.Remote;
  * Interfejs zdalny służący wyświetlania informacji o użytkowniku i dokonywania na prostych operacji.
  * @author Adam Król
  * @author Michał Sośnicki
+ * @author Bartosz Ignaczewski
  */
 @Remote
 public interface PersonServiceRemote {
@@ -26,24 +27,26 @@ public interface PersonServiceRemote {
      * Funkcja zwracająca informacje o Użytkowniku aktualnie zalogowanym.
      * Funkcja ustawia również stanową zmienną @personEntity
      * @return Dane odnalezionego użytkownika
-     * @throws ApplicationBaseException
+     * @throws ApplicationBaseException Rzucany, kiedy nie zwróci informacji
      */
     PersonEntity getLoggedPerson() throws ApplicationBaseException;
 
     /**
      * Metoda potwierdzająca odnalezionego wcześniej użytkownika.
+     * @throws ApplicationBaseException Rzucany, kiedy nie uda sie potwierdzić użytkownika
      */
     void confirmPerson() throws ApplicationBaseException;
 
     /**
      * Funkcja aktywuje bądź deaktywuje grupę wczytanego użytkownika o wskazanym kluczu głównym.
      * @param id Klucz główny grupy do aktywacji/deaktywacji.
-     * @throws ApplicationBaseException
+     * @throws ApplicationBaseException Rzucany, kiedy nie uda sie aktywować/dezaktywować grupy
      */
     void toggleGroupActivation(long id) throws ApplicationBaseException;
 
     /**
      * Funkcja służy do  blokowania i odblokowywania użytkownika w zależności od bieżącego stanu
+     * @throws ApplicationBaseException Rzucany, kiedy nie uda sie zablokować lub odblokować użytkownika
      */
     void togglePersonActivation() throws ApplicationBaseException;
 

@@ -7,7 +7,7 @@ import javax.ejb.Local;
 import java.util.Optional;
 
 /**
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 @Local
 public interface GuardianEntityFacadeLocal extends Read<Long, GuardianEntity> {

@@ -39,7 +39,7 @@ public class AnswerService extends BaseStatefulService implements AnswerServiceR
 
     @Override
     @RolesAllowed("START_SOLVING_EXAM_MRE")
-    public Long createApproach(String title) throws ApplicationBaseException {
+    public long createApproach(String title) throws ApplicationBaseException {
         return answersManager.createApproach(title);
     }
 

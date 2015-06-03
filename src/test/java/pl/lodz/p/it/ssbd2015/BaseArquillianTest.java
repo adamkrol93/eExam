@@ -25,7 +25,7 @@ import java.io.File;
  * i zapoznanie się folderem datasets oraz adnotacjami w org.jboss.arquillian.persistence.*.
  * @see org.jboss.arquillian.transaction.api.annotation.Transactional
  * @see org.jboss.arquillian.persistence.UsingDataSet
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 @RunWith(Arquillian.class)
 @CleanupUsingScript(value = "cleanup-all.sql", phase = TestExecutionPhase.BEFORE)

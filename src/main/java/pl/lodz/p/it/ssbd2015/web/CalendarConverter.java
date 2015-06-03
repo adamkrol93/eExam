@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * Konwerter JSFowy dla typu Calendar z biblioteki Javy.
  * Rozszerza standardowy DateTimeConverter, starając się zachować wszystkie jego funkcje.
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 @FacesConverter("calendarConverter")
 public class CalendarConverter extends DateTimeConverter {

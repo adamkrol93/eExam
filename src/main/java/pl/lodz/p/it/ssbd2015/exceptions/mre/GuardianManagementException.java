@@ -2,7 +2,7 @@ package pl.lodz.p.it.ssbd2015.exceptions.mre;
 
 /**
  * Wyjątek oznaczający ogólnie pewien problem z opiekunem.
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 public class GuardianManagementException extends MreBaseException {
 

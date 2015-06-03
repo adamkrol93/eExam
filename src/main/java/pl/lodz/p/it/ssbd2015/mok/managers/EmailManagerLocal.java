@@ -16,7 +16,7 @@ public interface EmailManagerLocal {
      * @param to Adres e-mail na który wiadomość ma dotrzeć
      * @param subject Temat wiadomości (klucz internacjonalizacji)
      * @param body Zawartość wiadomośc (klucz internacjonalizacji)
-     * @throws ApplicationBaseException
+     * @throws ApplicationBaseException Rzucany, kiedy nie wyśle emaila
      */
     void sendEmail(String to, String subject, String body) throws ApplicationBaseException;
 

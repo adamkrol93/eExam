@@ -10,7 +10,7 @@ import javax.ejb.Local;
 /**
  * Interfejs do zarządzania Egzaminami w bazie danych.
  * @author Andrzej Kurczewski
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 @Local
 public interface ExamEntityFacadeLocal extends Read<Long, ExamEntity>, Merge<Long, ExamEntity>, Create<Long, ExamEntity> {

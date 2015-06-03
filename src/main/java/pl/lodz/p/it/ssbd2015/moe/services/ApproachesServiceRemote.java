@@ -18,14 +18,14 @@ public interface ApproachesServiceRemote {
      * Wyszukuje w bazie encji o podanym id
      * @param id identyfikator, któ©ego szukamy
      * @return ApproachEntity jeżeli coś znajdzie
-     * @throws ApplicationBaseException
+     * @throws ApplicationBaseException Rzucany, kiedy nie znajdzie encji o podanym id
      */
     ApproachEntity findById(long id) throws ApplicationBaseException;
 
     /**
      * Metoda znajduje wszystkie egzaminy zalogowanego nauczyciela
      * @return lista egzaminów zalogowanego nauczyciela
-     * @throws ApplicationBaseException
+     * @throws ApplicationBaseException Rzucany, kiedy nie znajdzie odpowiednich egzaminów
      */
     List<ExamEntity> findAllByLoggedTeacher() throws ApplicationBaseException;
 

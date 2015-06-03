@@ -11,7 +11,7 @@ import static pl.lodz.p.it.ssbd2015.TestUtils.getRandomAlphas;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 public class ConfirmPersonTest extends BaseFunctionalTest {
 

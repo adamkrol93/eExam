@@ -9,7 +9,7 @@ import java.util.function.Consumer;
  * Metoda akceptująca wykonuje na argumencie działanie odpowiednie dla argumentów jego typu, bądź nie robi
  * nic jeżeli takie działanie nie zostało zdefiniowane.
  * Zawiera kilka metod ułatwiających łączenie PartialConsumerów.
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 public final class PartialConsumer {
 

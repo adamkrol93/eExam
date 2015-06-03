@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 
 /**
  * Klasa zawierająca metody pomocne w operowaniu na wyjątkach.
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 public class ExceptionUtils {
 

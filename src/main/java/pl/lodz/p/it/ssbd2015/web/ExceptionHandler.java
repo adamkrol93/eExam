@@ -14,7 +14,7 @@ import java.util.UUID;
 
 /**
  * Bean udostępnia informację o zaistniałej sytuacji wyjątkowej.
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 @ManagedBean(name = "exceptionHandler")
 @RequestScoped

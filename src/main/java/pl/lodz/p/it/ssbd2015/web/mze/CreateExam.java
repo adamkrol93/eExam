@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 /**
  * Backing bean dla formularza tworzenia nowego egzaminu.
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  */
 @ManagedBean(name = "createExamMZE")
 @ViewScoped

@@ -17,7 +17,7 @@ import java.util.Optional;
 
 /**
  * Implementacja interfejsu {@link ExamEntityFacadeLocal}, pozwala na zarządzanie Egzaminami.
- * @author Michał Sośnicki <sosnicki.michal@gmail.com>
+ * @author Michał Sośnicki
  * @author Piotr Jurewicz
  * @author Andrzej Kurczewski
  */
