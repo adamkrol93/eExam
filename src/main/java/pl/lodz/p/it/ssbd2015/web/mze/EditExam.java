@@ -52,6 +52,7 @@ public class EditExam extends BaseContextBean {
             questionList = exam.getQuestions();
             teacherList = exam.getTeachers();
             teachersNotInExamList = editExamService.findAllNotInExam();
+            setContext(EditExam.class, bean -> bean.id = id);
         });
     }
 

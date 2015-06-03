@@ -50,6 +50,7 @@ public class RateApproach extends BaseContextBean implements Serializable {
     protected void doInContext() {
         expectApplicationException(() -> {
             approach = markApproachService.findById(id);
+            setContext(RateApproach.class, bean -> bean.id = id);
         });
     }
 
