@@ -13,6 +13,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -87,6 +88,10 @@ public class ListApproaches extends BaseContextBean implements Serializable {
             }
         }
         return approaches;
+    }
+
+    public Calendar getCurrentTime() {
+        return Calendar.getInstance();
     }
 
     public List<ExamEntity> getExamEntityList()
