@@ -9,7 +9,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -36,11 +35,17 @@ import java.util.List;
         ),
         @NamedQuery(
                 name = "ExamEntity.countFinished",
-                query = "SELECT COUNT(a) FROM ApproachEntity a where a.exam = :exam AND :currentdate >= a.dateEnd AND a.disqualification = false"
+                query = "SELECT COUNT(a) FROM ApproachEntity a " +
+                        "WHERE a.exam.id = :examId AND :currentdate >= a.dateEnd " +
+                        "AND a.disqualification = false"
         ),
         @NamedQuery(
                 name = "ExamEntity.sumApproachesGrades",
-                query = "SELECT SUM(an.grade) FROM ApproachEntity a, AnswerEntity an where an.approach = a and a.exam = :exam AND :currentdate >= a.dateEnd AND a.disqualification = false group by a.exam"
+                query = "SELECT SUM(an.grade) " +
+                        "FROM ApproachEntity a, AnswerEntity an " +
+                        "WHERE an.approach = a AND a.exam.id = :examId " +
+                        "AND :currentdate >= a.dateEnd AND a.disqualification = false " +
+                        "GROUP BY a.exam"
         )
 
 })
@@ -81,10 +86,10 @@ public class ExamEntity extends TimeBaseEntity implements Serializable {
     @Column(name = "exam_count_question", nullable = false)
     private int countQuestion;
 
-    @Column(name = "exam_count_finish_exam", nullable = true)
+    @Column(name = "exam_count_finish_exam", nullable = true, updatable = false)
     private Integer countFinishExam;
 
-    @Column(name = "exam_avg_results", nullable = true, precision = 4)
+    @Column(name = "exam_avg_results", nullable = true, precision = 4, updatable = false)
     private Double avgResults;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -323,7 +328,6 @@ public class ExamEntity extends TimeBaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         return "ExamEntity{" +
                 "id=" + id +
                 ", version=" + version +

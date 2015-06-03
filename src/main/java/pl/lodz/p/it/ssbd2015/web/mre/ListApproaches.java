@@ -18,8 +18,6 @@ import java.util.List;
  */
 public abstract class ListApproaches extends BaseContextBean {
 
-    private static final long serialVersionUID = 1L;
-
     @EJB
     protected ApproachesServiceRemote approachesService;
 

@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -182,7 +181,6 @@ public class QuestionEntity extends TimeBaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         return "QuestionEntity{" +
                 "id=" + id +
                 ", version=" + version +

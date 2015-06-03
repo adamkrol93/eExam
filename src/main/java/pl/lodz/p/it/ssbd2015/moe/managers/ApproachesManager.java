@@ -3,6 +3,7 @@ package pl.lodz.p.it.ssbd2015.moe.managers;
 import pl.lodz.p.it.ssbd2015.entities.*;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.moe.ExamNotFoundException;
 import pl.lodz.p.it.ssbd2015.exceptions.moe.TeacherNotFoundException;
 import pl.lodz.p.it.ssbd2015.moe.facades.ApproachEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.moe.facades.ExamEntityFacadeLocal;
@@ -13,6 +14,7 @@ import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.*;
 import javax.interceptor.Interceptors;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -21,6 +23,7 @@ import java.util.List;
  * @author Bartosz Ignaczewski
  * @author Piotr Jurewicz
  * @author Tobiasz Kowalski
+ * @author Michał Sośnicki
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.moe.managers.ApproachesManager")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
@@ -48,15 +51,19 @@ public class ApproachesManager implements ApproachesManagerLocal {
     @Override
     @RolesAllowed("MARK_APPROACH_MOE")
     public void mark(ApproachEntity approach, List<AnswerEntity> answers) throws ApplicationBaseException {
-        String login = sessionContext.getCallerPrincipal().getName();
-        TeacherEntity teacherEntity = teacherEntityFacade.findByLogin(login).orElseThrow(() -> new TeacherNotFoundException("Teacher with login: " + login + " does not exists"));
+        ExamStatsEntity examEntity = examEntityFacade.findStatsById(approach.getExam().getId())
+                .orElseThrow(() -> new ExamNotFoundException("ExamStats with id: " + approach.getExam().getId() + " does not exists"));
+        examEntityFacade.lockPessimisticWrite(examEntity);
 
-//        ExamEntity examEntity = examEntityFacade.findById(approach.getExam().getId()).orElseThrow(() -> new ExamNotFoundException("Exam with id: " + approach.getExam().getId() + " does not exists"));
-        ExamEntity examEntity = approach.getExam();
+        String login = sessionContext.getCallerPrincipal().getName();
+        TeacherEntity teacherEntity = teacherEntityFacade.findByLogin(login)
+                .orElseThrow(() -> new TeacherNotFoundException("Teacher with login: " + login + " does not exists"));
+
         boolean isAllowed = false;
         for (TeacherEntity teacher : examEntity.getTeachers()) {
             if (teacher.getLogin().equals(login)) {
                 isAllowed = true;
+                break;
             }
         }
         if (!isAllowed) {
@@ -67,42 +74,42 @@ public class ApproachesManager implements ApproachesManagerLocal {
             answer.setTeacher(teacherEntity);
         }
         approach.setAnswers(answers);
+
+        approach.setDateModification(Calendar.getInstance());
         approachEntityFacade.edit(approach);
 
         approachesManager.aggregateStats(examEntity);
 
-        examEntityFacade.edit(examEntity);
+        examEntityFacade.editStats(examEntity);
     }
 
     @Override
     @RolesAllowed("DISQUALIFY_APPROACH_MOE")
     public void disqualify(ApproachEntity approach) throws ApplicationBaseException {
+        ExamStatsEntity exam = examEntityFacade.findStatsById(approach.getExam().getId())
+                .orElseThrow(() -> new ExamNotFoundException("ExamStats with id: " + approach.getExam().getId() + " does not exists"));
+        examEntityFacade.lockPessimisticWrite(exam);
+
         approach.setDisqualification(true);
 
         approachEntityFacade.edit(approach);
 
-//        ExamEntity exam = examEntityFacade.findById(approach.getExam().getId())
-//                .orElseThrow(() -> new ExamNotFoundException("Exam with id: " + approach.getExam().getId() + " does not exists"));
-
-        ExamEntity exam = approach.getExam();
-
         String login = sessionContext.getCallerPrincipal().getName();
 
-        Boolean exist =false;
-
-        for(TeacherEntity teacher : exam.getTeachers()){
-            if(teacher.getLogin().equals(login)){
-                exist=true;
+        Boolean isAllowed = false;
+        for (TeacherEntity teacher : exam.getTeachers()) {
+            if (teacher.getLogin().equals(login)) {
+                isAllowed = true;
+                break;
             }
         }
-
-        if(!exist){
-            throw new TeacherNotFoundException("Teacher with login: " + login + " does not exists.");
+        if (!isAllowed) {
+            throw new TeacherNotFoundException("Teacher with login: " + login + " does not exist among authorized to check this exam.");
         }
 
         approachesManager.aggregateStats(exam);
 
-        examEntityFacade.edit(exam);
+        examEntityFacade.editStats(exam);
     }
 
     @Override
@@ -130,9 +137,9 @@ public class ApproachesManager implements ApproachesManagerLocal {
 
     @Override
     @RolesAllowed({"MARK_APPROACH_MOE", "DISQUALIFY_APPROACH_MOE"})
-    public void aggregateStats(ExamEntity examEntity) {
-        long counted = examEntityFacade.countExamFinished(examEntity);
-        examEntity.setCountFinishExam(counted > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int)counted);
-        examEntity.setAvgResults(counted != 0 ? (double)examEntityFacade.sumApproachesGrades(examEntity) / examEntity.getCountFinishExam() : null);
+    public void aggregateStats(ExamStatsEntity exam) {
+        long counted = examEntityFacade.countExamFinished(exam.getId());
+        exam.setCountFinishExam(counted > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) counted);
+        exam.setAvgResults(counted != 0 ? (double) examEntityFacade.sumApproachesGrades(exam.getId()) / exam.getCountFinishExam() : null);
     }
 }

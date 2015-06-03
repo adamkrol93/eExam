@@ -2,7 +2,6 @@ package pl.lodz.p.it.ssbd2015.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -89,7 +88,6 @@ public abstract class GroupsStubEntity extends TimeBaseEntity implements Seriali
 
     @Override
     public String toString() {
-        SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         return "GroupsStubEntity{" +
                 "id=" + id +
                 ", version=" + version +

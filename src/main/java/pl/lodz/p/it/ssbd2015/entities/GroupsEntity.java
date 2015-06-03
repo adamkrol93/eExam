@@ -4,7 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -253,7 +252,6 @@ public abstract class GroupsEntity extends TimeBaseEntity implements Serializabl
 
     @Override
     public String toString() {
-        SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         return "GroupsEntity{" +
                 "id=" + id +
                 ", version=" + version +

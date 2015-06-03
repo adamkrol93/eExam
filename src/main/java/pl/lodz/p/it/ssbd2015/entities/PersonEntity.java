@@ -7,7 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -252,7 +251,6 @@ public class PersonEntity extends TimeBaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         return "PersonEntity{" +
                 "id=" + id +
                 ", version=" + version +

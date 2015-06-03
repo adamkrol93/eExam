@@ -8,7 +8,6 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -164,7 +163,6 @@ public class AnswerEntity extends TimeBaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         return "AnswerEntity{" +
                 "id=" + id +
                 ", version=" + version +

@@ -1,6 +1,7 @@
 package pl.lodz.p.it.ssbd2015.moe.facades;
 
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
+import pl.lodz.p.it.ssbd2015.entities.ExamStatsEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.exceptions.moe.*;
@@ -13,6 +14,11 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.LockModeType;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TemporalType;
+import javax.persistence.TypedQuery;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
@@ -78,19 +84,39 @@ public class ExamEntityFacade implements ExamEntityFacadeLocal {
 
     @Override
     @RolesAllowed({"MARK_APPROACH_MOE", "DISQUALIFY_APPROACH_MOE"})
-    public long countExamFinished(ExamEntity examEntity) {
+    public long countExamFinished(long examId) {
         TypedQuery<Long> examQuery = entityManager.createNamedQuery("ExamEntity.countFinished", Long.class);
-        examQuery.setParameter("exam", examEntity);
+        examQuery.setParameter("examId", examId);
         examQuery.setParameter("currentdate", Calendar.getInstance().getTime(), TemporalType.TIMESTAMP);
         return examQuery.getSingleResult() == null ? 0 : examQuery.getSingleResult();
     }
 
     @Override
     @RolesAllowed({"MARK_APPROACH_MOE", "DISQUALIFY_APPROACH_MOE"})
-    public long sumApproachesGrades(ExamEntity examEntity) {
+    public long sumApproachesGrades(long examId) {
         TypedQuery<Long> examQuery = entityManager.createNamedQuery("ExamEntity.sumApproachesGrades", Long.class);
-        examQuery.setParameter("exam", examEntity);
+        examQuery.setParameter("examId", examId);
         examQuery.setParameter("currentdate", Calendar.getInstance().getTime(), TemporalType.TIMESTAMP);
         return examQuery.getSingleResult() == null ? 0 : examQuery.getSingleResult();
+    }
+
+    @Override
+    @RolesAllowed({"MARK_APPROACH_MOE", "DISQUALIFY_APPROACH_MOE"})
+    public void lockPessimisticWrite(ExamStatsEntity exam) {
+        getEntityManager().refresh(exam, LockModeType.PESSIMISTIC_WRITE);
+    }
+
+    @Override
+    @RolesAllowed({"MARK_APPROACH_MOE", "DISQUALIFY_APPROACH_MOE"})
+    public Optional<ExamStatsEntity> findStatsById(long id) {
+        ExamStatsEntity entity = getEntityManager().find(ExamStatsEntity.class, id);
+        return Optional.ofNullable(entity);
+    }
+
+    @Override
+    @RolesAllowed({"MARK_APPROACH_MOE", "DISQUALIFY_APPROACH_MOE"})
+    public void editStats(ExamStatsEntity examStats) {
+        getEntityManager().merge(examStats);
+        getEntityManager().flush();
     }
 }

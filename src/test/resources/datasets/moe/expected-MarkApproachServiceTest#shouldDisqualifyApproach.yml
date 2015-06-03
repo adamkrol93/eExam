@@ -11,7 +11,7 @@ exam:
     exam_creator_id: 1
     exam_modifier_id: "[NULL]"
     exam_date_add: "2015-03-30 22:59:07.393572"
-    exam_version: 2
+    exam_version: 1
 
 approach:
   - approach_id: 1

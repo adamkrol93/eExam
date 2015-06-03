@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -112,7 +111,6 @@ public class PreviousPasswordEntity extends TimeBaseEntity implements Serializab
 
     @Override
     public String toString() {
-        SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         return "PreviousPasswordEntity{" +
                 "id=" + id +
                 ", version=" + version +
