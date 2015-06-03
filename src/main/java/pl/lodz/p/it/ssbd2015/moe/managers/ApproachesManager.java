@@ -4,6 +4,7 @@ import pl.lodz.p.it.ssbd2015.entities.*;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.exceptions.moe.ExamNotFoundException;
+import pl.lodz.p.it.ssbd2015.exceptions.moe.ApproachNotEndedException;
 import pl.lodz.p.it.ssbd2015.exceptions.moe.TeacherNotFoundException;
 import pl.lodz.p.it.ssbd2015.moe.facades.ApproachEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.moe.facades.ExamEntityFacadeLocal;
@@ -15,6 +16,7 @@ import javax.annotation.security.RolesAllowed;
 import javax.ejb.*;
 import javax.interceptor.Interceptors;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -69,6 +71,11 @@ public class ApproachesManager implements ApproachesManagerLocal {
             throw new TeacherNotFoundException("Teacher with login: " + login + " does not exist among authorized to check this exam.");
         }
 
+        Calendar now = GregorianCalendar.getInstance();
+        if (now.before(approach.getDateEnd())) {
+            throw new ApproachNotEndedException("Approach with id: " + approach.getId() + " has not finished yet.");
+        }
+
         for (AnswerEntity answer : answers) {
             answer.setTeacher(teacherEntity);
         }
@@ -103,6 +110,11 @@ public class ApproachesManager implements ApproachesManagerLocal {
         }
         if (!isAllowed) {
             throw new TeacherNotFoundException("Teacher with login: " + login + " does not exist among authorized to check this exam.");
+        }
+
+        Calendar now = GregorianCalendar.getInstance();
+        if (now.before(approach.getDateEnd())) {
+            throw new ApproachNotEndedException("Approach with id: " + approach.getId() + " has not finished yet.");
         }
 
         approachesManager.aggregateStats(exam);
