@@ -102,14 +102,8 @@ public class ExamEntityFacade implements ExamEntityFacadeLocal {
 
     @Override
     @RolesAllowed({"MARK_APPROACH_MOE", "DISQUALIFY_APPROACH_MOE"})
-    public void lockPessimisticWrite(ExamStatsEntity exam) {
-        getEntityManager().refresh(exam, LockModeType.PESSIMISTIC_WRITE);
-    }
-
-    @Override
-    @RolesAllowed({"MARK_APPROACH_MOE", "DISQUALIFY_APPROACH_MOE"})
-    public Optional<ExamStatsEntity> findStatsById(long id) {
-        ExamStatsEntity entity = getEntityManager().find(ExamStatsEntity.class, id);
+    public Optional<ExamStatsEntity> findStatsByIdWithLock(long id) {
+        ExamStatsEntity entity = getEntityManager().find(ExamStatsEntity.class, id, LockModeType.PESSIMISTIC_WRITE);
         return Optional.ofNullable(entity);
     }
 

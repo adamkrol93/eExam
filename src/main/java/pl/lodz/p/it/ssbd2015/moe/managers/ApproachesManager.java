@@ -51,9 +51,8 @@ public class ApproachesManager implements ApproachesManagerLocal {
     @Override
     @RolesAllowed("MARK_APPROACH_MOE")
     public void mark(ApproachEntity approach, List<AnswerEntity> answers) throws ApplicationBaseException {
-        ExamStatsEntity examEntity = examEntityFacade.findStatsById(approach.getExam().getId())
+        ExamStatsEntity examEntity = examEntityFacade.findStatsByIdWithLock(approach.getExam().getId())
                 .orElseThrow(() -> new ExamNotFoundException("ExamStats with id: " + approach.getExam().getId() + " does not exists"));
-        examEntityFacade.lockPessimisticWrite(examEntity);
 
         String login = sessionContext.getCallerPrincipal().getName();
         TeacherEntity teacherEntity = teacherEntityFacade.findByLogin(login)
@@ -86,9 +85,8 @@ public class ApproachesManager implements ApproachesManagerLocal {
     @Override
     @RolesAllowed("DISQUALIFY_APPROACH_MOE")
     public void disqualify(ApproachEntity approach) throws ApplicationBaseException {
-        ExamStatsEntity exam = examEntityFacade.findStatsById(approach.getExam().getId())
+        ExamStatsEntity exam = examEntityFacade.findStatsByIdWithLock(approach.getExam().getId())
                 .orElseThrow(() -> new ExamNotFoundException("ExamStats with id: " + approach.getExam().getId() + " does not exists"));
-        examEntityFacade.lockPessimisticWrite(exam);
 
         approach.setDisqualification(true);
 
@@ -137,9 +135,9 @@ public class ApproachesManager implements ApproachesManagerLocal {
 
     @Override
     @RolesAllowed({"MARK_APPROACH_MOE", "DISQUALIFY_APPROACH_MOE"})
-    public void aggregateStats(ExamStatsEntity exam) {
-        long counted = examEntityFacade.countExamFinished(exam.getId());
-        exam.setCountFinishExam(counted > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) counted);
-        exam.setAvgResults(counted != 0 ? (double) examEntityFacade.sumApproachesGrades(exam.getId()) / exam.getCountFinishExam() : null);
+    public void aggregateStats(ExamStatsEntity examStats) {
+        long counted = examEntityFacade.countExamFinished(examStats.getId());
+        examStats.setCountFinishExam(counted > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) counted);
+        examStats.setAvgResults(counted != 0 ? (double) examEntityFacade.sumApproachesGrades(examStats.getId()) / examStats.getCountFinishExam() : null);
     }
 }

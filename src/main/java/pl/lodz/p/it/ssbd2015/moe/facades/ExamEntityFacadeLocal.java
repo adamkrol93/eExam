@@ -30,17 +30,12 @@ public interface ExamEntityFacadeLocal extends Merge<Long,ExamEntity>, Read<Long
     long sumApproachesGrades(long examId);
 
     /**
-     * Zakłada blokadę pesymistyczną na encji statystyk egzaminu.
-     * @param exam Encja do zablokowania.
-     */
-    void lockPessimisticWrite(ExamStatsEntity exam);
-
-    /**
      * Wyszukuje encję statystyk egzaminu o podanym id
+     * Zakłada blokadę pesymistyczną na encji statystyk egzaminu.
      * @param id Id encji do wyszukania.
      * @return Być może encja o podanym id.
      */
-    Optional<ExamStatsEntity> findStatsById(long id);
+    Optional<ExamStatsEntity> findStatsByIdWithLock(long id);
 
     /**
      * Zapisuje w bazie zmiany dokonane na przekazanej encji.
