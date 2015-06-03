@@ -38,6 +38,7 @@ public class ApproachesService extends BaseStatefulService implements Approaches
     public ApproachEntity findById(long id) throws ApplicationBaseException {
     	ApproachEntity approachEntity = approachEntityFacade.findById(id)
     			.orElseThrow(() -> new ApproachNotFoundException("Approach with id: " + id + " does not exists"));
+        approachEntity.getAnswers().size();
     	return approachEntity;
     }
 

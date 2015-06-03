@@ -28,12 +28,19 @@
         </div>
         <div class="panel panel-default">
             <div class="panel-heading"><h3><h:outputText
-                    value="#{i18n['moe.show_approach_details.entrant']} #{showApproachDetailsMOE.approach.entrant.personName} #{showApproachDetailsMOE.approach.entrant.lastName}"/>
+                    value="#{i18n['moe.show_approach_details.entrant']}: #{showApproachDetailsMOE.approach.entrant.personName} #{showApproachDetailsMOE.approach.entrant.lastName}"/>
             </h3></div>
             <div class="panel-body">
                 <p>
-                    <h:outputText value=" #{i18n['moe.show_approach_details.created']} "/>
-                    <h:outputText value="#{showApproachDetailsMOE.approach.dateAdd.time}">
+                    <h:outputText value=" #{i18n['moe.show_approach_details.started']}: "/>
+                    <h:outputText value="#{showApproachDetailsMOE.approach.dateStart.time}">
+                        <f:convertDateTime type="both" dateStyle="long"/>
+                    </h:outputText>
+                </p>
+
+                <p>
+                    <h:outputText value=" #{i18n['moe.show_approach_details.ended']}: "/>
+                    <h:outputText value="#{showApproachDetailsMOE.approach.dateEnd.time}">
                         <f:convertDateTime type="both" dateStyle="long"/>
                     </h:outputText>
                 </p>
@@ -45,8 +52,41 @@
 
                 <p>
                     <h:outputText
-                            value="#{i18n['moe.show_approach_details.disqualification']}: #{showApproachDetailsMOE.approach.disqualification}"/>
+                            value="#{i18n['moe.show_approach_details.status']}: #{i18n[showApproachDetailsMOE.checkApproachIsToEvaluate()]}"/>
                 </p>
+
+                <ui:fragment rendered="#{not showApproachDetailsMOE.approach.disqualification}">
+                    <p>
+                        <h:outputText
+                                value="#{i18n['moe.show_approach_details.result']}: #{showApproachDetailsMOE.points}/#{showApproachDetailsMOE.maxPoints}"/>
+                    </p>
+                    <ui:repeat value="#{showApproachDetailsMOE.approach.answers}" var="answer" >
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4><h:outputText value="#{answer.question.content}"/>
+                        <span class="pull-right">
+                            <ui:fragment rendered="#{answer.teacher != null}">
+                                <ui:repeat value="#{showApproachDetailsMOE.repeat(answer.grade)}" var="i">
+                                    <span class="glyphicon glyphicon-star"/>
+                                </ui:repeat>
+                                <ui:repeat value="#{showApproachDetailsMOE.repeat(2 - answer.grade)}" var="i">
+                                    <span class="glyphicon glyphicon-star-empty"/>
+                                </ui:repeat>
+                            </ui:fragment>
+                            <ui:fragment rendered="#{answer.teacher == null}">
+                                <h:outputText value="#{i18n['moe.show_approach_details.no_grade']}"/>
+                            </ui:fragment>
+                        </span>
+                                </h4>
+                            </div>
+                            <div class="panel-body">
+                                <p>
+                                    <h:outputText value=" #{answer.content}"/>
+                                </p>
+                            </div>
+                        </div>
+                    </ui:repeat>
+                </ui:fragment>
             </div>
         </div>
     </ui:define>
