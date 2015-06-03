@@ -168,7 +168,8 @@
                                         </h4>
                                     </div>
                                     <span class="pull-right">
-                                        <h:commandLink styleClass="btn btn-info" action="#{editExamMZE.removeTeacher}" onclick="if (!confirm(#{i18n['mze.edit_exam.confirmation.text']})) return false">
+                                        <h:commandLink styleClass="btn btn-info" action="#{editExamMZE.removeTeacher}"
+                                                       onclick="if (!confirm(#{i18n['mze.edit_exam.confirmation.text']})) return false">
                                             <span class="glyphicon glyphicon-trash"/>
                                         </h:commandLink>
                                     </span>
@@ -195,6 +196,7 @@
                                     </div>
                                     <span class="pull-right">
                                         <h:commandLink styleClass="btn btn-danger" action="#{editExamMZE.removeQuestion}"
+                                                       onclick="if (!confirm(#{i18n['mze.edit_exam.confirmation.text']})) return false"
                                                        rendered="#{empty editExamMZE.exam.approaches}">
                                             <span class="glyphicon glyphicon-trash"/>
                                         </h:commandLink>
