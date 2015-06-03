@@ -6,7 +6,7 @@ exam:
     exam_date_end: "3015-04-04 22:59:07.393572"
     exam_duration: 60
     exam_count_question: 4
-    exam_count_finish_exam: 3
+    exam_count_finish_exam: 2
     exam_avg_results: "[NULL]"
     exam_creator_id: 7
     exam_modifier_id: "[NULL]"

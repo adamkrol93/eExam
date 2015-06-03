@@ -81,8 +81,6 @@ public class AnswerServiceTest extends BaseArquillianTest {
         answerService.editApproach(approachEntity.getAnswers());
     }
 
-
-
     @Test(expected = ApproachEndedException.class)
     @Transactional(TransactionMode.DISABLED)
     public void shouldFailEndingApproachEndedBefore() throws Exception {

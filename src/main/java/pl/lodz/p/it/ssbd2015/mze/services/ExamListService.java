@@ -48,7 +48,7 @@ public class ExamListService extends BaseStatefulService implements ExamListServ
         for (ExamEntity e : exams) {
             if (e.getId() == examId) {
                 examsManager.cloneExam(e);
-                break;
+                return;
             }
         }
         throw new ExamNotFoundException("Exam with id " + examId + " was not found.");
