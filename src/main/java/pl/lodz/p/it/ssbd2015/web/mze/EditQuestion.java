@@ -32,7 +32,6 @@ public class EditQuestion extends BaseContextBean implements Serializable {
     protected void doInContext() {
         expectApplicationException(() -> {
             question = editQuestionService.findById(id);
-            setContext(EditQuestion.class, bean -> bean.id = id);
         });
     }
 

@@ -51,7 +51,6 @@ public class RateApproach extends BaseContextBean implements Serializable {
         expectApplicationException(() -> {
             approach = markApproachService.findById(id);
         });
-        resetContext();
     }
 
     /**

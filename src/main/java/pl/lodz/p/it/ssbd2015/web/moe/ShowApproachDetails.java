@@ -30,7 +30,6 @@ public class ShowApproachDetails extends BaseContextBean {
     protected void doInContext() {
         expectApplicationException(() -> {
             approach = approachesService.findById(id);
-            resetContext();
         });
     }
 
