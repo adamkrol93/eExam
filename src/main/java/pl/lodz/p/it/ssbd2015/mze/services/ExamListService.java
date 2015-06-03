@@ -4,6 +4,7 @@ import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamNotFoundException;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExamEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.managers.ExamsManagerLocal;
 
@@ -50,5 +51,6 @@ public class ExamListService extends BaseStatefulService implements ExamListServ
                 break;
             }
         }
+        throw new ExamNotFoundException("Exam with id " + examId + " was not found.");
     }
 }

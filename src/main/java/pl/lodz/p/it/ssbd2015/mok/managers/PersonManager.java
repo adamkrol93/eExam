@@ -118,7 +118,7 @@ public class PersonManager implements PersonManagerLocal {
         }
 
         if (!found) {
-            throw new IllegalArgumentException("The Person has no Group with id = " + id);
+            throw new PersonNotFoundException("The Person has no Group with id = " + id);
         }
 
 	    Text text = new Text();

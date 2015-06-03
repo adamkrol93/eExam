@@ -5,6 +5,8 @@ import pl.lodz.p.it.ssbd2015.entities.StudentEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.moe.GuardianNotFoundException;
+import pl.lodz.p.it.ssbd2015.exceptions.moe.StudentNotFoundException;
 import pl.lodz.p.it.ssbd2015.moe.facades.GuardianEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.moe.facades.StudentEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.moe.managers.ApproachesManagerLocal;
@@ -67,11 +69,11 @@ public class GuardianStudentService extends BaseStatefulService implements Guard
         StudentEntity studentEntity = this.students.stream()
                 .filter(studentEntity1 -> studentEntity1.getId() == studentId)
                 .findFirst()
-                .get();
+                .orElseThrow(() -> new StudentNotFoundException("Student with id " + studentId + " was not found."));
         GuardianEntity guardianEntity = this.guardians.stream()
                 .filter(guardianEntity1 -> guardianEntity1.getId() == guardianId)
                 .findFirst()
-                .get();
+                .orElseThrow(() -> new GuardianNotFoundException("Guardian with id " + guardianId + " was not found."));
         approachesManager.connect(guardianEntity,studentEntity);
     }
 }

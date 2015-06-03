@@ -5,6 +5,7 @@ import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.BaseStatefulService;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.mze.TeacherNotFoundException;
 import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamNotFoundException;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExamEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.facades.TeacherEntityFacadeLocal;
@@ -76,7 +77,7 @@ public class EditExamService extends BaseStatefulService implements EditExamServ
         TeacherEntity teacher = teachersNotInExam.stream()
                 .filter(t -> t.getId() == teacherId)
                 .findFirst()
-                .get();
+                .orElseThrow(() -> new TeacherNotFoundException("Teacher with id " + teacherId + " was not found."));
 
         examsManager.addTeacher(this.exam, teacher);
     }

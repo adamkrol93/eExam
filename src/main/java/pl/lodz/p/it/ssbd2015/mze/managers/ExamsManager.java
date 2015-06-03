@@ -3,10 +3,7 @@ package pl.lodz.p.it.ssbd2015.mze.managers;
 import pl.lodz.p.it.ssbd2015.entities.*;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
-import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamEndBeforeStartException;
-import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamApproachesExistException;
-import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamIllegalArgumentException;
-import pl.lodz.p.it.ssbd2015.exceptions.mze.ExaminerNotFoundException;
+import pl.lodz.p.it.ssbd2015.exceptions.mze.*;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExamEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.facades.ExaminerEntityFacadeLocal;
 import pl.lodz.p.it.ssbd2015.mze.facades.TeacherEntityFacadeLocal;
@@ -169,7 +166,7 @@ public class ExamsManager implements ExamsManagerLocal {
         }
 
         if (!found) {
-            throw new ExamIllegalArgumentException("Attempt to remove  teacher with id = " +  teacherId
+            throw new ExamTeacherNotFoundException("Attempt to remove  teacher with id = " +  teacherId
                     + " from exam " + exam + " failed because it didn't have this teacher.");
         }
 
