@@ -53,22 +53,19 @@ public class ApproachesManager implements ApproachesManagerLocal {
     @Override
     @RolesAllowed("MARK_APPROACH_MOE")
     public void mark(ApproachEntity approach, List<AnswerEntity> answers) throws ApplicationBaseException {
-        ExamStatsEntity examEntity = examEntityFacade.findStatsByIdWithLock(approach.getExam().getId())
+        ExamStatsEntity examStats = examEntityFacade.findStatsByIdWithLock(approach.getExam().getId())
                 .orElseThrow(() -> new ExamNotFoundException("ExamStats with id: " + approach.getExam().getId() + " does not exists"));
 
         String login = sessionContext.getCallerPrincipal().getName();
-        TeacherEntity teacherEntity = teacherEntityFacade.findByLogin(login)
-                .orElseThrow(() -> new TeacherNotFoundException("Teacher with login: " + login + " does not exists"));
-
-        boolean isAllowed = false;
-        for (TeacherEntity teacher : examEntity.getTeachers()) {
-            if (teacher.getLogin().equals(login)) {
-                isAllowed = true;
+        TeacherEntity teacher = null;
+        for (TeacherEntity authorized : examStats.getTeachers()) {
+            if (authorized.getLogin().equals(login)) {
+                teacher = authorized;
                 break;
             }
         }
-        if (!isAllowed) {
-            throw new TeacherNotFoundException("Teacher with login: " + login + " does not exist among authorized to check this exam.");
+        if (teacher == null) {
+            throw new TeacherNotFoundException("Teacher with login: " + login + " does not exist among authorized to mark this exam.");
         }
 
         Calendar now = GregorianCalendar.getInstance();
@@ -77,16 +74,16 @@ public class ApproachesManager implements ApproachesManagerLocal {
         }
 
         for (AnswerEntity answer : answers) {
-            answer.setTeacher(teacherEntity);
+            answer.setTeacher(teacher);
         }
         approach.setAnswers(answers);
 
         approach.setDateModification(Calendar.getInstance());
         approachEntityFacade.edit(approach);
 
-        approachesManager.aggregateStats(examEntity);
+        approachesManager.aggregateStats(examStats);
 
-        examEntityFacade.editStats(examEntity);
+        examEntityFacade.editStats(examStats);
     }
 
     @Override
@@ -109,7 +106,7 @@ public class ApproachesManager implements ApproachesManagerLocal {
             }
         }
         if (!isAllowed) {
-            throw new TeacherNotFoundException("Teacher with login: " + login + " does not exist among authorized to check this exam.");
+            throw new TeacherNotFoundException("Teacher with login: " + login + " does not exist among authorized to mark this exam.");
         }
 
         Calendar now = GregorianCalendar.getInstance();
