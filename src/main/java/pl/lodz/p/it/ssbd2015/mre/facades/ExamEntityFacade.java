@@ -3,6 +3,8 @@ package pl.lodz.p.it.ssbd2015.mre.facades;
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.mre.*;
+import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamTitleNotUniqueException;
 
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.RolesAllowed;
@@ -17,6 +19,7 @@ import java.util.Optional;
 
 /**
  * Implementacja interfejsu {@link ExamEntityFacadeLocal}. Pozwala na operacje bazodanowe na encji {@link ExamEntity}
+ *
  * @author Michał Sośnicki <sosnicki.michal@gmail.com>
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mre.facades.ExamEntityFacade")
@@ -42,7 +45,23 @@ public class ExamEntityFacade implements ExamEntityFacadeLocal {
     @Override
     @RolesAllowed("END_APPROACH_MRE")
     public void edit(ExamEntity entity) throws ApplicationBaseException {
-        ExamEntityFacadeLocal.super.edit(entity);
+        try {
+            ExamEntityFacadeLocal.super.edit(entity);
+        } catch (IllegalArgumentException ex) {
+            throw new ExamIllegalArgumentException(entity + " is an illegal argument to Merge.edit(e)", ex);
+        } catch (OptimisticLockException ex) {
+            throw new ExamOptimisticLockException(entity + " is being edit by someone else", ex);
+        } catch (PersistenceException ex) {
+            if (ex.getMessage().contains("exam_title_key")) {
+                throw new ExamTitleNotUniqueException("Exam Title is not unique for entity:" + entity, ex);
+            } else if (ex.getMessage().contains("exam_exam_modifier_id_fkey")) {
+                throw new ExamModifierForeignKeyException("Modifier id is incorrect for entity" + entity, ex);
+            } else if (ex.getMessage().contains("exam_exam_creator_id_fkey")) {
+                throw new ExamCreatorForeignKeyException("Creator id is incorrect for entity" + entity, ex);
+            } else {
+                throw new ExamManagementException("Persisting " + entity + " violated a database constraint.", ex);
+            }
+        }
     }
 
     @Override
@@ -75,8 +94,7 @@ public class ExamEntityFacade implements ExamEntityFacadeLocal {
         try {
             ExamEntity examEntity = examQuery.getSingleResult();
             return Optional.of(examEntity);
-        }
-        catch (NoResultException e) {
+        } catch (NoResultException e) {
             return Optional.empty();
         }
     }
