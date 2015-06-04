@@ -1,0 +1,33 @@
+answer:
+  - answer_id: 1
+    answer_approach_id: 1
+    answer_question_id: 1
+    answer_teacher_id: 1
+    answer_content: "Przykładowa odpowiedź na pytanie 1 w podejściu 1"
+    answer_grade: 2
+    answer_date_add: "2015-03-30 22:59:07.393572"
+    answer_version: 1
+  - answer_id: 2
+    answer_approach_id: 1
+    answer_question_id: 2
+    answer_teacher_id: 1
+    answer_content: "Przykładowa odpowiedź na pytanie 2 w podejściu 1"
+    answer_grade: 1
+    answer_date_add: "2015-03-30 22:59:07.393572"
+    answer_version: 1
+  - answer_id: 3
+    answer_approach_id: 2
+    answer_question_id: 1
+    answer_teacher_id: 1
+    answer_content: "Przykładowa odpowiedź na pytanie 3 w podejściu 1"
+    answer_grade: 1
+    answer_date_add: "2015-03-30 22:59:07.393572"
+    answer_version: 1
+  - answer_id: 4
+    answer_approach_id: 2
+    answer_question_id: 2
+    answer_teacher_id: 1
+    answer_content: "Przykładowa odpowiedź na pytanie 4 w podejściu 1"
+    answer_grade: 1
+    answer_date_add: "2015-03-30 22:59:07.393572"
+    answer_version: 1
