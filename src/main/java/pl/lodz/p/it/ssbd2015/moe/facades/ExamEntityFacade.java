@@ -5,7 +5,6 @@ import pl.lodz.p.it.ssbd2015.entities.ExamStatsEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.exceptions.moe.*;
-import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamTitleNotUniqueException;
 
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.RolesAllowed;
@@ -14,11 +13,6 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import javax.persistence.*;
-import javax.persistence.EntityManager;
-import javax.persistence.LockModeType;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TemporalType;
-import javax.persistence.TypedQuery;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
@@ -77,7 +71,7 @@ public class ExamEntityFacade implements ExamEntityFacadeLocal {
             } else if (ex.getMessage().contains("exam_exam_creator_id_fkey")) {
                 throw new ExamCreatorForeignKeyException("Creator id is incorrect for entity" + entity, ex);
             } else {
-                throw new ExamManagementException("Persisting " + entity + " violated a database constraint.", ex);
+                throw new ExamManagementException("Editing " + entity + " violated a database constraint.", ex);
             }
         }
     }
@@ -109,8 +103,12 @@ public class ExamEntityFacade implements ExamEntityFacadeLocal {
 
     @Override
     @RolesAllowed({"MARK_APPROACH_MOE", "DISQUALIFY_APPROACH_MOE"})
-    public void editStats(ExamStatsEntity examStats) {
-        getEntityManager().merge(examStats);
-        getEntityManager().flush();
+    public void editStats(ExamStatsEntity examStats) throws ApplicationBaseException {
+        try {
+            getEntityManager().merge(examStats);
+            getEntityManager().flush();
+        } catch (IllegalArgumentException ex) {
+            throw new ExamIllegalArgumentException(examStats + " is an illegal argument to editStats", ex);
+        }
     }
 }

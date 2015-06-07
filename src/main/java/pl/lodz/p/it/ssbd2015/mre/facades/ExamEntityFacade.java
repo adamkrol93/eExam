@@ -4,7 +4,6 @@ import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.exceptions.mre.*;
-import pl.lodz.p.it.ssbd2015.exceptions.mze.ExamTitleNotUniqueException;
 
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.RolesAllowed;

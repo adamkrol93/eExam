@@ -1,9 +1,10 @@
 package pl.lodz.p.it.ssbd2015.exceptions.moe;
 
 /**
+ * wyjątek sygnalizujący brak szukanego Studenta w bazie
  * @author Adam Król
  */
-public class StudentNotFoundException extends MoeBaseException {
+public class StudentNotFoundException extends StudentManagementException {
     public StudentNotFoundException(String message) {
         super(message);
     }
@@ -14,6 +15,6 @@ public class StudentNotFoundException extends MoeBaseException {
 
     @Override
     public String getCode() {
-        return super.getCode() + ".student_not_found";
+        return super.getCode() + ".not_found";
     }
 }

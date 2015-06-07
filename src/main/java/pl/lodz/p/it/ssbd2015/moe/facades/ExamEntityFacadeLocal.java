@@ -4,6 +4,7 @@ import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
 import pl.lodz.p.it.ssbd2015.entities.ExamStatsEntity;
 import pl.lodz.p.it.ssbd2015.entities.facade.Merge;
 import pl.lodz.p.it.ssbd2015.entities.facade.Read;
+import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 
 import javax.ejb.Local;
 import java.util.Optional;
@@ -40,7 +41,8 @@ public interface ExamEntityFacadeLocal extends Merge<Long,ExamEntity>, Read<Long
     /**
      * Zapisuje w bazie zmiany dokonane na przekazanej encji.
      * @param examStats Encja statystyk egzaminu do wyedytowania.
+     * @throws ApplicationBaseException Rzucany, gdy metoda otrzyma niewłaściwy argument.
      */
-    void editStats(ExamStatsEntity examStats);
+    void editStats(ExamStatsEntity examStats) throws ApplicationBaseException;
 
 }

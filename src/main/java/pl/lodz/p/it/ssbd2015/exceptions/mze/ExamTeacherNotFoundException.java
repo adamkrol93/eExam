@@ -1,6 +1,7 @@
 package pl.lodz.p.it.ssbd2015.exceptions.mze;
 
 /**
+ * Wyjątek sygnalizujący, żę w egzaminie nie znajduje się szykany nauczyciel
  * @author Adam Król
  */
 public class ExamTeacherNotFoundException extends ExamManagementException {
