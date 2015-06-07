@@ -1,6 +1,9 @@
 package pl.lodz.p.it.ssbd2015.mze.managers;
 
-import pl.lodz.p.it.ssbd2015.entities.*;
+import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
+import pl.lodz.p.it.ssbd2015.entities.ExaminerEntity;
+import pl.lodz.p.it.ssbd2015.entities.QuestionEntity;
+import pl.lodz.p.it.ssbd2015.entities.TeacherEntity;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.exceptions.mze.*;
@@ -12,6 +15,9 @@ import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.*;
 import javax.interceptor.Interceptors;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -74,7 +80,19 @@ public class ExamsManager implements ExamsManagerLocal {
         newExam.setDateEnd(exam.getDateEnd());
         newExam.setQuestions(exam.getQuestions());
         newExam.setTeachers(exam.getTeachers());
-        newExam.setTitle(exam.getTitle() + " kopia");
+
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        Date date = new Date(timestamp.getTime());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH mm ss SS");
+        String now = simpleDateFormat.format(date);
+
+        String title = exam.getTitle();
+        int length = (title + " " + now).length();
+        if(length >= 100) {
+            title = title.substring(0, title.length() - (length - 100));
+        }
+
+        newExam.setTitle(title + " " + now);
 
         examEntityFacade.create(newExam);
     }
