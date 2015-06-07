@@ -8,6 +8,7 @@ import org.junit.Test;
 import pl.lodz.p.it.ssbd2015.BaseArquillianTest;
 import pl.lodz.p.it.ssbd2015.entities.AnswerEntity;
 import pl.lodz.p.it.ssbd2015.entities.ApproachEntity;
+import pl.lodz.p.it.ssbd2015.exceptions.moe.ApproachDisqualifiedException;
 import pl.lodz.p.it.ssbd2015.exceptions.moe.ApproachNotFoundException;
 import pl.lodz.p.it.ssbd2015.exceptions.moe.TeacherNotFoundException;
 
@@ -30,6 +31,8 @@ public class MarkApproachServiceTest extends BaseArquillianTest {
         assertNotNull(markApproachService);
     }
 
+
+
     @Test(expected = ApproachNotFoundException.class)
     public void shouldNotFindApproach() throws Exception {
         markApproachService.findById(3L);
@@ -43,6 +46,14 @@ public class MarkApproachServiceTest extends BaseArquillianTest {
         ApproachEntity approach = markApproachService.findById(2L);
 
         markApproachService.disqualify();
+    }
+
+    @Test(expected = ApproachDisqualifiedException.class)
+    public void shouldNotLetTeacherToRateDisqualifyApproach() throws Exception{
+        ApproachEntity approach = markApproachService.findById(2L);
+        markApproachService.disqualify();
+
+        markApproachService.mark(approach.getAnswers());
     }
 
     @Test

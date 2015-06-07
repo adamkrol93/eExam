@@ -3,6 +3,7 @@ package pl.lodz.p.it.ssbd2015.moe.managers;
 import pl.lodz.p.it.ssbd2015.entities.*;
 import pl.lodz.p.it.ssbd2015.entities.services.LoggingInterceptor;
 import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
+import pl.lodz.p.it.ssbd2015.exceptions.moe.ApproachDisqualifiedException;
 import pl.lodz.p.it.ssbd2015.exceptions.moe.ExamNotFoundException;
 import pl.lodz.p.it.ssbd2015.exceptions.moe.ApproachNotEndedException;
 import pl.lodz.p.it.ssbd2015.exceptions.moe.TeacherNotFoundException;
@@ -53,6 +54,11 @@ public class ApproachesManager implements ApproachesManagerLocal {
     @Override
     @RolesAllowed("MARK_APPROACH_MOE")
     public void mark(ApproachEntity approach, List<AnswerEntity> answers) throws ApplicationBaseException {
+
+        if(approach.isDisqualification()){
+            throw new ApproachDisqualifiedException("Approach with id: " + approach.getId() + " is disqualified.");
+        }
+
         ExamStatsEntity examStats = examEntityFacade.findStatsByIdWithLock(approach.getExam().getId())
                 .orElseThrow(() -> new ExamNotFoundException("ExamStats with id: " + approach.getExam().getId() + " does not exists"));
 
