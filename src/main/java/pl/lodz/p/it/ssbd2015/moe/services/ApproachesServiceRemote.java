@@ -15,8 +15,8 @@ import java.util.List;
 public interface ApproachesServiceRemote {
 
     /**
-     * Wyszukuje w bazie encji o podanym id
-     * @param id identyfikator, któ©ego szukamy
+     * Nauczyciel wyświetla szczegóły podejścia
+     * @param id identyfikator encji, której szukamy
      * @return ApproachEntity jeżeli coś znajdzie
      * @throws ApplicationBaseException Rzucany, kiedy nie znajdzie encji o podanym id
      */

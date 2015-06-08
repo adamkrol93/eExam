@@ -24,12 +24,35 @@ public interface ExamsManagerLocal {
      */
     void createExam(ExamEntity exam, List<QuestionEntity> questions, List<TeacherEntity> teachers) throws ApplicationBaseException;
 
+    /**
+     * Klonuje egzamin
+     * @param exam Egzamin, który klonuje
+     * @throws ApplicationBaseException Rzucany, kiedy nie uda się sklonować egzaminu
+     */
     void cloneExam(ExamEntity exam) throws ApplicationBaseException;
 
+    /**
+     * Znajduje listę wszystkich nauczycieli którzy nie brali udziału w egzaminie
+     * @param exam Egzamin, który jest sprawdzany
+     * @return Lista nauczycieli
+     * @throws ApplicationBaseException Rzucany, kiedy wystąpi błąd przy szukaniu nauczycieli
+     */
     List<TeacherEntity> findAllNotInExam(ExamEntity exam) throws ApplicationBaseException;
 
+    /**
+     * Edytuje egzamin
+     * @param exam Egzamin edytowany
+     * @param newExam Egzamin zawierajacy nowe informacje
+     * @throws ApplicationBaseException Rzucany, jeśli edycja się nie uda
+     */
     void editExam(ExamEntity exam, ExamEntity newExam) throws ApplicationBaseException;
 
+    /**
+     * Dodaje nauczyciela do egzaminu
+     * @param exam Egzamin, do którego jest dodawany nauczyciel
+     * @param teacher Nauczyciel, który jest dodawany do egzaminu
+     * @throws ApplicationBaseException Rzucany, jeśli nie uda się dodać nauczyciela do egzaminu
+     */
     void addTeacher(ExamEntity exam, TeacherEntity teacher) throws ApplicationBaseException;
 
     /**
@@ -40,5 +63,11 @@ public interface ExamsManagerLocal {
      */
     void removeQuestion(ExamEntity exam, long questionId) throws ApplicationBaseException;
 
+    /**
+     * Usuwa nauczyciela z egzaminu
+     * @param exam Egzamin, z którego jest usuwany nauczyciel
+     * @param teacherId Id nauczyciela który ma być usunięty z egzaminu
+     * @throws ApplicationBaseException Rzucany, jeśli nie uda się usunąć nauczyciela z egzaminu
+     */
     void removeTeacher(ExamEntity exam, long teacherId) throws ApplicationBaseException;
 }

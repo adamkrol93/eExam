@@ -32,7 +32,8 @@ public interface PersonServiceRemote {
     PersonEntity getLoggedPerson() throws ApplicationBaseException;
 
     /**
-     * Metoda potwierdzająca odnalezionego wcześniej użytkownika.
+     * Potwierdza użytkownika w systemie, aby ten mógł się zalogować.
+     * Aby znaleźć użytkownika do edycji najlepiej wcześniej skorzystać z PersonServiceRemote.getPerson()
      * @throws ApplicationBaseException Rzucany, kiedy nie uda sie potwierdzić użytkownika
      */
     void confirmPerson() throws ApplicationBaseException;

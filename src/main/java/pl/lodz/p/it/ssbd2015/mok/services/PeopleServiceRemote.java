@@ -29,7 +29,8 @@ public interface PeopleServiceRemote {
     void register(PersonEntity person) throws ApplicationBaseException;
 
     /**
-     * Metoda zwraca listę wszystkich uzytkowników w systemie
+     * Zwraca listę wszystkich użytkowników w systemie. Lista zawiera również użytkowników nieaktywnych,
+     * niepotwierdzonych i bez aktywnych grup, w przeciwieństwie do list w innych przypadkach użycia.
      * @return Listę uzytkowników systemu, tzn. listę z obiektami PersonEntity
      */
     List<PersonEntity> findAllPeople();
