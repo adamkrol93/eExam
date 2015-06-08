@@ -23,6 +23,14 @@ public interface EditExamServiceRemote {
      */
     List<TeacherEntity> findAllNotInExam() throws ApplicationBaseException;
 
+    /**
+     * Egzaminator edytuje właściwości należące bezpośrednio do egzaminu, takie jak nazwa, liczba pytań,
+     * liczba dostępnych podejść, czas trwania podejścia, daty rozpoczęcia i zakończenia.
+     * Aby edytować egzamin należy go najpierw wczytać, wykorzystując metodę EditExamServiceRemote.findById()
+     * @param exam Encja reprezentująca egzamin po wprowadzeniu zmian.
+     * @throws ApplicationBaseException Rzucany, kiedy daty rozpoczęcia i zakończenia egzaminu nie pozostają w
+     * poprawnym stosunku lub gdy nie zostanie znaleziony egzaminator edytujący egzamin.
+     */
     void editExam(ExamEntity exam) throws ApplicationBaseException;
 
     /**

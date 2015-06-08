@@ -14,7 +14,8 @@ public interface Merge<K, E> extends FacadeBase<K, E> {
      * @param entity Encja która ma zostać zedytowana
      * @throws ApplicationBaseException Rzucany, kiedy nie uda sie merge i flush
      */
-    default void edit(E entity) throws ApplicationBaseException {
+    default void
+    edit(E entity) throws ApplicationBaseException {
         getEntityManager().merge(entity);
         getEntityManager().flush();
     }

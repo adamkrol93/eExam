@@ -32,7 +32,9 @@ public interface ApproachesServiceRemote {
     List<ApproachEntity> listAllForGuardian() throws ApplicationBaseException;
 
     /**
-     * Wyszukuje podejście o wskazanym id.
+     * Uczeń lub opiekun wyświetlają szczegóły zakończonego podejścia. Jako szczegóły rozumiemy
+     * czas rozpoczęcia i zakończenia, wszystkie pytania i odpowiedzi, a także, jeśli podejście zostało już ocenione,
+     * ocenę oraz nauczyciela, który ją wystawił.
      * @param id Klucz główny w bazie szukanego podejścia.
      * @return Podejście o szukanym id.
      * @throws ApplicationBaseException Rzucany jak podejście o takim id nie istnieje.

@@ -31,6 +31,9 @@ public interface PeopleServiceRemote {
     /**
      * Zwraca listę wszystkich użytkowników w systemie. Lista zawiera również użytkowników nieaktywnych,
      * niepotwierdzonych i bez aktywnych grup, w przeciwieństwie do list w innych przypadkach użycia.
+     * Dla przypadku MOK.8 pozwala na wyświetlenie wszytskich użytkownikó systemu
+     * Dla przypadku MOK.11 pozwala na wyświetlenie raportu z listą wszystkich kont użytkowników,
+     * zawierającego datę ich ostatniego uwierzytelnienia oraz ich adres logiczny.
      * @return Listę uzytkowników systemu, tzn. listę z obiektami PersonEntity
      */
     List<PersonEntity> findAllPeople();

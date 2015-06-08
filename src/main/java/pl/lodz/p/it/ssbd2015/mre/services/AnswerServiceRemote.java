@@ -38,7 +38,9 @@ public interface AnswerServiceRemote {
     void editApproach(List<AnswerEntity> answers) throws ApplicationBaseException;
 
     /**
-     * Funkcja odpowiadająca za zakończenie podejścia
+     * Uczeń kończy podejście przed upływem maksymalnego czasu podejścia, dając w ten sposób możliwość
+     * wcześniejszej oceny podejścia nauczycielowi. Podejście do zakończenia jest odnalezione w ramach przypadku MRE.2
+     * w metodzie AnswerServiceRemote.findById(), ponieważ przypadek jest częścią tego samego widoku
      * @throws ApplicationBaseException Rzucany, kiedy nie uda się zakończyć podejścia
      */
     void endApproach() throws ApplicationBaseException;

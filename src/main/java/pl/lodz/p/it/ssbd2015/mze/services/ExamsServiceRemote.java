@@ -16,6 +16,10 @@ import java.util.List;
 public interface ExamsServiceRemote {
 
     /**
+     * Dla przypadku MZE.11:
+     * Egzaminator wyświetla szczegóły egzaminu, to znaczy jego właściwości,
+     * a także listę przypisanych do niego pytań i nauczycieli.
+     * Dla przypadku MZE.13:
      * Egzaminator wyświetla raport dla danego egzaminu.
      * @param id id danego egzaminu
      * @return Encja danego egzaminu, jeżeli istnieje
