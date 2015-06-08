@@ -22,7 +22,7 @@ public interface PeopleServiceRemote {
      */
     boolean checkUniqueness(String login);
     /**
-     * Metoda rejestrująca użytkownika
+     * Pozwala użytkownikowi na stworzenie konta w systemie.
      * @param person encja reprezentująca dane użytkownika
      * @throws ApplicationBaseException Jeżeli nie zostaną przekazane poprawne dane
      */
@@ -35,8 +35,7 @@ public interface PeopleServiceRemote {
     List<PersonEntity> findAllPeople();
 
     /**
-     * Metoda zapisująca czas w momencie logowania oraz IP z jakiego nastąpiło logowanie w bazie.
-     * @param login login użytkownika
+     * Użytkownik uwierzytelnia się do systemu. Zapisane do bazy zostaje czas w momencie logowania oraz IP z jakiego nastąpiło logowanie.     * @param login login użytkownika
      * @param ipAddress adres IP
      * @param time czas logowania
      * @throws ApplicationBaseException Rzucany, gdy użytkownik o danym loginie nie zostanie odnaleziony.

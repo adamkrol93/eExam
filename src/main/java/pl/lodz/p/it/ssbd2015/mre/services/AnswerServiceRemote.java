@@ -15,7 +15,7 @@ import java.util.List;
 public interface AnswerServiceRemote {
 
     /**
-     * Tworzy podejście
+     * Uczeń rozpoczyna podejście do egzaminu. Losowana jest pula pyta dla tego podejścia.
      * @param title Tytuł podejścia
      * @return id utworzonego podejścia
      * @throws ApplicationBaseException Rzucany, kiedy nie utworzy podejścia

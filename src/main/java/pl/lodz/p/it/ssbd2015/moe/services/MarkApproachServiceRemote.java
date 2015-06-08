@@ -23,7 +23,7 @@ public interface MarkApproachServiceRemote {
     ApproachEntity findById(long id) throws ApplicationBaseException;
 
     /**
-     * Metoda pozwala ocenić podejście
+     * Nauczyciel wystawia ocen do każdej udzielonej odpowiedzi w danym podejściu. Aktualizowane są statystyki tego egzaminu.
      * @param gradedAnswers lista z wypełnionymi ocenami w odpowiedziach
      * @throws ApplicationBaseException Rzucany, kiedy nie oceni podejścia
      */

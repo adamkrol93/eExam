@@ -15,6 +15,12 @@ import java.util.List;
 @Remote
 public interface ExamsServiceRemote {
 
+    /**
+     * Egzaminator wyświetla raport dla danego egzaminu.
+     * @param id id danego egzaminu
+     * @return Encja danego egzaminu, jeżeli istnieje
+     * @throws ApplicationBaseException wyjątek rzucany w przypadku braku encji w bazie
+     */
     ExamEntity findById(long id) throws ApplicationBaseException;
 
     void create(QuestionEntity questionEntity) throws ApplicationBaseException;
