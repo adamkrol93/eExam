@@ -24,7 +24,7 @@ public interface ApproachesManagerLocal {
     /**
      * Pozwala na stwierdzenie niesamodzielnej pracy i dyskwalifikacje podejście
      * @param approach Podejście które ma zostać zdyskwalifikowane
-     * @throws ApplicationBaseException Rzucany, kiedy nie zdyskwalifikuje Nauczyciela
+     * @throws ApplicationBaseException Rzucany, kiedy dyskwalifikacja nie powiedzie się
      */
     void disqualify(ApproachEntity approach) throws ApplicationBaseException;
 

@@ -30,7 +30,7 @@ public interface MarkApproachServiceRemote {
     void mark(List<AnswerEntity> gradedAnswers) throws ApplicationBaseException;
 
     /**
-     * Metoda pozwala zdyskwalifikować podejście
+     * Pozwala na stwierdzenie niesamodzielnej pracy i dyskwalifikacje podejście
      * @throws ApplicationBaseException Rzucany, kiedy dyskwalifikacja nie powiedzie się
      */
     void disqualify() throws ApplicationBaseException;
