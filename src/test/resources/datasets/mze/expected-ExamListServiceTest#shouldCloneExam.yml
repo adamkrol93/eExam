@@ -52,7 +52,7 @@ exam:
     exam_date_add: "2015-03-30 22:59:07.393"
     exam_version: 2
   - exam_id: 5
-    exam_title: "Pewien egzamin 4 kopia"
+    exam_title: "Pewien egzamin 4 <timestamp>"
     exam_count_take_exam: 3
     exam_date_start: "2015-03-31 22:59:07.393"
     exam_date_end: "2015-04-04 22:59:07.393"

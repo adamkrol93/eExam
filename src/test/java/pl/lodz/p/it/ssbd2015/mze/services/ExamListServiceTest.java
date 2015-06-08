@@ -34,7 +34,7 @@ public class ExamListServiceTest extends BaseArquillianTest{
     @Test
     @Transactional(TransactionMode.DISABLED)
     @ShouldMatchDataSet(value = "mze/expected-ExamListServiceTest#shouldCloneExam.yml",
-            excludeColumns = "exam_date_add")
+            excludeColumns = {"exam_date_add", "exam_title"})
     public void shouldCloneExam() throws Exception {
         examListService.findAll();
         examListService.cloneExam(4l);
