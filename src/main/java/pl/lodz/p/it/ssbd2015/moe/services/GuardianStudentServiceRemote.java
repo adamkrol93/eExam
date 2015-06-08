@@ -29,7 +29,9 @@ public interface GuardianStudentServiceRemote {
 
 
     /**
-     * Dokonuje przypisania opiekuna do studenta
+     * Przypisujemy uczniowi opiekuna, który może przglądać jego podejścia.
+     * Metoda wykorzystuje pomocnicze dane z metod {@link GuardianStudentServiceRemote#findAllGuardians()}
+     * oraz {@link GuardianStudentServiceRemote#findAllStudents()}
      * @param guardianId identyfikator opiekuna do przypisania
      * @param studentId identyfikator studenta do przypisania
      * @throws ApplicationBaseException Rzucany, kiedy nie dokona przypisania

@@ -15,7 +15,7 @@ public interface ExamListServiceRemote {
 
 
     /**
-     * Metoda pozwala na wyszukanie wszystkich egzaminów w systemie.
+     * Wyświetla egzaminatorowi wszystkie egzaminy, które znajdują się w systemie egzaminacyjnym.
      * @return Lista ({@link List}) z egzaminami w systemie
      */
     List<ExamEntity> findAll();

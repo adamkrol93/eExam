@@ -23,6 +23,11 @@ public interface ExamsServiceRemote {
      */
     ExamEntity findById(long id) throws ApplicationBaseException;
 
+    /**
+     * Egzaminator tworzy pytanie, które może zostać później wykorzystane podczas tworzenia egzaminu.
+     * @param questionEntity encja z danymi które mają zostać utrwalone w bazie danych
+     * @throws ApplicationBaseException jeżeli zapisywanie danych do bazy naruszy jakiś constraint lub dane nie będą poprawne
+     */
     void create(QuestionEntity questionEntity) throws ApplicationBaseException;
 
     /**

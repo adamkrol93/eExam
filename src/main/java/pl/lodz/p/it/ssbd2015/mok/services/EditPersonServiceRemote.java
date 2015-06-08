@@ -29,7 +29,10 @@ public interface EditPersonServiceRemote {
     PersonEntity findLoggedPersonForEdit() throws ApplicationBaseException;
 
     /**
-     * Funkcja edycji użytkownika. Edytuje dane użytkownika.
+     * Pozwala na zmienę danych uzytkownika np. imie, nazwisko czy hasło.
+     * ADMINISTRATOR może zmieniać dane każdego użytkownika systemu natomiast pozostali użytkownicy mogą zmieniać tylko
+     * swoje dane. Aby znaleźć użytkownika do zmiany najlepiej wcześniej
+     * skorzystać z {@link EditPersonServiceRemote#findPersonForEdit(String)}
      * @param person dane osobe użytkownika
      * @throws ApplicationBaseException Rzucany, kiedy nie zedytuje danych użytkownika
      */
