@@ -11,7 +11,7 @@ import java.util.Objects;
 
 /**
  * Interceptor do logowania transakcji bazodanowych.
- * Wykorzsytywany przez wszystkie fasady, aby zapisać w dzienniku zdzarzeń informacje o przetwarzanej transakcji.
+ * Wykorzystywany przez wszystkie fasady, aby zapisać w dzienniku zdzarzeń informacje o przetwarzanej transakcji.
  * @author Michał Sośnicki
  */
 public class LoggingInterceptor {
