@@ -22,7 +22,7 @@ public interface ApproachesManagerLocal {
     void mark(ApproachEntity approach, List<AnswerEntity> answers) throws ApplicationBaseException;
 
     /**
-     * Metoda pozwala zdyskwalifikować podejście przez Nauczyciela
+     * Pozwala na stwierdzenie niesamodzielnej pracy i dyskwalifikacje podejście
      * @param approach Podejście które ma zostać zdyskwalifikowane
      * @throws ApplicationBaseException Rzucany, kiedy nie zdyskwalifikuje Nauczyciela
      */

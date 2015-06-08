@@ -43,7 +43,7 @@ public interface PeopleServiceRemote {
     void correctLogin(String login, String ipAddress, Calendar time) throws ApplicationBaseException;
 
     /**
-     * Metoda zwraca istę użytkowników w którzych imieniu, nazwisku, mailu lub loginie występuje podana fraza.
+     * Pozwala na znalezienie kont przypisanych do osób, w których imieniu lub nazwisku występuje dana fraza.
      * @param phrase Szukana fraza
      * @return Listę uzytkowników, tzn. listę z obiektami PersonEntity
      */

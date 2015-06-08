@@ -26,7 +26,7 @@ public interface ExamsServiceRemote {
     void create(QuestionEntity questionEntity) throws ApplicationBaseException;
 
     /**
-     * Zwraca listę wszystkich pytań w systemie.
+     * Wyświetla listę wszystkich pytań z systemu.
      * @return Lista istniejących pytań.
      */
     List<QuestionEntity> findAllQuestions();
