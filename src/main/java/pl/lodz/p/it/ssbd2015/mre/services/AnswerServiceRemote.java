@@ -29,8 +29,9 @@ public interface AnswerServiceRemote {
      */
     ApproachEntity findById(long approachId) throws ApplicationBaseException;
     /**
-     * Funkcja edycji podejścia. Edytuje dane podejścia a dokładniej odpowiedzi użytkownika na pytania.
      * Uczeń poznaje treść pytań i udziela odpowiedzi.
+     * Korzystam z metody pomocniczej {@link AnswerServiceRemote#findById(long approachId)}
+     * do znalezienia podejścia którego odpowiedzi mają zostać zmienione
      * @param answers odpowiedzi udzielone przez użytkownika
      * @throws ApplicationBaseException Rzucany, kiedy nie zedytuje podejścia
      */

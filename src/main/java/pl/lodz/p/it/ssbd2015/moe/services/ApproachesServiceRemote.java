@@ -23,7 +23,7 @@ public interface ApproachesServiceRemote {
     ApproachEntity findById(long id) throws ApplicationBaseException;
 
     /**
-     * Metoda znajduje wszystkie egzaminy zalogowanego nauczyciela
+     * Nauczyciel wyświetla listę podejść uczniów do danego egzaminu
      * @return lista egzaminów zalogowanego nauczyciela
      * @throws ApplicationBaseException Rzucany, kiedy nie znajdzie odpowiednich egzaminów
      */

@@ -15,8 +15,8 @@ import javax.ejb.Remote;
 public interface PersonServiceRemote {
 
     /**
-     * Funkcja zwracająca informacje o Użytkowniku na podstawie loginu.
-     * Funkcja ustawia również stanowa zmienna @personEntity
+     * Pozwala na wyświetlenie szczegółów własnego konta.
+     * Jako ADMINISTRATOR można również wyświetlić szczegóły konta użytkownika wybranego z listy kont.
      * @param login Login użytkownika do odnalezienia.
      * @return Dane odnalezionego użyttkonika.
      * @throws ApplicationBaseException Rzucany, gdy użytkownik o danym loginie nie zostanie odnaleziony.
@@ -39,7 +39,8 @@ public interface PersonServiceRemote {
     void confirmPerson() throws ApplicationBaseException;
 
     /**
-     * Funkcja aktywuje bądź deaktywuje grupę wczytanego użytkownika o wskazanym kluczu głównym.
+     * Pozwala na aktywowanie grupy dla uzytkownika.
+     * Aby znaleźć użytkownika do edycji najlepiej wcześniej skorzystać z {@link PersonServiceRemote#getPerson(String login)
      * @param id Klucz główny grupy do aktywacji/deaktywacji.
      * @throws ApplicationBaseException Rzucany, kiedy nie uda sie aktywować/dezaktywować grupy
      */
