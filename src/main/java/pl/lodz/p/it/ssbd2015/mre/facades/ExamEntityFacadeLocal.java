@@ -25,5 +25,10 @@ public interface ExamEntityFacadeLocal extends Read<Long, ExamEntity>, Merge<Lon
      */
     List<ExamEntity> findByDate(Calendar timestamp);
 
+    /**
+     * Ta metoda odnajduje egzamin na podstawie jego unikatowej nazwy
+     * @param title unikatowa nazwa egzaminu
+     * @return encja reprezentująca odszukany egzamin
+     */
     Optional<ExamEntity> findByTitle(String title);
 }

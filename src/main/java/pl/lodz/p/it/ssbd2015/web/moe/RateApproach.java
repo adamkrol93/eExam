@@ -86,8 +86,4 @@ public class RateApproach extends BaseContextBean implements Serializable {
         });
     }
 
-    public List<Integer> repeat(int times) {
-        return IntStream.range(0, times).boxed().collect(Collectors.toList());
-    }
-
 }
