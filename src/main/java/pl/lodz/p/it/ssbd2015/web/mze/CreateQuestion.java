@@ -37,6 +37,10 @@ public class CreateQuestion extends BaseContextBean{
         resetContext();
     }
 
+    /**
+     * Metoda wykorzystuje {@link ExamsServiceRemote} do zapisania pytania w bazie.
+     * @return Adres przekierowania dla Faces gdzie użytkownik powienien sie znaleźć po poprawnym wykonaniu zapisu
+     */
     public String createQuestion()
     {
         return expectApplicationException(() ->{

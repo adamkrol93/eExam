@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
+ * Implementacja {@link GuardianEntityFacadeLocal}, zapewnia operacje bazodanowe na encji Guardian.
  * @author Michał Sośnicki
  */
 @Stateless(name = "pl.lodz.p.it.ssbd2015.mre.facades.GuardianEntityFacade")
