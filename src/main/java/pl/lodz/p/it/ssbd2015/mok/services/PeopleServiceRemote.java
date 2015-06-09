@@ -39,7 +39,8 @@ public interface PeopleServiceRemote {
     List<PersonEntity> findAllPeople();
 
     /**
-     * Użytkownik uwierzytelnia się do systemu. Zapisane do bazy zostaje czas w momencie logowania oraz IP z jakiego nastąpiło logowanie.     * @param login login użytkownika
+     * Użytkownik uwierzytelnia się do systemu. Zapisane do bazy zostaje czas w momencie logowania oraz IP z jakiego nastąpiło logowanie.
+     * @param login login użytkownika
      * @param ipAddress adres IP
      * @param time czas logowania
      * @throws ApplicationBaseException Rzucany, gdy użytkownik o danym loginie nie zostanie odnaleziony.

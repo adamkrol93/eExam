@@ -40,7 +40,7 @@ public interface PersonServiceRemote {
 
     /**
      * Pozwala na aktywowanie grupy dla uzytkownika.
-     * Aby znaleźć użytkownika do edycji najlepiej wcześniej skorzystać z {@link PersonServiceRemote#getPerson(String login)
+     * Aby znaleźć użytkownika do edycji najlepiej wcześniej skorzystać z {@link PersonServiceRemote#getPerson(String login)}
      * @param id Klucz główny grupy do aktywacji/deaktywacji.
      * @throws ApplicationBaseException Rzucany, kiedy nie uda sie aktywować/dezaktywować grupy
      */
