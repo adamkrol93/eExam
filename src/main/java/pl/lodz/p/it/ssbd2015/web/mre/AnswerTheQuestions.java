@@ -10,7 +10,7 @@ import javax.faces.bean.ViewScoped;
 
 /**
  * Backing bean dla strony na której uczeń poznaje treść pytań i udziela odpowiedzi.
- *
+ * @author Andrzej Kurczewski
  * @author Marcin Kabza
  */
 @ManagedBean(name = "answerTheQuestionsMRE")
@@ -46,6 +46,11 @@ public class AnswerTheQuestions extends BaseContextBean {
         });
     }
 
+    /**
+     * Metoda pozwalająca zakończyć podejście do rgzaminu przed upłynięciem maksymalnego czasu trwania.
+     * Po zakończeniu przekierowuje do listy podejść z odpowiednim komunikatem ustawionym w kontekstMapie.
+     * @return strona na którą przekierowywuje po skończonej operacji
+     */
     public String endApproach() {
         return expectApplicationException(() -> {
             answerService.endApproach();

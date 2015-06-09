@@ -58,6 +58,12 @@ public class EditExam extends BaseContextBean {
         });
     }
 
+    /**
+     * Metoda zapisuje zmiany dokonane w egzaminie. Po wykonaniu przekierowuje na tę samą stronę z odpowiednią
+     * wiadomością ustawioną w kontekstmapie, jeśli się udało lub wprowadzając wiadomości przy odpowiednich
+     * okienkach formularza, jeśli nie.
+     * @return strona na którą przekierowywuje po skończonej operacji
+     */
     public String saveExam() {
         return expectApplicationException(() -> {
             try {

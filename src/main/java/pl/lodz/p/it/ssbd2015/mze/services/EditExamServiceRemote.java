@@ -14,6 +14,13 @@ import java.util.List;
 @Remote
 public interface EditExamServiceRemote {
 
+    /**
+     * Wykorzystywana pomocniczo w przypadku edycji egzaminu.
+     * Wyszukuje i ustawia egzamin do edycji
+     * @param examId id szukanego egzaminu
+     * @return Encja odnalezionego egzaminu
+     * @throws ApplicationBaseException Rzucany, gdy w bazie nie ma egzaminu o podanym id
+     */
     ExamEntity findById(long examId) throws ApplicationBaseException;
 
     /**

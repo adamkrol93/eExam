@@ -56,23 +56,47 @@ public class ShowApproachDetails extends BaseContextBean {
         this.approach = approach;
     }
 
+    /**
+     * Oblicza sumę punktów uzyskanych za podejście i zwraca ją.
+     * @return Suma punktów uzyskanych za podejście
+     */
     public long getPoints() {
         return new ArrayList<>(approach.getAnswers()).stream().map(AnswerEntity::getGrade).reduce(0, (a, b) -> a + b);
     }
 
+    /**
+     * Wyznacza klasę stylu bootstrapa używaną do wyświetlenia wyniku w zależności od procenta zdobytych punktów
+     * @return klasa css bootstrapa
+     */
     public String getResultStyle() {
         int result = (int) (3.2 * getPoints() / getMaxPoints());
         return styles[result];
     }
 
+    /**
+     * Oblicza maksymalną liczbę punktów możliwych do uzyskania za podejście
+     * @return maksymalna liczba punktów możliwych do uzyskania za podejście
+     */
     public long getMaxPoints() {
         return approach.getAnswers().size() * 2;
     }
 
+    /**
+     * Zwraca instancję klasy {@link Calendar}, reprezentującą obecny czas.
+     * Wykorzystywana w celu renderowania odpowiedniej wiadomości o czasie zakończenia podejścia
+     * @return instancja klasy {@link Calendar}, reprezentująca obecny czas.
+     */
     public Calendar getCurrentTime() {
         return Calendar.getInstance();
     }
 
+    /**
+     * Zwraca listę intów, pozwalając na powtórzenie wyświetlenia jakiegoś elementu zadaną liczbę razy.
+     * Niestety forEach wymaga podania kolekcji, w przeciwieństwie do tego znanego z JSTL, zatem jest
+     * to drobne obejście tego problemu
+     * @param times Liczba powtórzeń
+     * @return lista kolejnych liczb całkowitych od 0 włącznie do {@code times} wyłącznie.
+     */
     public List<Integer> repeat(int times) {
         return IntStream.range(0, times).boxed().collect(Collectors.toList());
     }
