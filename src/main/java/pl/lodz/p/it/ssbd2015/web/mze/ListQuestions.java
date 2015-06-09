@@ -30,6 +30,11 @@ public class ListQuestions extends BaseContextBean{
 
     private transient DataModel<QuestionEntity> questions;
 
+    /**
+     * Metoda korzysta z contextMapy i ustawia
+     * odpowiednie identyfikator do przejścia do strony edycji pytania
+     * @return strona na którą przekierowywuje po skończonej operacji
+     */
     public String gotoEdit() {
         long examId = questions.getRowData().getId();
         setContext(EditQuestion.class, bean -> bean.setId(examId));
@@ -53,6 +58,12 @@ public class ListQuestions extends BaseContextBean{
         return questions;
     }
 
+
+    /**
+     * Metoda służy do skrócenia długości stringu do 70 znaków.
+     * @param message string który ma zostać skrócony
+     * @return zwraca string po skróceniu
+     */
     public static String cut(String message){
 
         if(message!=null && message.length()>70){

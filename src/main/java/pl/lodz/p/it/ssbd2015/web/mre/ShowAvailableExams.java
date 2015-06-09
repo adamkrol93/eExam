@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Backing bean dla formularza wyświetlającego dostępne egzaminy.
  * Created by Tobiasz Kowalski on 22.05.15.
  */
 @ManagedBean(name = "showAvailableExamsMRE")
@@ -40,7 +41,11 @@ public class ShowAvailableExams extends BaseContextBean{
 
     public List<ExamEntity> getExamEntities(){return examEntities;}
 
-
+    /**
+     * Zlicza liczbę podejść ucznia do egzaminu.
+     * @param exam egzamin dla którego mają zostać zliczone egzaminy ucznia.
+     * @return zwraca ilośc podejść
+     */
     public long getApprochesCount(ExamEntity exam){
         String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
 

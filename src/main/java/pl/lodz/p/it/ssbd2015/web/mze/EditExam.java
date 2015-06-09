@@ -113,6 +113,11 @@ public class EditExam extends BaseContextBean {
         });
     }
 
+    /**
+     * Obsługuje operacje dodania nauczyciela przez wywołanie odpowiedniej metody z ziarna EJB. Ustawia też
+     * kontekst w ContextMap by użytkownik wrócił do formularza edycji po odświeżeniu strony.
+     * @return strona na którą przekierowywuje po skończonej operacji
+     */
     public String addTeacher() {
         return expectApplicationException(()->{
             editExamService.addTeacher(teachersNotInExam.getRowData().getId());
