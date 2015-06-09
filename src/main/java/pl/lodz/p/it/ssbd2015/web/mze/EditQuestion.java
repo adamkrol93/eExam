@@ -36,6 +36,10 @@ public class EditQuestion extends BaseContextBean implements Serializable {
         });
     }
 
+    /**
+     * Metoda odpowiada za zapisanie/edycje pytania
+     * @return strona na którą przekierowywuje po skończonej operacji wraz z odpowiednia wiadomością
+     */
     public String saveQuestion() {
         return expectApplicationException(() -> {
             long newId = editQuestionService.editQuestion(question);

@@ -62,10 +62,18 @@ public class ShowApproachDetails extends BaseContextBean {
         return "moe.show_approach_details.to_evaluate.no";
     }
 
+    /**
+     * Metoda zbiera punkty dla kazdej z odpowiedzi dla podejścia
+     * @return Ilość zdobytych punktów w podejściu
+     */
     public long getPoints() {
         return new ArrayList<>(approach.getAnswers()).stream().map(AnswerEntity::getGrade).reduce(0, (a, b) -> a + b);
     }
 
+    /**
+     * Metoda liczy maksymalną liczbę punktów którą można było uzyskać z podejścia
+     * @return Maksymalna liczba punktów którą można było uzyskać z podejścia
+     */
     public long getMaxPoints() {
         return approach.getAnswers().size() * 2;
     }
@@ -86,6 +94,11 @@ public class ShowApproachDetails extends BaseContextBean {
         this.approach = approach;
     }
 
+    /**
+     * Metoda odpowiada za sprowadzenie do listy Integerów sekwencyjnie uporządkowanej IntStream (wraz z redukcją zmiennych)
+     * @param times Do jakiej wartości od 0 sprawdzać
+     * @return Listę wartości (jeśli istnieją)
+     */
     public List<Integer> repeat(int times) {
         return IntStream.range(0, times).boxed().collect(Collectors.toList());
     }
