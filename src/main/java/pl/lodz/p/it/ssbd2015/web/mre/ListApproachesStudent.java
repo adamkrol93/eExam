@@ -27,6 +27,11 @@ public class ListApproachesStudent extends ListApproaches {
         this.message = message;
     }
 
+    /**
+     * Wyszukuje listę podejść obecnie zalogowanego studetna korzystając z ziarna EJB.
+     * @return Sporządzona lista podejść.
+     * @throws ApplicationBaseException Jeżeli nie uda się znaleźć studenta.
+     */
     protected List<ApproachEntity> listAll() throws ApplicationBaseException {
         return approachesService.listAllForStudent();
     }

@@ -15,15 +15,17 @@ import java.util.List;
 public interface ApproachesServiceRemote {
 
     /**
-     * Zwraca listę podejść ucznia zalogowanemu uczniowi.
+     * Zwraca listę podejść ucznia zalogowanemu uczniowi. Korzysta z SessionContextu,  * by zdobyć dane
+     * zalogowanego użytkownika, a następnie przez fasady wyszukuje encję Student odpowiadającą mu.
+     * Dla studenta zwraca po prostu jego listę podejść.
      * @return Lista podejść obecnie zalogowanego ucznia.
      * @throws ApplicationBaseException Jeżeli np. osoba wywołująca nie jest studentem.
      */
     List<ApproachEntity> listAllForStudent() throws ApplicationBaseException;
 
     /**
-     * Zwraca listę podejść ucznia jego opiekunowi.
-     * Zwrócona lista zawiera jest złączeniem list podejść dla wszystkich podopiecznych obecnie zalogowanego opiekuna.
+     * Zwraca listę podejść ucznia opiekunowi. Korzysta z SessionContextu, by zdobyć dane zalogowanego użytkownika,
+     * a następnie przez fasady wyszukuje encję Guardin odpowiadającą mu. Dla opiekuna zwraca konkatenację podejść jego podopiecznych.
      * @return Lista podejść wszystkich uczniów obecnie zalogowanego opiekuna.
      * @throws ApplicationBaseException Jeżeli np. nie uda się odnaleźć encji obecnie zalogowanego opiekuna.
      */

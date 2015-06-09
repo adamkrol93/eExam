@@ -9,7 +9,7 @@ import javax.ejb.Local;
 import java.util.List;
 
 /**
- * Interfejs służący do zarządzania Egzaminami. Pozwala na tworzenie, klonowanie, edycję.
+ * Interfejs klas służących do zarządzania Egzaminami. Pozwala na tworzenie, klonowanie, edycję.
  * @author Bartosz Ignaczewski
  */
 @Local
@@ -56,7 +56,13 @@ public interface ExamsManagerLocal {
     void addTeacher(ExamEntity exam, TeacherEntity teacher) throws ApplicationBaseException;
 
     /**
-     * Usuwa pytanie z egzaminu, jeżeli nie istnieją jeszcze podejścia do niego.
+     * Usuwa pytanie z egzaminu, jeżeli nie istnieją jeszcze podejścia do niego. Kończy się wyjątkiem
+     * ExamApproachesExistException jeżeli istnieją już do niego podejścia. Jeżeli trafi do tej metody jakiś losowy
+     * id, któremu nie odpowiada żadne pytanie w podesłanym egzaminie, to też rzuca wyjątek. Po wszystkim oznacza
+     * egzamin jako zmodyfikowany, zwiększając przy tym wartość w polu wersji tego egzaminu. To samo zachodzi
+     * w przypadku podejścia do egzaminu, więc ewentualne utworzenie podejścia w czasie wykonywania tego przypadku
+     * użycia zostanie wykryte, choć dopiero przy sprawdzaniu pola wersji, bo tego nowego podejścia nie bedzie
+     * w kolekcji sprawdzanej na początku, co skutkowało ExamApproachesExistException.
      * @param exam Egzamin, z którego zostanie usunięte pytanie.
      * @param questionId Klucz główny pytania, które zostanie usunięte.
      * @throws ApplicationBaseException Rzucany, gdy nie zostanie znaleziony obecnie zalogowany egzaminator.

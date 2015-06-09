@@ -24,9 +24,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * Klasa do zarządzania tworzeniem egzaminów.
- * Klasa posiada pola questions oraz teachers.
- * @author Bartosz Ignaczewski
+ * Klasa umożliwiająca przeprowadzenie procesu tworzenia egzaminu i utrwalenia go w bazie danych, z niezbędnymi
+ * do tego metodami pomocniczymi, wyszukującymi pytania i nauczycieli do powiązania z nowym egzaminem.
+ * Klasa posiada pola questions oraz teachers, w których trzyma znalezione listy pytań i nauczycieli.
+ * @author Michał Sośnicki
  */
 @Stateful(name = "pl.lodz.p.it.ssbd2015.mze.services.ExamCreationService")
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)

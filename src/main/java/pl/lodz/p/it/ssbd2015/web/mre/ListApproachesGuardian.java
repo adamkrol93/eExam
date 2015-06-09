@@ -17,6 +17,11 @@ public class ListApproachesGuardian extends ListApproaches {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Sporządza listę podejść dla podopiecznych obecnie zalogowanego opiekuna korzystając z ziarna EJB.
+     * @return Sporządzona lista podejść.
+     * @throws ApplicationBaseException Jeżeli nie uda się znaleźć opiekuna.
+     */
     protected List<ApproachEntity> listAll() throws ApplicationBaseException {
         return approachesService.listAllForGuardian();
     }

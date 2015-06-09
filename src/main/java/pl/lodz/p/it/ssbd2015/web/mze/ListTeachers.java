@@ -22,6 +22,9 @@ public class ListTeachers {
 
     private List<TeacherEntity> teachers;
 
+    /**
+     * Po utworzeniu beana odszukuje nauczycieli w systemie do wyświetlenia.
+     */
     @PostConstruct
     private void initializeModel(){
         teachers = examsService.findAllTeachers();

@@ -19,6 +19,9 @@ import java.util.stream.Collectors;
 
 /**
  * Backing bean dla formularza tworzenia nowego egzaminu.
+ * Przetrzymuje encję, której pola można wypełniać np. z formularza, a potem przesłać do utrwalenia w bazie.
+ * Pozwala także uzyskać dostęp do list nauczycieli i pytań, skąd można wybierać encje do powiązania
+ * z tworzonym egzaminem.
  * @author Michał Sośnicki
  */
 @ManagedBean(name = "createExamMZE")
@@ -43,6 +46,9 @@ public class CreateExam extends BaseContextBean {
         resetContext();
     }
 
+    /**
+     * Wyszukuje zaraz po utworzeniu dostępnych nauczycieli i pytania, korzystając z ziarna do tworzenia egzaminu.
+     */
     @PostConstruct
     private void initialize() {
         exam = new ExamEntity();
@@ -50,18 +56,36 @@ public class CreateExam extends BaseContextBean {
         teachers = SelectableItem.wrap(examCreationService.findAllTeachers());
     }
 
+    /**
+     * Zwraca jakiś pozytywny komunikat, informujący użytkownika o pomyślnie przeprowadzonej operacji.
+     * @return Radosny komunikat.
+     */
     public String getMessage() {
         return message;
     }
 
+    /**
+     * Zwraca pustą z początku encje, której pola można wypełniać i następnie przesłać do systemu w celu utrwalenia.
+     * @return Pusty egzamin do wypełnienia i być może przesłania w celu utrwalenia.
+     */
     public ExamEntity getExam() {
         return exam;
     }
 
+    /**
+     * Zwraca listę zaznaczalnych obiektów opakowujących pytani. Utworzony egzamin będzie
+     * na starcie powiązany z zaznaczonymi pytaniami z tej listy.
+     * @return Lista zaznaczalnych obiektów opakowujących pytania.
+     */
     public List<SelectableItem<QuestionEntity>> getQuestions() {
         return questions;
     }
 
+    /**
+     * Zwraca listę zaznaczalnych obiektów opakowujących nauczycieli. Utworzony egzamin będzie
+     * na starcie powiązany z zaznaczonymi nauczycielami z tej listy.
+     * @return Lista zaznaczalnych obiektów opakowujących nauczycieli.
+     */
     public List<SelectableItem<TeacherEntity>> getTeachers() {
         return teachers;
     }

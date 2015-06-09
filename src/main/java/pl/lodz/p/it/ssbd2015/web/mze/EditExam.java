@@ -17,9 +17,11 @@ import javax.faces.model.ListDataModel;
 import java.util.List;
 
 /**
- * Backing bean dla formularza edycji egzaminu.
+ * Backing bean dla formularza edycji egzaminu. Wspiera spory zestaw przypadków użycia: edycję, dodawanie i usuwanie
+ * nauczycieli, usuwanie pytań.
  * @author Andrzej Kurczewski
  * @author Tobiasz Kowalski
+ * @author Michał Sośnicki
  */
 @ManagedBean(name = "editExamMZE")
 @ViewScoped
@@ -69,10 +71,10 @@ public class EditExam extends BaseContextBean {
                 MessageUtils.addLocalizedMessage(ex.getCode(), "edit-exam-form:date_end");
                 return null;
             }
-            setContext(EditExam.class, (bean -> {
+            setContext(EditExam.class, bean -> {
                 bean.id = id;
                 bean.message = "mze.edit_exam.edited_message";
-            }));
+            });
             return "editExam?faces-redirect=true&includeViewParams=true";
         });
     }
@@ -80,22 +82,27 @@ public class EditExam extends BaseContextBean {
     public String removeTeacher() {
         return expectApplicationException(() -> {
             editExamService.removeTeacher(teachers.getRowData().getId());
-            setContext(EditExam.class, (bean -> {
+            setContext(EditExam.class, bean -> {
                 bean.id = id;
                 bean.message = "mze.edit_exam.teacher_removed_message";
-            }));
+            });
             return "editExam?faces-redirect=true&includeViewParams=true";
         });
     }
 
+    /**
+     * Obsługuje operację usunięcia pytania przez wywołanie odpowiedniej metody z ziarna EJb. Ustawia też
+     * kontekst w ContextMap, by użytkownik wrócił do formularza edycji po odświeżeniu strony.
+     * @return String z outcome, który pokieruje JSF.
+     */
     public String removeQuestion() {
         return expectApplicationException(() -> {
             editExamService.removeQuestion(questions.getRowData().getId());
 
-            setContext(EditExam.class, (bean -> {
+            setContext(EditExam.class, bean -> {
                 bean.id = id;
                 bean.message = "mze.edit_exam.question_removed_message";
-            }));
+            });
             return "editExam?faces-redirect=true&includeViewParams=true";
         });
     }
@@ -104,10 +111,10 @@ public class EditExam extends BaseContextBean {
         return expectApplicationException(()->{
             editExamService.addTeacher(teachersNotInExam.getRowData().getId());
 
-            setContext(EditExam.class, (bean ->{
+            setContext(EditExam.class, bean -> {
                 bean.id = id;
                 bean.message = "mze.edit_exam.teacher_add_message";
-            }));
+            });
             return "editExam?faces-redirect=true&includeViewParams=true";
         });
 

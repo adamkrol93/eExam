@@ -37,7 +37,8 @@ public interface ExamsServiceRemote {
     List<QuestionEntity> findAllQuestions();
 
     /**
-     * Zwraca listę wszystkich nauczycieli w systemie.
+     * Wyświetla wszystkich nauczycieli w systemie. Za nauczycieli uznaje przy tym tylko aktywne,
+     * potwierdzone osoby z istniejącą i aktywną rolą nauczyciela.
      * @return Lista nauczycieli w systemie.
      */
     List<TeacherEntity> findAllTeachers();

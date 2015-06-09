@@ -34,6 +34,13 @@ public class SelectableItem<T> implements Serializable {
         this.selected = selected;
     }
 
+    /**
+     * Funkcja przemieniająca dowolną kolekcję w listę zaznaczalnych obiektów, z których każdy opakowuje element
+     * z przekazanej kolekcji.
+     * @param iterable Coś, po czym można przejść, zbierając po drodze obiekty do opakowania.
+     * @param <T> Typ obiektów z opakowywanej kolekcji.
+     * @return Lista zawierająca elementy z argumentu, lecz opakowane w zaznaczalny obiekt.
+     */
     public static <T> List<SelectableItem<T>> wrap(Iterable<T> iterable) {
         List<SelectableItem<T>> wrapped = new ArrayList<>();
         iterable.forEach(item -> wrapped.add(new SelectableItem<>(item)));

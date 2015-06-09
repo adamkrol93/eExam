@@ -33,12 +33,19 @@ public interface EditExamServiceRemote {
     void addTeacher(long teacherId) throws ApplicationBaseException;
 
     /**
-     * Usuwa pytanie z egzaminu, jeżeli nie istnieją jeszcze podejścia do niego.
-     * Pytanie jest usuwane z obecnie edytowanego egzaminu.
+     * Usuwa pytanie z egzaminu, jeżeli nie istnieją jeszcze podejścia do niego. Kończy się wyjątkiem
+     * ExamApproachesExistException jeżeli istnieją już do niego podejścia. Jeżeli trafi do tej metody jakiś losowy
+     * id, któremu nie odpowiada żadne pytanie w podesłanym egzaminie, to też rzuca wyjątek.
+     * Po wszystkim oznacza egzamin jako zmodyfikowany, zwiększając przy tym wartość w polu wersji tego egzaminu.
+     * To samo zachodzi w przypadku podejścia do egzaminu, więc ewentualne utworzenie podejścia w czasie wykonywania
+     * tego przypadku użycia zostanie wykryte, choć dopiero przy sprawdzaniu pola wersji, bo tego nowego podejścia
+     * nie bedzie w kolekcji sprawdzanej na początku, co skutkowało ExamApproachesExistException.
      * @param questionId Klucz główny pytania, które zostanie usunięte.
-     * @throws ApplicationBaseException Rzucany, gdy nie zostanie znaleziony obecnie zalogowany egzaminator.
+     * @throws ApplicationBaseException Rzucany, gdy nie znajdziemy egzaminatora, gdy podejścia do egzaminu już
+     * istnieją lub gdy id pytania nie pozwoli odnaleźć encji.
      */
     void removeQuestion(long questionId) throws ApplicationBaseException;
+
     /**
      * Usuwa nauczyciela z egzaminu.
      * Egzaminator usuwa nauczyciela z egzaminu.

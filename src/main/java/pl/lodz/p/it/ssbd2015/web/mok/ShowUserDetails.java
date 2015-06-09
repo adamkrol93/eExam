@@ -14,7 +14,7 @@ import javax.faces.model.ListDataModel;
 
 /**
  * Backing bean dla strony administratora do edycji użytkowników.
- * @author Created by adam on 15.04.15.
+ * @author Adam Król
  * @author Michał Sośnicki
  */
 @ManagedBean(name = "showUserDetailsMOK")
@@ -92,7 +92,7 @@ public class ShowUserDetails extends BaseContextBean {
     }
 
     /**
-     * Metoda akcji wykonywanej podczas zmiany statusu aktywności użytkownika ( można użytkownika zablokować)
+     * Metoda akcji wykonywanej podczas zmiany statusu aktywności użytkownika (można użytkownika zablokować)
      * @return strona na która ma zostać przekierowany uzytkownik po wykonaniu akcji
      */
     public String togglePersonActive() {

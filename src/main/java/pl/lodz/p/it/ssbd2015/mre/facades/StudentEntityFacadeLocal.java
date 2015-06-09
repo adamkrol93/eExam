@@ -13,5 +13,10 @@ import java.util.Optional;
  */
 @Local
 public interface StudentEntityFacadeLocal extends Read<Long, StudentEntity> {
+    /**
+     * Wyszukuje studenta po loginie.
+     * @param login Login osoby z rolą studenta.
+     * @return Być może znalezioną encję.
+     */
     Optional<StudentEntity> findByLogin(String login);
 }

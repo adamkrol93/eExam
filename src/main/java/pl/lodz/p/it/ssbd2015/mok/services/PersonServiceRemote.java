@@ -46,7 +46,8 @@ public interface PersonServiceRemote {
     void toggleGroupActivation(long id) throws ApplicationBaseException;
 
     /**
-     * Funkcja służy do  blokowania i odblokowywania użytkownika w zależności od bieżącego stanu
+     * Pozwala na zablokowanie lub odblokowanie użytkownika.
+     * Aby znaleźć użytkownika do edycji należy wcześniej skorzystać z PersonServiceRemote.getPerson()
      * @throws ApplicationBaseException Rzucany, kiedy nie uda sie zablokować lub odblokować użytkownika
      */
     void togglePersonActivation() throws ApplicationBaseException;

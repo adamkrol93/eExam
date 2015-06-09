@@ -39,7 +39,7 @@ public interface PersonManagerLocal {
 
     /**
      * Metoda zmienia status aktywacji użytkownika
-     * @param personEntity Uzytkownik któreo chcemy zmodyfikować
+     * @param personEntity Uzytkownik, którego chcemy zmodyfikować
      * @throws ApplicationBaseException Rzucany, kiedy metoda nie zmieni statusu aktywacji użytkownika
      */
     void togglePersonActivation(PersonEntity personEntity) throws ApplicationBaseException;
