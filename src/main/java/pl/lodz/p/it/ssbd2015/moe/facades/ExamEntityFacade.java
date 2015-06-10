@@ -82,13 +82,11 @@ public class ExamEntityFacade implements ExamEntityFacadeLocal {
         TypedQuery<Long> examQuery = entityManager.createNamedQuery("ExamEntity.countFinished", Long.class);
         examQuery.setParameter("examId", examId);
         examQuery.setParameter("currentdate", Calendar.getInstance().getTime(), TemporalType.TIMESTAMP);
-        long result;
         try{
-            result = examQuery.getSingleResult();
-        }catch(NoResultException ex){
-            result = 0l;
+            return examQuery.getSingleResult();
+        } catch (NoResultException | NullPointerException ex) {
+            return 0l;
         }
-        return result;
     }
 
     @Override
@@ -97,13 +95,11 @@ public class ExamEntityFacade implements ExamEntityFacadeLocal {
         TypedQuery<Long> examQuery = entityManager.createNamedQuery("ExamEntity.sumApproachesGrades", Long.class);
         examQuery.setParameter("examId", examId);
         examQuery.setParameter("currentdate", Calendar.getInstance().getTime(), TemporalType.TIMESTAMP);
-        long result;
         try{
-            result = examQuery.getSingleResult();
-        }catch(NoResultException ex){
-            result = 0l;
+            return examQuery.getSingleResult();
+        } catch (NoResultException | NullPointerException ex) {
+            return 0l;
         }
-        return result;
     }
 
     @Override
