@@ -95,7 +95,7 @@ public class ApproachesService extends BaseStatefulService implements Approaches
 
         List<ExamEntity> availableExams = answersManager.findAvailableExams();
 
-        for(ExamEntity exam :availableExams){
+        for (ExamEntity exam : availableExams) {
             exam.getApproaches().isEmpty();
         }
 

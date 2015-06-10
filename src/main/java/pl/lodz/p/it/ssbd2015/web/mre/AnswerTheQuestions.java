@@ -32,6 +32,9 @@ public class AnswerTheQuestions extends BaseContextBean {
     protected void doInContext() {
         expectApplicationException(() -> {
             approach = answerService.findById(id);
+            setContext(AnswerTheQuestions.class, bean -> {
+                bean.id = id;
+            });
         });
     }
 

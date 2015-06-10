@@ -10,7 +10,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,10 +18,9 @@ import java.util.List;
  * @author Adam Król
  */
 
-@ManagedBean(name = "studetnGuardianConnectionMOE")
+@ManagedBean(name = "studentGuardianConnectionMOE")
 @ViewScoped
 public class StudentGuardianConnection extends BaseContextBean {
-
 
     private static final long serialVersionUID = 1L;
 
@@ -43,10 +42,20 @@ public class StudentGuardianConnection extends BaseContextBean {
     private String message;
 
     @PostConstruct
-    private void init()
-    {
+    private void initializeModel() {
         this.guardianEntityList = guardianStudentService.findAllGuardians();
+
         this.studentEntityList = guardianStudentService.findAllStudents();
+
+        guardians = new ArrayList<>();
+        this.guardianEntityList.forEach((guard) ->
+            this.guardians.add(new SelectItem(guardianEntityList.indexOf(guard), guard.getPersonName() + " " + guard.getLastName()))
+        );
+
+        students = new ArrayList<>();
+        this.studentEntityList.forEach((stud) ->
+            this.students.add(new SelectItem(studentEntityList.indexOf(stud), stud.getPersonName() + " " + stud.getLastName()))
+        );
     }
 
     @Override
@@ -59,13 +68,6 @@ public class StudentGuardianConnection extends BaseContextBean {
      * @return List obiektów SelectItem, które jako value maja index obiektu w liscie a label ustawiony jako konkatenacja imienia i nazwiska
      */
     public List<SelectItem> getGuardians() {
-        if(guardians == null)
-        {
-            guardians = new LinkedList<>();
-            this.guardianEntityList.parallelStream().forEach((guard) ->
-                    this.guardians.add(new SelectItem(guardianEntityList.indexOf(guard),guard.getPersonName() + " " + guard.getLastName()))
-            );
-        }
         return guardians;
     }
 
@@ -74,13 +76,6 @@ public class StudentGuardianConnection extends BaseContextBean {
      * @return List obiektów SelectItem, które jako value maja index obiektu w liscie a label ustawiony jako konkatenacja imienia i nazwiska
      */
     public List<SelectItem> getStudents() {
-        if(students == null)
-        {
-            students = new LinkedList<>();
-            this.studentEntityList.parallelStream().forEach((stud) ->
-                            this.students.add(new SelectItem(studentEntityList.indexOf(stud),stud.getPersonName() + " " + stud.getLastName()))
-            );
-        }
         return students;
     }
 
@@ -88,8 +83,7 @@ public class StudentGuardianConnection extends BaseContextBean {
      * Metoda zapisuje w bazie powiązanie, wykorzystując dane zapisane w Beanie.
      * @return stronę z przekierowaniem po udanej transkacji.
      */
-    public String doConnection()
-    {
+    public String doConnection() {
         return expectApplicationException(() -> {
             this.guardianStudentService.connect(guardianEntityList.get(guardian).getId(),studentEntityList.get(student).getId());
             setContext(StudentGuardianConnection.class, bean -> bean.message = "moe.student_guardian.done_message");

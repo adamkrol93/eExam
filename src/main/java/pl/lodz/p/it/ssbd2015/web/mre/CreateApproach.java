@@ -59,15 +59,9 @@ public class CreateApproach extends BaseContextBean implements Serializable {
             try {
                 long approachId = answerService.createApproach(title);
                 setContext(AnswerTheQuestions.class, bean -> bean.setId(approachId));
-            } catch (ExamNotFoundException ex) {
-                message = ex.getCode();
-                return null;
-            } catch (StudentNotFoundException ex) {
-                message = ex.getCode();
-                return null;
-            } catch (UnavailableExamException ex) {
-                message = ex.getCode();
-                return null;
+            } catch (ExamNotFoundException | StudentNotFoundException | UnavailableExamException ex) {
+                setContext(CreateApproach.class, bean -> bean.message = ex.getCode());
+                return String.format("startApproach?title=%s&uuid=%s&faces-redirect=true", title, getUuid());
             }
 
             return String.format("answerTheQuestions?uuid=%s&faces-redirect=true", getUuid());

@@ -8,6 +8,7 @@
 <ui:composition template="../template/commonLayout.xhtml">
     <f:metadata>
         <f:viewParam name="title" value="#{createApproachMRE.title}"/>
+        <f:viewParam name="uuid" value="#{createApproachMRE.uuid}" converter="uuidConverter"/>
         <f:viewAction action="#{createApproachMRE.checkContext}"/>
     </f:metadata>
     <ui:define name="head">

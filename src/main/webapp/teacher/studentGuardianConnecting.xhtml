@@ -8,8 +8,8 @@
 
 <ui:composition template="../template/commonLayout.xhtml">
     <f:metadata>
-        <f:viewParam name="uuid" value="#{studetnGuardianConnectionMOE.uuid}" converter="uuidConverter"/>
-        <f:viewAction action="#{studetnGuardianConnectionMOE.checkContext}" />
+        <f:viewParam name="uuid" value="#{studentGuardianConnectionMOE.uuid}" converter="uuidConverter"/>
+        <f:viewAction action="#{studentGuardianConnectionMOE.checkContext}" />
     </f:metadata>
     <ui:define name="head">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -31,7 +31,7 @@
         </div>
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h3><h:outputText value="#{i18n[studetnGuardianConnectionMOE.message]}" styleClass="text-success"/></h3>
+                <h3><h:outputText value="#{i18n[studentGuardianConnectionMOE.message]}" styleClass="text-success"/></h3>
             </div>
         </div>
         <div class="row">
@@ -39,20 +39,20 @@
                 <h:form styleClass="form-horizontal">
                     <div class="form-group">
                         <h:outputLabel value="#{i18n['moe.student_guardian.label.guardian']}*" styleClass="col-lg-5 control-label"/>
-                        <h:selectOneMenu value="#{studetnGuardianConnectionMOE.guardian}">
-                            <f:selectItems value="#{studetnGuardianConnectionMOE.guardians}"/>
+                        <h:selectOneMenu value="#{studentGuardianConnectionMOE.guardian}">
+                            <f:selectItems value="#{studentGuardianConnectionMOE.guardians}"/>
                         </h:selectOneMenu>
                     </div>
                     <div class="form-group">
                         <h:outputLabel value="#{i18n['moe.student_guardian.label.student']}*" styleClass="col-lg-5 control-label"/>
-                        <h:selectOneMenu value="#{studetnGuardianConnectionMOE.student}">
-                            <f:selectItems value="#{studetnGuardianConnectionMOE.students}"/>
+                        <h:selectOneMenu value="#{studentGuardianConnectionMOE.student}">
+                            <f:selectItems value="#{studentGuardianConnectionMOE.students}"/>
                         </h:selectOneMenu>
                     </div>
                     <div class="form-group">
                         <div class="col-lg-5 col-lg-offset-5">
                             <h:commandButton value="#{i18n['moe.student_guardian.action.save']}"
-                                             action="#{studetnGuardianConnectionMOE.doConnection()}"/>
+                                             action="#{studentGuardianConnectionMOE.doConnection()}"/>
                         </div>
                     </div>
                 </h:form>

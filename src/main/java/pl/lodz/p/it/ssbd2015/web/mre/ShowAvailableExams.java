@@ -2,7 +2,6 @@ package pl.lodz.p.it.ssbd2015.web.mre;
 
 
 import pl.lodz.p.it.ssbd2015.entities.ExamEntity;
-import pl.lodz.p.it.ssbd2015.exceptions.ApplicationBaseException;
 import pl.lodz.p.it.ssbd2015.mre.services.ApproachesServiceRemote;
 import pl.lodz.p.it.ssbd2015.web.context.BaseContextBean;
 
@@ -20,7 +19,7 @@ import java.util.List;
  */
 @ManagedBean(name = "showAvailableExamsMRE")
 @ViewScoped
-public class ShowAvailableExams extends BaseContextBean{
+public class ShowAvailableExams extends BaseContextBean {
 
     private static final long serialVersionUID = 1L;
 
@@ -32,11 +31,9 @@ public class ShowAvailableExams extends BaseContextBean{
 
     @PostConstruct
     private void initializeModel() {
-        try {
-            examEntities= approachesService.findAvailableExams();
-        } catch (ApplicationBaseException e) {
-            e.printStackTrace();
-        }
+        expectApplicationException(() -> {
+            examEntities = approachesService.findAvailableExams();
+        });
     }
 
     public List<ExamEntity> getExamEntities(){return examEntities;}
