@@ -50,7 +50,7 @@ public class ShowApproachDetails extends BaseContextBean {
             return "moe.show_approach_details.to_evaluate.disqualified";
         }
 
-        if (Calendar.getInstance().after(approach.getDateEnd())) {
+        if (Calendar.getInstance().before(approach.getDateEnd())) {
             return "moe.show_approach_details.to_evaluate.ongoing";
         }
 
