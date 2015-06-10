@@ -35,6 +35,11 @@ public class AnswerTheQuestions extends BaseContextBean {
         });
     }
 
+    /**
+     * Metoda pozwala utrwalić zmiany dokonane w odpowiedziach.
+     * Po zapisaniu pytań rozwiązywanie można kontynuować.
+     * @return outcome JSF na który zostanie przekierowany użytkownik po skończonej edycji, czyli ten sam formularz
+     */
     public String editApproach() {
         return expectApplicationException(() -> {
             answerService.editApproach(approach.getAnswers());
@@ -47,7 +52,7 @@ public class AnswerTheQuestions extends BaseContextBean {
     }
 
     /**
-     * Metoda zakończająca dane podejście do egzaminu.
+     * Metoda pozwalająca zakończyć podejście do egzaminu.
      * Korzysta z dobrodziejstw contextMapy i ustawia odpowiednie id i wiadomość do strony listApproaches.
      * Po zakończeniu przekierowuje do listy podejść z odpowiednim komunikatem ustawionym w kontekstMapie.
      * @return strona na którą przekierowywuje po skończonej operacji
