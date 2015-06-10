@@ -158,11 +158,27 @@ public class BaseContextBean implements Serializable {
         }
     }
 
+    /**
+     * Interfejs funkcyjny dla funkcji, który mogą zwrócić String z outcome dla JSF lub rzucić wyjątek {@link ApplicationBaseException}
+     */
     protected interface ApplicationErrorProducer {
+        /**
+         * Metoda zwracająca String z outcome dla JSF lub rzucić wyjątek {@link ApplicationBaseException}
+         * @return outcome dla JSF
+         * @throws ApplicationBaseException rzucany w razie błędu, nie jest określone kiedy implementacja ma prawo go rzucić
+         */
         String get() throws ApplicationBaseException;
     }
 
+    /**
+     * Interfejs funkcyjny dla procedur, które mogą rzucić wyjątek {@link ApplicationBaseException}
+     * Przeznaczony do akcji, które niekoniecznie chcą zaraz po wywołaniu przeładować widok, np. do inicjalizacji.
+     */
     protected interface ApplicationErrorAction {
+        /**
+         * Jedyna metoda tego interfejsu, determinująca co on tak właściwie robi.
+         * @throws ApplicationBaseException rzucany w razie błędu, nie jest określone kiedy implementacja ma prawo go rzucić
+         */
         void run() throws ApplicationBaseException;
     }
 
