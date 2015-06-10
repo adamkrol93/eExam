@@ -17,6 +17,8 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
+ * Backing bean dla listy podejść powiązanych z danym użtkownikiem. Pozwala na
+ * wyświetlenie listy podejść do egzaminów. 
  * @author Marcin Kabza
  */
 @ManagedBean(name = "listApproachesMOE")
@@ -75,12 +77,21 @@ public class ListApproaches extends BaseContextBean implements Serializable {
         return String.format("showApproachDetails?uuid=%s&faces-redirect=true", getUuid());
     }
 
+    /**
+     * Metoda korzysta z dobrodziejstw contextMapy i ustawia
+     * odpowiednie identyfikator do strony rateApproach
+     * @return strona na którą przekierowywuje po skończonej operacji
+     */
     public String rateApproach() {
         long approachId = approaches.getRowData().getId();
         setContext(RateApproach.class, bean -> bean.setId(approachId));
         return String.format("rateApproach?uuid=%s&faces-redirect=true", getUuid());
     }
-
+    /**
+     * Zwraca podejścia poiwiązanymi z danym egzaminem
+     * @param exam egzamin z kótrym powiązane są dane podejścia
+     * @return podejścia powiązane z danym egzaminem
+     */
     public DataModel<ApproachEntity> getApproaches(ExamEntity exam) {
         for (ExamEntity examEntity : examEntityList) {
             if (examEntity.getId() == exam.getId()) {
@@ -89,7 +100,10 @@ public class ListApproaches extends BaseContextBean implements Serializable {
         }
         return approaches;
     }
-
+    /**
+     * Zwraca kalendarz z obecną datą, przydaje się w interfejsie.
+     * @return Kalendarz z obecną datą.
+     */
     public Calendar getCurrentTime() {
         return Calendar.getInstance();
     }

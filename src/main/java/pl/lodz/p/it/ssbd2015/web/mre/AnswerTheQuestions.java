@@ -47,7 +47,8 @@ public class AnswerTheQuestions extends BaseContextBean {
     }
 
     /**
-     * Metoda pozwalająca zakończyć podejście do rgzaminu przed upłynięciem maksymalnego czasu trwania.
+     * Metoda zakończająca dane podejście do egzaminu.
+     * Korzysta z dobrodziejstw contextMapy i ustawia odpowiednie id i wiadomość do strony listApproaches.
      * Po zakończeniu przekierowuje do listy podejść z odpowiednim komunikatem ustawionym w kontekstMapie.
      * @return strona na którą przekierowywuje po skończonej operacji
      */

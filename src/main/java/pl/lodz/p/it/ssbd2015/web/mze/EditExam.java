@@ -85,6 +85,11 @@ public class EditExam extends BaseContextBean {
         });
     }
 
+    /**
+     * Metoda usuwająca nauczyciela z egzaminu. Ustawia też
+     * kontekst w ContextMap, by użytkownik wrócił do formularza edycji po odświeżeniu strony z odpowiednią wiadomością.
+     * @return String z outcome, który pokieruje JSF.
+     */
     public String removeTeacher() {
         return expectApplicationException(() -> {
             editExamService.removeTeacher(teachers.getRowData().getId());
