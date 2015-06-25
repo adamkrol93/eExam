@@ -1,0 +1,6 @@
+Glassfish server must act locally and be launched before the start of testing.
+On the Glassfish server must be configured ssbd01testrealm, set exactly the same as in the production version, however, indicating the test database.
+Also locally must be running server database management system PostgreSQL ssbd01test created database schema identical to the database schema used in the project and having the same user database with the same permissions to database objects.
+In addition to action functional testing is required installed Google Chrome (https://www.google.pl/chrome/browser/desktop/) and ChromeDriver (https://code.google.com/p/selenium/wiki/ChromeDriver) . The path to the directory containing the executable file of the latter must be recorded in the system PATH variable.
+
+

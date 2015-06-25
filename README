@@ -1,0 +1,21 @@
+System implemented for the SSBD (Network Database Systems) subject 2015 edition organized by Institute of Information Technology at the Lodz University of Technology. 
+Project was developed using Java EE (EJB, JSF), Glassfish, PostgreSQL, Bootstrap, JIRA and Git technologies.
+For more information please visit http://skl.it.p.lodz.pl/~msmolinski/ssbd/ .
+In order to install this project please take a look at install folder.
+
+System stworzony na przedmiot SSBD (Sieciowe systemy baz danych) edycja 2015 organizowany przez Instytut Informatyki na Politechnice Łódzkiej. 
+W projekcie wykorzystano technologie: Java EE (EJB,JSF), Glassfish, PosgreSQL, Bootstrap, JIRA oraz Git. 
+Więcej informacji o projektach można znaleźć na stronie: http://skl.it.p.lodz.pl/~msmolinski/ssbd/ 
+W celu zainstalowania projektu należy przeczytać wszystkie wymagania w folderze install.
+
+Project Team / Zespół projektowy:
+Adam Król - Team Leader and Developer
+Tobiasz Kowalski - Quality Assurance and Developer
+Andrzej Kurczewski - Documentation Master and Developer
+Michał Sośnicki - Git Manager and Developer
+Piotr Jurewicz - Deployer and Developer
+Marcin Kabza - SQL Injector and Developer
+Bartosz Ignaczewski - Maven Rider and Developer
+
+
+

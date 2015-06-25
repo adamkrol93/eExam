@@ -1,0 +1,2 @@
+Aplikacja do wysyłania maili korzysta z aplikacji Mandrill. Zasób na serwerze Glassfish tworzony jest podczas wdrażania aplikacji.
+Aktualne dane do zalogowania się do aplikacji Mandrill: użytkownik:ssbd01 hasło:ssbd01Mandrill

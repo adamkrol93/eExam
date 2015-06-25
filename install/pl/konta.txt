@@ -1,0 +1,15 @@
+Użytkownik o roli nauczyciel: 
+	person_login: nauczyciel
+	person_password: nauczyciel
+Użytkownik o roli opiekun: 
+	person_login: rodzic
+	person_password: rodzic
+Użytkownik o roli uczeń:
+	person_login: uczen
+	person_password: uczen
+Użytkownik o roli egzaminator:
+	person_login: egzaminator
+	person_password: egzaminator
+Użytkownik o roli admina:
+	person_login: admin
+	person_password: admin

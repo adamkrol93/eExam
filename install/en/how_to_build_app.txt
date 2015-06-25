@@ -1,0 +1,4 @@
+The application is designed to operate in developer mode, then using all the resource localhost and production, uses servers supplied by 3rd parties. To build an application in the production version, use the appropriate parameter when you build the maven project: -Denv = prod.
+Developement mode is being built by default. Using NetBeans or other IDE supporting the management of the Maven project profiles, select the profile prod.
+Keep in mind that the default configuration for building an application by Maven runs tests. Project has 120 tests, they last 20-30 minutes and environment has to be set properly, as described in other file.
+

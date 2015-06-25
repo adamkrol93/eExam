@@ -1,0 +1,4 @@
+Serwer Glassfish musi działać lokalnie i zostać uruchomionym przed rozpoczęciem wykonywania testów.
+Na serwerze glassfish musi być skonfigurowany ssbd01testrealm, ustawiony dokładnie tak samo jak w przypadku wersji produkcyjnej jednakże wskazujący na bazę testową.
+Również lokalnie musi działać serwer systemu zarządzania bazą danych PostgreSQL z utworzoną bazą danych ssbd01test o schemacie identycznym ze schematem bazy danych wykorzystywanej w projekcie oraz posiadająca takich samych użytkowników bazodanowych z takimi samymi uprawnieniami do obiektów bazy danych.
+Ponadto do działania testów funkcjonalnych wymagana jest zainstalowana przeglądarka Google Chrome (https://www.google.pl/chrome/browser/desktop/) oraz ChromeDriver (https://code.google.com/p/selenium/wiki/ChromeDriver). Ścieżka do katalogu zawierającego plik wykonywalny tego ostatniego musi być zapisana w zmiennej systemowej PATH.

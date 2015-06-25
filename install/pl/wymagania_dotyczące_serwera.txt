@@ -1,0 +1,13 @@
+Wymagane zasoby typu ConnectionPool i JDBCresources tworzone są w deskryptorze wdrożeniowym aplikacji, oprócz zasobu i puli dla JDBC Realm, te należy stworzyć ręcznie.
+Użytkownik bazodanowy tej puli to: ssbd01authdb
+Jego hasło to: 4uthp455
+
+Wymagany zasób JDBC Realm:
+jdbc/ssbd01auth skonfigurowany do korzystania z widoku w bazie danych "glassfish_auth_view"
+User Table: glassfish_auth_view
+User Name Column: person_login
+Password Column: person_password
+Group Table: glassfish_auth_view
+Group Name Column: groups_name
+Password Encryption Algorithm: none
+Digest Algorithm: MD5

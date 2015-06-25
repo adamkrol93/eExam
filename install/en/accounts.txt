@@ -1,0 +1,16 @@
+Role teacher: 
+	person_login: nauczyciel
+	person_password: nauczyciel
+Role guardian: 
+	person_login: rodzic
+	person_password: rodzic
+Role student:
+	person_login: uczen
+	person_password: uczen
+Role examiner:
+	person_login: egzaminator
+	person_password: egzaminator
+Role admin:
+	person_login: admin
+	person_password: admin
+

@@ -1,0 +1,13 @@
+ConnectionPool type of required resources and JDBCresources are created in the application descriptor implementation, in addition to the resource and pool for JDBC Realm, these must be created manually.
+The user database of this pool are: ssbd01authdb
+Pass: 4uthp455
+
+Required JDBC resource Realm:
+jdbc / ssbd01auth configured to use a database view, "glassfish_auth_view"
+User Table: glassfish_auth_view
+User Name Column: person_login
+Password Column: person_password
+Group Table: glassfish_auth_view
+Group Name Column: groups_name
+Password Encryption Algorithm: none
+Digest Algorithm: MD5

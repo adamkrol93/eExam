@@ -1,0 +1,1 @@
+The application for sending e-mails using the application Mandrill. Glassfish server resource is created when deploying the application, now the Mandrill credentials in glassfish-resources are empty.

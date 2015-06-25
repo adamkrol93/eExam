@@ -1,0 +1,4 @@
+Aplikacja jest przystosowana do działania w trybie developerskim, wtedy korzysta ze wszystkich zasobów localhost, oraz produkcyjnym, korzysta z serwerów dostarczonym przez Prowadzących. Aby zbudować aplikację w wersji produkcyjnej, należy użyć odpowiedniego parametru podczas budowania projektu mavenowego: -Denv=prod.
+Tryb developerski jest budowany domyślnie. Korzystając z oprogramowania NetBeans lub innego IDE wspierającego zarządzanie profilami projektu Maven, należy wybrać profil prod.
+Warto pamiętać, że domyślna konfiguracja budowania aplikacji poprzez Maven uruchamia testy. W projekcie jest 120 testów, przejście ich zajmuje około 20-30 minut i muszą być spełnione wszystie warunki środowiska testowego, zamieszczone w osobym pliku.
+
